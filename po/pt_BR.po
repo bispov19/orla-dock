@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 12:19-0300\n"
+"POT-Creation-Date: 2026-11-12 12:52-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/appIcon.js:415
+#: lib/appIcon.js:416
 msgid "Applications"
 msgstr "Aplicativos"
 
@@ -66,19 +66,19 @@ msgstr "Ativar ampliação"
 msgid "Position on Screen"
 msgstr "Posição na tela"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:22
+#: lib/appMenu.js:188 prefs/layoutPage.js:28
 msgid "Bottom"
 msgstr "Inferior"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:22
+#: lib/appMenu.js:188 prefs/layoutPage.js:28
 msgid "Top"
 msgstr "Superior"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:22
+#: lib/appMenu.js:188 prefs/layoutPage.js:28
 msgid "Left"
 msgstr "Esquerda"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:22
+#: lib/appMenu.js:188 prefs/layoutPage.js:28
 msgid "Right"
 msgstr "Direita"
 
@@ -187,7 +187,7 @@ msgstr "Esvaziar todos os itens da Lixeira?"
 msgid "All items in the Trash will be permanently deleted."
 msgstr "Todos os itens da Lixeira serão apagados permanentemente."
 
-#: lib/trash.js:104 prefs/widgets.js:311
+#: lib/trash.js:104 prefs/widgets.js:333
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -484,71 +484,75 @@ msgstr "Efeito Gênio"
 msgid "Scale effect"
 msgstr "Efeito Escala"
 
-#: prefs/behaviorPage.js:30
+#: prefs/behaviorPage.js:33
 msgid "Minimize duration"
 msgstr "Duração do minimizar"
 
-#: prefs/behaviorPage.js:32
+#: prefs/behaviorPage.js:34
+msgid "How long minimizing and restoring a window takes"
+msgstr "Quanto tempo leva para minimizar e restaurar uma janela"
+
+#: prefs/behaviorPage.js:38
 msgid "Animate opening applications"
 msgstr "Animar abertura de aplicativos"
 
-#: prefs/behaviorPage.js:33
+#: prefs/behaviorPage.js:39
 msgid "Bounce when an application needs attention"
 msgstr "Quicar quando um aplicativo pedir atenção"
 
-#: prefs/behaviorPage.js:35
+#: prefs/behaviorPage.js:41
 msgid "Windows"
 msgstr "Janelas"
 
-#: prefs/behaviorPage.js:36
+#: prefs/behaviorPage.js:42
 msgid "Minimize windows into application icon"
 msgstr "Minimizar janelas no ícone do aplicativo"
 
-#: prefs/behaviorPage.js:37
+#: prefs/behaviorPage.js:43
 msgid "When off, minimized windows go next to the Downloads folder and the Trash"
 msgstr "Quando desligado, as janelas minimizadas vão para o lado da pasta Downloads e da Lixeira"
 
-#: prefs/behaviorPage.js:38
+#: prefs/behaviorPage.js:44
 msgid "Show window previews on hover"
 msgstr "Mostrar miniaturas das janelas ao passar o mouse"
 
-#: prefs/behaviorPage.js:39
+#: prefs/behaviorPage.js:45
 msgid "Show notification badges and progress"
 msgstr "Mostrar contadores de notificação e progresso"
 
-#: prefs/behaviorPage.js:40
+#: prefs/behaviorPage.js:46
 msgid "Each app shows how many notifications it has waiting, even when pinned and closed"
 msgstr "Cada app mostra quantas notificações tem esperando, mesmo fixado e fechado"
 
-#: prefs/behaviorPage.js:42
+#: prefs/behaviorPage.js:48
 msgid "Apps on the Dock"
 msgstr "Apps no Dock"
 
-#: prefs/behaviorPage.js:43
+#: prefs/behaviorPage.js:49
 msgid "Show suggested and recent apps in Dock"
 msgstr "Mostrar aplicativos sugeridos e recentes no Dock"
 
-#: prefs/behaviorPage.js:44
+#: prefs/behaviorPage.js:50
 msgid "Closed apps stay in the Dock for a while, like on macOS"
 msgstr "Apps fechados continuam no Dock por um tempo, como no macOS"
 
-#: prefs/behaviorPage.js:45
+#: prefs/behaviorPage.js:51
 msgid "Show today's date on the Calendar icon"
 msgstr "Mostrar a data de hoje no ícone do Calendário"
 
-#: prefs/behaviorPage.js:46
+#: prefs/behaviorPage.js:52
 msgid "Hide the GNOME dash in the Activities overview"
 msgstr "Ocultar o dash do GNOME na Visão geral de atividades"
 
-#: prefs/behaviorPage.js:49
+#: prefs/behaviorPage.js:55
 msgid "Hidden windows"
 msgstr "Janelas ocultas"
 
-#: prefs/behaviorPage.js:50
+#: prefs/behaviorPage.js:56
 msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
 msgstr "Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como janelas comuns, o que faz um ícone extra aparecer no Dock. Janelas cuja classe corresponde a um destes padrões ficam de fora do Dock. Separe os padrões com vírgulas; * corresponde a qualquer texto."
 
-#: prefs/behaviorPage.js:57
+#: prefs/behaviorPage.js:63
 msgid "Window classes to hide"
 msgstr "Classes de janela a ocultar"
 
@@ -700,7 +704,7 @@ msgstr "Brilho"
 msgid "Strength of the rim highlight"
 msgstr "Força do brilho na borda"
 
-#: prefs/blurPage.js:183 prefs/layoutPage.js:41 prefs/widgets.js:259
+#: prefs/blurPage.js:183 prefs/layoutPage.js:58 prefs/widgets.js:281
 msgid "Off"
 msgstr "Não"
 
@@ -716,99 +720,179 @@ msgstr "Direção da luz"
 msgid "Where the light falls from"
 msgstr "De onde vem a luz"
 
-#: prefs/layoutPage.js:16
+#: prefs/layoutPage.js:22
 msgid "Layout"
 msgstr "Disposição"
 
-#: prefs/layoutPage.js:20
+#: prefs/layoutPage.js:26
 msgid "Position"
 msgstr "Posição"
 
-#: prefs/layoutPage.js:21
+#: prefs/layoutPage.js:27
 msgid "Position on screen"
 msgstr "Posição na tela"
 
-#: prefs/layoutPage.js:23
+#: prefs/layoutPage.js:29
 msgid "Distance from screen edge"
 msgstr "Distância da borda da tela"
 
-#: prefs/layoutPage.js:25 prefs/widgets.js:255
+#: prefs/layoutPage.js:31 prefs/widgets.js:277
 msgid "Size"
 msgstr "Tamanho"
 
-#: prefs/layoutPage.js:30
+#: prefs/layoutPage.js:39
+msgid "Fluid"
+msgstr "Fluido"
+
+#: prefs/layoutPage.js:39
+msgid "Domino"
+msgstr "Dominó"
+
+#: prefs/layoutPage.js:39
+msgid "Cylinder"
+msgstr "Cilindro"
+
+#: prefs/layoutPage.js:40
+msgid "Magnetic"
+msgstr "Magnético"
+
+#: prefs/layoutPage.js:40
+msgid "Jelly"
+msgstr "Gelatina"
+
+#: prefs/layoutPage.js:40
+msgid "Coverflow"
+msgstr "Coverflow"
+
+#: prefs/layoutPage.js:42
+msgid "Motion"
+msgstr "Movimento"
+
+#: prefs/layoutPage.js:43
+msgid "The shape of the wave"
+msgstr "O formato da onda"
+
+#: prefs/layoutPage.js:47
 msgid "Magnification details"
 msgstr "Ajustes da ampliação"
 
-#: prefs/layoutPage.js:31
+#: prefs/layoutPage.js:48
 msgid "How the icons grow under the pointer"
 msgstr "Como os ícones crescem sob o ponteiro"
 
-#: prefs/layoutPage.js:33
+#: prefs/layoutPage.js:50
 msgid "Smoothness"
 msgstr "Suavidade"
 
-#: prefs/layoutPage.js:34
+#: prefs/layoutPage.js:51
 msgid "Lower values glide more, higher values follow the pointer faster"
 msgstr "Valores baixos deslizam mais; valores altos seguem o ponteiro mais rápido"
 
-#: prefs/layoutPage.js:35
+#: prefs/layoutPage.js:52
 msgid "Soft"
 msgstr "Suave"
 
-#: prefs/layoutPage.js:35
+#: prefs/layoutPage.js:52
 msgid "Snappy"
 msgstr "Rápido"
 
-#: prefs/layoutPage.js:36
+#: prefs/layoutPage.js:53
 msgid "Reach"
 msgstr "Alcance"
 
-#: prefs/layoutPage.js:37
+#: prefs/layoutPage.js:54
 msgid "How many neighbouring icons grow along"
 msgstr "Quantos ícones vizinhos crescem junto"
 
-#: prefs/layoutPage.js:38
+#: prefs/layoutPage.js:55
 msgid "Narrow"
 msgstr "Estreito"
 
-#: prefs/layoutPage.js:38
+#: prefs/layoutPage.js:55
 msgid "Wide"
 msgstr "Amplo"
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:56
 msgid "Lift"
 msgstr "Elevação"
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:57
 msgid "Extra lift of the magnified icon"
 msgstr "Quanto o ícone ampliado sobe"
 
-#: prefs/layoutPage.js:44
+#: prefs/layoutPage.js:59
+msgid "Make room"
+msgstr "Abrir espaço"
+
+#: prefs/layoutPage.js:60
+msgid "Neighbours slide apart for the zoomed icon"
+msgstr "Os vizinhos se afastam para o ícone ampliado"
+
+#: prefs/layoutPage.js:61
+msgid "Push strength"
+msgstr "Força do empurrão"
+
+#: prefs/layoutPage.js:62
+msgid "Higher values push the neighbours less"
+msgstr "Valores maiores empurram menos os vizinhos"
+
+#: prefs/layoutPage.js:69
+msgid "Motion details"
+msgstr "Detalhes do movimento"
+
+#: prefs/layoutPage.js:73
+msgid "Tilt"
+msgstr "Inclinação"
+
+#: prefs/layoutPage.js:75
+msgid "Curve"
+msgstr "Curvatura"
+
+#: prefs/layoutPage.js:77
+msgid "Pull"
+msgstr "Atração"
+
+#: prefs/layoutPage.js:78
+msgid "How strongly icons snap to the pointer"
+msgstr "Quanto os ícones são puxados pelo ponteiro"
+
+#: prefs/layoutPage.js:80
+msgid "Stretch"
+msgstr "Esticar"
+
+#: prefs/layoutPage.js:82
+msgid "Squash"
+msgstr "Achatar"
+
+#: prefs/layoutPage.js:84
+msgid "Card angle"
+msgstr "Ângulo do cartão"
+
+#: prefs/layoutPage.js:93
 msgid "Spacing"
 msgstr "Espaçamento"
 
-#: prefs/layoutPage.js:45
+#: prefs/layoutPage.js:94
 msgid "Space between icons"
 msgstr "Espaço entre os ícones"
 
-#: prefs/layoutPage.js:46
+#: prefs/layoutPage.js:95
 msgid "Inner padding"
 msgstr "Preenchimento interno"
 
-#: prefs/layoutPage.js:47
+#: prefs/layoutPage.js:96
 msgid "Extra space between the icons and the Dock edge"
 msgstr "Espaço extra entre os ícones e a borda do Dock"
 
-#: prefs/layoutPage.js:49
+#: prefs/layoutPage.js:98
 msgid "Monitors"
 msgstr "Monitores"
 
-#: prefs/layoutPage.js:50
+#: prefs/layoutPage.js:99
 msgid "Show the Dock on all monitors"
 msgstr "Mostrar o Dock em todos os monitores"
 
-#: prefs/layoutPage.js:51
+#: prefs/layoutPage.js:100
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr "Quando desligado, o Dock aparece só no monitor principal"
 
@@ -964,55 +1048,55 @@ msgstr "Reflexo nos ícones"
 msgid "A subtle reflection under the icons (bottom Dock only)"
 msgstr "Um reflexo sutil embaixo dos ícones (só com o Dock na parte inferior)"
 
-#: prefs/widgets.js:107
+#: prefs/widgets.js:125
 msgid "Reset to defaults"
 msgstr "Restaurar padrões"
 
-#: prefs/widgets.js:162
+#: prefs/widgets.js:180
 msgid "None"
 msgstr "Nenhuma"
 
-#: prefs/widgets.js:166
+#: prefs/widgets.js:184
 msgid "Choose…"
 msgstr "Escolher…"
 
-#: prefs/widgets.js:168
+#: prefs/widgets.js:186
 msgid "Images"
 msgstr "Imagens"
 
-#: prefs/widgets.js:172
+#: prefs/widgets.js:190
 msgid "Choose an image"
 msgstr "Escolha uma imagem"
 
-#: prefs/widgets.js:252 prefs/widgets.js:259
+#: prefs/widgets.js:274 prefs/widgets.js:281
 msgid "Small"
 msgstr "Pequeno"
 
-#: prefs/widgets.js:252 prefs/widgets.js:259
+#: prefs/widgets.js:274 prefs/widgets.js:281
 msgid "Large"
 msgstr "Grande"
 
-#: prefs/widgets.js:262
+#: prefs/widgets.js:284
 msgid "Magnification"
 msgstr "Ampliação"
 
-#: prefs/widgets.js:279
+#: prefs/widgets.js:301
 msgid "Disabled"
 msgstr "Desativado"
 
-#: prefs/widgets.js:284
+#: prefs/widgets.js:306
 msgid "Change…"
 msgstr "Alterar…"
 
-#: prefs/widgets.js:290
+#: prefs/widgets.js:312
 msgid "Disable shortcut"
 msgstr "Desativar atalho"
 
-#: prefs/widgets.js:308
+#: prefs/widgets.js:330
 msgid "New shortcut"
 msgstr "Novo atalho"
 
-#: prefs/widgets.js:309
+#: prefs/widgets.js:331
 msgid "Press the new key combination, or Esc to cancel."
 msgstr "Pressione a nova combinação de teclas, ou Esc para cancelar."
 

@@ -27,8 +27,14 @@ export function behaviorPage(binder) {
     const animation = group(page, _('Animations'));
     animation.add(enumRow(binder, 'minimize-effect', _('Minimize windows using'),
         [_('Genie effect'), _('Scale effect')]));
-    animation.add(sliderRow(binder, 'minimize-duration', _('Minimize duration'), null,
-        {lower: 150, upper: 1500, step: 50, marks: [[150, '150 ms'], [550, ''], [1500, '1500 ms']]}, true));
+    // Mesmo controle da Luma: 100–1500 ms, de 25 em 25, com o valor visível.
+    // O efeito Escala é a animação nativa do GNOME, que tem duração fixa;
+    // por isso o controle só aparece com o Gênio.
+    const duration = sliderRow(binder, 'minimize-duration', _('Minimize duration'),
+        _('How long minimizing and restoring a window takes'),
+        {lower: 100, upper: 1500, step: 25, format: v => `${Math.round(v)} ms`}, true);
+    animation.add(duration);
+    binder.showWhen('minimize-effect', s => s.get_enum('minimize-effect') === 0, duration);
     animation.add(switchRow(binder, 'animate-launch', _('Animate opening applications')));
     animation.add(switchRow(binder, 'bounce-on-attention', _('Bounce when an application needs attention')));
 

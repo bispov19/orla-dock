@@ -22,11 +22,12 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - Temas prontos (Sistema, Cor personalizada com gradiente, Cor do papel de parede, Carbon, Nord, Catppuccin, Gruvbox, Dracula, Tokyo Night, Frost).
 - Vidro ajustável: intensidade, brilho, vibração e brilho na borda; contorno, espaçamento e preenchimento.
 - Ampliação em onda **suavizada a cada quadro** (os vizinhos crescem junto), com ajustes de suavidade, alcance e elevação, nas 4 posições.
+- **Movimentos da ampliação** iguais aos da Luma Dock: Fluido, Dominó, Cilindro, Magnético, Gelatina e Coverflow, com "Abrir espaço", força do empurrão e ajustes próprios de cada movimento.
 - Indicadores em ponto, traço, linha, quadrado ou um ponto por janela, com cor automática, de destaque ou personalizada.
 - Ícone do Calendário com a data de hoje.
 - Ícones entram e saem com animação; quicam ao abrir um app e quando uma janela pede atenção.
 - Indicadores de apps abertos, nome do app ao passar o mouse e reflexo opcional dos ícones.
-- Efeitos de minimizar **Gênio** (malha deformável, bordas lisas) e **Escala**, com duração ajustável, entrando no ícone do app ou numa miniatura própria ao lado do Downloads e da Lixeira.
+- Efeitos de minimizar **Gênio** (malha deformável, bordas lisas) e **Escala**, com duração ajustável (100 a 1500 ms), entrando no ícone do app ou numa miniatura própria ao lado do Downloads e da Lixeira.
 - Segue o estilo claro/escuro do sistema.
 
 **Aplicativos**

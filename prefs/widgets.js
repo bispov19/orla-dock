@@ -41,6 +41,24 @@ export class Binder {
         });
     }
 
+    /**
+     * Liga uma chave de TEXTO a um ComboRow: `values` são os valores salvos,
+     * na mesma ordem dos textos mostrados na lista.
+     */
+    stringCombo(key, row, values) {
+        const sync = () => {
+            const index = values.indexOf(this.settings.get_string(key));
+            row.selected = Math.max(0, index);
+        };
+        row.connect('notify::selected', () => {
+            const value = values[row.selected];
+            if (value !== undefined && value !== this.settings.get_string(key))
+                this.settings.set_string(key, value);
+        });
+        this._watch(key, sync);
+        sync();
+    }
+
     /** Liga um número (inteiro ou decimal) a um Gtk.Adjustment. */
     number(key, adjustment, {integer = false} = {}) {
         const read = () => integer ? this.settings.get_int(key) : this.settings.get_double(key);
@@ -195,12 +213,14 @@ export function comboRow(title, items, subtitle = null) {
 }
 
 /** Um Gtk.Scale horizontal com marcas de texto embaixo (estilo macOS). */
-export function markedScale({lower, upper, step, marks = [], digits = 0}) {
+export function markedScale({lower, upper, step, marks = [], digits = 0, format = null}) {
     const adjustment = new Gtk.Adjustment({lower, upper, step_increment: step, page_increment: step * 5});
     const scale = new Gtk.Scale({
         adjustment,
         digits,
-        draw_value: false,
+        // Com `format`, o valor atual aparece ao lado (ex.: "550 ms").
+        draw_value: format !== null,
+        value_pos: Gtk.PositionType.RIGHT,
         hexpand: true,
         orientation: Gtk.Orientation.HORIZONTAL,
         // Margens para os textos das marcas (centralizados nas pontas)
@@ -210,6 +230,8 @@ export function markedScale({lower, upper, step, marks = [], digits = 0}) {
     });
     for (const [value, label] of marks)
         scale.add_mark(value, Gtk.PositionType.BOTTOM, label);
+    if (format)
+        scale.set_format_value_func((_scale, value) => format(value));
     return {scale, adjustment};
 }
 
