@@ -1,25 +1,37 @@
 # Orla Dock
 
-Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
+Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas no estilo do Windows 10**. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
 
 ![A Orla Dock com a ampliação em onda](docs/screenshots/dock.png)
 
-| Stack em leque | Stack em grade | Preferências |
-| --- | --- | --- |
-| ![Stack em leque](docs/screenshots/stack-fan.png) | ![Stack em grade](docs/screenshots/stack-grid.png) | ![Preferências](docs/screenshots/preferences.png) |
+![O modo barra de tarefas](docs/screenshots/taskbar.png)
+
+| Stack em leque | Stack em grade | Preferências | Sobre |
+| --- | --- | --- | --- |
+| ![Stack em leque](docs/screenshots/stack-fan.png) | ![Stack em grade](docs/screenshots/stack-grid.png) | ![Preferências](docs/screenshots/preferences.png) | ![Sobre](docs/screenshots/about.png) |
 
 ## Recursos
 
+**Dois estilos**
+- **Dock (macOS):** flutuante, centralizada, com ampliação em onda.
+- **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção e relógio com data.
+
 **Aparência e animações**
-- Dock flutuante com cantos arredondados, transparência e desfoque (blur) do próprio Shell, recortado nos cantos.
-- Ampliação em onda (os vizinhos crescem proporcionalmente) nas 4 posições.
+- Cantos arredondados, transparência e desfoque (blur) do próprio Shell, recortado nos cantos.
+- Temas prontos (Sistema, Cor personalizada com gradiente, Cor do papel de parede, Carbon, Nord, Catppuccin, Gruvbox, Dracula, Tokyo Night, Frost).
+- Vidro ajustável: intensidade, brilho, vibração e brilho na borda; contorno, espaçamento e preenchimento.
+- Ampliação em onda **suavizada a cada quadro** (os vizinhos crescem junto), com ajustes de suavidade, alcance e elevação, nas 4 posições.
+- Indicadores em ponto, traço, linha, quadrado ou um ponto por janela, com cor automática, de destaque ou personalizada.
+- Ícone do Calendário com a data de hoje.
 - Ícones entram e saem com animação; quicam ao abrir um app e quando uma janela pede atenção.
 - Indicadores de apps abertos, nome do app ao passar o mouse e reflexo opcional dos ícones.
 - Efeitos de minimizar **Gênio** e **Escala**, entrando no ícone do app ou numa miniatura própria perto da lixeira.
 - Segue o estilo claro/escuro do sistema.
 
 **Aplicativos**
-- Apps fixados compartilhados com os favoritos do GNOME, mais apps abertos e uma seção de recentes/sugeridos.
+- Apps fixados compartilhados com os favoritos do GNOME, mais apps abertos e uma seção opcional de recentes/sugeridos.
+- Botão de aplicativos com o logo do sistema (padrão), grade, bloco colorido ou imagem personalizada.
+- Botão direito na divisória ou no fundo: posição na tela, estilo, ocultação, ampliação e configurações.
 - Um clique abre, traz para frente, alterna entre janelas ou minimiza. O botão do meio abre uma nova janela, e a rodinha do mouse alterna entre janelas.
 - Menu de contexto com a lista de janelas, as ações do `.desktop` (ex.: "Nova janela privada"), Manter no Dock, Mostrar todas as janelas, Ocultar e Encerrar.
 - Arrastar para reordenar, arrastar para fora para remover (com "fumacinha") ou soltar sobre a lixeira.
@@ -100,6 +112,11 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/appTracker.js` | Modelo: quais apps aparecem e em que ordem |
 | `lib/appMenu.js` | Menus de contexto |
 | `lib/magnification.js` | Matemática da ampliação em onda |
+| `lib/magnifier.js` | Motor da ampliação: suavização a cada quadro |
+| `lib/themes.js` | Temas e cores (CSS do fundo, contorno, brilho) |
+| `lib/wallpaperColor.js` | Cor predominante do papel de parede |
+| `lib/calendarIcon.js` | Ícone do Calendário com a data de hoje |
+| `lib/taskbarClock.js` | Relógio com data do modo barra de tarefas |
 | `lib/animations.js` | Quique e "fumacinha" |
 | `lib/minimizeEffects.js` | Efeitos Gênio e Escala |
 | `lib/autohide.js` | Auto-ocultar e reserva de espaço (struts) |

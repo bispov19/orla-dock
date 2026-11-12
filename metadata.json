@@ -9,5 +9,5 @@
   "url": "https://github.com/viniciusbispo19/orla-dock",
   "settings-schema": "org.gnome.shell.extensions.orla-dock",
   "gettext-domain": "orla-dock",
-  "version-name": "1.0.0"
+  "version-name": "1.1.0"
 }

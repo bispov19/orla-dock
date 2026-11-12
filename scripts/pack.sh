@@ -18,6 +18,7 @@ mkdir -p dist
 gnome-extensions pack --force \
     --extra-source=lib \
     --extra-source=prefs \
+    --extra-source=icons \
     --extra-source=LICENSE \
     --schema=schemas/org.gnome.shell.extensions.orla-dock.gschema.xml \
     --podir=po \
