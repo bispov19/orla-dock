@@ -132,6 +132,11 @@
       <default>'genie'</default>
       <summary>Animation used when minimizing windows</summary>
     </key>
+    <key name="minimize-duration" type="i">
+      <range min="150" max="1500"/>
+      <default>550</default>
+      <summary>Duration of the minimize and restore animation, in milliseconds</summary>
+    </key>
     <key name="minimize-to-app" type="b">
       <default>true</default>
       <summary>Minimize windows into the application icon</summary>
