@@ -28,6 +28,10 @@ export function modulesPage(binder, window) {
     // --- Botão de aplicativos ---
     const apps = group(page, _('Applications button'));
     apps.add(switchRow(binder, 'show-apps-button', _('Show the applications button')));
+    const appsSeparator = switchRow(binder, 'apps-button-separator', _('Separator after the button'),
+        _('A divider between the applications button and the apps, like the one before Downloads and the Trash'));
+    apps.add(appsSeparator);
+    binder.showWhen('show-apps-button', s => s.get_boolean('show-apps-button'), appsSeparator);
     apps.add(enumRow(binder, 'apps-button-icon', _('Icon'),
         [_('System logo'), _('Grid'), _('Coloured tile'), _('Custom image')]));
     const gridColor = colorRow(binder, 'apps-button-color', _('Grid colour'));

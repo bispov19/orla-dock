@@ -220,6 +220,10 @@
       <default>true</default>
       <summary>Show the applications grid button</summary>
     </key>
+    <key name="apps-button-separator" type="b">
+      <default>true</default>
+      <summary>Separator between the applications button and the apps</summary>
+    </key>
     <key name="apps-button-icon" enum="org.gnome.shell.extensions.orla-dock.AppsIcon">
       <default>'system-logo'</default>
       <summary>Icon of the applications button</summary>

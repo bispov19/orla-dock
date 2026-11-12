@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 13:07-0300\n"
+"POT-Creation-Date: 2026-11-12 18:10-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -114,7 +114,7 @@ msgstr "Não foi possível desmontar a unidade"
 msgid "Could not open"
 msgstr "Não foi possível abrir"
 
-#: lib/stacks.js:142 prefs/modulesPage.js:45
+#: lib/stacks.js:142 prefs/modulesPage.js:49
 msgid "Home"
 msgstr "Pasta pessoal"
 
@@ -123,19 +123,19 @@ msgid "Open in Files"
 msgstr "Abrir no Arquivos"
 
 #: lib/stacks.js:236 prefs/appearancePage.js:69 prefs/appearancePage.js:76
-#: prefs/modulesPage.js:58
+#: prefs/modulesPage.js:62
 msgid "Automatic"
 msgstr "Automático"
 
-#: lib/stacks.js:237 prefs/modulesPage.js:32 prefs/modulesPage.js:58
+#: lib/stacks.js:237 prefs/modulesPage.js:36 prefs/modulesPage.js:62
 msgid "Grid"
 msgstr "Grade"
 
-#: lib/stacks.js:238 prefs/modulesPage.js:58
+#: lib/stacks.js:238 prefs/modulesPage.js:62
 msgid "Fan"
 msgstr "Leque"
 
-#: lib/stacks.js:239 prefs/modulesPage.js:58
+#: lib/stacks.js:239 prefs/modulesPage.js:62
 msgid "List"
 msgstr "Lista"
 
@@ -175,7 +175,7 @@ msgstr "De ponta a ponta, ícones à esquerda, relógio e data no fim"
 msgid "Empty Trash"
 msgstr "Esvaziar Lixeira"
 
-#: lib/trash.js:67 prefs/modulesPage.js:53
+#: lib/trash.js:67 prefs/modulesPage.js:57
 msgid "Trash"
 msgstr "Lixeira"
 
@@ -910,110 +910,118 @@ msgid "Show the applications button"
 msgstr "Mostrar o botão de aplicativos"
 
 #: prefs/modulesPage.js:31
+msgid "Separator after the button"
+msgstr "Divisória depois do botão"
+
+#: prefs/modulesPage.js:32
+msgid "A divider between the applications button and the apps, like the one before Downloads and the Trash"
+msgstr "Uma divisória entre o botão de aplicativos e os apps, como a que fica antes do Downloads e da Lixeira"
+
+#: prefs/modulesPage.js:35
 msgid "Icon"
 msgstr "Ícone"
 
-#: prefs/modulesPage.js:32
+#: prefs/modulesPage.js:36
 msgid "System logo"
 msgstr "Logo do sistema"
 
-#: prefs/modulesPage.js:32
+#: prefs/modulesPage.js:36
 msgid "Coloured tile"
 msgstr "Bloco colorido"
 
-#: prefs/modulesPage.js:32
+#: prefs/modulesPage.js:36
 msgid "Custom image"
 msgstr "Imagem personalizada"
 
-#: prefs/modulesPage.js:33
+#: prefs/modulesPage.js:37
 msgid "Grid colour"
 msgstr "Cor da grade"
 
-#: prefs/modulesPage.js:36
+#: prefs/modulesPage.js:40
 msgid "Image"
 msgstr "Imagem"
 
-#: prefs/modulesPage.js:39
+#: prefs/modulesPage.js:43
 msgid "Icon scale"
 msgstr "Escala do ícone"
 
-#: prefs/modulesPage.js:44
+#: prefs/modulesPage.js:48
 msgid "Places"
 msgstr "Locais"
 
-#: prefs/modulesPage.js:44
+#: prefs/modulesPage.js:48
 msgid "Shortcuts that open as stacks"
 msgstr "Atalhos que abrem como stacks"
 
-#: prefs/modulesPage.js:46
+#: prefs/modulesPage.js:50
 msgid "Downloads"
 msgstr "Downloads"
 
-#: prefs/modulesPage.js:47
+#: prefs/modulesPage.js:51
 msgid "Documents"
 msgstr "Documentos"
 
-#: prefs/modulesPage.js:48
+#: prefs/modulesPage.js:52
 msgid "Pictures"
 msgstr "Imagens"
 
-#: prefs/modulesPage.js:49
+#: prefs/modulesPage.js:53
 msgid "Videos"
 msgstr "Vídeos"
 
-#: prefs/modulesPage.js:50
+#: prefs/modulesPage.js:54
 msgid "Music"
 msgstr "Música"
 
-#: prefs/modulesPage.js:51
+#: prefs/modulesPage.js:55
 msgid "USB and other drives"
 msgstr "USB e outras unidades"
 
-#: prefs/modulesPage.js:52
+#: prefs/modulesPage.js:56
 msgid "Appear while they are connected"
 msgstr "Aparecem enquanto estiverem conectadas"
 
-#: prefs/modulesPage.js:56
+#: prefs/modulesPage.js:60
 msgid "Stacks"
 msgstr "Stacks"
 
-#: prefs/modulesPage.js:57
+#: prefs/modulesPage.js:61
 msgid "Open stacks as"
 msgstr "Abrir as stacks como"
 
-#: prefs/modulesPage.js:59
+#: prefs/modulesPage.js:63
 msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
 msgstr "No modo automático, stacks pequenas abrem em leque com o Dock embaixo; nos outros casos, em grade"
 
-#: prefs/modulesPage.js:60
+#: prefs/modulesPage.js:64
 msgid "Sort stack items by"
 msgstr "Ordenar itens das stacks por"
 
-#: prefs/modulesPage.js:60
+#: prefs/modulesPage.js:64
 msgid "Date"
 msgstr "Data"
 
-#: prefs/modulesPage.js:60
+#: prefs/modulesPage.js:64
 msgid "Name"
 msgstr "Nome"
 
-#: prefs/modulesPage.js:64
+#: prefs/modulesPage.js:68
 msgid "Other folders"
 msgstr "Outras pastas"
 
-#: prefs/modulesPage.js:65
+#: prefs/modulesPage.js:69
 msgid "Folders shown as stacks next to the Trash"
 msgstr "Pastas exibidas como stacks ao lado da Lixeira"
 
-#: prefs/modulesPage.js:71
+#: prefs/modulesPage.js:75
 msgid "Add folder…"
 msgstr "Adicionar pasta…"
 
-#: prefs/modulesPage.js:88
+#: prefs/modulesPage.js:92
 msgid "Remove"
 msgstr "Remover"
 
-#: prefs/modulesPage.js:106
+#: prefs/modulesPage.js:110
 msgid "Choose a folder"
 msgstr "Escolha uma pasta"
 

@@ -33,7 +33,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 
 **Aplicativos**
 - Apps fixados compartilhados com os favoritos do GNOME, mais apps abertos e uma seção opcional de recentes/sugeridos.
-- Botão de aplicativos com o logo do sistema (padrão), grade, bloco colorido ou imagem personalizada.
+- Botão de aplicativos com o logo do sistema (padrão), grade, bloco colorido ou imagem personalizada, separado dos apps por uma divisória (opcional).
 - Botão direito na divisória ou no fundo: posição na tela, estilo, ocultação, ampliação e configurações.
 - Um clique abre, traz para frente, alterna entre janelas ou minimiza. O botão do meio abre uma nova janela, e a rodinha do mouse alterna entre janelas.
 - Menu de contexto com a lista de janelas, as ações do `.desktop` (ex.: "Nova janela privada"), Manter no Dock, Mostrar todas as janelas, Ocultar e Encerrar.
