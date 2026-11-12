@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Orla Dock package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Orla Dock\n"
+"Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
+"POT-Creation-Date: 2026-11-12 07:11-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: prefs.js:34 prefs.js:39
+msgid "Dock"
+msgstr ""
+
+#: prefs.js:46
+msgid "Position on screen"
+msgstr ""
+
+#: prefs.js:47
+msgid "Bottom"
+msgstr ""
+
+#: prefs.js:47
+msgid "Top"
+msgstr ""
+
+#: prefs.js:47
+msgid "Left"
+msgstr ""
+
+#: prefs.js:47
+msgid "Right"
+msgstr ""
+
+#: prefs.js:61
+msgid "Monitors"
+msgstr ""
+
+#: prefs.js:65
+msgid "Show the dock on all monitors"
+msgstr ""
+
+#: prefs.js:66
+msgid "When off, the dock appears only on the primary monitor"
+msgstr ""
