@@ -17,7 +17,8 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção e relógio com data.
 
 **Aparência e animações**
-- Cantos arredondados, transparência e desfoque (blur) do próprio Shell, recortado nos cantos.
+- Cantos arredondados e transparência.
+- **Vidro (desfoque)** com os mesmos controles da Luma Dock: modo dinâmico (o que está atrás da dock) ou estático (imagens prontas ou sua foto), visuais prontos (Cristal, Fosco, Vívido, Meia-noite), tom, intensidade, vibração, brilho e luz na borda com direção.
 - Temas prontos (Sistema, Cor personalizada com gradiente, Cor do papel de parede, Carbon, Nord, Catppuccin, Gruvbox, Dracula, Tokyo Night, Frost).
 - Vidro ajustável: intensidade, brilho, vibração e brilho na borda; contorno, espaçamento e preenchimento.
 - Ampliação em onda **suavizada a cada quadro** (os vizinhos crescem junto), com ajustes de suavidade, alcance e elevação, nas 4 posições.
@@ -25,7 +26,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - Ícone do Calendário com a data de hoje.
 - Ícones entram e saem com animação; quicam ao abrir um app e quando uma janela pede atenção.
 - Indicadores de apps abertos, nome do app ao passar o mouse e reflexo opcional dos ícones.
-- Efeitos de minimizar **Gênio** e **Escala**, entrando no ícone do app ou numa miniatura própria perto da lixeira.
+- Efeitos de minimizar **Gênio** (malha deformável, bordas lisas) e **Escala**, com duração ajustável, entrando no ícone do app ou numa miniatura própria ao lado do Downloads e da Lixeira.
 - Segue o estilo claro/escuro do sistema.
 
 **Aplicativos**
@@ -36,10 +37,13 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - Menu de contexto com a lista de janelas, as ações do `.desktop` (ex.: "Nova janela privada"), Manter no Dock, Mostrar todas as janelas, Ocultar e Encerrar.
 - Arrastar para reordenar, arrastar para fora para remover (com "fumacinha") ou soltar sobre a lixeira.
 - Miniaturas ao vivo das janelas.
-- Contadores de notificação e barra de progresso via Unity LauncherEntry (D-Bus).
+- Contadores de notificação por app (notificações do GNOME ou Unity LauncherEntry), inclusive em apps fixados e fechados, e barra de progresso.
+- **Janelas ocultas:** padrões de classe de janela (com `*`) que a dock ignora.
 
 **Recursos do macOS**
-- Stacks em grade, leque ou lista, com Downloads pronta e outras pastas a gosto.
+- Stacks em grade, leque ou lista.
+- **Locais:** Pasta pessoal, Downloads, Documentos, Imagens, Vídeos e Música, cada um com o seu liga/desliga, além de outras pastas a gosto.
+- **USB e outras unidades** aparecem só enquanto estão conectadas (com Ejetar/Desmontar).
 - Lixeira com ícone cheio/vazio, Abrir e Esvaziar.
 - Uma dock independente por monitor; posição inferior, superior, esquerda ou direita.
 - Tamanho dinâmico (encolhe quando não cabe) e redimensionamento arrastando a divisória.
@@ -116,6 +120,11 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/themes.js` | Temas e cores (CSS do fundo, contorno, brilho) |
 | `lib/wallpaperColor.js` | Cor predominante do papel de parede |
 | `lib/calendarIcon.js` | Ícone do Calendário com a data de hoje |
+| `lib/styles.js` | **Registro único dos estilos de barra** (para criar um estilo, basta acrescentar um objeto aqui) |
+| `lib/genieMath.js` | Matemática do efeito Gênio (testável fora do Shell) |
+| `lib/mounts.js` | Unidades USB e outras |
+| `lib/notificationCounter.js` | Notificações do GNOME por app |
+| `lib/windowFilter.js` | Janelas ocultas |
 | `lib/taskbarClock.js` | Relógio com data do modo barra de tarefas |
 | `lib/animations.js` | Quique e "fumacinha" |
 | `lib/minimizeEffects.js` | Efeitos Gênio e Escala |
@@ -126,12 +135,12 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/windowPreviews.js` | Miniaturas ao vivo |
 | `lib/launcherEntry.js` | Contadores e progresso via D-Bus |
 | `lib/utils.js` | Eixos (4 posições), timeouts e utilidades |
-| `prefs.js`, `prefs/` | Janela de preferências (GTK 4 + libadwaita) |
+| `prefs.js`, `prefs/` | Janela de preferências (GTK 4 + libadwaita), uma aba por arquivo |
 
 ## Limitações conhecidas
 
 - **Arquivos arrastados de outros programas:** no Wayland, o GNOME Shell recebe o movimento do arraste, mas não o arquivo. Por isso, parar um arquivo sobre um ícone traz o app para frente (como no Mac) para você soltar direto na janela dele. Arquivos arrastados das Stacks da própria Orla abrem direto no app.
-- **Efeito Gênio:** a `Clutter.DeformEffect` não desenha no GNOME 51, então o Gênio é feito com faixas da janela. Fica bem fluido, mas as bordas do "funil" são levemente escalonadas.
+- **Presets do vidro estático:** as imagens prontas da Luma são arte dela; a Orla tem as suas próprias (Abstrato, Aurora, Cyberpunk, Minimalista, Pôr do sol).
 - O Gênio usa um detalhe interno do Shell (`Main.wm._minimizing`); se ele mudar numa versão futura, a Orla volta sozinha para a animação nativa.
 
 ## Licença
