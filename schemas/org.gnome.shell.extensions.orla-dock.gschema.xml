@@ -8,12 +8,12 @@
   o sinal "changed" é avisado na hora — é assim que as mudanças aparecem
   na dock sem reiniciar nada.
 
-  Tipos usados: "b" = booleano, "i" = inteiro, "s" = texto.
-  Novas chaves serão adicionadas fase a fase, conforme forem necessárias.
+  Tipos usados: "b" = booleano, "i" = inteiro, "d" = número decimal,
+  "s" = texto, "as" = lista de textos.
 -->
 <schemalist gettext-domain="orla-dock">
 
-  <!-- Enum: lista fechada de valores possíveis para a posição da dock. -->
+  <!-- Enums: listas fechadas de valores possíveis. -->
   <enum id="org.gnome.shell.extensions.orla-dock.Position">
     <value nick="bottom" value="0"/>
     <value nick="top" value="1"/>
@@ -21,15 +21,144 @@
     <value nick="right" value="3"/>
   </enum>
 
+  <enum id="org.gnome.shell.extensions.orla-dock.MinimizeEffect">
+    <value nick="genie" value="0"/>
+    <value nick="scale" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.StackView">
+    <value nick="auto" value="0"/>
+    <value nick="grid" value="1"/>
+    <value nick="fan" value="2"/>
+    <value nick="list" value="3"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.StackSort">
+    <value nick="date" value="0"/>
+    <value nick="name" value="1"/>
+  </enum>
+
   <schema id="org.gnome.shell.extensions.orla-dock"
           path="/org/gnome/shell/extensions/orla-dock/">
 
+    <!-- ===== Dock ===== -->
     <key name="position" enum="org.gnome.shell.extensions.orla-dock.Position">
       <default>'bottom'</default>
       <summary>Dock position on screen</summary>
-      <description>Screen edge where the dock is placed.</description>
+    </key>
+    <key name="icon-size" type="i">
+      <range min="24" max="128"/>
+      <default>48</default>
+      <summary>Icon size in logical pixels</summary>
+    </key>
+    <key name="magnification" type="d">
+      <range min="1.0" max="2.6"/>
+      <default>1.7</default>
+      <summary>Maximum magnification factor (1.0 disables magnification)</summary>
+    </key>
+    <key name="minimize-effect" enum="org.gnome.shell.extensions.orla-dock.MinimizeEffect">
+      <default>'genie'</default>
+      <summary>Animation used when minimizing windows</summary>
+    </key>
+    <key name="minimize-to-app" type="b">
+      <default>true</default>
+      <summary>Minimize windows into the application icon</summary>
+      <description>When false, minimized windows get their own item near the trash, like on macOS.</description>
+    </key>
+    <key name="autohide" type="b">
+      <default>false</default>
+      <summary>Automatically hide and show the dock</summary>
+    </key>
+    <key name="orla-toggle-autohide" type="as">
+      <default><![CDATA[['<Super><Alt>d']]]></default>
+      <summary>Keyboard shortcut to toggle auto-hide</summary>
+    </key>
+    <key name="animate-launch" type="b">
+      <default>true</default>
+      <summary>Bounce the icon while an application is opening</summary>
+    </key>
+    <key name="bounce-on-attention" type="b">
+      <default>true</default>
+      <summary>Bounce the icon when an application requests attention</summary>
+    </key>
+    <key name="show-indicators" type="b">
+      <default>true</default>
+      <summary>Show indicators for open applications</summary>
+    </key>
+    <key name="show-recent" type="b">
+      <default>true</default>
+      <summary>Show suggested and recent applications in the dock</summary>
+    </key>
+    <key name="recent-apps" type="as">
+      <default>[]</default>
+      <summary>Recently closed applications (internal)</summary>
+    </key>
+    <key name="show-apps-button" type="b">
+      <default>true</default>
+      <summary>Show the applications grid button</summary>
+    </key>
+    <key name="window-previews" type="b">
+      <default>true</default>
+      <summary>Show live window previews when hovering an application icon</summary>
+    </key>
+    <key name="show-badges" type="b">
+      <default>true</default>
+      <summary>Show notification badges and progress bars on icons</summary>
+    </key>
+    <key name="hide-overview-dash" type="b">
+      <default>true</default>
+      <summary>Hide the native dash in the Activities overview</summary>
     </key>
 
+    <!-- ===== Aparência ===== -->
+    <key name="background-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.45</default>
+      <summary>Opacity of the dock background tint</summary>
+    </key>
+    <key name="blur-radius" type="i">
+      <range min="0" max="80"/>
+      <default>30</default>
+      <summary>Background blur intensity (0 disables blur)</summary>
+    </key>
+    <key name="corner-radius" type="i">
+      <range min="0" max="40"/>
+      <default>18</default>
+      <summary>Corner radius of the dock</summary>
+    </key>
+    <key name="dock-margin" type="i">
+      <range min="0" max="40"/>
+      <default>6</default>
+      <summary>Distance between the dock and the screen edge</summary>
+    </key>
+    <key name="icon-reflection" type="b">
+      <default>false</default>
+      <summary>Show a reflection under the icons</summary>
+    </key>
+
+    <!-- ===== Stacks e Lixeira ===== -->
+    <key name="show-downloads" type="b">
+      <default>true</default>
+      <summary>Show the Downloads stack</summary>
+    </key>
+    <key name="show-trash" type="b">
+      <default>true</default>
+      <summary>Show the trash</summary>
+    </key>
+    <key name="stack-view" enum="org.gnome.shell.extensions.orla-dock.StackView">
+      <default>'auto'</default>
+      <summary>How stacks open: automatic, grid, fan or list</summary>
+    </key>
+    <key name="stack-sort" enum="org.gnome.shell.extensions.orla-dock.StackSort">
+      <default>'date'</default>
+      <summary>Sort order of stack items</summary>
+    </key>
+    <key name="stack-folders" type="as">
+      <default>[]</default>
+      <summary>Additional folders shown as stacks (URIs)</summary>
+    </key>
+
+    <!-- ===== Monitores ===== -->
     <key name="multi-monitor" type="b">
       <default>true</default>
       <summary>Show the dock on all monitors</summary>
