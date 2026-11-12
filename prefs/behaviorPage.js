@@ -36,7 +36,8 @@ export function behaviorPage(binder) {
     windows.add(switchRow(binder, 'minimize-to-app', _('Minimize windows into application icon'),
         _('When off, minimized windows go next to the Downloads folder and the Trash')));
     windows.add(switchRow(binder, 'window-previews', _('Show window previews on hover')));
-    windows.add(switchRow(binder, 'show-badges', _('Show notification badges and progress')));
+    windows.add(switchRow(binder, 'show-badges', _('Show notification badges and progress'),
+        _('Each app shows how many notifications it has waiting, even when pinned and closed')));
 
     const apps = group(page, _('Apps on the Dock'));
     apps.add(switchRow(binder, 'show-recent', _('Show suggested and recent apps in Dock'),

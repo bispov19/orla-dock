@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 12:18-0300\n"
+"POT-Creation-Date: 2026-11-12 12:19-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/appIcon.js:404
+#: lib/appIcon.js:415
 msgid "Applications"
 msgstr "Aplicativos"
 
@@ -516,35 +516,39 @@ msgstr "Mostrar miniaturas das janelas ao passar o mouse"
 msgid "Show notification badges and progress"
 msgstr "Mostrar contadores de notificação e progresso"
 
-#: prefs/behaviorPage.js:41
+#: prefs/behaviorPage.js:40
+msgid "Each app shows how many notifications it has waiting, even when pinned and closed"
+msgstr "Cada app mostra quantas notificações tem esperando, mesmo fixado e fechado"
+
+#: prefs/behaviorPage.js:42
 msgid "Apps on the Dock"
 msgstr "Apps no Dock"
 
-#: prefs/behaviorPage.js:42
+#: prefs/behaviorPage.js:43
 msgid "Show suggested and recent apps in Dock"
 msgstr "Mostrar aplicativos sugeridos e recentes no Dock"
 
-#: prefs/behaviorPage.js:43
+#: prefs/behaviorPage.js:44
 msgid "Closed apps stay in the Dock for a while, like on macOS"
 msgstr "Apps fechados continuam no Dock por um tempo, como no macOS"
 
-#: prefs/behaviorPage.js:44
+#: prefs/behaviorPage.js:45
 msgid "Show today's date on the Calendar icon"
 msgstr "Mostrar a data de hoje no ícone do Calendário"
 
-#: prefs/behaviorPage.js:45
+#: prefs/behaviorPage.js:46
 msgid "Hide the GNOME dash in the Activities overview"
 msgstr "Ocultar o dash do GNOME na Visão geral de atividades"
 
-#: prefs/behaviorPage.js:48
+#: prefs/behaviorPage.js:49
 msgid "Hidden windows"
 msgstr "Janelas ocultas"
 
-#: prefs/behaviorPage.js:49
+#: prefs/behaviorPage.js:50
 msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
 msgstr "Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como janelas comuns, o que faz um ícone extra aparecer no Dock. Janelas cuja classe corresponde a um destes padrões ficam de fora do Dock. Separe os padrões com vírgulas; * corresponde a qualquer texto."
 
-#: prefs/behaviorPage.js:56
+#: prefs/behaviorPage.js:57
 msgid "Window classes to hide"
 msgstr "Classes de janela a ocultar"
 

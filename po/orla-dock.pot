@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 12:18-0300\n"
+"POT-Creation-Date: 2026-11-12 12:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/appIcon.js:404
+#: lib/appIcon.js:415
 msgid "Applications"
 msgstr ""
 
@@ -512,35 +512,39 @@ msgstr ""
 msgid "Show notification badges and progress"
 msgstr ""
 
-#: prefs/behaviorPage.js:41
-msgid "Apps on the Dock"
+#: prefs/behaviorPage.js:40
+msgid "Each app shows how many notifications it has waiting, even when pinned and closed"
 msgstr ""
 
 #: prefs/behaviorPage.js:42
-msgid "Show suggested and recent apps in Dock"
+msgid "Apps on the Dock"
 msgstr ""
 
 #: prefs/behaviorPage.js:43
-msgid "Closed apps stay in the Dock for a while, like on macOS"
+msgid "Show suggested and recent apps in Dock"
 msgstr ""
 
 #: prefs/behaviorPage.js:44
-msgid "Show today's date on the Calendar icon"
+msgid "Closed apps stay in the Dock for a while, like on macOS"
 msgstr ""
 
 #: prefs/behaviorPage.js:45
+msgid "Show today's date on the Calendar icon"
+msgstr ""
+
+#: prefs/behaviorPage.js:46
 msgid "Hide the GNOME dash in the Activities overview"
 msgstr ""
 
-#: prefs/behaviorPage.js:48
+#: prefs/behaviorPage.js:49
 msgid "Hidden windows"
 msgstr ""
 
-#: prefs/behaviorPage.js:49
+#: prefs/behaviorPage.js:50
 msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
 msgstr ""
 
-#: prefs/behaviorPage.js:56
+#: prefs/behaviorPage.js:57
 msgid "Window classes to hide"
 msgstr ""
 
