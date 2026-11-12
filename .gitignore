@@ -1,0 +1,12 @@
+# Gerados pelo scripts/install.sh — cada máquina compila os seus.
+schemas/gschemas.compiled
+locale/
+
+# Pacote gerado pelo "gnome-extensions pack"
+*.shell-extension.zip
+
+# Editor / sistema
+.vscode/
+*~
+.directory
+node_modules/
