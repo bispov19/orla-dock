@@ -386,6 +386,30 @@
     </key>
 
     <!-- ===== Stacks e Lixeira ===== -->
+    <key name="show-home" type="b">
+      <default>false</default>
+      <summary>Show the Home folder</summary>
+    </key>
+    <key name="show-documents" type="b">
+      <default>false</default>
+      <summary>Show the Documents folder</summary>
+    </key>
+    <key name="show-pictures" type="b">
+      <default>false</default>
+      <summary>Show the Pictures folder</summary>
+    </key>
+    <key name="show-videos" type="b">
+      <default>false</default>
+      <summary>Show the Videos folder</summary>
+    </key>
+    <key name="show-music" type="b">
+      <default>false</default>
+      <summary>Show the Music folder</summary>
+    </key>
+    <key name="show-mounts" type="b">
+      <default>false</default>
+      <summary>Show USB and other drives while they are connected</summary>
+    </key>
     <key name="show-downloads" type="b">
       <default>true</default>
       <summary>Show the Downloads stack</summary>

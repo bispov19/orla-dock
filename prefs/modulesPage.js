@@ -40,8 +40,16 @@ export function modulesPage(binder, window) {
         {lower: 50, upper: 200, step: 5, marks: [[50, '50%'], [100, '100%'], [200, '200%']]}, true));
 
     // --- Locais ---
+    // Um liga/desliga por local, como na Luma. As pastas abrem como stacks.
     const places = group(page, _('Places'), _('Shortcuts that open as stacks'));
+    places.add(switchRow(binder, 'show-home', _('Home')));
     places.add(switchRow(binder, 'show-downloads', _('Downloads')));
+    places.add(switchRow(binder, 'show-documents', _('Documents')));
+    places.add(switchRow(binder, 'show-pictures', _('Pictures')));
+    places.add(switchRow(binder, 'show-videos', _('Videos')));
+    places.add(switchRow(binder, 'show-music', _('Music')));
+    places.add(switchRow(binder, 'show-mounts', _('USB and other drives'),
+        _('Appear while they are connected')));
     places.add(switchRow(binder, 'show-trash', _('Trash')));
 
     // --- Stacks ---

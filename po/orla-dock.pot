@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 12:07-0300\n"
+"POT-Creation-Date: 2026-11-12 12:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,44 +89,68 @@ msgstr ""
 msgid "Dock Settings…"
 msgstr ""
 
-#: lib/stacks.js:56
+#: lib/mounts.js:63 lib/trash.js:58
+msgid "Open"
+msgstr ""
+
+#: lib/mounts.js:65
+msgid "Eject"
+msgstr ""
+
+#: lib/mounts.js:67
+msgid "Unmount"
+msgstr ""
+
+#: lib/mounts.js:79
+msgid "Could not eject the drive"
+msgstr ""
+
+#: lib/mounts.js:90
+msgid "Could not unmount the drive"
+msgstr ""
+
+#: lib/stacks.js:76
 msgid "Could not open"
 msgstr ""
 
-#: lib/stacks.js:210 lib/stacks.js:396
+#: lib/stacks.js:142 prefs/modulesPage.js:45
+msgid "Home"
+msgstr ""
+
+#: lib/stacks.js:234 lib/stacks.js:420
 msgid "Open in Files"
 msgstr ""
 
-#: lib/stacks.js:212 prefs/appearancePage.js:69 prefs/appearancePage.js:76
-#: prefs/modulesPage.js:50
+#: lib/stacks.js:236 prefs/appearancePage.js:69 prefs/appearancePage.js:76
+#: prefs/modulesPage.js:58
 msgid "Automatic"
 msgstr ""
 
-#: lib/stacks.js:213 prefs/modulesPage.js:32 prefs/modulesPage.js:50
+#: lib/stacks.js:237 prefs/modulesPage.js:32 prefs/modulesPage.js:58
 msgid "Grid"
 msgstr ""
 
-#: lib/stacks.js:214 prefs/modulesPage.js:50
+#: lib/stacks.js:238 prefs/modulesPage.js:58
 msgid "Fan"
 msgstr ""
 
-#: lib/stacks.js:215 prefs/modulesPage.js:50
+#: lib/stacks.js:239 prefs/modulesPage.js:58
 msgid "List"
 msgstr ""
 
-#: lib/stacks.js:217
+#: lib/stacks.js:241
 msgid "Sort by Date"
 msgstr ""
 
-#: lib/stacks.js:218
+#: lib/stacks.js:242
 msgid "Sort by Name"
 msgstr ""
 
-#: lib/stacks.js:220
+#: lib/stacks.js:244
 msgid "Remove from Dock"
 msgstr ""
 
-#: lib/stacks.js:441
+#: lib/stacks.js:465
 msgid "This folder is empty"
 msgstr ""
 
@@ -146,15 +170,11 @@ msgstr ""
 msgid "Edge to edge, icons on the left, clock and date at the end"
 msgstr ""
 
-#: lib/trash.js:58
-msgid "Open"
-msgstr ""
-
 #: lib/trash.js:60 lib/trash.js:106
 msgid "Empty Trash"
 msgstr ""
 
-#: lib/trash.js:67 prefs/modulesPage.js:45
+#: lib/trash.js:67 prefs/modulesPage.js:53
 msgid "Trash"
 msgstr ""
 
@@ -812,59 +832,83 @@ msgstr ""
 msgid "Icon scale"
 msgstr ""
 
-#: prefs/modulesPage.js:43
+#: prefs/modulesPage.js:44
 msgid "Places"
 msgstr ""
 
-#: prefs/modulesPage.js:43
+#: prefs/modulesPage.js:44
 msgid "Shortcuts that open as stacks"
 msgstr ""
 
-#: prefs/modulesPage.js:44
+#: prefs/modulesPage.js:46
 msgid "Downloads"
 msgstr ""
 
+#: prefs/modulesPage.js:47
+msgid "Documents"
+msgstr ""
+
 #: prefs/modulesPage.js:48
-msgid "Stacks"
+msgid "Pictures"
 msgstr ""
 
 #: prefs/modulesPage.js:49
-msgid "Open stacks as"
+msgid "Videos"
+msgstr ""
+
+#: prefs/modulesPage.js:50
+msgid "Music"
 msgstr ""
 
 #: prefs/modulesPage.js:51
-msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgid "USB and other drives"
 msgstr ""
 
 #: prefs/modulesPage.js:52
-msgid "Sort stack items by"
-msgstr ""
-
-#: prefs/modulesPage.js:52
-msgid "Date"
-msgstr ""
-
-#: prefs/modulesPage.js:52
-msgid "Name"
+msgid "Appear while they are connected"
 msgstr ""
 
 #: prefs/modulesPage.js:56
-msgid "Other folders"
+msgid "Stacks"
 msgstr ""
 
 #: prefs/modulesPage.js:57
+msgid "Open stacks as"
+msgstr ""
+
+#: prefs/modulesPage.js:59
+msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgstr ""
+
+#: prefs/modulesPage.js:60
+msgid "Sort stack items by"
+msgstr ""
+
+#: prefs/modulesPage.js:60
+msgid "Date"
+msgstr ""
+
+#: prefs/modulesPage.js:60
+msgid "Name"
+msgstr ""
+
+#: prefs/modulesPage.js:64
+msgid "Other folders"
+msgstr ""
+
+#: prefs/modulesPage.js:65
 msgid "Folders shown as stacks next to the Trash"
 msgstr ""
 
-#: prefs/modulesPage.js:63
+#: prefs/modulesPage.js:71
 msgid "Add folder…"
 msgstr ""
 
-#: prefs/modulesPage.js:80
+#: prefs/modulesPage.js:88
 msgid "Remove"
 msgstr ""
 
-#: prefs/modulesPage.js:98
+#: prefs/modulesPage.js:106
 msgid "Choose a folder"
 msgstr ""
 
