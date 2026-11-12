@@ -10,3 +10,6 @@ locale/
 *~
 .directory
 node_modules/
+
+# Pacotes gerados pelo scripts/pack.sh
+dist/
