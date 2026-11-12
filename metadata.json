@@ -1,0 +1,13 @@
+{
+  "uuid": "orla-dock@viniciusbispo19",
+  "name": "Orla Dock",
+  "description": "A dock inspired by the macOS Dock: magnification, stacks, trash, auto-hide and much more.",
+  "shell-version": [
+    "50",
+    "51"
+  ],
+  "url": "https://github.com/viniciusbispo19/orla-dock",
+  "settings-schema": "org.gnome.shell.extensions.orla-dock",
+  "gettext-domain": "orla-dock",
+  "version-name": "0.1.0"
+}

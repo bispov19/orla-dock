@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Schema GSettings da Orla Dock.
+
+  O GSettings é o sistema de configurações do GNOME: cada opção ("key") tem
+  um tipo, um valor padrão e fica salva no dconf do usuário. Tanto a extensão
+  quanto a janela de preferências leem/escrevem aqui, e quem estiver ouvindo
+  o sinal "changed" é avisado na hora — é assim que as mudanças aparecem
+  na dock sem reiniciar nada.
+
+  Tipos usados: "b" = booleano, "i" = inteiro, "s" = texto.
+  Novas chaves serão adicionadas fase a fase, conforme forem necessárias.
+-->
+<schemalist gettext-domain="orla-dock">
+
+  <!-- Enum: lista fechada de valores possíveis para a posição da dock. -->
+  <enum id="org.gnome.shell.extensions.orla-dock.Position">
+    <value nick="bottom" value="0"/>
+    <value nick="top" value="1"/>
+    <value nick="left" value="2"/>
+    <value nick="right" value="3"/>
+  </enum>
+
+  <schema id="org.gnome.shell.extensions.orla-dock"
+          path="/org/gnome/shell/extensions/orla-dock/">
+
+    <key name="position" enum="org.gnome.shell.extensions.orla-dock.Position">
+      <default>'bottom'</default>
+      <summary>Dock position on screen</summary>
+      <description>Screen edge where the dock is placed.</description>
+    </key>
+
+    <key name="multi-monitor" type="b">
+      <default>true</default>
+      <summary>Show the dock on all monitors</summary>
+      <description>If false, the dock is shown only on the primary monitor.</description>
+    </key>
+
+  </schema>
+</schemalist>
