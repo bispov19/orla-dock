@@ -11,12 +11,18 @@
 // A comunicação com a extensão é toda pelo GSettings: a janela grava um
 // valor, a extensão recebe o sinal "changed" e se atualiza na hora.
 //
-// As páginas ficam em prefs/pages.js; os controles reutilizáveis, em
-// prefs/widgets.js.
+// Cada aba fica num arquivo em prefs/; as linhas prontas em prefs/rows.js e
+// os controles reutilizáveis em prefs/widgets.js.
 
 import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-import {aboutPage, appearancePage, dockPage, stacksPage} from './prefs/pages.js';
+import {aboutPage} from './prefs/aboutPage.js';
+import {appearancePage} from './prefs/appearancePage.js';
+import {behaviorPage} from './prefs/behaviorPage.js';
+import {blurPage} from './prefs/blurPage.js';
+import {layoutPage} from './prefs/layoutPage.js';
+import {modulesPage} from './prefs/modulesPage.js';
+import {stylesPage} from './prefs/stylesPage.js';
 import {Binder} from './prefs/widgets.js';
 
 export default class OrlaDockPreferences extends ExtensionPreferences {
@@ -25,12 +31,16 @@ export default class OrlaDockPreferences extends ExtensionPreferences {
     // em inglês no código e a tradução pt-BR fica em po/pt_BR.po.
     async fillPreferencesWindow(window) {
         const binder = new Binder(this.getSettings());
-        window.set_default_size(720, 820);
+        window.set_default_size(1000, 820);
         window.search_enabled = true;
 
-        window.add(dockPage(binder, window));
+        // Uma aba por arquivo em prefs/, na mesma ordem da Luma Dock.
+        window.add(stylesPage(binder));
+        window.add(layoutPage(binder));
         window.add(appearancePage(binder));
-        window.add(stacksPage(binder, window));
+        window.add(blurPage(binder, this.path, window));
+        window.add(behaviorPage(binder));
+        window.add(modulesPage(binder, window));
         // this.metadata = conteúdo do metadata.json; this.path = pasta da extensão.
         window.add(aboutPage(this.metadata, this.path, window));
 

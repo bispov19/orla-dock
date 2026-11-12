@@ -38,11 +38,6 @@
     <value nick="name" value="1"/>
   </enum>
 
-  <enum id="org.gnome.shell.extensions.orla-dock.LayoutMode">
-    <value nick="dock" value="0"/>
-    <value nick="taskbar" value="1"/>
-  </enum>
-
   <enum id="org.gnome.shell.extensions.orla-dock.AppsIcon">
     <value nick="system-logo" value="0"/>
     <value nick="grid" value="1"/>
@@ -86,9 +81,9 @@
           path="/org/gnome/shell/extensions/orla-dock/">
 
     <!-- ===== Dock ===== -->
-    <key name="layout-mode" enum="org.gnome.shell.extensions.orla-dock.LayoutMode">
+    <key name="bar-style" type="s">
       <default>'dock'</default>
-      <summary>Floating dock (macOS) or full-width taskbar (Windows 10)</summary>
+      <summary>Bar style: the id of a style registered in lib/styles.js</summary>
     </key>
     <key name="taskbar-icon-size" type="i">
       <range min="16" max="64"/>
@@ -258,21 +253,6 @@
       <default>0</default>
       <summary>Extra space between the icons and the dock edge</summary>
     </key>
-    <key name="blur-brightness" type="d">
-      <range min="0.2" max="1.0"/>
-      <default>0.9</default>
-      <summary>Brightness of what is seen through the glass</summary>
-    </key>
-    <key name="blur-vibrancy" type="d">
-      <range min="0.0" max="2.0"/>
-      <default>1.2</default>
-      <summary>Color saturation seen through the glass</summary>
-    </key>
-    <key name="glass-glow" type="d">
-      <range min="0.0" max="1.0"/>
-      <default>0.15</default>
-      <summary>Strength of the light rim on the glass edge</summary>
-    </key>
     <key name="indicator-style" enum="org.gnome.shell.extensions.orla-dock.IndicatorStyle">
       <default>'dot'</default>
       <summary>Shape of the running-app indicator</summary>
@@ -326,11 +306,6 @@
       <default>0.3</default>
       <summary>Opacity of the separators</summary>
     </key>
-    <key name="blur-radius" type="i">
-      <range min="0" max="80"/>
-      <default>30</default>
-      <summary>Background blur intensity (0 disables blur)</summary>
-    </key>
     <key name="corner-radius" type="i">
       <range min="0" max="40"/>
       <default>18</default>
@@ -344,6 +319,70 @@
     <key name="icon-reflection" type="b">
       <default>false</default>
       <summary>Show a reflection under the icons</summary>
+    </key>
+
+    <!-- ===== Desfoque (mesmos nomes, limites e padrões da Luma Dock) ===== -->
+    <key name="blur-enabled" type="b">
+      <default>false</default>
+      <summary>Frosted glass behind the dock</summary>
+    </key>
+    <key name="blur-mode" type="s">
+      <choices>
+        <choice value='dynamic'/>
+        <choice value='static'/>
+      </choices>
+      <default>'dynamic'</default>
+      <summary>Dynamic follows what is behind the dock; static uses an image</summary>
+    </key>
+    <key name="blur-static-source" type="s">
+      <choices>
+        <choice value='preset'/>
+        <choice value='custom'/>
+      </choices>
+      <default>'preset'</default>
+      <summary>Image used by the static blur</summary>
+    </key>
+    <key name="blur-static-preset" type="s">
+      <default>'abstract-dark'</default>
+      <summary>Preset image for the static blur</summary>
+    </key>
+    <key name="blur-custom-photo" type="s">
+      <default>''</default>
+      <summary>Path of your own photo for the static blur</summary>
+    </key>
+    <key name="blur-intensity" type="d">
+      <range min="0.0" max="64.0"/>
+      <default>40.0</default>
+      <summary>How soft the background becomes</summary>
+    </key>
+    <key name="blur-vibrancy" type="d">
+      <range min="0.5" max="2.0"/>
+      <default>2.0</default>
+      <summary>Colour saturation seen through the glass</summary>
+    </key>
+    <key name="blur-brightness" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.25</default>
+      <summary>Brightness of the glass</summary>
+    </key>
+    <key name="blur-tint-color" type="s">
+      <default>'#241F31'</default>
+      <summary>Colour washed over the glass</summary>
+    </key>
+    <key name="blur-tint-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.25</default>
+      <summary>How much of the tint shows</summary>
+    </key>
+    <key name="blur-border-glow" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.2</default>
+      <summary>Strength of the rim highlight</summary>
+    </key>
+    <key name="blur-highlight-angle" type="d">
+      <range min="0.0" max="360.0"/>
+      <default>303.0</default>
+      <summary>Where the light on the rim falls from, in degrees</summary>
     </key>
 
     <!-- ===== Stacks e Lixeira ===== -->

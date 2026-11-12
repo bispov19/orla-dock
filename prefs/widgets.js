@@ -80,6 +80,40 @@ export class Binder {
     }
 
     /**
+     * Liga uma chave de texto a botões de escolha (Gtk.CheckButton ou
+     * Gtk.ToggleButton do mesmo grupo): `buttons` é um Map valor → botão.
+     */
+    choice(key, buttons) {
+        const sync = () => {
+            const current = this.settings.get_string(key);
+            buttons.forEach((button, value) => {
+                button.active = value === current;
+            });
+        };
+        buttons.forEach((button, value) => {
+            button.connect('toggled', () => {
+                if (button.active && this.settings.get_string(key) !== value)
+                    this.settings.set_string(key, value);
+            });
+        });
+        this._watch(key, sync);
+        sync();
+    }
+
+    /** Botão (no cabeçalho do grupo) que volta `keys` ao valor padrão. */
+    resetButton(group, keys) {
+        const button = new Gtk.Button({
+            icon_name: 'edit-undo-symbolic',
+            tooltip_text: _('Reset to defaults'),
+            valign: Gtk.Align.CENTER,
+            css_classes: ['flat'],
+        });
+        button.connect('clicked', () => keys.forEach(key => this.settings.reset(key)));
+        group.set_header_suffix(button);
+        return button;
+    }
+
+    /**
      * Mostra `widgets` só quando `predicate(settings)` for verdadeiro, e
      * reavalia sempre que alguma das `keys` mudar.
      */
