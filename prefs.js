@@ -16,7 +16,7 @@
 
 import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-import {appearancePage, dockPage, stacksPage} from './prefs/pages.js';
+import {aboutPage, appearancePage, dockPage, stacksPage} from './prefs/pages.js';
 import {Binder} from './prefs/widgets.js';
 
 export default class OrlaDockPreferences extends ExtensionPreferences {
@@ -28,9 +28,11 @@ export default class OrlaDockPreferences extends ExtensionPreferences {
         window.set_default_size(720, 820);
         window.search_enabled = true;
 
-        window.add(dockPage(binder));
+        window.add(dockPage(binder, window));
         window.add(appearancePage(binder));
         window.add(stacksPage(binder, window));
+        // this.metadata = conteúdo do metadata.json; this.path = pasta da extensão.
+        window.add(aboutPage(this.metadata, this.path, window));
 
         // Ao fechar, desconectamos os sinais que ligamos à mão.
         window.connect('close-request', () => {

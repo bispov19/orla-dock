@@ -10,7 +10,9 @@
 // desconecta tudo de uma vez (mesma ideia do disable() da extensão).
 
 import Adw from 'gi://Adw';
+import Gdk from 'gi://Gdk?version=4.0';
 import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 
@@ -57,6 +59,41 @@ export class Binder {
         });
     }
 
+    /** Liga uma cor ('#rrggbb' no GSettings) a um Gtk.ColorDialogButton. */
+    color(key, button) {
+        const read = () => {
+            const rgba = new Gdk.RGBA();
+            rgba.parse(this.settings.get_string(key));
+            return rgba;
+        };
+        button.rgba = read();
+        button.connect('notify::rgba', () => {
+            const {red, green, blue} = button.rgba;
+            const hex = '#' + [red, green, blue]
+                .map(v => Math.round(v * 255).toString(16).padStart(2, '0')).join('');
+            if (hex !== this.settings.get_string(key))
+                this.settings.set_string(key, hex);
+        });
+        this._watch(key, () => {
+            button.rgba = read();
+        });
+    }
+
+    /**
+     * Mostra `widgets` só quando `predicate(settings)` for verdadeiro, e
+     * reavalia sempre que alguma das `keys` mudar.
+     */
+    showWhen(keys, predicate, ...widgets) {
+        const sync = () => {
+            const visible = predicate(this.settings);
+            widgets.forEach(w => {
+                w.visible = visible;
+            });
+        };
+        [].concat(keys).forEach(key => this._watch(key, sync));
+        sync();
+    }
+
     _watch(key, callback) {
         this._ids.push(this.settings.connect(`changed::${key}`, callback));
     }
@@ -66,6 +103,52 @@ export class Binder {
         this._ids.forEach(id => this.settings.disconnect(id));
         this._ids = [];
     }
+}
+
+/** Linha com um botão de cor (abre o seletor de cores do GTK). */
+export function colorRow(binder, key, title, subtitle = null) {
+    const button = new Gtk.ColorDialogButton({
+        dialog: new Gtk.ColorDialog({with_alpha: false}),
+        valign: Gtk.Align.CENTER,
+    });
+    binder.color(key, button);
+    const row = new Adw.ActionRow({title, subtitle});
+    row.add_suffix(button);
+    row.activatable_widget = button;
+    return row;
+}
+
+/** Linha que escolhe um arquivo de imagem e guarda o caminho numa chave. */
+export function imageRow(binder, key, title, window) {
+    const settings = binder.settings;
+    const row = new Adw.ActionRow({title});
+    const label = new Gtk.Label({css_classes: ['dim-label'], ellipsize: 3, max_width_chars: 24});
+    const sync = () => {
+        const path = settings.get_string(key);
+        label.label = path ? GLib.path_get_basename(path) : _('None');
+    };
+    binder._watch(key, sync);
+    sync();
+    const choose = new Gtk.Button({label: _('Choose…'), valign: Gtk.Align.CENTER});
+    choose.connect('clicked', () => {
+        const filter = new Gtk.FileFilter({name: _('Images')});
+        filter.add_mime_type('image/*');
+        const filters = new Gio.ListStore({item_type: Gtk.FileFilter});
+        filters.append(filter);
+        const dialog = new Gtk.FileDialog({title: _('Choose an image'), filters});
+        dialog.open(window, null, (dlg, res) => {
+            try {
+                const file = dlg.open_finish(res);
+                if (file?.get_path())
+                    settings.set_string(key, file.get_path());
+            } catch {
+                // cancelado
+            }
+        });
+    });
+    row.add_suffix(label);
+    row.add_suffix(choose);
+    return row;
 }
 
 /** Um ComboRow simples a partir de uma lista de textos. */
@@ -138,8 +221,8 @@ export function sizeAndMagnificationRow(binder) {
     box.append(column(_('Size'), size.scale));
 
     const magnification = markedScale({
-        lower: 1.0, upper: 2.6, step: 0.05, digits: 2,
-        marks: [[1.0, _('Off')], [1.6, _('Small')], [2.6, _('Large')]],
+        lower: 1.0, upper: 3.0, step: 0.05, digits: 2,
+        marks: [[1.0, _('Off')], [2.0, _('Small')], [3.0, _('Large')]],
     });
     binder.number('magnification', magnification.adjustment);
     box.append(column(_('Magnification'), magnification.scale));

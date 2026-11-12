@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 08:02-0300\n"
+"POT-Creation-Date: 2026-11-12 08:35-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/appIcon.js:374
+#: lib/appIcon.js:400
 msgid "Applications"
 msgstr ""
 
@@ -53,6 +53,50 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
+#: lib/appMenu.js:165
+msgid "Turn Hiding On"
+msgstr ""
+
+#: lib/appMenu.js:171
+msgid "Turn Magnification On"
+msgstr ""
+
+#: lib/appMenu.js:184
+msgid "Position on Screen"
+msgstr ""
+
+#: lib/appMenu.js:186 prefs/pages.js:113
+msgid "Bottom"
+msgstr ""
+
+#: lib/appMenu.js:186 prefs/pages.js:113
+msgid "Top"
+msgstr ""
+
+#: lib/appMenu.js:186 prefs/pages.js:113
+msgid "Left"
+msgstr ""
+
+#: lib/appMenu.js:186 prefs/pages.js:113
+msgid "Right"
+msgstr ""
+
+#: lib/appMenu.js:192 prefs/pages.js:74
+msgid "Style"
+msgstr ""
+
+#: lib/appMenu.js:194 prefs/pages.js:79
+msgid "Dock (macOS)"
+msgstr ""
+
+#: lib/appMenu.js:194 prefs/pages.js:79
+msgid "Taskbar (Windows 10)"
+msgstr ""
+
+#: lib/appMenu.js:201
+msgid "Dock Settings…"
+msgstr ""
+
 #: lib/stacks.js:56
 msgid "Could not open"
 msgstr ""
@@ -61,19 +105,19 @@ msgstr ""
 msgid "Open in Files"
 msgstr ""
 
-#: lib/stacks.js:211 prefs/pages.js:136
+#: lib/stacks.js:211 prefs/pages.js:232 prefs/pages.js:239 prefs/pages.js:273
 msgid "Automatic"
 msgstr ""
 
-#: lib/stacks.js:212 prefs/pages.js:136
+#: lib/stacks.js:212 prefs/pages.js:133 prefs/pages.js:273
 msgid "Grid"
 msgstr ""
 
-#: lib/stacks.js:213 prefs/pages.js:136
+#: lib/stacks.js:213 prefs/pages.js:273
 msgid "Fan"
 msgstr ""
 
-#: lib/stacks.js:214 prefs/pages.js:136
+#: lib/stacks.js:214 prefs/pages.js:273
 msgid "List"
 msgstr ""
 
@@ -89,7 +133,7 @@ msgstr ""
 msgid "Remove from Dock"
 msgstr ""
 
-#: lib/stacks.js:439
+#: lib/stacks.js:440
 msgid "This folder is empty"
 msgstr ""
 
@@ -113,7 +157,7 @@ msgstr ""
 msgid "All items in the Trash will be permanently deleted."
 msgstr ""
 
-#: lib/trash.js:104 prefs/widgets.js:190
+#: lib/trash.js:104 prefs/widgets.js:277
 msgid "Cancel"
 msgstr ""
 
@@ -125,246 +169,626 @@ msgstr ""
 msgid "Could not move to Trash"
 msgstr ""
 
-#: lib/windowPreviews.js:130
+#: lib/windowPreviews.js:131
 msgid "Close"
 msgstr ""
 
-#: prefs/pages.js:32 prefs/pages.js:36
+#: prefs/pages.js:68 prefs/pages.js:82
 msgid "Dock"
 msgstr ""
 
-#: prefs/pages.js:41
-msgid "Position on screen"
-msgstr ""
-
-#: prefs/pages.js:42
-msgid "Bottom"
-msgstr ""
-
-#: prefs/pages.js:42
-msgid "Top"
-msgstr ""
-
-#: prefs/pages.js:42
-msgid "Left"
-msgstr ""
-
-#: prefs/pages.js:42
-msgid "Right"
-msgstr ""
-
-#: prefs/pages.js:46
-msgid "Minimize windows using"
-msgstr ""
-
-#: prefs/pages.js:47
-msgid "Genie effect"
-msgstr ""
-
-#: prefs/pages.js:47
-msgid "Scale effect"
-msgstr ""
-
-#: prefs/pages.js:52
-msgid "Minimize windows into application icon"
-msgstr ""
-
-#: prefs/pages.js:53
-msgid "When off, each minimized window gets its own thumbnail next to the Trash"
-msgstr ""
-
-#: prefs/pages.js:54
-msgid "Automatically hide and show the Dock"
-msgstr ""
-
-#: prefs/pages.js:56
-msgid "Shortcut to turn hiding on or off"
-msgstr ""
-
-#: prefs/pages.js:58
-msgid "Animate opening applications"
-msgstr ""
-
-#: prefs/pages.js:59
-msgid "Show indicators for open applications"
-msgstr ""
-
-#: prefs/pages.js:60
-msgid "Show suggested and recent apps in Dock"
-msgstr ""
-
-#: prefs/pages.js:62
-msgid "Behavior"
-msgstr ""
-
-#: prefs/pages.js:64
-msgid "Show the applications button"
-msgstr ""
-
-#: prefs/pages.js:65
-msgid "Show window previews on hover"
-msgstr ""
-
-#: prefs/pages.js:66
-msgid "Show notification badges and progress"
-msgstr ""
-
-#: prefs/pages.js:68
-msgid "Bounce when an application needs attention"
-msgstr ""
-
-#: prefs/pages.js:70
-msgid "Hide the GNOME dash in the Activities overview"
-msgstr ""
-
-#: prefs/pages.js:72
-msgid "Monitors"
-msgstr ""
-
-#: prefs/pages.js:74
-msgid "Show the Dock on all monitors"
-msgstr ""
-
 #: prefs/pages.js:75
-msgid "When off, the Dock appears only on the primary monitor"
+msgid "A floating dock with magnification, or a full-width taskbar"
 msgstr ""
 
-#: prefs/pages.js:84 prefs/pages.js:88
-msgid "Appearance"
+#: prefs/pages.js:78
+msgid "Layout"
 msgstr ""
 
-#: prefs/pages.js:89
-msgid "The Dock follows the system light or dark style."
+#: prefs/pages.js:87
+msgid "Magnification details"
+msgstr ""
+
+#: prefs/pages.js:88
+msgid "How the icons grow under the pointer"
+msgstr ""
+
+#: prefs/pages.js:90
+msgid "Smoothness"
+msgstr ""
+
+#: prefs/pages.js:91
+msgid "Lower values glide more, higher values follow the pointer faster"
+msgstr ""
+
+#: prefs/pages.js:92
+msgid "Soft"
+msgstr ""
+
+#: prefs/pages.js:92
+msgid "Snappy"
 msgstr ""
 
 #: prefs/pages.js:93
-msgid "Background opacity"
+msgid "Reach"
 msgstr ""
 
-#: prefs/pages.js:98
-msgid "Blur intensity"
+#: prefs/pages.js:94
+msgid "How many neighbouring icons grow along"
 msgstr ""
 
-#: prefs/pages.js:98
-msgid "0 turns blur off"
+#: prefs/pages.js:95
+msgid "Narrow"
 msgstr ""
 
-#: prefs/pages.js:99 prefs/widgets.js:138
+#: prefs/pages.js:95
+msgid "Wide"
+msgstr ""
+
+#: prefs/pages.js:96
+msgid "Lift"
+msgstr ""
+
+#: prefs/pages.js:97
+msgid "Extra lift of the magnified icon"
+msgstr ""
+
+#: prefs/pages.js:98 prefs/pages.js:200 prefs/pages.js:208 prefs/widgets.js:225
 msgid "Off"
 msgstr ""
 
-#: prefs/pages.js:99
-msgid "Strong"
-msgstr ""
-
 #: prefs/pages.js:103
-msgid "Corner radius"
+msgid "Taskbar"
 msgstr ""
 
-#: prefs/pages.js:104
-msgid "Square"
+#: prefs/pages.js:105
+msgid "Icon size"
 msgstr ""
 
-#: prefs/pages.js:104
-msgid "Round"
+#: prefs/pages.js:106
+msgid "Show clock and date"
 msgstr ""
 
-#: prefs/pages.js:109
-msgid "Distance from screen edge"
+#: prefs/pages.js:110
+msgid "Position and windows"
+msgstr ""
+
+#: prefs/pages.js:112
+msgid "Position on screen"
+msgstr ""
+
+#: prefs/pages.js:114
+msgid "Minimize windows using"
 msgstr ""
 
 #: prefs/pages.js:115
-msgid "Icon reflection"
+msgid "Genie effect"
 msgstr ""
 
-#: prefs/pages.js:116
-msgid "A subtle reflection under the icons (bottom Dock only)"
+#: prefs/pages.js:115
+msgid "Scale effect"
 msgstr ""
 
-#: prefs/pages.js:126 prefs/pages.js:130
-msgid "Stacks and Trash"
+#: prefs/pages.js:117
+msgid "Minimize windows into application icon"
+msgstr ""
+
+#: prefs/pages.js:118
+msgid "When off, minimized windows go next to the Downloads folder, like on macOS"
+msgstr ""
+
+#: prefs/pages.js:119
+msgid "Automatically hide and show the Dock"
+msgstr ""
+
+#: prefs/pages.js:121
+msgid "Shortcut to turn hiding on or off"
+msgstr ""
+
+#: prefs/pages.js:123
+msgid "Animate opening applications"
+msgstr ""
+
+#: prefs/pages.js:124
+msgid "Show indicators for open applications"
+msgstr ""
+
+#: prefs/pages.js:125
+msgid "Show suggested and recent apps in Dock"
+msgstr ""
+
+#: prefs/pages.js:126
+msgid "Closed apps stay in the Dock for a while, like on macOS"
+msgstr ""
+
+#: prefs/pages.js:129
+msgid "Applications button"
+msgstr ""
+
+#: prefs/pages.js:131
+msgid "Show the applications button"
 msgstr ""
 
 #: prefs/pages.js:132
-msgid "Show Downloads"
+msgid "Icon"
 msgstr ""
 
 #: prefs/pages.js:133
-msgid "Show Trash"
+msgid "System logo"
 msgstr ""
 
-#: prefs/pages.js:135
-msgid "Open stacks as"
+#: prefs/pages.js:133
+msgid "Coloured tile"
+msgstr ""
+
+#: prefs/pages.js:133
+msgid "Custom image"
+msgstr ""
+
+#: prefs/pages.js:134
+msgid "Grid colour"
 msgstr ""
 
 #: prefs/pages.js:137
-msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgid "Image"
 msgstr ""
 
-#: prefs/pages.js:141
-msgid "Sort stack items by"
+#: prefs/pages.js:140
+msgid "Icon scale"
 msgstr ""
 
-#: prefs/pages.js:141
-msgid "Date"
+#: prefs/pages.js:144
+msgid "Behavior"
 msgstr ""
 
-#: prefs/pages.js:141
-msgid "Name"
+#: prefs/pages.js:146
+msgid "Show window previews on hover"
 msgstr ""
 
 #: prefs/pages.js:147
+msgid "Show notification badges and progress"
+msgstr ""
+
+#: prefs/pages.js:149
+msgid "Bounce when an application needs attention"
+msgstr ""
+
+#: prefs/pages.js:150
+msgid "Show today's date on the Calendar icon"
+msgstr ""
+
+#: prefs/pages.js:152
+msgid "Hide the GNOME dash in the Activities overview"
+msgstr ""
+
+#: prefs/pages.js:155
+msgid "Monitors"
+msgstr ""
+
+#: prefs/pages.js:157
+msgid "Show the Dock on all monitors"
+msgstr ""
+
+#: prefs/pages.js:158
+msgid "When off, the Dock appears only on the primary monitor"
+msgstr ""
+
+#: prefs/pages.js:167
+msgid "Appearance"
+msgstr ""
+
+#: prefs/pages.js:172
+msgid "Background"
+msgstr ""
+
+#: prefs/pages.js:174
+msgid "Theme"
+msgstr ""
+
+#: prefs/pages.js:175
+msgid "System (light or dark)"
+msgstr ""
+
+#: prefs/pages.js:175
+msgid "Custom colour"
+msgstr ""
+
+#: prefs/pages.js:175
+msgid "Wallpaper colour"
+msgstr ""
+
+#: prefs/pages.js:177
+msgid "A ready palette, or your own colours"
+msgstr ""
+
+#: prefs/pages.js:179 prefs/pages.js:252
+msgid "Colour"
+msgstr ""
+
+#: prefs/pages.js:180
+msgid "Gradient"
+msgstr ""
+
+#: prefs/pages.js:180
+msgid "Blend into a second colour"
+msgstr ""
+
+#: prefs/pages.js:183
+msgid "Second colour"
+msgstr ""
+
+#: prefs/pages.js:184
+msgid "Direction"
+msgstr ""
+
+#: prefs/pages.js:184
+msgid "Vertical"
+msgstr ""
+
+#: prefs/pages.js:184
+msgid "Horizontal"
+msgstr ""
+
+#: prefs/pages.js:190 prefs/pages.js:253
+msgid "Opacity"
+msgstr ""
+
+#: prefs/pages.js:195
+msgid "Glass"
+msgstr ""
+
+#: prefs/pages.js:196
+msgid "The blur shows what is behind the Dock, like frosted glass"
+msgstr ""
+
+#: prefs/pages.js:199
+msgid "Blur intensity"
+msgstr ""
+
+#: prefs/pages.js:199
+msgid "0 turns blur off"
+msgstr ""
+
+#: prefs/pages.js:200 prefs/pages.js:208
+msgid "Strong"
+msgstr ""
+
+#: prefs/pages.js:201
+msgid "Brightness"
+msgstr ""
+
+#: prefs/pages.js:202
+msgid "Darker glass on the left, lighter on the right"
+msgstr ""
+
+#: prefs/pages.js:203
+msgid "Dark"
+msgstr ""
+
+#: prefs/pages.js:203
+msgid "Light"
+msgstr ""
+
+#: prefs/pages.js:204
+msgid "Vibrancy"
+msgstr ""
+
+#: prefs/pages.js:205
+msgid "Colour saturation seen through the glass"
+msgstr ""
+
+#: prefs/pages.js:206
+msgid "Grey"
+msgstr ""
+
+#: prefs/pages.js:206
+msgid "Normal"
+msgstr ""
+
+#: prefs/pages.js:206
+msgid "Vivid"
+msgstr ""
+
+#: prefs/pages.js:207
+msgid "Edge glow"
+msgstr ""
+
+#: prefs/pages.js:207
+msgid "A light rim on the glass edge"
+msgstr ""
+
+#: prefs/pages.js:211
+msgid "Shape"
+msgstr ""
+
+#: prefs/pages.js:213
+msgid "Corner radius"
+msgstr ""
+
+#: prefs/pages.js:214 prefs/pages.js:230
+msgid "Square"
+msgstr ""
+
+#: prefs/pages.js:214
+msgid "Round"
+msgstr ""
+
+#: prefs/pages.js:215
+msgid "Outline"
+msgstr ""
+
+#: prefs/pages.js:215
+msgid "Line around the Dock, 0 hides it"
+msgstr ""
+
+#: prefs/pages.js:216
+msgid "Outline colour"
+msgstr ""
+
+#: prefs/pages.js:217
+msgid "Outline opacity"
+msgstr ""
+
+#: prefs/pages.js:219
+msgid "Distance from screen edge"
+msgstr ""
+
+#: prefs/pages.js:220
+msgid "Space between icons"
+msgstr ""
+
+#: prefs/pages.js:221
+msgid "Inner padding"
+msgstr ""
+
+#: prefs/pages.js:222
+msgid "Extra space between the icons and the Dock edge"
+msgstr ""
+
+#: prefs/pages.js:223
+msgid "Icon reflection"
+msgstr ""
+
+#: prefs/pages.js:224
+msgid "A subtle reflection under the icons (bottom Dock only)"
+msgstr ""
+
+#: prefs/pages.js:227
+msgid "Running apps"
+msgstr ""
+
+#: prefs/pages.js:229
+msgid "Indicator style"
+msgstr ""
+
+#: prefs/pages.js:230
+msgid "Dot"
+msgstr ""
+
+#: prefs/pages.js:230
+msgid "Dash"
+msgstr ""
+
+#: prefs/pages.js:230
+msgid "Line"
+msgstr ""
+
+#: prefs/pages.js:230
+msgid "One dot per window"
+msgstr ""
+
+#: prefs/pages.js:231
+msgid "Indicator colour"
+msgstr ""
+
+#: prefs/pages.js:232 prefs/pages.js:239
+msgid "System accent"
+msgstr ""
+
+#: prefs/pages.js:232 prefs/pages.js:239
+msgid "Custom"
+msgstr ""
+
+#: prefs/pages.js:233
+msgid "Custom indicator colour"
+msgstr ""
+
+#: prefs/pages.js:236
+msgid "Indicator size"
+msgstr ""
+
+#: prefs/pages.js:237
+msgid "Indicator glow"
+msgstr ""
+
+#: prefs/pages.js:238
+msgid "Notification badge colour"
+msgstr ""
+
+#: prefs/pages.js:240
+msgid "Custom badge colour"
+msgstr ""
+
+#: prefs/pages.js:243
+msgid "Label and preview opacity"
+msgstr ""
+
+#: prefs/pages.js:247
+msgid "Separators"
+msgstr ""
+
+#: prefs/pages.js:249
+msgid "Thickness"
+msgstr ""
+
+#: prefs/pages.js:249
+msgid "0 hides the separators"
+msgstr ""
+
+#: prefs/pages.js:250
+msgid "Length"
+msgstr ""
+
+#: prefs/pages.js:250
+msgid "Share of the icon height"
+msgstr ""
+
+#: prefs/pages.js:264 prefs/pages.js:268
+msgid "Stacks and Trash"
+msgstr ""
+
+#: prefs/pages.js:270
+msgid "Show Downloads"
+msgstr ""
+
+#: prefs/pages.js:271
+msgid "Show Trash"
+msgstr ""
+
+#: prefs/pages.js:272
+msgid "Open stacks as"
+msgstr ""
+
+#: prefs/pages.js:274
+msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgstr ""
+
+#: prefs/pages.js:275
+msgid "Sort stack items by"
+msgstr ""
+
+#: prefs/pages.js:275
+msgid "Date"
+msgstr ""
+
+#: prefs/pages.js:275
+msgid "Name"
+msgstr ""
+
+#: prefs/pages.js:279
 msgid "Other folders"
 msgstr ""
 
-#: prefs/pages.js:148
+#: prefs/pages.js:280
 msgid "Folders shown as stacks next to the Trash"
 msgstr ""
 
-#: prefs/pages.js:154
+#: prefs/pages.js:286
 msgid "Add folder…"
 msgstr ""
 
-#: prefs/pages.js:171
+#: prefs/pages.js:303
 msgid "Remove"
 msgstr ""
 
-#: prefs/pages.js:190
+#: prefs/pages.js:321
 msgid "Choose a folder"
 msgstr ""
 
-#: prefs/widgets.js:131 prefs/widgets.js:138
-msgid "Small"
+#: prefs/pages.js:367
+msgid "About"
 msgstr ""
 
-#: prefs/widgets.js:131 prefs/widgets.js:138
-msgid "Large"
+#: prefs/pages.js:384
+#, javascript-format
+msgid "Version %s"
+msgstr ""
+
+#: prefs/pages.js:388
+msgid "A dock for GNOME inspired by the macOS Dock, with a Windows 10 taskbar mode."
+msgstr ""
+
+#: prefs/pages.js:396
+msgid "About me"
+msgstr ""
+
+#: prefs/pages.js:400
+msgid ""
+"Hi! I'm Vinicius Bispo (Vini), a Systems Analysis and Development student making the move into technology. I created Orla Dock from scratch to learn how GNOME works from the inside — and to have the dock I always wanted on my own desktop.\n"
+"\n"
+"The code is commented in Portuguese, step by step, so that other people who are starting out can learn from it too. Suggestions and contributions are very welcome!"
+msgstr ""
+
+#: prefs/pages.js:405
+msgid "My GitHub profile"
+msgstr ""
+
+#: prefs/pages.js:409
+msgid "Project"
+msgstr ""
+
+#: prefs/pages.js:411
+msgid "Source code"
+msgstr ""
+
+#: prefs/pages.js:411
+msgid "See the code, star it or contribute"
+msgstr ""
+
+#: prefs/pages.js:413
+msgid "Report a problem"
+msgstr ""
+
+#: prefs/pages.js:413
+msgid "Found a bug or have an idea? Open an issue"
+msgstr ""
+
+#: prefs/pages.js:417
+msgid "License"
+msgstr ""
+
+#: prefs/pages.js:419
+msgid "Orla Dock is free software, released under the GNU General Public License, version 3 or later (GPL-3.0-or-later). It comes with absolutely no warranty."
+msgstr ""
+
+#: prefs/widgets.js:128
+msgid "None"
+msgstr ""
+
+#: prefs/widgets.js:132
+msgid "Choose…"
 msgstr ""
 
 #: prefs/widgets.js:134
+msgid "Images"
+msgstr ""
+
+#: prefs/widgets.js:138
+msgid "Choose an image"
+msgstr ""
+
+#: prefs/widgets.js:218 prefs/widgets.js:225
+msgid "Small"
+msgstr ""
+
+#: prefs/widgets.js:218 prefs/widgets.js:225
+msgid "Large"
+msgstr ""
+
+#: prefs/widgets.js:221
 msgid "Size"
 msgstr ""
 
-#: prefs/widgets.js:141
+#: prefs/widgets.js:228
 msgid "Magnification"
 msgstr ""
 
-#: prefs/widgets.js:158
+#: prefs/widgets.js:245
 msgid "Disabled"
 msgstr ""
 
-#: prefs/widgets.js:163
+#: prefs/widgets.js:250
 msgid "Change…"
 msgstr ""
 
-#: prefs/widgets.js:169
+#: prefs/widgets.js:256
 msgid "Disable shortcut"
 msgstr ""
 
-#: prefs/widgets.js:187
+#: prefs/widgets.js:274
 msgid "New shortcut"
 msgstr ""
 
-#: prefs/widgets.js:188
+#: prefs/widgets.js:275
 msgid "Press the new key combination, or Esc to cancel."
 msgstr ""
