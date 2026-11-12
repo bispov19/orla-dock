@@ -8,47 +8,363 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 07:11-0300\n"
+"POT-Creation-Date: 2026-11-12 08:02-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:34 prefs.js:39
+#: lib/appIcon.js:374
+msgid "Applications"
+msgstr ""
+
+#: lib/appMenu.js:58
+msgid "New Window"
+msgstr ""
+
+#: lib/appMenu.js:73
+msgid "Options"
+msgstr ""
+
+#: lib/appMenu.js:77
+msgid "Keep in Dock"
+msgstr ""
+
+#: lib/appMenu.js:87
+msgid "App Details"
+msgstr ""
+
+#: lib/appMenu.js:93
+msgid "Show All Windows"
+msgstr ""
+
+#: lib/appMenu.js:94
+msgid "Hide"
+msgstr ""
+
+#: lib/appMenu.js:96
+msgid "Close All Windows"
+msgstr ""
+
+#: lib/appMenu.js:105
+msgid "Quit"
+msgstr ""
+
+#: lib/stacks.js:56
+msgid "Could not open"
+msgstr ""
+
+#: lib/stacks.js:209 lib/stacks.js:395
+msgid "Open in Files"
+msgstr ""
+
+#: lib/stacks.js:211 prefs/pages.js:136
+msgid "Automatic"
+msgstr ""
+
+#: lib/stacks.js:212 prefs/pages.js:136
+msgid "Grid"
+msgstr ""
+
+#: lib/stacks.js:213 prefs/pages.js:136
+msgid "Fan"
+msgstr ""
+
+#: lib/stacks.js:214 prefs/pages.js:136
+msgid "List"
+msgstr ""
+
+#: lib/stacks.js:216
+msgid "Sort by Date"
+msgstr ""
+
+#: lib/stacks.js:217
+msgid "Sort by Name"
+msgstr ""
+
+#: lib/stacks.js:219
+msgid "Remove from Dock"
+msgstr ""
+
+#: lib/stacks.js:439
+msgid "This folder is empty"
+msgstr ""
+
+#: lib/trash.js:58
+msgid "Open"
+msgstr ""
+
+#: lib/trash.js:60 lib/trash.js:106
+msgid "Empty Trash"
+msgstr ""
+
+#: lib/trash.js:67
+msgid "Trash"
+msgstr ""
+
+#: lib/trash.js:101
+msgid "Empty all items from Trash?"
+msgstr ""
+
+#: lib/trash.js:102
+msgid "All items in the Trash will be permanently deleted."
+msgstr ""
+
+#: lib/trash.js:104 prefs/widgets.js:190
+msgid "Cancel"
+msgstr ""
+
+#: lib/trash.js:124
+msgid "Could not empty the Trash"
+msgstr ""
+
+#: lib/trash.js:175
+msgid "Could not move to Trash"
+msgstr ""
+
+#: lib/windowPreviews.js:130
+msgid "Close"
+msgstr ""
+
+#: prefs/pages.js:32 prefs/pages.js:36
 msgid "Dock"
 msgstr ""
 
-#: prefs.js:46
+#: prefs/pages.js:41
 msgid "Position on screen"
 msgstr ""
 
-#: prefs.js:47
+#: prefs/pages.js:42
 msgid "Bottom"
 msgstr ""
 
-#: prefs.js:47
+#: prefs/pages.js:42
 msgid "Top"
 msgstr ""
 
-#: prefs.js:47
+#: prefs/pages.js:42
 msgid "Left"
 msgstr ""
 
-#: prefs.js:47
+#: prefs/pages.js:42
 msgid "Right"
 msgstr ""
 
-#: prefs.js:61
+#: prefs/pages.js:46
+msgid "Minimize windows using"
+msgstr ""
+
+#: prefs/pages.js:47
+msgid "Genie effect"
+msgstr ""
+
+#: prefs/pages.js:47
+msgid "Scale effect"
+msgstr ""
+
+#: prefs/pages.js:52
+msgid "Minimize windows into application icon"
+msgstr ""
+
+#: prefs/pages.js:53
+msgid "When off, each minimized window gets its own thumbnail next to the Trash"
+msgstr ""
+
+#: prefs/pages.js:54
+msgid "Automatically hide and show the Dock"
+msgstr ""
+
+#: prefs/pages.js:56
+msgid "Shortcut to turn hiding on or off"
+msgstr ""
+
+#: prefs/pages.js:58
+msgid "Animate opening applications"
+msgstr ""
+
+#: prefs/pages.js:59
+msgid "Show indicators for open applications"
+msgstr ""
+
+#: prefs/pages.js:60
+msgid "Show suggested and recent apps in Dock"
+msgstr ""
+
+#: prefs/pages.js:62
+msgid "Behavior"
+msgstr ""
+
+#: prefs/pages.js:64
+msgid "Show the applications button"
+msgstr ""
+
+#: prefs/pages.js:65
+msgid "Show window previews on hover"
+msgstr ""
+
+#: prefs/pages.js:66
+msgid "Show notification badges and progress"
+msgstr ""
+
+#: prefs/pages.js:68
+msgid "Bounce when an application needs attention"
+msgstr ""
+
+#: prefs/pages.js:70
+msgid "Hide the GNOME dash in the Activities overview"
+msgstr ""
+
+#: prefs/pages.js:72
 msgid "Monitors"
 msgstr ""
 
-#: prefs.js:65
-msgid "Show the dock on all monitors"
+#: prefs/pages.js:74
+msgid "Show the Dock on all monitors"
 msgstr ""
 
-#: prefs.js:66
-msgid "When off, the dock appears only on the primary monitor"
+#: prefs/pages.js:75
+msgid "When off, the Dock appears only on the primary monitor"
+msgstr ""
+
+#: prefs/pages.js:84 prefs/pages.js:88
+msgid "Appearance"
+msgstr ""
+
+#: prefs/pages.js:89
+msgid "The Dock follows the system light or dark style."
+msgstr ""
+
+#: prefs/pages.js:93
+msgid "Background opacity"
+msgstr ""
+
+#: prefs/pages.js:98
+msgid "Blur intensity"
+msgstr ""
+
+#: prefs/pages.js:98
+msgid "0 turns blur off"
+msgstr ""
+
+#: prefs/pages.js:99 prefs/widgets.js:138
+msgid "Off"
+msgstr ""
+
+#: prefs/pages.js:99
+msgid "Strong"
+msgstr ""
+
+#: prefs/pages.js:103
+msgid "Corner radius"
+msgstr ""
+
+#: prefs/pages.js:104
+msgid "Square"
+msgstr ""
+
+#: prefs/pages.js:104
+msgid "Round"
+msgstr ""
+
+#: prefs/pages.js:109
+msgid "Distance from screen edge"
+msgstr ""
+
+#: prefs/pages.js:115
+msgid "Icon reflection"
+msgstr ""
+
+#: prefs/pages.js:116
+msgid "A subtle reflection under the icons (bottom Dock only)"
+msgstr ""
+
+#: prefs/pages.js:126 prefs/pages.js:130
+msgid "Stacks and Trash"
+msgstr ""
+
+#: prefs/pages.js:132
+msgid "Show Downloads"
+msgstr ""
+
+#: prefs/pages.js:133
+msgid "Show Trash"
+msgstr ""
+
+#: prefs/pages.js:135
+msgid "Open stacks as"
+msgstr ""
+
+#: prefs/pages.js:137
+msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgstr ""
+
+#: prefs/pages.js:141
+msgid "Sort stack items by"
+msgstr ""
+
+#: prefs/pages.js:141
+msgid "Date"
+msgstr ""
+
+#: prefs/pages.js:141
+msgid "Name"
+msgstr ""
+
+#: prefs/pages.js:147
+msgid "Other folders"
+msgstr ""
+
+#: prefs/pages.js:148
+msgid "Folders shown as stacks next to the Trash"
+msgstr ""
+
+#: prefs/pages.js:154
+msgid "Add folder…"
+msgstr ""
+
+#: prefs/pages.js:171
+msgid "Remove"
+msgstr ""
+
+#: prefs/pages.js:190
+msgid "Choose a folder"
+msgstr ""
+
+#: prefs/widgets.js:131 prefs/widgets.js:138
+msgid "Small"
+msgstr ""
+
+#: prefs/widgets.js:131 prefs/widgets.js:138
+msgid "Large"
+msgstr ""
+
+#: prefs/widgets.js:134
+msgid "Size"
+msgstr ""
+
+#: prefs/widgets.js:141
+msgid "Magnification"
+msgstr ""
+
+#: prefs/widgets.js:158
+msgid "Disabled"
+msgstr ""
+
+#: prefs/widgets.js:163
+msgid "Change…"
+msgstr ""
+
+#: prefs/widgets.js:169
+msgid "Disable shortcut"
+msgstr ""
+
+#: prefs/widgets.js:187
+msgid "New shortcut"
+msgstr ""
+
+#: prefs/widgets.js:188
+msgid "Press the new key combination, or Esc to cancel."
 msgstr ""

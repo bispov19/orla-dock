@@ -28,11 +28,12 @@ xgettext \
     --package-name="Orla Dock" \
     --msgid-bugs-address="https://github.com/viniciusbispo19/orla-dock/issues" \
     --add-comments=Translators \
+    --no-wrap \
     --output="po/$DOMAIN.pot" \
     "${SOURCES[@]}"
 
 for po in po/*.po; do
     [ -e "$po" ] || continue
     echo "==> Atualizando $po"
-    msgmerge --update --backup=none --previous "$po" "po/$DOMAIN.pot"
+    msgmerge --update --backup=none --previous --no-wrap "$po" "po/$DOMAIN.pot"
 done
