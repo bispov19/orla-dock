@@ -23,13 +23,18 @@
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
 import {DockManager} from './lib/dockManager.js';
+import {WobblyWindows} from './lib/wobbly.js';
 
 export default class OrlaDockExtension extends Extension {
     enable() {
         this._manager = new DockManager(this);
+        // Janelas balançando: independente da dock (nem sabe que ela existe).
+        this._wobbly = new WobblyWindows(this.getSettings());
     }
 
     disable() {
+        this._wobbly?.destroy();
+        this._wobbly = null;
         this._manager?.destroy();
         this._manager = null;
     }

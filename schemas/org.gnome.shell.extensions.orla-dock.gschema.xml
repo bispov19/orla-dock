@@ -494,5 +494,54 @@
       <description>If false, the dock is shown only on the primary monitor.</description>
     </key>
 
+    <!-- Janelas balançando (wobbly windows) -->
+    <key name="wobbly-enabled" type="b">
+      <default>true</default>
+      <summary>Wobbly windows</summary>
+      <description>Windows bend and wobble like jelly while they are moved.</description>
+    </key>
+    <key name="wobbly-preset" type="s">
+      <choices>
+        <choice value="soft"/>
+        <choice value="normal"/>
+        <choice value="strong"/>
+        <choice value="custom"/>
+      </choices>
+      <default>'normal'</default>
+      <summary>Wobble intensity preset</summary>
+      <description>Only used by the preferences window to fill the spring, friction and mass values.</description>
+    </key>
+    <key name="wobbly-spring" type="d">
+      <range min="100" max="1200"/>
+      <default>400</default>
+      <summary>Spring constant</summary>
+      <description>Higher values make the window snap back faster and bend less.</description>
+    </key>
+    <key name="wobbly-friction" type="d">
+      <range min="3" max="24"/>
+      <default>9</default>
+      <summary>Friction</summary>
+      <description>Higher values stop the wobbling sooner.</description>
+    </key>
+    <key name="wobbly-mass" type="d">
+      <range min="0.5" max="2.5"/>
+      <default>1</default>
+      <summary>Mass</summary>
+      <description>Heavier windows swing slower and wider.</description>
+    </key>
+    <key name="wobbly-mesh" type="i">
+      <range min="3" max="12"/>
+      <default>6</default>
+      <summary>Mesh resolution</summary>
+      <description>Number of spring points on each side of the window.</description>
+    </key>
+    <key name="wobbly-resize" type="b">
+      <default>true</default>
+      <summary>Wobble when resizing</summary>
+    </key>
+    <key name="wobbly-maximize" type="b">
+      <default>false</default>
+      <summary>Wobble when maximizing, restoring and moving with the keyboard</summary>
+    </key>
   </schema>
 </schemalist>

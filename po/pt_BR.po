@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 12:52-0300\n"
+"POT-Creation-Date: 2026-11-12 13:07-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -187,7 +187,7 @@ msgstr "Esvaziar todos os itens da Lixeira?"
 msgid "All items in the Trash will be permanently deleted."
 msgstr "Todos os itens da Lixeira serão apagados permanentemente."
 
-#: lib/trash.js:104 prefs/widgets.js:333
+#: lib/trash.js:104 prefs/widgets.js:342
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -399,6 +399,7 @@ msgid "System accent"
 msgstr "Cor de destaque do sistema"
 
 #: prefs/appearancePage.js:69 prefs/appearancePage.js:76 prefs/blurPage.js:150
+#: prefs/wobblyGroup.js:69
 msgid "Custom"
 msgstr "Personalizada"
 
@@ -447,112 +448,112 @@ msgid "Share of the icon height"
 msgstr "Proporção da altura do ícone"
 
 #. Translators: título de aba; curto, porque as abas dividem a largura.
-#: prefs/behaviorPage.js:17
+#: prefs/behaviorPage.js:18
 msgctxt "preferences tab"
 msgid "Behavior"
 msgstr "Interação"
 
-#: prefs/behaviorPage.js:21
+#: prefs/behaviorPage.js:22
 msgid "Auto-hide"
 msgstr "Ocultar automaticamente"
 
-#: prefs/behaviorPage.js:21
+#: prefs/behaviorPage.js:22
 msgid "When the Dock steps out of the way"
 msgstr "Quando o Dock sai do caminho"
 
-#: prefs/behaviorPage.js:22
+#: prefs/behaviorPage.js:23
 msgid "Automatically hide and show the Dock"
 msgstr "Ocultar e mostrar o Dock automaticamente"
 
-#: prefs/behaviorPage.js:24
+#: prefs/behaviorPage.js:25
 msgid "Shortcut to turn hiding on or off"
 msgstr "Atalho para ligar ou desligar a ocultação"
 
-#: prefs/behaviorPage.js:27
+#: prefs/behaviorPage.js:28
 msgid "Animations"
 msgstr "Animações"
 
-#: prefs/behaviorPage.js:28
+#: prefs/behaviorPage.js:29
 msgid "Minimize windows using"
 msgstr "Minimizar janelas usando"
 
-#: prefs/behaviorPage.js:29
+#: prefs/behaviorPage.js:30
 msgid "Genie effect"
 msgstr "Efeito Gênio"
 
-#: prefs/behaviorPage.js:29
+#: prefs/behaviorPage.js:30
 msgid "Scale effect"
 msgstr "Efeito Escala"
 
-#: prefs/behaviorPage.js:33
+#: prefs/behaviorPage.js:34
 msgid "Minimize duration"
 msgstr "Duração do minimizar"
 
-#: prefs/behaviorPage.js:34
+#: prefs/behaviorPage.js:35
 msgid "How long minimizing and restoring a window takes"
 msgstr "Quanto tempo leva para minimizar e restaurar uma janela"
 
-#: prefs/behaviorPage.js:38
+#: prefs/behaviorPage.js:39
 msgid "Animate opening applications"
 msgstr "Animar abertura de aplicativos"
 
-#: prefs/behaviorPage.js:39
+#: prefs/behaviorPage.js:40
 msgid "Bounce when an application needs attention"
 msgstr "Quicar quando um aplicativo pedir atenção"
 
-#: prefs/behaviorPage.js:41
+#: prefs/behaviorPage.js:44
 msgid "Windows"
 msgstr "Janelas"
 
-#: prefs/behaviorPage.js:42
+#: prefs/behaviorPage.js:45
 msgid "Minimize windows into application icon"
 msgstr "Minimizar janelas no ícone do aplicativo"
 
-#: prefs/behaviorPage.js:43
+#: prefs/behaviorPage.js:46
 msgid "When off, minimized windows go next to the Downloads folder and the Trash"
 msgstr "Quando desligado, as janelas minimizadas vão para o lado da pasta Downloads e da Lixeira"
 
-#: prefs/behaviorPage.js:44
+#: prefs/behaviorPage.js:47
 msgid "Show window previews on hover"
 msgstr "Mostrar miniaturas das janelas ao passar o mouse"
 
-#: prefs/behaviorPage.js:45
+#: prefs/behaviorPage.js:48
 msgid "Show notification badges and progress"
 msgstr "Mostrar contadores de notificação e progresso"
 
-#: prefs/behaviorPage.js:46
+#: prefs/behaviorPage.js:49
 msgid "Each app shows how many notifications it has waiting, even when pinned and closed"
 msgstr "Cada app mostra quantas notificações tem esperando, mesmo fixado e fechado"
 
-#: prefs/behaviorPage.js:48
+#: prefs/behaviorPage.js:51
 msgid "Apps on the Dock"
 msgstr "Apps no Dock"
 
-#: prefs/behaviorPage.js:49
+#: prefs/behaviorPage.js:52
 msgid "Show suggested and recent apps in Dock"
 msgstr "Mostrar aplicativos sugeridos e recentes no Dock"
 
-#: prefs/behaviorPage.js:50
+#: prefs/behaviorPage.js:53
 msgid "Closed apps stay in the Dock for a while, like on macOS"
 msgstr "Apps fechados continuam no Dock por um tempo, como no macOS"
 
-#: prefs/behaviorPage.js:51
+#: prefs/behaviorPage.js:54
 msgid "Show today's date on the Calendar icon"
 msgstr "Mostrar a data de hoje no ícone do Calendário"
 
-#: prefs/behaviorPage.js:52
+#: prefs/behaviorPage.js:55
 msgid "Hide the GNOME dash in the Activities overview"
 msgstr "Ocultar o dash do GNOME na Visão geral de atividades"
 
-#: prefs/behaviorPage.js:55
+#: prefs/behaviorPage.js:58
 msgid "Hidden windows"
 msgstr "Janelas ocultas"
 
-#: prefs/behaviorPage.js:56
+#: prefs/behaviorPage.js:59
 msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
 msgstr "Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como janelas comuns, o que faz um ícone extra aparecer no Dock. Janelas cuja classe corresponde a um destes padrões ficam de fora do Dock. Separe os padrões com vírgulas; * corresponde a qualquer texto."
 
-#: prefs/behaviorPage.js:63
+#: prefs/behaviorPage.js:66
 msgid "Window classes to hide"
 msgstr "Classes de janela a ocultar"
 
@@ -704,11 +705,11 @@ msgstr "Brilho"
 msgid "Strength of the rim highlight"
 msgstr "Força do brilho na borda"
 
-#: prefs/blurPage.js:183 prefs/layoutPage.js:58 prefs/widgets.js:281
+#: prefs/blurPage.js:183 prefs/layoutPage.js:58 prefs/widgets.js:290
 msgid "Off"
 msgstr "Não"
 
-#: prefs/blurPage.js:183
+#: prefs/blurPage.js:183 prefs/wobblyGroup.js:69
 msgid "Strong"
 msgstr "Forte"
 
@@ -736,7 +737,7 @@ msgstr "Posição na tela"
 msgid "Distance from screen edge"
 msgstr "Distância da borda da tela"
 
-#: prefs/layoutPage.js:31 prefs/widgets.js:277
+#: prefs/layoutPage.js:31 prefs/widgets.js:286
 msgid "Size"
 msgstr "Tamanho"
 
@@ -788,7 +789,7 @@ msgstr "Suavidade"
 msgid "Lower values glide more, higher values follow the pointer faster"
 msgstr "Valores baixos deslizam mais; valores altos seguem o ponteiro mais rápido"
 
-#: prefs/layoutPage.js:52
+#: prefs/layoutPage.js:52 prefs/wobblyGroup.js:69
 msgid "Soft"
 msgstr "Suave"
 
@@ -1048,57 +1049,153 @@ msgstr "Reflexo nos ícones"
 msgid "A subtle reflection under the icons (bottom Dock only)"
 msgstr "Um reflexo sutil embaixo dos ícones (só com o Dock na parte inferior)"
 
-#: prefs/widgets.js:125
+#: prefs/widgets.js:126
 msgid "Reset to defaults"
 msgstr "Restaurar padrões"
 
-#: prefs/widgets.js:180
+#: prefs/widgets.js:189
 msgid "None"
 msgstr "Nenhuma"
 
-#: prefs/widgets.js:184
+#: prefs/widgets.js:193
 msgid "Choose…"
 msgstr "Escolher…"
 
-#: prefs/widgets.js:186
+#: prefs/widgets.js:195
 msgid "Images"
 msgstr "Imagens"
 
-#: prefs/widgets.js:190
+#: prefs/widgets.js:199
 msgid "Choose an image"
 msgstr "Escolha uma imagem"
 
-#: prefs/widgets.js:274 prefs/widgets.js:281
+#: prefs/widgets.js:283 prefs/widgets.js:290
 msgid "Small"
 msgstr "Pequeno"
 
-#: prefs/widgets.js:274 prefs/widgets.js:281
+#: prefs/widgets.js:283 prefs/widgets.js:290
 msgid "Large"
 msgstr "Grande"
 
-#: prefs/widgets.js:284
+#: prefs/widgets.js:293
 msgid "Magnification"
 msgstr "Ampliação"
 
-#: prefs/widgets.js:301
+#: prefs/widgets.js:310
 msgid "Disabled"
 msgstr "Desativado"
 
-#: prefs/widgets.js:306
+#: prefs/widgets.js:315
 msgid "Change…"
 msgstr "Alterar…"
 
-#: prefs/widgets.js:312
+#: prefs/widgets.js:321
 msgid "Disable shortcut"
 msgstr "Desativar atalho"
 
-#: prefs/widgets.js:330
+#: prefs/widgets.js:339
 msgid "New shortcut"
 msgstr "Novo atalho"
 
-#: prefs/widgets.js:331
+#: prefs/widgets.js:340
 msgid "Press the new key combination, or Esc to cancel."
 msgstr "Pressione a nova combinação de teclas, ou Esc para cancelar."
+
+#: prefs/wobblyGroup.js:44
+msgid "Wobbly windows"
+msgstr "Janelas balançando"
+
+#: prefs/wobblyGroup.js:45
+msgid "Windows bend like jelly while you drag them and settle down on their own"
+msgstr "As janelas entortam como gelatina enquanto você as arrasta e assentam sozinhas"
+
+#: prefs/wobblyGroup.js:51
+msgid "“Compiz windows effect” is also enabled"
+msgstr "A extensão “Compiz windows effect” também está ativa"
+
+#: prefs/wobblyGroup.js:52
+msgid "To avoid applying the effect twice, Orla Dock leaves it to that extension. Turn it off in the Extensions app to use the Orla Dock effect."
+msgstr "Para não aplicar o efeito duas vezes, a Orla Dock deixa o balanço por conta dela. Desative-a no app Extensões para usar o efeito da Orla Dock."
+
+#: prefs/wobblyGroup.js:65
+msgid "Wobbly windows effect"
+msgstr "Efeito de janelas balançando"
+
+#: prefs/wobblyGroup.js:66
+msgid "Bend and wobble windows while they move"
+msgstr "Entorta e balança as janelas enquanto elas se movem"
+
+#: prefs/wobblyGroup.js:68
+msgid "Intensity"
+msgstr "Intensidade"
+
+#: prefs/wobblyGroup.js:69
+msgid "Normal"
+msgstr "Normal"
+
+#: prefs/wobblyGroup.js:73
+msgid "When resizing"
+msgstr "Ao redimensionar"
+
+#: prefs/wobblyGroup.js:74
+msgid "The dragged edge pulls the rest of the window along"
+msgstr "A borda arrastada puxa o resto da janela junto"
+
+#: prefs/wobblyGroup.js:76
+msgid "When maximizing and restoring"
+msgstr "Ao maximizar e restaurar"
+
+#: prefs/wobblyGroup.js:77
+msgid "Also when moving a window with the keyboard"
+msgstr "Também ao mover uma janela pelo teclado"
+
+#: prefs/wobblyGroup.js:81
+msgid "Advanced options"
+msgstr "Opções avançadas"
+
+#: prefs/wobblyGroup.js:82
+msgid "The physics behind the wobble"
+msgstr "A física por trás do balanço"
+
+#: prefs/wobblyGroup.js:84
+msgid "Spring constant"
+msgstr "Constante da mola"
+
+#: prefs/wobblyGroup.js:85
+msgid "Higher values snap back faster and bend less"
+msgstr "Valores maiores voltam mais rápido e entortam menos"
+
+#: prefs/wobblyGroup.js:86
+msgid "Loose"
+msgstr "Solta"
+
+#: prefs/wobblyGroup.js:86
+msgid "Stiff"
+msgstr "Firme"
+
+#: prefs/wobblyGroup.js:87
+msgid "Friction"
+msgstr "Atrito"
+
+#: prefs/wobblyGroup.js:88
+msgid "Higher values stop the wobbling sooner"
+msgstr "Valores maiores param o balanço mais cedo"
+
+#: prefs/wobblyGroup.js:90
+msgid "Mass"
+msgstr "Massa"
+
+#: prefs/wobblyGroup.js:91
+msgid "Heavier windows swing slower and wider"
+msgstr "Janelas mais pesadas balançam mais devagar e mais longe"
+
+#: prefs/wobblyGroup.js:93
+msgid "Mesh resolution"
+msgstr "Resolução da malha"
+
+#: prefs/wobblyGroup.js:94
+msgid "Spring points on each side of the window; more points bend more smoothly"
+msgstr "Pontos de mola em cada lado da janela; mais pontos entortam de forma mais suave"
 
 #~ msgid "Dock"
 #~ msgstr "Dock"
@@ -1115,17 +1212,11 @@ msgstr "Pressione a nova combinação de teclas, ou Esc para cancelar."
 #~ msgid "The blur shows what is behind the Dock, like frosted glass"
 #~ msgstr "O desfoque mostra o que está atrás do Dock, como um vidro fosco"
 
-#~ msgid "Blur intensity"
-#~ msgstr "Intensidade do desfoque"
-
 #~ msgid "0 turns blur off"
 #~ msgstr "0 desliga o desfoque"
 
 #~ msgid "Grey"
 #~ msgstr "Cinza"
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
 
 #~ msgid "Stacks and Trash"
 #~ msgstr "Stacks e Lixeira"

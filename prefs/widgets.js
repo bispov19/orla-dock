@@ -22,6 +22,7 @@ export class Binder {
     constructor(settings) {
         this.settings = settings;
         this._ids = [];
+        this._others = [];
     }
 
     /** Liga um booleano a uma propriedade (ex.: 'active' de um SwitchRow). */
@@ -151,9 +152,17 @@ export class Binder {
     }
 
     /** Desconecta tudo (chamado quando a janela fecha). */
+    /** Observa uma chave de OUTRO Gio.Settings (desconectado no destroy()). */
+    watchOther(settings, key, callback) {
+        const id = settings.connect(`changed::${key}`, callback);
+        this._others.push([settings, id]);
+    }
+
     destroy() {
         this._ids.forEach(id => this.settings.disconnect(id));
         this._ids = [];
+        this._others.forEach(([settings, id]) => settings.disconnect(id));
+        this._others = [];
     }
 }
 

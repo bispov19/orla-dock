@@ -10,6 +10,7 @@ import {gettext as _, pgettext} from 'resource:///org/gnome/Shell/Extensions/js/
 
 import {enumRow, group, sliderRow, switchRow} from './rows.js';
 import {ShortcutRow} from './widgets.js';
+import {wobblyGroup} from './wobblyGroup.js';
 
 export function behaviorPage(binder) {
     const page = new Adw.PreferencesPage({
@@ -37,6 +38,8 @@ export function behaviorPage(binder) {
     binder.showWhen('minimize-effect', s => s.get_enum('minimize-effect') === 0, duration);
     animation.add(switchRow(binder, 'animate-launch', _('Animate opening applications')));
     animation.add(switchRow(binder, 'bounce-on-attention', _('Bounce when an application needs attention')));
+
+    wobblyGroup(page, binder);
 
     const windows = group(page, _('Windows'));
     windows.add(switchRow(binder, 'minimize-to-app', _('Minimize windows into application icon'),

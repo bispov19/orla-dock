@@ -29,6 +29,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - Indicadores de apps abertos, nome do app ao passar o mouse e reflexo opcional dos ícones.
 - Efeitos de minimizar **Gênio** (malha deformável, bordas lisas) e **Escala**, com duração ajustável (100 a 1500 ms), entrando no ícone do app ou numa miniatura própria ao lado do Downloads e da Lixeira. Como na Luma Dock, o Gênio persegue o ícone quadro a quadro (inclusive ampliado), a miniatura surge só quando a janela termina de entrar e some na hora ao restaurar.
 - Segue o estilo claro/escuro do sistema.
+- **Janelas balançando** (wobbly windows), sem precisar de outra extensão: ao arrastar, redimensionar e (opcional) maximizar/restaurar, com intensidade Suave, Normal ou Forte e ajustes de mola, atrito, massa e malha. Se a extensão “Compiz windows effect” estiver ativa, a Orla deixa o efeito com ela.
 
 **Aplicativos**
 - Apps fixados compartilhados com os favoritos do GNOME, mais apps abertos e uma seção opcional de recentes/sugeridos.
@@ -129,6 +130,8 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/taskbarClock.js` | Relógio com data do modo barra de tarefas |
 | `lib/animations.js` | Quique e "fumacinha" |
 | `lib/minimizeEffects.js` | Efeitos Gênio e Escala |
+| `lib/wobbly.js` | Janelas balançando: sinais do Mutter e o efeito de deformação |
+| `lib/wobblyMath.js` | Física das janelas balançando (malha de molas, testável fora do Shell) |
 | `lib/autohide.js` | Auto-ocultar e reserva de espaço (struts) |
 | `lib/blur.js` | Blur nativo com cantos arredondados |
 | `lib/stacks.js` | Stacks (grade, leque, lista) |
