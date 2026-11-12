@@ -1,0 +1,259 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * stylesheet.css — estilos da Orla Dock.
+ *
+ * O GNOME Shell carrega este arquivo automaticamente. É CSS "do St" (o
+ * toolkit do Shell): parecido com o CSS da web, mas com menos propriedades.
+ * Tamanhos e posições que dependem do tamanho dos ícones são calculados no
+ * JavaScript; aqui ficam cores, fontes e detalhes fixos.
+ *
+ * As classes .orla-dark / .orla-light seguem o tema claro/escuro do sistema.
+ */
+
+/* ---------- Dock ---------- */
+
+.orla-item {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+.orla-indicator {
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.orla-light .orla-indicator {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.orla-separator {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.orla-light .orla-separator {
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+/* Botão da grade de apps: um "quadradinho" com gradiente, como o Launchpad. */
+.orla-showapps-tile {
+    background-gradient-direction: vertical;
+    background-gradient-start: #7a8cff;
+    background-gradient-end: #4a5bd9;
+}
+
+.orla-showapps-icon {
+    color: #ffffff;
+}
+
+/* Bolinha de notificação (contador) */
+.orla-badge {
+    background-color: #ff3b30;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 4px;
+}
+
+/* Barra de progresso */
+.orla-progress {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.orla-progress-fill {
+    background-color: #0a84ff;
+}
+
+/* ---------- Rótulo (tooltip) ---------- */
+
+.orla-tooltip {
+    border-radius: 7px;
+    padding: 4px 10px;
+    font-size: 10.5pt;
+    background-color: rgba(40, 40, 44, 0.92);
+    color: #f2f2f2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orla-tooltip.orla-light {
+    background-color: rgba(250, 250, 252, 0.95);
+    color: #1c1c1e;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Miniaturas de janelas ---------- */
+
+.orla-previews {
+    spacing: 8px;
+    padding: 8px;
+    border-radius: 14px;
+    background-color: rgba(36, 36, 40, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orla-previews.orla-light {
+    background-color: rgba(246, 246, 248, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.orla-preview {
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.orla-preview:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.orla-light .orla-preview:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.orla-preview-header {
+    spacing: 6px;
+    padding-bottom: 6px;
+}
+
+.orla-preview-title {
+    font-size: 9.5pt;
+    max-width: 200px;
+}
+
+.orla-dark .orla-preview-title {
+    color: #f2f2f2;
+}
+
+.orla-light .orla-preview-title {
+    color: #1c1c1e;
+}
+
+.orla-preview-close {
+    border-radius: 99px;
+    padding: 3px;
+    background-color: rgba(127, 127, 127, 0.25);
+}
+
+.orla-preview-close:hover {
+    background-color: #ff5f57;
+    color: #ffffff;
+}
+
+/* ---------- Stacks ---------- */
+
+.orla-stack-panel {
+    padding: 12px;
+    border-radius: 16px;
+    background-color: rgba(36, 36, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    spacing: 8px;
+}
+
+.orla-light .orla-stack-panel {
+    background-color: rgba(246, 246, 248, 0.97);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.orla-stack-panel-list {
+    width: 320px;
+}
+
+.orla-stack-title {
+    font-weight: bold;
+    font-size: 11pt;
+    padding: 0 4px 4px;
+}
+
+.orla-stack-grid {
+    spacing-rows: 4px;
+    spacing-columns: 4px;
+}
+
+.orla-stack-file {
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.orla-stack-file:hover,
+.orla-stack-file:focus {
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-stack-grid .orla-stack-file-box,
+.orla-stack-file.orla-stack-grid .orla-stack-file-box {
+    spacing: 4px;
+    width: 92px;
+}
+
+.orla-stack-file.orla-stack-list .orla-stack-file-box {
+    spacing: 10px;
+}
+
+.orla-stack-file-label {
+    font-size: 9pt;
+}
+
+.orla-dark .orla-stack-file-label,
+.orla-dark .orla-stack-title,
+.orla-dark .orla-stack-empty {
+    color: #f2f2f2;
+}
+
+.orla-light .orla-stack-file-label,
+.orla-light .orla-stack-title,
+.orla-light .orla-stack-empty {
+    color: #1c1c1e;
+}
+
+/* Leque: o nome numa "pílula" à esquerda do ícone. */
+.orla-stack-file.orla-stack-fan {
+    padding: 2px;
+}
+
+.orla-stack-file.orla-stack-fan .orla-stack-file-box {
+    spacing: 8px;
+}
+
+.orla-fan-label {
+    padding: 3px 10px;
+    border-radius: 99px;
+    background-color: rgba(30, 30, 34, 0.9);
+    color: #f2f2f2;
+    max-width: 220px;
+}
+
+.orla-light .orla-fan-label {
+    background-color: rgba(250, 250, 252, 0.95);
+    color: #1c1c1e;
+}
+
+.orla-stack-open {
+    border-radius: 99px;
+    padding: 5px 14px;
+    font-size: 9.5pt;
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-stack-open:hover {
+    background-color: rgba(127, 127, 127, 0.36);
+}
+
+.orla-dark .orla-stack-open {
+    color: #f2f2f2;
+}
+
+.orla-light .orla-stack-open {
+    color: #1c1c1e;
+}
+
+.orla-stack-empty {
+    padding: 24px;
+    font-style: italic;
+}
+
+/* ---------- Lixeira ---------- */
+
+.orla-item:drop .orla-icon-bin {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+}
