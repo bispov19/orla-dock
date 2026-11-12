@@ -44,5 +44,30 @@ export function behaviorPage(binder) {
     apps.add(switchRow(binder, 'dynamic-calendar-icon', _("Show today's date on the Calendar icon")));
     apps.add(switchRow(binder, 'hide-overview-dash', _('Hide the GNOME dash in the Activities overview')));
 
+    // --- Janelas ocultas (mesmo comportamento da Luma Dock) ---
+    const hidden = group(page, _('Hidden windows'),
+        _('Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, ' +
+          'which makes an extra icon pop up on the Dock. Windows whose class matches one of ' +
+          'these patterns are left out of the Dock. Separate patterns with commas; * matches any text.'));
+    binder.resetButton(hidden, ['ignored-window-classes']);
+    // Adw.EntryRow: campo de texto numa linha; o botão "aplicar" (✓) só
+    // salva quando o usuário confirma, em vez de a cada tecla.
+    const entry = new Adw.EntryRow({
+        title: _('Window classes to hide'),
+        show_apply_button: true,
+        text: binder.settings.get_string('ignored-window-classes'),
+    });
+    entry.connect('apply', () => {
+        const value = entry.get_text().split(',').map(p => p.trim()).filter(Boolean).join(', ');
+        binder.settings.set_string('ignored-window-classes', value);
+        entry.set_text(value);
+    });
+    binder._watch('ignored-window-classes', () => {
+        const value = binder.settings.get_string('ignored-window-classes');
+        if (entry.get_text() !== value)
+            entry.set_text(value);
+    });
+    hidden.add(entry);
+
     return page;
 }
