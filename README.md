@@ -27,7 +27,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - Ícone do Calendário com a data de hoje.
 - Ícones entram e saem com animação; quicam ao abrir um app e quando uma janela pede atenção.
 - Indicadores de apps abertos, nome do app ao passar o mouse e reflexo opcional dos ícones.
-- Efeitos de minimizar **Gênio** (malha deformável, bordas lisas) e **Escala**, com duração ajustável (100 a 1500 ms), entrando no ícone do app ou numa miniatura própria ao lado do Downloads e da Lixeira.
+- Efeitos de minimizar **Gênio** (malha deformável, bordas lisas) e **Escala**, com duração ajustável (100 a 1500 ms), entrando no ícone do app ou numa miniatura própria ao lado do Downloads e da Lixeira. Como na Luma Dock, o Gênio persegue o ícone quadro a quadro (inclusive ampliado), a miniatura surge só quando a janela termina de entrar e some na hora ao restaurar.
 - Segue o estilo claro/escuro do sistema.
 
 **Aplicativos**
