@@ -257,3 +257,42 @@
     background-color: rgba(255, 255, 255, 0.12);
     border-radius: 12px;
 }
+
+/* ---------- Barra de tarefas (estilo Windows 10) ---------- */
+
+.orla-taskbar-clock {
+    padding: 2px 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.orla-taskbar-clock:hover {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+.orla-taskbar-time {
+    font-size: 10pt;
+}
+
+.orla-taskbar-date {
+    font-size: 9pt;
+}
+
+/* ---------- Ícone dinâmico do Calendário ---------- */
+
+.orla-calendar-icon {
+    background-gradient-direction: vertical;
+    background-gradient-start: #ffffff;
+    background-gradient-end: #ececf0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.orla-calendar-month {
+    color: #ff3b30;
+    font-weight: bold;
+}
+
+.orla-calendar-day {
+    color: #1c1c1e;
+    font-weight: 300;
+}

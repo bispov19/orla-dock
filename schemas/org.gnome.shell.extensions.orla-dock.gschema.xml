@@ -38,10 +38,67 @@
     <value nick="name" value="1"/>
   </enum>
 
+  <enum id="org.gnome.shell.extensions.orla-dock.LayoutMode">
+    <value nick="dock" value="0"/>
+    <value nick="taskbar" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.AppsIcon">
+    <value nick="system-logo" value="0"/>
+    <value nick="grid" value="1"/>
+    <value nick="tile" value="2"/>
+    <value nick="custom" value="3"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.Theme">
+    <value nick="system" value="0"/>
+    <value nick="custom" value="1"/>
+    <value nick="wallpaper" value="2"/>
+    <value nick="carbon" value="3"/>
+    <value nick="nord" value="4"/>
+    <value nick="catppuccin" value="5"/>
+    <value nick="gruvbox" value="6"/>
+    <value nick="dracula" value="7"/>
+    <value nick="tokyo-night" value="8"/>
+    <value nick="frost" value="9"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.GradientDirection">
+    <value nick="vertical" value="0"/>
+    <value nick="horizontal" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.IndicatorStyle">
+    <value nick="dot" value="0"/>
+    <value nick="dash" value="1"/>
+    <value nick="line" value="2"/>
+    <value nick="square" value="3"/>
+    <value nick="windows" value="4"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.ColorMode">
+    <value nick="auto" value="0"/>
+    <value nick="accent" value="1"/>
+    <value nick="custom" value="2"/>
+  </enum>
+
   <schema id="org.gnome.shell.extensions.orla-dock"
           path="/org/gnome/shell/extensions/orla-dock/">
 
     <!-- ===== Dock ===== -->
+    <key name="layout-mode" enum="org.gnome.shell.extensions.orla-dock.LayoutMode">
+      <default>'dock'</default>
+      <summary>Floating dock (macOS) or full-width taskbar (Windows 10)</summary>
+    </key>
+    <key name="taskbar-icon-size" type="i">
+      <range min="16" max="64"/>
+      <default>28</default>
+      <summary>Icon size in taskbar mode</summary>
+    </key>
+    <key name="taskbar-clock" type="b">
+      <default>true</default>
+      <summary>Show the clock and date at the end of the taskbar</summary>
+    </key>
     <key name="position" enum="org.gnome.shell.extensions.orla-dock.Position">
       <default>'bottom'</default>
       <summary>Dock position on screen</summary>
@@ -52,9 +109,24 @@
       <summary>Icon size in logical pixels</summary>
     </key>
     <key name="magnification" type="d">
-      <range min="1.0" max="2.6"/>
-      <default>1.7</default>
+      <range min="1.0" max="3.0"/>
+      <default>2.0</default>
       <summary>Maximum magnification factor (1.0 disables magnification)</summary>
+    </key>
+    <key name="magnification-radius" type="d">
+      <range min="1.5" max="6.0"/>
+      <default>3.5</default>
+      <summary>How far the magnification wave reaches, in icons</summary>
+    </key>
+    <key name="magnification-rise" type="i">
+      <range min="0" max="40"/>
+      <default>10</default>
+      <summary>Extra lift of the magnified icon, in pixels</summary>
+    </key>
+    <key name="magnification-smoothness" type="d">
+      <range min="0.08" max="0.6"/>
+      <default>0.26</default>
+      <summary>How quickly icons follow the pointer (higher is snappier)</summary>
     </key>
     <key name="minimize-effect" enum="org.gnome.shell.extensions.orla-dock.MinimizeEffect">
       <default>'genie'</default>
@@ -86,7 +158,7 @@
       <summary>Show indicators for open applications</summary>
     </key>
     <key name="show-recent" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Show suggested and recent applications in the dock</summary>
     </key>
     <key name="recent-apps" type="as">
@@ -97,6 +169,23 @@
       <default>true</default>
       <summary>Show the applications grid button</summary>
     </key>
+    <key name="apps-button-icon" enum="org.gnome.shell.extensions.orla-dock.AppsIcon">
+      <default>'system-logo'</default>
+      <summary>Icon of the applications button</summary>
+    </key>
+    <key name="apps-button-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Color of the grid icon</summary>
+    </key>
+    <key name="apps-button-custom-icon" type="s">
+      <default>''</default>
+      <summary>Path of a custom image for the applications button</summary>
+    </key>
+    <key name="apps-button-icon-scale" type="i">
+      <range min="50" max="200"/>
+      <default>100</default>
+      <summary>Size of the applications button icon, in percent</summary>
+    </key>
     <key name="window-previews" type="b">
       <default>true</default>
       <summary>Show live window previews when hovering an application icon</summary>
@@ -105,16 +194,132 @@
       <default>true</default>
       <summary>Show notification badges and progress bars on icons</summary>
     </key>
+    <key name="dynamic-calendar-icon" type="b">
+      <default>true</default>
+      <summary>Show today's date on the Calendar icon</summary>
+    </key>
     <key name="hide-overview-dash" type="b">
       <default>true</default>
       <summary>Hide the native dash in the Activities overview</summary>
     </key>
 
     <!-- ===== Aparência ===== -->
+    <key name="theme" enum="org.gnome.shell.extensions.orla-dock.Theme">
+      <default>'system'</default>
+      <summary>Color theme of the dock</summary>
+    </key>
+    <key name="background-color" type="s">
+      <default>'#241f31'</default>
+      <summary>Background color for the custom theme</summary>
+    </key>
+    <key name="use-gradient" type="b">
+      <default>false</default>
+      <summary>Blend the custom background into a second color</summary>
+    </key>
+    <key name="gradient-color" type="s">
+      <default>'#3d3846'</default>
+      <summary>Second color of the gradient</summary>
+    </key>
+    <key name="gradient-direction" enum="org.gnome.shell.extensions.orla-dock.GradientDirection">
+      <default>'vertical'</default>
+      <summary>Direction of the gradient</summary>
+    </key>
     <key name="background-opacity" type="d">
       <range min="0.0" max="1.0"/>
       <default>0.45</default>
       <summary>Opacity of the dock background tint</summary>
+    </key>
+    <key name="border-width" type="i">
+      <range min="0" max="4"/>
+      <default>1</default>
+      <summary>Width of the outline around the dock</summary>
+    </key>
+    <key name="border-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Color of the outline</summary>
+    </key>
+    <key name="border-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.14</default>
+      <summary>Opacity of the outline</summary>
+    </key>
+    <key name="icon-spacing" type="i">
+      <range min="0" max="24"/>
+      <default>6</default>
+      <summary>Space between icons</summary>
+    </key>
+    <key name="dock-padding" type="i">
+      <range min="0" max="20"/>
+      <default>0</default>
+      <summary>Extra space between the icons and the dock edge</summary>
+    </key>
+    <key name="blur-brightness" type="d">
+      <range min="0.2" max="1.0"/>
+      <default>0.9</default>
+      <summary>Brightness of what is seen through the glass</summary>
+    </key>
+    <key name="blur-vibrancy" type="d">
+      <range min="0.0" max="2.0"/>
+      <default>1.2</default>
+      <summary>Color saturation seen through the glass</summary>
+    </key>
+    <key name="glass-glow" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.15</default>
+      <summary>Strength of the light rim on the glass edge</summary>
+    </key>
+    <key name="indicator-style" enum="org.gnome.shell.extensions.orla-dock.IndicatorStyle">
+      <default>'dot'</default>
+      <summary>Shape of the running-app indicator</summary>
+    </key>
+    <key name="indicator-color-mode" enum="org.gnome.shell.extensions.orla-dock.ColorMode">
+      <default>'auto'</default>
+      <summary>Where the indicator color comes from</summary>
+    </key>
+    <key name="indicator-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Custom indicator color</summary>
+    </key>
+    <key name="indicator-size" type="i">
+      <range min="2" max="12"/>
+      <default>4</default>
+      <summary>Size of the indicator</summary>
+    </key>
+    <key name="indicator-glow" type="b">
+      <default>false</default>
+      <summary>Soft glow around the indicator</summary>
+    </key>
+    <key name="badge-color-mode" enum="org.gnome.shell.extensions.orla-dock.ColorMode">
+      <default>'auto'</default>
+      <summary>Where the notification badge color comes from</summary>
+    </key>
+    <key name="badge-color" type="s">
+      <default>'#ff3b30'</default>
+      <summary>Custom notification badge color</summary>
+    </key>
+    <key name="popup-opacity" type="d">
+      <range min="0.3" max="1.0"/>
+      <default>0.94</default>
+      <summary>Opacity of labels, previews and stacks</summary>
+    </key>
+    <key name="separator-thickness" type="i">
+      <range min="0" max="6"/>
+      <default>1</default>
+      <summary>Thickness of the separators (0 hides them)</summary>
+    </key>
+    <key name="separator-length" type="d">
+      <range min="0.2" max="1.0"/>
+      <default>0.75</default>
+      <summary>Length of the separators, as a share of the icon size</summary>
+    </key>
+    <key name="separator-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Color of the separators</summary>
+    </key>
+    <key name="separator-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.3</default>
+      <summary>Opacity of the separators</summary>
     </key>
     <key name="blur-radius" type="i">
       <range min="0" max="80"/>
