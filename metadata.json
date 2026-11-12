@@ -8,6 +8,10 @@
   ],
   "url": "https://github.com/viniciusbispo19/orla-dock",
   "settings-schema": "org.gnome.shell.extensions.orla-dock",
+  "session-modes": [
+    "user",
+    "unlock-dialog"
+  ],
   "gettext-domain": "orla-dock",
   "version-name": "1.2.0"
 }
