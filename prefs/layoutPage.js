@@ -5,11 +5,17 @@
 // dela (posição, tamanho dos ícones, ampliação, espaços e monitores).
 
 import Adw from 'gi://Adw';
+import Gtk from 'gi://Gtk';
 
 import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-import {enumRow, group, sliderRow, spinRow, switchRow} from './rows.js';
+import {group, sliderRow, spinRow, switchRow} from './rows.js';
 import {comboRow, sizeAndMagnificationRow} from './widgets.js';
+import {getStyle} from '../lib/styles.js';
+import {drawingArea, paintPositionPreview} from './previews.js';
+
+// Posições (valores do enum no schema) na ordem dos cartões.
+const POSITIONS = [[0, 'Bottom'], [2, 'Left'], [3, 'Right'], [1, 'Top']];
 
 // Movimentos da ampliação (os mesmos da Luma Dock), na ordem da lista.
 const MOTIONS = ['fluid', 'domino', 'cylinder', 'magnetic', 'jelly', 'coverflow'];
@@ -17,16 +23,70 @@ const MOTION_KEYS = ['magnification-domino-tilt', 'magnification-cylinder-angle'
     'magnification-magnetic-strength', 'magnification-jelly-stretch',
     'magnification-jelly-squish', 'magnification-coverflow-angle'];
 
+/**
+ * Seletor de posição como na Luma Dock: um "monitor" desenhado por lado,
+ * com a barra naquele lado; clicar muda a posição na hora.
+ */
+function positionCards(binder) {
+    const settings = binder.settings;
+    const names = {Bottom: _('Bottom'), Left: _('Left'), Right: _('Right'), Top: _('Top')};
+    const box = new Gtk.Box({spacing: 12, homogeneous: true});
+    const cards = new Map();
+    let first = null;
+    for (const [value, name] of POSITIONS) {
+        const content = new Gtk.Box({
+            orientation: Gtk.Orientation.VERTICAL, spacing: 6,
+            margin_top: 10, margin_bottom: 10, margin_start: 10, margin_end: 10,
+        });
+        const art = drawingArea(110, 70, (cr, w, h) => paintPositionPreview(cr, w, h, value,
+            getStyle(settings.get_string('bar-style')), settings.get_enum('position') === value),
+        {halign: Gtk.Align.CENTER});
+        content.append(art);
+        content.append(new Gtk.Label({label: names[name], css_classes: ['heading']}));
+        const card = new Gtk.ToggleButton({child: content, hexpand: true, css_classes: ['card']});
+        if (first)
+            card.set_group(first);
+        else
+            first = card;
+        card.connect('toggled', () => {
+            if (card.active && settings.get_enum('position') !== value)
+                settings.set_enum('position', value);
+        });
+        box.append(card);
+        cards.set(value, {card, art});
+    }
+    const sync = () => {
+        const current = settings.get_enum('position');
+        for (const [value, {card, art}] of cards) {
+            if (value === current)
+                card.active = true;
+            art.queue_draw();
+        }
+    };
+    binder.watchOther(settings, 'position', sync);
+    // Barra de tarefas (borda inteira) ou dock (centralizada): o desenho muda.
+    binder.watchOther(settings, 'bar-style', sync);
+    sync();
+    return box;
+}
+
 export function layoutPage(binder) {
     const page = new Adw.PreferencesPage({
         title: _('Layout'),
         icon_name: 'view-dual-symbolic',
     });
 
-    const place = group(page, _('Position'));
-    place.add(enumRow(binder, 'position', _('Position on screen'),
-        [_('Bottom'), _('Top'), _('Left'), _('Right')]));
+    // Os cartões ficam num grupo só deles: o Adw.PreferencesGroup sempre põe
+    // as linhas (rows) numa lista e os outros widgets DEPOIS dela.
+    const cards = group(page, _('Position'), _('Click a screen to move the Dock to that side'));
+    cards.add(positionCards(binder));
+    const place = group(page, '');
     place.add(spinRow(binder, 'dock-margin', _('Distance from screen edge'), 0, 40));
+    const hug = switchRow(binder, 'hug-edge-when-maximized', _('Touch the edge when a window is maximized'),
+        _('The Dock drops its margin while a maximized window is on its screen and floats again when there is none'));
+    place.add(hug);
+    // Só faz sentido nos estilos que flutuam (as barras de tarefas já encostam).
+    binder.showWhen('bar-style', s => !getStyle(s.get_string('bar-style')).fullWidth, hug);
 
     const size = group(page, _('Size'));
     binder.resetButton(size, ['icon-size', 'magnification', 'magnification-smoothness',

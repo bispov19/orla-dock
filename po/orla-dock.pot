@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 18:10-0300\n"
+"POT-Creation-Date: 2026-11-13 14:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,19 +65,19 @@ msgstr ""
 msgid "Position on Screen"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Bottom"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Top"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Left"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Right"
 msgstr ""
 
@@ -109,65 +109,81 @@ msgstr ""
 msgid "Could not unmount the drive"
 msgstr ""
 
-#: lib/stacks.js:76
+#: lib/stacks.js:80
 msgid "Could not open"
 msgstr ""
 
-#: lib/stacks.js:142 prefs/modulesPage.js:49
+#: lib/stacks.js:147 prefs/modulesPage.js:49
 msgid "Home"
 msgstr ""
 
-#: lib/stacks.js:234 lib/stacks.js:420
+#: lib/stacks.js:239 lib/stacks.js:432
 msgid "Open in Files"
 msgstr ""
 
-#: lib/stacks.js:236 prefs/appearancePage.js:69 prefs/appearancePage.js:76
+#: lib/stacks.js:241 prefs/appearancePage.js:69 prefs/appearancePage.js:76
 #: prefs/modulesPage.js:62
 msgid "Automatic"
 msgstr ""
 
-#: lib/stacks.js:237 prefs/modulesPage.js:36 prefs/modulesPage.js:62
+#: lib/stacks.js:242 prefs/modulesPage.js:36 prefs/modulesPage.js:62
 msgid "Grid"
 msgstr ""
 
-#: lib/stacks.js:238 prefs/modulesPage.js:62
+#: lib/stacks.js:243 prefs/modulesPage.js:62
 msgid "Fan"
 msgstr ""
 
-#: lib/stacks.js:239 prefs/modulesPage.js:62
+#: lib/stacks.js:244 prefs/modulesPage.js:62
 msgid "List"
 msgstr ""
 
-#: lib/stacks.js:241
+#: lib/stacks.js:246
 msgid "Sort by Date"
 msgstr ""
 
-#: lib/stacks.js:242
+#: lib/stacks.js:247
 msgid "Sort by Name"
 msgstr ""
 
-#: lib/stacks.js:244
+#: lib/stacks.js:249
 msgid "Remove from Dock"
 msgstr ""
 
-#: lib/stacks.js:465
+#: lib/stacks.js:477
 msgid "This folder is empty"
 msgstr ""
 
-#: lib/styles.js:41 prefs/stylesPage.js:51
+#: lib/styles.js:50 prefs/stylesPage.js:119
 msgid "Dock (macOS)"
 msgstr ""
 
-#: lib/styles.js:42
+#: lib/styles.js:51
 msgid "Floating, centred, with icon magnification"
 msgstr ""
 
-#: lib/styles.js:81 prefs/stylesPage.js:46
+#: lib/styles.js:95
 msgid "Taskbar (Windows 10)"
 msgstr ""
 
-#: lib/styles.js:82
+#: lib/styles.js:96
 msgid "Edge to edge, icons on the left, clock and date at the end"
+msgstr ""
+
+#: lib/styles.js:140
+msgid "Dock (GNOME)"
+msgstr ""
+
+#: lib/styles.js:141
+msgid "Floating like the GNOME dash, no magnification, applications button at the end"
+msgstr ""
+
+#: lib/styles.js:191
+msgid "Taskbar (Windows 7)"
+msgstr ""
+
+#: lib/styles.js:192
+msgid "Glass bar edge to edge, round start button and framed open apps"
 msgstr ""
 
 #: lib/trash.js:60 lib/trash.js:106
@@ -701,7 +717,7 @@ msgstr ""
 msgid "Strength of the rim highlight"
 msgstr ""
 
-#: prefs/blurPage.js:183 prefs/layoutPage.js:58 prefs/widgets.js:290
+#: prefs/blurPage.js:183 prefs/layoutPage.js:115 prefs/widgets.js:290
 msgid "Off"
 msgstr ""
 
@@ -717,179 +733,187 @@ msgstr ""
 msgid "Where the light falls from"
 msgstr ""
 
-#: prefs/layoutPage.js:22
+#: prefs/layoutPage.js:75
 msgid "Layout"
 msgstr ""
 
-#: prefs/layoutPage.js:26
+#: prefs/layoutPage.js:79
 msgid "Position"
 msgstr ""
 
-#: prefs/layoutPage.js:27
-msgid "Position on screen"
+#: prefs/layoutPage.js:79
+msgid "Click a screen to move the Dock to that side"
 msgstr ""
 
-#: prefs/layoutPage.js:29
+#: prefs/layoutPage.js:81
 msgid "Distance from screen edge"
 msgstr ""
 
-#: prefs/layoutPage.js:31 prefs/widgets.js:286
+#: prefs/layoutPage.js:82
+msgid "Touch the edge when a window is maximized"
+msgstr ""
+
+#: prefs/layoutPage.js:83
+msgid "The Dock drops its margin while a maximized window is on its screen and floats again when there is none"
+msgstr ""
+
+#: prefs/layoutPage.js:88 prefs/widgets.js:286
 msgid "Size"
 msgstr ""
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:96
 msgid "Fluid"
 msgstr ""
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:96
 msgid "Domino"
 msgstr ""
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:96
 msgid "Cylinder"
 msgstr ""
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:97
 msgid "Magnetic"
 msgstr ""
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:97
 msgid "Jelly"
 msgstr ""
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:97
 msgid "Coverflow"
 msgstr ""
 
-#: prefs/layoutPage.js:42
+#: prefs/layoutPage.js:99
 msgid "Motion"
 msgstr ""
 
-#: prefs/layoutPage.js:43
+#: prefs/layoutPage.js:100
 msgid "The shape of the wave"
 msgstr ""
 
-#: prefs/layoutPage.js:47
+#: prefs/layoutPage.js:104
 msgid "Magnification details"
 msgstr ""
 
-#: prefs/layoutPage.js:48
+#: prefs/layoutPage.js:105
 msgid "How the icons grow under the pointer"
 msgstr ""
 
-#: prefs/layoutPage.js:50
+#: prefs/layoutPage.js:107
 msgid "Smoothness"
 msgstr ""
 
-#: prefs/layoutPage.js:51
+#: prefs/layoutPage.js:108
 msgid "Lower values glide more, higher values follow the pointer faster"
 msgstr ""
 
-#: prefs/layoutPage.js:52 prefs/wobblyGroup.js:69
+#: prefs/layoutPage.js:109 prefs/wobblyGroup.js:69
 msgid "Soft"
 msgstr ""
 
-#: prefs/layoutPage.js:52
+#: prefs/layoutPage.js:109
 msgid "Snappy"
 msgstr ""
 
-#: prefs/layoutPage.js:53
+#: prefs/layoutPage.js:110
 msgid "Reach"
 msgstr ""
 
-#: prefs/layoutPage.js:54
+#: prefs/layoutPage.js:111
 msgid "How many neighbouring icons grow along"
 msgstr ""
 
-#: prefs/layoutPage.js:55
+#: prefs/layoutPage.js:112
 msgid "Narrow"
 msgstr ""
 
-#: prefs/layoutPage.js:55
+#: prefs/layoutPage.js:112
 msgid "Wide"
 msgstr ""
 
-#: prefs/layoutPage.js:56
+#: prefs/layoutPage.js:113
 msgid "Lift"
 msgstr ""
 
-#: prefs/layoutPage.js:57
+#: prefs/layoutPage.js:114
 msgid "Extra lift of the magnified icon"
 msgstr ""
 
-#: prefs/layoutPage.js:59
+#: prefs/layoutPage.js:116
 msgid "Make room"
 msgstr ""
 
-#: prefs/layoutPage.js:60
+#: prefs/layoutPage.js:117
 msgid "Neighbours slide apart for the zoomed icon"
 msgstr ""
 
-#: prefs/layoutPage.js:61
+#: prefs/layoutPage.js:118
 msgid "Push strength"
 msgstr ""
 
-#: prefs/layoutPage.js:62
+#: prefs/layoutPage.js:119
 msgid "Higher values push the neighbours less"
 msgstr ""
 
-#: prefs/layoutPage.js:69
+#: prefs/layoutPage.js:126
 msgid "Motion details"
 msgstr ""
 
-#: prefs/layoutPage.js:73
+#: prefs/layoutPage.js:130
 msgid "Tilt"
 msgstr ""
 
-#: prefs/layoutPage.js:75
+#: prefs/layoutPage.js:132
 msgid "Curve"
 msgstr ""
 
-#: prefs/layoutPage.js:77
+#: prefs/layoutPage.js:134
 msgid "Pull"
 msgstr ""
 
-#: prefs/layoutPage.js:78
+#: prefs/layoutPage.js:135
 msgid "How strongly icons snap to the pointer"
 msgstr ""
 
-#: prefs/layoutPage.js:80
+#: prefs/layoutPage.js:137
 msgid "Stretch"
 msgstr ""
 
-#: prefs/layoutPage.js:82
+#: prefs/layoutPage.js:139
 msgid "Squash"
 msgstr ""
 
-#: prefs/layoutPage.js:84
+#: prefs/layoutPage.js:141
 msgid "Card angle"
 msgstr ""
 
-#: prefs/layoutPage.js:93
+#: prefs/layoutPage.js:150
 msgid "Spacing"
 msgstr ""
 
-#: prefs/layoutPage.js:94
+#: prefs/layoutPage.js:151
 msgid "Space between icons"
 msgstr ""
 
-#: prefs/layoutPage.js:95
+#: prefs/layoutPage.js:152
 msgid "Inner padding"
 msgstr ""
 
-#: prefs/layoutPage.js:96
+#: prefs/layoutPage.js:153
 msgid "Extra space between the icons and the Dock edge"
 msgstr ""
 
-#: prefs/layoutPage.js:98
+#: prefs/layoutPage.js:155
 msgid "Monitors"
 msgstr ""
 
-#: prefs/layoutPage.js:99
+#: prefs/layoutPage.js:156
 msgid "Show the Dock on all monitors"
 msgstr ""
 
-#: prefs/layoutPage.js:100
+#: prefs/layoutPage.js:157
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr ""
 
@@ -1021,35 +1045,67 @@ msgstr ""
 msgid "Choose a folder"
 msgstr ""
 
-#: prefs/stylesPage.js:19
+#: prefs/stylesPage.js:25
 msgid "Styles"
 msgstr ""
 
-#: prefs/stylesPage.js:23
+#: prefs/stylesPage.js:29
 msgid "Bar style"
 msgstr ""
 
-#: prefs/stylesPage.js:24
-msgid "Pick how the Dock looks and behaves. Each style keeps its own options below."
+#: prefs/stylesPage.js:30
+msgid "Pick a style to preview it, then apply it. Each style keeps its own options below."
 msgstr ""
 
 #: prefs/stylesPage.js:47
+msgid "Apply"
+msgstr ""
+
+#: prefs/stylesPage.js:94
+msgid "Current style"
+msgstr ""
+
+#: prefs/stylesPage.js:97
+msgid "Preview"
+msgstr ""
+
+#: prefs/stylesPage.js:97
+msgid "Not applied yet"
+msgstr ""
+
+#: prefs/stylesPage.js:111
+msgid "Taskbars (Windows 10 and 7)"
+msgstr ""
+
+#: prefs/stylesPage.js:112
 msgid "Icon size"
 msgstr ""
 
-#: prefs/stylesPage.js:48
+#: prefs/stylesPage.js:113
+msgid "Merge the top bar"
+msgstr ""
+
+#: prefs/stylesPage.js:114
+msgid "Clock, tray, indicators and Activities move into the taskbar and the top bar disappears (taskbar at the bottom or top)"
+msgstr ""
+
+#: prefs/stylesPage.js:115
 msgid "Show clock and date"
 msgstr ""
 
-#: prefs/stylesPage.js:52
+#: prefs/stylesPage.js:116
+msgid "On monitors without the merged top bar"
+msgstr ""
+
+#: prefs/stylesPage.js:120
 msgid "Size and magnification are on the Layout page"
 msgstr ""
 
-#: prefs/stylesPage.js:53
+#: prefs/stylesPage.js:121
 msgid "Icon reflection"
 msgstr ""
 
-#: prefs/stylesPage.js:54
+#: prefs/stylesPage.js:122
 msgid "A subtle reflection under the icons (bottom Dock only)"
 msgstr ""
 

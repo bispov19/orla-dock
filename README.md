@@ -12,9 +12,14 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 
 ## Recursos
 
-**Dois estilos**
+**Quatro estilos**, escolhidos com prévia (como na Luma Dock: clique num cartão para ver e depois em "Aplicar")
 - **Dock (macOS):** flutuante, centralizada, com ampliação em onda.
-- **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção e relógio com data.
+- **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção.
+- **Dock (GNOME):** flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim e destaque arredondado em volta do ícone.
+- **Barra de tarefas (Windows 7):** barra de vidro, botão Iniciar redondo e apps abertos com moldura de botão.
+- Nas barras de tarefas, a **barra superior do GNOME se junta à de baixo**: relógio, bandeja, indicadores e Atividades passam para ela e a barra de cima some (volta ao normal nos estilos de dock).
+- **Posição escolhida clicando na prévia** de cada lado da tela.
+- **Encostar na borda com janela maximizada** (opcional): a dock perde a margem enquanto houver janela maximizada e volta a flutuar quando não houver.
 
 **Aparência e animações**
 - Cantos arredondados e transparência.
@@ -125,6 +130,8 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/styles.js` | **Registro único dos estilos de barra** (para criar um estilo, basta acrescentar um objeto aqui) |
 | `lib/genieMath.js` | Matemática do efeito Gênio (testável fora do Shell) |
 | `lib/mounts.js` | Unidades USB e outras |
+| `lib/panelMerge.js` | Junta a barra superior do GNOME na barra de tarefas |
+| `lib/maximizeWatcher.js` | Detecta janela maximizada (encostar na borda) |
 | `lib/notificationCounter.js` | Notificações do GNOME por app |
 | `lib/windowFilter.js` | Janelas ocultas |
 | `lib/taskbarClock.js` | Relógio com data do modo barra de tarefas |
@@ -139,7 +146,7 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/windowPreviews.js` | Miniaturas ao vivo |
 | `lib/launcherEntry.js` | Contadores e progresso via D-Bus |
 | `lib/utils.js` | Eixos (4 posições), timeouts e utilidades |
-| `prefs.js`, `prefs/` | Janela de preferências (GTK 4 + libadwaita), uma aba por arquivo |
+| `prefs.js`, `prefs/` | Janela de preferências (GTK 4 + libadwaita), uma aba por arquivo; as prévias ficam em `prefs/previews.js` |
 
 ## Limitações conhecidas
 

@@ -94,6 +94,16 @@
       <default>true</default>
       <summary>Show the clock and date at the end of the taskbar</summary>
     </key>
+    <key name="taskbar-merge-panel" type="b">
+      <default>true</default>
+      <summary>Merge the GNOME top bar into the taskbar</summary>
+      <description>In the taskbar styles the clock, tray, indicators and Activities move into the taskbar and the top bar disappears (bottom or top taskbar only).</description>
+    </key>
+    <key name="hug-edge-when-maximized" type="b">
+      <default>false</default>
+      <summary>Touch the screen edge while a window is maximized</summary>
+      <description>The floating Dock drops its margin and touches the edge while a maximized window is on its monitor, and floats again when there is none.</description>
+    </key>
     <key name="position" enum="org.gnome.shell.extensions.orla-dock.Position">
       <default>'bottom'</default>
       <summary>Dock position on screen</summary>

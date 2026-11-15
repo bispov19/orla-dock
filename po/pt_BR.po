@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-12 18:10-0300\n"
+"POT-Creation-Date: 2026-11-13 14:43-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -66,19 +66,19 @@ msgstr "Ativar ampliação"
 msgid "Position on Screen"
 msgstr "Posição na tela"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Bottom"
 msgstr "Inferior"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Top"
 msgstr "Superior"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Left"
 msgstr "Esquerda"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:28
+#: lib/appMenu.js:188 prefs/layoutPage.js:32
 msgid "Right"
 msgstr "Direita"
 
@@ -110,66 +110,82 @@ msgstr "Não foi possível ejetar a unidade"
 msgid "Could not unmount the drive"
 msgstr "Não foi possível desmontar a unidade"
 
-#: lib/stacks.js:76
+#: lib/stacks.js:80
 msgid "Could not open"
 msgstr "Não foi possível abrir"
 
-#: lib/stacks.js:142 prefs/modulesPage.js:49
+#: lib/stacks.js:147 prefs/modulesPage.js:49
 msgid "Home"
 msgstr "Pasta pessoal"
 
-#: lib/stacks.js:234 lib/stacks.js:420
+#: lib/stacks.js:239 lib/stacks.js:432
 msgid "Open in Files"
 msgstr "Abrir no Arquivos"
 
-#: lib/stacks.js:236 prefs/appearancePage.js:69 prefs/appearancePage.js:76
+#: lib/stacks.js:241 prefs/appearancePage.js:69 prefs/appearancePage.js:76
 #: prefs/modulesPage.js:62
 msgid "Automatic"
 msgstr "Automático"
 
-#: lib/stacks.js:237 prefs/modulesPage.js:36 prefs/modulesPage.js:62
+#: lib/stacks.js:242 prefs/modulesPage.js:36 prefs/modulesPage.js:62
 msgid "Grid"
 msgstr "Grade"
 
-#: lib/stacks.js:238 prefs/modulesPage.js:62
+#: lib/stacks.js:243 prefs/modulesPage.js:62
 msgid "Fan"
 msgstr "Leque"
 
-#: lib/stacks.js:239 prefs/modulesPage.js:62
+#: lib/stacks.js:244 prefs/modulesPage.js:62
 msgid "List"
 msgstr "Lista"
 
-#: lib/stacks.js:241
+#: lib/stacks.js:246
 msgid "Sort by Date"
 msgstr "Ordenar por data"
 
-#: lib/stacks.js:242
+#: lib/stacks.js:247
 msgid "Sort by Name"
 msgstr "Ordenar por nome"
 
-#: lib/stacks.js:244
+#: lib/stacks.js:249
 msgid "Remove from Dock"
 msgstr "Remover do Dock"
 
-#: lib/stacks.js:465
+#: lib/stacks.js:477
 msgid "This folder is empty"
 msgstr "Esta pasta está vazia"
 
-#: lib/styles.js:41 prefs/stylesPage.js:51
+#: lib/styles.js:50 prefs/stylesPage.js:119
 msgid "Dock (macOS)"
 msgstr "Dock (macOS)"
 
-#: lib/styles.js:42
+#: lib/styles.js:51
 msgid "Floating, centred, with icon magnification"
 msgstr "Flutuante, centralizado, com ampliação dos ícones"
 
-#: lib/styles.js:81 prefs/stylesPage.js:46
+#: lib/styles.js:95
 msgid "Taskbar (Windows 10)"
 msgstr "Barra de tarefas (Windows 10)"
 
-#: lib/styles.js:82
+#: lib/styles.js:96
 msgid "Edge to edge, icons on the left, clock and date at the end"
 msgstr "De ponta a ponta, ícones à esquerda, relógio e data no fim"
+
+#: lib/styles.js:140
+msgid "Dock (GNOME)"
+msgstr "Dock (GNOME)"
+
+#: lib/styles.js:141
+msgid "Floating like the GNOME dash, no magnification, applications button at the end"
+msgstr "Flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim"
+
+#: lib/styles.js:191
+msgid "Taskbar (Windows 7)"
+msgstr "Barra de tarefas (Windows 7)"
+
+#: lib/styles.js:192
+msgid "Glass bar edge to edge, round start button and framed open apps"
+msgstr "Barra de vidro de ponta a ponta, botão Iniciar redondo e apps abertos com moldura"
 
 #: lib/trash.js:60 lib/trash.js:106
 msgid "Empty Trash"
@@ -705,7 +721,7 @@ msgstr "Brilho"
 msgid "Strength of the rim highlight"
 msgstr "Força do brilho na borda"
 
-#: prefs/blurPage.js:183 prefs/layoutPage.js:58 prefs/widgets.js:290
+#: prefs/blurPage.js:183 prefs/layoutPage.js:115 prefs/widgets.js:290
 msgid "Off"
 msgstr "Não"
 
@@ -721,179 +737,187 @@ msgstr "Direção da luz"
 msgid "Where the light falls from"
 msgstr "De onde vem a luz"
 
-#: prefs/layoutPage.js:22
+#: prefs/layoutPage.js:75
 msgid "Layout"
 msgstr "Disposição"
 
-#: prefs/layoutPage.js:26
+#: prefs/layoutPage.js:79
 msgid "Position"
 msgstr "Posição"
 
-#: prefs/layoutPage.js:27
-msgid "Position on screen"
-msgstr "Posição na tela"
+#: prefs/layoutPage.js:79
+msgid "Click a screen to move the Dock to that side"
+msgstr "Clique numa tela para levar o Dock para aquele lado"
 
-#: prefs/layoutPage.js:29
+#: prefs/layoutPage.js:81
 msgid "Distance from screen edge"
 msgstr "Distância da borda da tela"
 
-#: prefs/layoutPage.js:31 prefs/widgets.js:286
+#: prefs/layoutPage.js:82
+msgid "Touch the edge when a window is maximized"
+msgstr "Encostar na borda com janela maximizada"
+
+#: prefs/layoutPage.js:83
+msgid "The Dock drops its margin while a maximized window is on its screen and floats again when there is none"
+msgstr "O Dock perde a margem enquanto houver uma janela maximizada na tela dele e volta a flutuar quando não houver nenhuma"
+
+#: prefs/layoutPage.js:88 prefs/widgets.js:286
 msgid "Size"
 msgstr "Tamanho"
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:96
 msgid "Fluid"
 msgstr "Fluido"
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:96
 msgid "Domino"
 msgstr "Dominó"
 
-#: prefs/layoutPage.js:39
+#: prefs/layoutPage.js:96
 msgid "Cylinder"
 msgstr "Cilindro"
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:97
 msgid "Magnetic"
 msgstr "Magnético"
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:97
 msgid "Jelly"
 msgstr "Gelatina"
 
-#: prefs/layoutPage.js:40
+#: prefs/layoutPage.js:97
 msgid "Coverflow"
 msgstr "Coverflow"
 
-#: prefs/layoutPage.js:42
+#: prefs/layoutPage.js:99
 msgid "Motion"
 msgstr "Movimento"
 
-#: prefs/layoutPage.js:43
+#: prefs/layoutPage.js:100
 msgid "The shape of the wave"
 msgstr "O formato da onda"
 
-#: prefs/layoutPage.js:47
+#: prefs/layoutPage.js:104
 msgid "Magnification details"
 msgstr "Ajustes da ampliação"
 
-#: prefs/layoutPage.js:48
+#: prefs/layoutPage.js:105
 msgid "How the icons grow under the pointer"
 msgstr "Como os ícones crescem sob o ponteiro"
 
-#: prefs/layoutPage.js:50
+#: prefs/layoutPage.js:107
 msgid "Smoothness"
 msgstr "Suavidade"
 
-#: prefs/layoutPage.js:51
+#: prefs/layoutPage.js:108
 msgid "Lower values glide more, higher values follow the pointer faster"
 msgstr "Valores baixos deslizam mais; valores altos seguem o ponteiro mais rápido"
 
-#: prefs/layoutPage.js:52 prefs/wobblyGroup.js:69
+#: prefs/layoutPage.js:109 prefs/wobblyGroup.js:69
 msgid "Soft"
 msgstr "Suave"
 
-#: prefs/layoutPage.js:52
+#: prefs/layoutPage.js:109
 msgid "Snappy"
 msgstr "Rápido"
 
-#: prefs/layoutPage.js:53
+#: prefs/layoutPage.js:110
 msgid "Reach"
 msgstr "Alcance"
 
-#: prefs/layoutPage.js:54
+#: prefs/layoutPage.js:111
 msgid "How many neighbouring icons grow along"
 msgstr "Quantos ícones vizinhos crescem junto"
 
-#: prefs/layoutPage.js:55
+#: prefs/layoutPage.js:112
 msgid "Narrow"
 msgstr "Estreito"
 
-#: prefs/layoutPage.js:55
+#: prefs/layoutPage.js:112
 msgid "Wide"
 msgstr "Amplo"
 
-#: prefs/layoutPage.js:56
+#: prefs/layoutPage.js:113
 msgid "Lift"
 msgstr "Elevação"
 
-#: prefs/layoutPage.js:57
+#: prefs/layoutPage.js:114
 msgid "Extra lift of the magnified icon"
 msgstr "Quanto o ícone ampliado sobe"
 
-#: prefs/layoutPage.js:59
+#: prefs/layoutPage.js:116
 msgid "Make room"
 msgstr "Abrir espaço"
 
-#: prefs/layoutPage.js:60
+#: prefs/layoutPage.js:117
 msgid "Neighbours slide apart for the zoomed icon"
 msgstr "Os vizinhos se afastam para o ícone ampliado"
 
-#: prefs/layoutPage.js:61
+#: prefs/layoutPage.js:118
 msgid "Push strength"
 msgstr "Força do empurrão"
 
-#: prefs/layoutPage.js:62
+#: prefs/layoutPage.js:119
 msgid "Higher values push the neighbours less"
 msgstr "Valores maiores empurram menos os vizinhos"
 
-#: prefs/layoutPage.js:69
+#: prefs/layoutPage.js:126
 msgid "Motion details"
 msgstr "Detalhes do movimento"
 
-#: prefs/layoutPage.js:73
+#: prefs/layoutPage.js:130
 msgid "Tilt"
 msgstr "Inclinação"
 
-#: prefs/layoutPage.js:75
+#: prefs/layoutPage.js:132
 msgid "Curve"
 msgstr "Curvatura"
 
-#: prefs/layoutPage.js:77
+#: prefs/layoutPage.js:134
 msgid "Pull"
 msgstr "Atração"
 
-#: prefs/layoutPage.js:78
+#: prefs/layoutPage.js:135
 msgid "How strongly icons snap to the pointer"
 msgstr "Quanto os ícones são puxados pelo ponteiro"
 
-#: prefs/layoutPage.js:80
+#: prefs/layoutPage.js:137
 msgid "Stretch"
 msgstr "Esticar"
 
-#: prefs/layoutPage.js:82
+#: prefs/layoutPage.js:139
 msgid "Squash"
 msgstr "Achatar"
 
-#: prefs/layoutPage.js:84
+#: prefs/layoutPage.js:141
 msgid "Card angle"
 msgstr "Ângulo do cartão"
 
-#: prefs/layoutPage.js:93
+#: prefs/layoutPage.js:150
 msgid "Spacing"
 msgstr "Espaçamento"
 
-#: prefs/layoutPage.js:94
+#: prefs/layoutPage.js:151
 msgid "Space between icons"
 msgstr "Espaço entre os ícones"
 
-#: prefs/layoutPage.js:95
+#: prefs/layoutPage.js:152
 msgid "Inner padding"
 msgstr "Preenchimento interno"
 
-#: prefs/layoutPage.js:96
+#: prefs/layoutPage.js:153
 msgid "Extra space between the icons and the Dock edge"
 msgstr "Espaço extra entre os ícones e a borda do Dock"
 
-#: prefs/layoutPage.js:98
+#: prefs/layoutPage.js:155
 msgid "Monitors"
 msgstr "Monitores"
 
-#: prefs/layoutPage.js:99
+#: prefs/layoutPage.js:156
 msgid "Show the Dock on all monitors"
 msgstr "Mostrar o Dock em todos os monitores"
 
-#: prefs/layoutPage.js:100
+#: prefs/layoutPage.js:157
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr "Quando desligado, o Dock aparece só no monitor principal"
 
@@ -1025,35 +1049,67 @@ msgstr "Remover"
 msgid "Choose a folder"
 msgstr "Escolha uma pasta"
 
-#: prefs/stylesPage.js:19
+#: prefs/stylesPage.js:25
 msgid "Styles"
 msgstr "Estilos"
 
-#: prefs/stylesPage.js:23
+#: prefs/stylesPage.js:29
 msgid "Bar style"
 msgstr "Estilo da barra"
 
-#: prefs/stylesPage.js:24
-msgid "Pick how the Dock looks and behaves. Each style keeps its own options below."
-msgstr "Escolha a aparência e o comportamento do Dock. Cada estilo tem as próprias opções logo abaixo."
+#: prefs/stylesPage.js:30
+msgid "Pick a style to preview it, then apply it. Each style keeps its own options below."
+msgstr "Escolha um estilo para ver a prévia e depois aplique. Cada estilo tem as próprias opções logo abaixo."
 
 #: prefs/stylesPage.js:47
+msgid "Apply"
+msgstr "Aplicar"
+
+#: prefs/stylesPage.js:94
+msgid "Current style"
+msgstr "Estilo atual"
+
+#: prefs/stylesPage.js:97
+msgid "Preview"
+msgstr "Prévia"
+
+#: prefs/stylesPage.js:97
+msgid "Not applied yet"
+msgstr "Ainda não aplicado"
+
+#: prefs/stylesPage.js:111
+msgid "Taskbars (Windows 10 and 7)"
+msgstr "Barras de tarefas (Windows 10 e 7)"
+
+#: prefs/stylesPage.js:112
 msgid "Icon size"
 msgstr "Tamanho dos ícones"
 
-#: prefs/stylesPage.js:48
+#: prefs/stylesPage.js:113
+msgid "Merge the top bar"
+msgstr "Juntar a barra superior"
+
+#: prefs/stylesPage.js:114
+msgid "Clock, tray, indicators and Activities move into the taskbar and the top bar disappears (taskbar at the bottom or top)"
+msgstr "Relógio, bandeja, indicadores e Atividades passam para a barra de tarefas e a barra de cima some (com a barra embaixo ou em cima)"
+
+#: prefs/stylesPage.js:115
 msgid "Show clock and date"
 msgstr "Mostrar relógio e data"
 
-#: prefs/stylesPage.js:52
+#: prefs/stylesPage.js:116
+msgid "On monitors without the merged top bar"
+msgstr "Nos monitores sem a barra superior junta"
+
+#: prefs/stylesPage.js:120
 msgid "Size and magnification are on the Layout page"
 msgstr "Tamanho e ampliação ficam na aba Disposição"
 
-#: prefs/stylesPage.js:53
+#: prefs/stylesPage.js:121
 msgid "Icon reflection"
 msgstr "Reflexo nos ícones"
 
-#: prefs/stylesPage.js:54
+#: prefs/stylesPage.js:122
 msgid "A subtle reflection under the icons (bottom Dock only)"
 msgstr "Um reflexo sutil embaixo dos ícones (só com o Dock na parte inferior)"
 
@@ -1204,6 +1260,9 @@ msgstr "Resolução da malha"
 #: prefs/wobblyGroup.js:94
 msgid "Spring points on each side of the window; more points bend more smoothly"
 msgstr "Pontos de mola em cada lado da janela; mais pontos entortam de forma mais suave"
+
+#~ msgid "Position on screen"
+#~ msgstr "Posição na tela"
 
 #~ msgid "Dock"
 #~ msgstr "Dock"

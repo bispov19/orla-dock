@@ -296,3 +296,14 @@
     color: #1c1c1e;
     font-weight: 300;
 }
+
+/* Barra superior do GNOME fundida na barra de tarefas (lib/panelMerge.js).
+   As caixas se chamam "panel" para herdar o visual dos botões do painel;
+   aqui tiramos o fundo preto e ajustamos a cor no tema claro. */
+.orla-dock #panel.orla-tray {
+    background-color: transparent;
+}
+
+.orla-dock.orla-light #panel.orla-tray .panel-button {
+    color: #1c1c1e;
+}
