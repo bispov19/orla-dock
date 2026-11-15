@@ -37,7 +37,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção.
 - **Dock (GNOME):** flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim e destaque arredondado em volta do ícone.
 - **Barra de tarefas (Windows 7):** barra de vidro, botão Iniciar redondo e apps abertos com moldura de botão.
-- Nas barras de tarefas, a **barra superior do GNOME se junta à de baixo**: relógio, bandeja, indicadores e Atividades passam para ela e a barra de cima some (volta ao normal nos estilos de dock).
+- Nas barras de tarefas, o **modo Painel e o Menu Iniciar da Luma Dock**: a barra de cima entra na de tarefas (indicador de workspaces, bandeja com seta para fixar e reordenar ícones, configurações rápidas e relógio com data), e o botão Iniciar abre o Menu Iniciar (fixados, recentes, arquivos, todos os apps, busca, calculadora, bloquear e desligar). Tudo volta ao normal nos estilos de dock.
 - **Posição escolhida clicando na prévia** de cada lado da tela.
 - **Encostar na borda com janela maximizada** (opcional): a dock perde a margem enquanto houver janela maximizada e volta a flutuar quando não houver.
 
@@ -150,7 +150,8 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/styles.js` | **Registro único dos estilos de barra** (para criar um estilo, basta acrescentar um objeto aqui) |
 | `lib/genieMath.js` | Matemática do efeito Gênio (testável fora do Shell) |
 | `lib/mounts.js` | Unidades USB e outras |
-| `lib/panelMerge.js` | Junta a barra superior do GNOME na barra de tarefas |
+| `lib/luma/` | Modo painel (bandeja, relógio, workspaces) e Menu Iniciar das barras de tarefas, vindos da Luma Dock |
+| `lib/lumaBridge.js` | Ponte entre a Orla e os módulos da Luma (o "dockUI" que eles enxergam) |
 | `lib/maximizeWatcher.js` | Detecta janela maximizada (encostar na borda) |
 | `lib/notificationCounter.js` | Notificações do GNOME por app |
 | `lib/windowFilter.js` | Janelas ocultas |
@@ -173,6 +174,10 @@ journalctl -f -o cat /usr/bin/gjs
 - **Arquivos arrastados de outros programas:** no Wayland, o GNOME Shell recebe o movimento do arraste, mas não o arquivo. Por isso, parar um arquivo sobre um ícone traz o app para frente (como no Mac) para você soltar direto na janela dele. Arquivos arrastados das Stacks da própria Orla abrem direto no app.
 - **Presets do vidro estático:** as imagens prontas da Luma são arte dela; a Orla tem as suas próprias (Abstrato, Aurora, Cyberpunk, Minimalista, Pôr do sol).
 - O Gênio usa um detalhe interno do Shell (`Main.wm._minimizing`); se ele mudar numa versão futura, a Orla volta sozinha para a animação nativa.
+
+## Créditos
+
+O modo Painel e o Menu Iniciar das barras de tarefas (`lib/luma/` e o CSS correspondente) vieram da [Luma Dock](https://github.com/viniciusbispo19/luma-dock), que por sua vez deriva da Dhruva GNOME Extension (© 2026 NarkAgni), ambas GPL-3.0-or-later. Os arquivos mantêm o cabeçalho de autoria original.
 
 ## Licença
 

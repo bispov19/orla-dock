@@ -16,6 +16,7 @@ import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions
 import {STYLES, getStyle} from '../lib/styles.js';
 import {drawingArea, paintStylePreview} from './previews.js';
 import {group, spinRow, switchRow} from './rows.js';
+import {taskbarPanelGroups} from './taskbarPanel.js';
 
 const PREVIEW_HEIGHT = 250;
 
@@ -110,11 +111,14 @@ export function stylesPage(binder) {
     const isTaskbar = s => getStyle(s.get_string('bar-style')).fullWidth;
     const taskbar = group(page, _('Taskbars (Windows 10 and 7)'));
     taskbar.add(spinRow(binder, 'taskbar-icon-size', _('Icon size'), 16, 64));
-    taskbar.add(switchRow(binder, 'taskbar-merge-panel', _('Merge the top bar'),
-        _('Clock, tray, indicators and Activities move into the taskbar and the top bar disappears (taskbar at the bottom or top)')));
-    taskbar.add(switchRow(binder, 'taskbar-clock', _('Show clock and date'),
-        _('On monitors without the merged top bar')));
+    const ownClock = switchRow(binder, 'taskbar-clock', _('Show clock and date'),
+        _('When the Panel mode is off'));
+    taskbar.add(ownClock);
     binder.showWhen('bar-style', isTaskbar, taskbar);
+    binder.showWhen('taskbar-merge-panel', s => !s.get_boolean('taskbar-merge-panel'), ownClock);
+
+    // Modo painel, Menu Iniciar, relógio e bandeja: o modelo da Luma Dock.
+    taskbarPanelGroups(page, binder, isTaskbar);
 
     const dock = group(page, _('Dock (macOS)'),
         _('Size and magnification are on the Layout page'));

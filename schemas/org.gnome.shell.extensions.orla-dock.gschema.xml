@@ -557,5 +557,91 @@
       <default>false</default>
       <summary>Wobble when maximizing, restoring and moving with the keyboard</summary>
     </key>
+    <!-- Modo painel e Menu Iniciar das barras de tarefas (vindos da Luma Dock) -->
+    <key name="start-menu" type="b">
+      <default>true</default>
+      <summary>Start menu</summary>
+      <description>In Panel mode, open the Luma Dock start menu from the App Grid button instead of GNOME's app grid.</description>
+    </key>
+    <key name="start-menu-pinned" type="as">
+      <default>[]</default>
+      <summary>Start menu pinned items</summary>
+      <description>App IDs and folder keys pinned to the start menu. Empty uses the dock order.</description>
+    </key>
+    <key name="start-menu-folders" type="s">
+      <default>'[]'</default>
+      <summary>Start menu folders</summary>
+      <description>Folders made in the start menu, as JSON.</description>
+    </key>
+    <key name="start-menu-recent-apps" type="b">
+      <default>true</default>
+      <summary>Start menu recent apps</summary>
+      <description>Show the Recent apps row on the start menu's home page.</description>
+    </key>
+    <key name="start-menu-continue" type="b">
+      <default>true</default>
+      <summary>Start menu recent files</summary>
+      <description>Show Continue where you left off on the start menu's home page.</description>
+    </key>
+    <key name="start-menu-search-providers" type="b">
+      <default>true</default>
+      <summary>Start menu search providers</summary>
+      <description>Include results from GNOME search providers, like Characters and Calendar, in start menu search.</description>
+    </key>
+    <key name="start-menu-web-search" type="b">
+      <default>true</default>
+      <summary>Start menu web search</summary>
+      <description>Offer a web search for the typed text at the end of start menu search results.</description>
+    </key>
+    <key name="start-menu-web-search-url" type="s">
+      <default>'https://duckduckgo.com/?q=%s'</default>
+      <summary>Start menu web search URL</summary>
+      <description>Address used for web search. %s is replaced with the search text.</description>
+    </key>
+    <key name="start-menu-recent-files" type="i">
+      <range min="1" max="50"/>
+      <default>10</default>
+      <summary>Start menu recent files</summary>
+      <description>How many recent files the start menu shows under Continue where you left off.</description>
+    </key>
+    <key name="start-menu-recent-app-ids" type="as">
+      <default>[]</default>
+      <summary>Start menu recent app history</summary>
+      <description>App IDs ordered from the most recently opened or closed, used for the start menu's Recent apps row.</description>
+    </key>
+    <key name="start-menu-all-apps-grid" type="b">
+      <default>false</default>
+      <summary>Start menu all apps as a grid</summary>
+      <description>Show the start menu's All apps page as a grid of icons instead of a list.</description>
+    </key>
+    <key name="tray-order" type="as">
+      <default>[]</default>
+      <summary>Tray icon order</summary>
+      <description>Order of the icons inside the tray popup.</description>
+    </key>
+    <key name="tray-panel-indicators" type="as">
+      <default>[]</default>
+      <summary>Tray icons shown on the panel</summary>
+      <description>Small status icons the user chose to keep on the panel instead of inside the tray.</description>
+    </key>
+    <key name="tray-wide-indicators" type="as">
+      <default>[]</default>
+      <summary>Wide applets shown in the tray</summary>
+      <description>Wide applets, such as ones with text or graphs, the user chose to show as a row inside the tray instead of on the panel.</description>
+    </key>
+    <key name="panel-applet-order" type="as">
+      <default>[]</default>
+      <summary>Order of extension applets on the panel, changed with Ctrl + drag</summary>
+    </key>
+    <key name="panel-workspace-indicator" type="b">
+      <default>true</default>
+      <summary>Panel Workspace Indicator</summary>
+      <description>Show the workspace pills at the start of the panel in Panel Mode.</description>
+    </key>
+    <key name="panel-date-format" type="s">
+      <default>'%d/%m/%Y'</default>
+      <summary>Panel Date Format</summary>
+      <description>GLib date format used for the date line under the panel clock.</description>
+    </key>
   </schema>
 </schemalist>

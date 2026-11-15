@@ -297,13 +297,532 @@
     font-weight: 300;
 }
 
-/* Barra superior do GNOME fundida na barra de tarefas (lib/panelMerge.js).
-   As caixas se chamam "panel" para herdar o visual dos botões do painel;
-   aqui tiramos o fundo preto e ajustamos a cor no tema claro. */
-.orla-dock #panel.orla-tray {
+/* ======================================================================
+   Modo painel e Menu Iniciar das barras de tarefas — CSS copiado da
+   Luma Dock (Dhruva GNOME Extension, (C) 2026 NarkAgni, GPL-3.0-or-later),
+   junto com os módulos em lib/luma/.
+   ====================================================================== */
+
+.luma-hybrid-panel-box {
+    spacing: 0px;
+    padding: 0 4px;
+    font-size: 13px;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.luma-hybrid-panel-box .panel-button {
+    padding: 0 8px;
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.95);
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    transition-duration: 150ms;
+}
+
+.luma-hybrid-panel-box .panel-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.luma-hybrid-panel-box .panel-button:active,
+.luma-hybrid-panel-box .panel-button:checked {
+    background-color: rgba(255, 255, 255, 0.26);
+}
+
+.luma-workspace-indicator {
+    spacing: 4px;
+}
+
+.luma-workspace-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.45);
+    margin: 0 2px;
+    transition-duration: 150ms;
+}
+
+.luma-workspace-dot.active {
+    width: 20px;
+    height: 6px;
+    background-color: #ffffff;
+}
+
+.luma-workspace-dot.vertical {
+    margin: 2px 0;
+}
+
+.luma-workspace-dot.vertical.active {
+    width: 6px;
+    height: 20px;
+}
+
+.luma-date-menu-box {
+    margin: 0 4px;
+}
+
+.luma-date-menu-label {
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.15;
+    color: #ffffff;
+    font-feature-settings: "tnum";
+}
+
+.luma-date-menu-label.solo {
+    font-weight: 600;
+}
+
+.luma-tray-header {
+    spacing: 8px;
+}
+
+.luma-tray-title {
+    font-size: 9pt; font-weight: bold; color: rgba(255, 255, 255, 0.85);
+}
+
+.luma-tray-button {
+    padding: 6px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.08);
+    transition-duration: 150ms;
+}
+
+.luma-tray-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.luma-tray-text-button {
+    padding: 4px 12px; font-size: 9pt; color: rgba(255, 255, 255, 0.75);
+}
+
+.luma-tray-text-button.primary {
+    color: #ffffff; font-weight: bold;
+}
+
+.luma-tray-grid,
+.luma-tray-grid-row {
+    spacing: 4px;
+}
+
+.luma-tray-pill {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition-duration: 150ms;
+}
+
+.luma-tray-pill:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.luma-tray-wide-list {
+    spacing: 4px;
+}
+
+.luma-tray-wide-pill {
+    height: 30px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.06);
+    transition-duration: 150ms;
+}
+
+.luma-tray-wide-pill:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.luma-tray-section {
+    spacing: 2px; min-width: 180px;
+}
+
+.luma-tray-section-title {
+    font-size: 7.5pt; font-weight: bold; color: rgba(255, 255, 255, 0.5); padding: 2px 4px;
+}
+
+.luma-tray-row {
+    spacing: 10px;
+    padding: 4px 6px;
+    border-radius: 10px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+
+.luma-tray-row:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.luma-tray-empty {
+    color: rgba(255, 255, 255, 0.45); font-size: 8.25pt; padding: 6px 4px;
+}
+
+.luma-tray-footer {
+    spacing: 8px; margin-top: 2px;
+}
+
+.luma-tray-note {
+    font-size: 7.5pt; color: rgba(255, 255, 255, 0.45);
+}
+
+.luma-tray-panel {
+    spacing: 8px; background-color: transparent; border: none; box-shadow: none;
+}
+
+.luma-start-menu-box .luma-start-search,
+.luma-start-menu-box .luma-start-search:hover,
+.luma-start-menu-box .luma-start-search:focus {
+    min-height: 44px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 14px;
+    background-color: transparent;
+    box-shadow: none;
+    color: #ffffff;
+    font-size: 11.25pt;
+    caret-color: #ffffff;
+    selection-background-color: rgba(255, 255, 255, 0.3);
+    selected-color: #ffffff;
+}
+
+.luma-start-menu-box .luma-start-search .hint-text {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.luma-start-search-icon {
+    icon-size: 18px; color: rgba(255, 255, 255, 0.75); padding-right: 10px;
+}
+
+.luma-start-section {
+    font-size: 8.25pt; font-weight: bold; letter-spacing: 1px; color: rgba(255, 255, 255, 0.6);
+}
+
+.luma-start-title {
+    font-size: 9pt; font-weight: bold; color: #ffffff;
+}
+
+.luma-start-best-title {
+    font-size: 15pt; font-weight: bold; color: #ffffff;
+}
+
+.luma-start-meta {
+    font-size: 8.25pt; color: rgba(255, 255, 255, 0.62);
+}
+
+.luma-start-cell-label {
+    font-size: 9pt; color: rgba(255, 255, 255, 0.92);
+}
+
+.luma-start-card-title {
+    font-size: 9.75pt;
+}
+
+.luma-start-app-name {
+    font-size: 10.5pt; color: #ffffff;
+}
+
+.luma-start-user {
+    font-size: 10.5pt; font-weight: bold; color: #ffffff;
+}
+
+.luma-start-empty {
+    font-size: 9.75pt; color: rgba(255, 255, 255, 0.62); padding: 24px 0;
+}
+
+.luma-start-letter {
+    font-size: 9.75pt; font-weight: bold; color: #ffffff; padding: 8px 10px 2px;
+}
+
+.luma-start-item {
+    padding: 12px 2px 10px;
+    border-radius: 14px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+
+.luma-start-item:hover,
+.luma-start-item:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.luma-start-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.045);
+    transition-duration: 120ms;
+}
+
+.luma-start-card:hover,
+.luma-start-card:focus {
+    background-color: rgba(255, 255, 255, 0.085); border-color: rgba(255, 255, 255, 0.12);
+}
+
+.luma-start-file-card {
+    padding: 7px 7px 10px;
+}
+
+.luma-start-row {
+    padding: 6px 10px;
+    border-radius: 12px;
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+
+.luma-start-row:hover,
+.luma-start-row:focus {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+.luma-start-pill {
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 9pt;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.09);
+    transition-duration: 120ms;
+}
+
+.luma-start-pill:hover,
+.luma-start-pill:focus {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.luma-start-primary {
+    font-weight: bold; color: #111111; background-color: rgba(255, 255, 255, 0.92);
+}
+
+.luma-start-primary:hover,
+.luma-start-primary:focus {
+    background-color: #ffffff;
+}
+
+.luma-start-round {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.06);
+    transition-duration: 120ms;
+}
+
+.luma-start-round:hover,
+.luma-start-round:focus {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.luma-start-back {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 14px;
+}
+
+.luma-start-power {
+    color: #ff8a8f; border-color: rgba(229, 72, 77, 0.3); background-color: rgba(229, 72, 77, 0.16);
+}
+
+.luma-start-power:hover,
+.luma-start-power:focus {
+    background-color: rgba(229, 72, 77, 0.28);
+}
+
+.luma-start-best {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.luma-start-thumb {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.luma-start-thumb-code {
+    background-color: #1b1e2b;
+}
+
+.luma-start-code {
+    font-family: monospace; color: rgba(225, 230, 255, 0.85);
+}
+
+.luma-start-folder {
+    padding: 5px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.luma-start-avatar {
+    icon-size: 36px;
+    border-radius: 999px;
+}
+
+.luma-start-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.luma-start-run-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.luma-start-rail {
+    padding: 0 2px;
+}
+
+.luma-start-rail-key {
+    width: 22px;
+    font-size: 8.25pt;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.45);
+    background-color: transparent;
+    transition-duration: 120ms;
+}
+
+.luma-start-rail-key:hover {
+    color: rgba(255, 255, 255, 0.8); background-color: transparent;
+}
+
+.luma-start-rail-key:checked {
+    color: #ffffff; background-color: transparent;
+}
+
+.luma-start-menu-box {
+    padding: 18px 0 18px 18px;
+}
+
+.luma-start-context {
+    padding: 6px;
+    min-width: 190px;
+    border-radius: 14px;
+    background-color: rgba(28, 28, 34, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.luma-start-context-item {
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 9.75pt;
+    color: #ffffff;
     background-color: transparent;
 }
 
-.orla-dock.orla-light #panel.orla-tray .panel-button {
-    color: #1c1c1e;
+.luma-start-context-item:hover,
+.luma-start-context-item:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.luma-start-item:focus,
+.luma-start-card:focus,
+.luma-start-row:focus,
+.luma-start-pill:focus,
+.luma-start-round:focus,
+.luma-start-context-item:focus {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.luma-start-primary:focus {
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.35);
+}
+
+.luma-start-more {
+    padding: 4px 10px;
+}
+
+.luma-start-page-dot {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    padding: 0;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition-duration: 150ms;
+}
+
+.luma-start-page-dot:hover {
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.luma-start-page-dot:checked {
+    width: 16px; background-color: #ffffff;
+}
+
+.luma-start-menu-box .luma-start-scroll StScrollBar {
+    width: 4px;
+    min-width: 4px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.luma-start-menu-box .luma-start-scroll StScrollBar StBin#trough {
+    width: 4px;
+    min-width: 4px;
+    border: none;
+    background-color: transparent;
+}
+
+.luma-start-menu-box .luma-start-scroll StScrollBar StButton#vhandle {
+    width: 3px;
+    min-width: 3px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.32);
+}
+
+.luma-start-menu-box .luma-start-scroll StScrollBar StButton#vhandle:hover,
+.luma-start-menu-box .luma-start-scroll StScrollBar StButton#vhandle:active {
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.luma-start-item:drop {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.luma-start-folder-layer {
+    border-radius: 24px; background-color: rgba(0, 0, 0, 0.4);
+}
+
+.luma-start-folder-popup {
+    padding: 22px;
+    border-radius: 24px;
+    background-color: rgba(48, 48, 56, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+}
+
+.luma-start-folder-title {
+    font-size: 13.5pt; font-weight: bold; color: #ffffff;
+}
+
+.luma-start-rename {
+    min-height: 32px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
 }

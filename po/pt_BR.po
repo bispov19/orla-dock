@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-15 16:00-0300\n"
+"POT-Creation-Date: 2026-11-15 16:01-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,11 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/appIcon.js:416
+#: lib/appIcon.js:419
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: lib/appMenu.js:59
+#: lib/appMenu.js:59 lib/luma/ui/startmenu/SearchView.js:263
+#: lib/luma/ui/startmenu/StartMenu.js:313
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -90,9 +91,294 @@ msgstr "Estilo"
 msgid "Dock Settings…"
 msgstr "Configurações do Dock…"
 
-#: lib/mounts.js:63 lib/trash.js:58
+#: lib/luma/core/panel/TrayMenu.js:215 lib/luma/core/panel/TrayMenu.js:224
+msgid "Manage tray"
+msgstr "Gerenciar bandeja"
+
+#: lib/luma/core/panel/TrayMenu.js:215 prefs/taskbarPanel.js:250
+msgid "Tray"
+msgstr "Bandeja"
+
+#: lib/luma/core/panel/TrayMenu.js:222
+msgid "Done"
+msgstr "Concluído"
+
+#: lib/luma/core/panel/TrayMenu.js:350 lib/luma/core/panel/TrayMenu.js:520
+msgid "No icons in the tray"
+msgstr "Nenhum ícone na bandeja"
+
+#: lib/luma/core/panel/TrayMenu.js:520
+msgid "In tray"
+msgstr "Na bandeja"
+
+#: lib/luma/core/panel/TrayMenu.js:524
+msgid "Show on panel"
+msgstr "Mostrar no painel"
+
+#: lib/luma/core/panel/TrayMenu.js:528
+msgid "On panel"
+msgstr "No painel"
+
+#: lib/luma/core/panel/TrayMenu.js:528
+msgid "Nothing on the panel"
+msgstr "Nada no painel"
+
+#: lib/luma/core/panel/TrayMenu.js:529
+msgid "Move to tray"
+msgstr "Mover para a bandeja"
+
+#: lib/luma/core/panel/TrayMenu.js:536
+msgid "Wide applets get their own row in the tray"
+msgstr "Applets largos ganham uma linha própria na bandeja"
+
+#: lib/luma/core/panel/TrayMenu.js:541 prefs/taskbarPanel.js:256
+msgid "Reset"
+msgstr "Redefinir"
+
+#: lib/luma/ui/startmenu/AllAppsView.js:65
+#: lib/luma/ui/startmenu/HomeView.js:127
+msgid "All apps"
+msgstr "Todos os apps"
+
+#: lib/luma/ui/startmenu/AllAppsView.js:66
+msgid "Switch between list and grid"
+msgstr "Alternar entre lista e grade"
+
+#: lib/luma/ui/startmenu/HomeView.js:127
+msgid "Pinned"
+msgstr "Fixados"
+
+#: lib/luma/ui/startmenu/HomeView.js:177
+#, javascript-format
+msgid "Page %d"
+msgstr "Página %d"
+
+#: lib/luma/ui/startmenu/HomeView.js:314
+#: lib/luma/ui/startmenu/SearchView.js:261
+#: lib/luma/ui/startmenu/StartMenu.js:312
+#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/trash.js:58
 msgid "Open"
 msgstr "Abrir"
+
+#: lib/luma/ui/startmenu/HomeView.js:315
+#: lib/luma/ui/startmenu/SearchView.js:266
+#: lib/luma/ui/startmenu/StartMenu.js:316
+msgid "Unpin from Start"
+msgstr "Desafixar do Início"
+
+#: lib/luma/ui/startmenu/HomeView.js:343
+msgid "Recent apps"
+msgstr "Apps recentes"
+
+#: lib/luma/ui/startmenu/HomeView.js:360
+#, javascript-format
+msgid "%d window"
+msgid_plural "%d windows"
+msgstr[0] "%d janela"
+msgstr[1] "%d janelas"
+
+#: lib/luma/ui/startmenu/HomeView.js:360
+msgid "Recently used"
+msgstr "Usados recentemente"
+
+#: lib/luma/ui/startmenu/HomeView.js:395
+msgid "Continue where you left off"
+msgstr "Continue de onde parou"
+
+#: lib/luma/ui/startmenu/HomeView.js:402
+msgid "Folder"
+msgstr "Pasta"
+
+#: lib/luma/ui/startmenu/HomeView.js:442
+#: lib/luma/ui/startmenu/SearchView.js:186
+#: lib/luma/ui/startmenu/SearchView.js:187
+msgid "Settings"
+msgstr "Configurações"
+
+#: lib/luma/ui/startmenu/HomeView.js:443
+msgid "Lock"
+msgstr "Bloquear"
+
+#: lib/luma/ui/startmenu/HomeView.js:444
+msgid "Power Off / Log Out"
+msgstr "Desligar / Encerrar Sessão"
+
+#: lib/luma/ui/startmenu/HomeView.js:454
+msgid "Switch User"
+msgstr "Trocar de Usuário"
+
+#: lib/luma/ui/startmenu/HomeView.js:455
+msgid "Suspend"
+msgstr "Suspender"
+
+#: lib/luma/ui/startmenu/HomeView.js:456
+msgid "Hibernate"
+msgstr "Hibernar"
+
+#: lib/luma/ui/startmenu/HomeView.js:457
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: lib/luma/ui/startmenu/HomeView.js:458
+msgid "Power Off"
+msgstr "Desligar"
+
+#: lib/luma/ui/startmenu/HomeView.js:459
+msgid "Log Out"
+msgstr "Encerrar Sessão"
+
+#: lib/luma/ui/startmenu/SearchView.js:146
+msgid "Type a command to run"
+msgstr "Digite um comando para executar"
+
+#: lib/luma/ui/startmenu/SearchView.js:150
+msgid "Command"
+msgstr "Comando"
+
+#: lib/luma/ui/startmenu/SearchView.js:153
+msgid "Run in Terminal · Enter"
+msgstr "Executar no Terminal · Enter"
+
+#: lib/luma/ui/startmenu/SearchView.js:160
+msgid "Run in Background · Ctrl+Enter"
+msgstr "Executar em Segundo Plano · Ctrl+Enter"
+
+#: lib/luma/ui/startmenu/SearchView.js:160
+msgid "Run in Background · Enter"
+msgstr "Executar em Segundo Plano · Enter"
+
+#: lib/luma/ui/startmenu/SearchView.js:177
+msgid "Apps"
+msgstr "Apps"
+
+#: lib/luma/ui/startmenu/SearchView.js:178
+msgid "App"
+msgstr "App"
+
+#: lib/luma/ui/startmenu/SearchView.js:181
+msgid "Files"
+msgstr "Arquivos"
+
+#: lib/luma/ui/startmenu/SearchView.js:198
+#, javascript-format
+msgid "No results for “%s”"
+msgstr "Nenhum resultado para “%s”"
+
+#: lib/luma/ui/startmenu/SearchView.js:209
+#, javascript-format
+msgid "Search %s for “%s”"
+msgstr "Pesquisar em %s: “%s”"
+
+#: lib/luma/ui/startmenu/SearchView.js:209
+#, javascript-format
+msgid "Search the web for “%s”"
+msgstr "Pesquisar na web por “%s”"
+
+#: lib/luma/ui/startmenu/SearchView.js:210
+#, javascript-format
+msgid "Opens in %s"
+msgstr "Abre em %s"
+
+#: lib/luma/ui/startmenu/SearchView.js:210
+msgid "Opens in your browser"
+msgstr "Abre no seu navegador"
+
+#: lib/luma/ui/startmenu/SearchView.js:213
+msgid "Web"
+msgstr "Web"
+
+#: lib/luma/ui/startmenu/SearchView.js:241
+msgid "Calculator"
+msgstr "Calculadora"
+
+#: lib/luma/ui/startmenu/SearchView.js:248
+msgid "Open in Calculator"
+msgstr "Abrir na Calculadora"
+
+#: lib/luma/ui/startmenu/SearchView.js:266
+#: lib/luma/ui/startmenu/StartMenu.js:316
+msgid "Pin to Start"
+msgstr "Fixar no Início"
+
+#: lib/luma/ui/startmenu/SearchView.js:278
+msgid "Best match · App"
+msgstr "Melhor resultado · App"
+
+#: lib/luma/ui/startmenu/SearchView.js:310
+#, javascript-format
+msgid "Show %d more"
+msgid_plural "Show %d more"
+msgstr[0] "Mostrar mais %d"
+msgstr[1] "Mostrar mais %d"
+
+#: lib/luma/ui/startmenu/StartMenuData.js:518
+msgid "New Folder"
+msgstr "Nova Pasta"
+
+#: lib/luma/ui/startmenu/StartMenu.js:352
+msgid "Pin to Dock"
+msgstr "Fixar no Dock"
+
+#: lib/luma/ui/startmenu/StartMenu.js:352
+msgid "Unpin from Dock"
+msgstr "Desafixar do Dock"
+
+#: lib/luma/ui/startmenu/StartMenu.js:353
+msgid "Pin to Panel"
+msgstr "Fixar no Painel"
+
+#: lib/luma/ui/startmenu/StartMenu.js:353
+msgid "Unpin from Panel"
+msgstr "Desafixar do Painel"
+
+#: lib/luma/ui/startmenu/StartMenu.js:359
+msgid "Show in Files"
+msgstr "Mostrar em Arquivos"
+
+#: lib/luma/ui/startmenu/StartMenu.js:426
+msgid "Rename"
+msgstr "Renomear"
+
+#: lib/luma/ui/startmenu/StartMenu.js:472
+msgid "Remove from Folder"
+msgstr "Remover da Pasta"
+
+#: lib/luma/ui/startmenu/StartMenu.js:844
+msgid "Search apps, files and settings"
+msgstr "Pesquisar apps, arquivos e configurações"
+
+#: lib/luma/ui/startmenu/StartMenu.js:876
+msgid "Back"
+msgstr "Voltar"
+
+#: lib/luma/ui/startmenu/StartMenuWidgets.js:453
+msgid "Just now"
+msgstr "Agora mesmo"
+
+#: lib/luma/ui/startmenu/StartMenuWidgets.js:456
+#, javascript-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] "há %d min"
+msgstr[1] "há %d min"
+
+#: lib/luma/ui/startmenu/StartMenuWidgets.js:460
+#, javascript-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "há %d hora"
+msgstr[1] "há %d horas"
+
+#: lib/luma/ui/startmenu/StartMenuWidgets.js:463
+msgid "Yesterday"
+msgstr "Ontem"
+
+#: lib/luma/ui/startmenu/StartMenuWidgets.js:463
+#, javascript-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "há %d dia"
+msgstr[1] "há %d dias"
 
 #: lib/mounts.js:65
 msgid "Eject"
@@ -155,7 +441,7 @@ msgstr "Remover do Dock"
 msgid "This folder is empty"
 msgstr "Esta pasta está vazia"
 
-#: lib/styles.js:50 prefs/stylesPage.js:119
+#: lib/styles.js:50 prefs/stylesPage.js:123
 msgid "Dock (macOS)"
 msgstr "Dock (macOS)"
 
@@ -427,7 +713,7 @@ msgid "System accent"
 msgstr "Cor de destaque do sistema"
 
 #: prefs/appearancePage.js:69 prefs/appearancePage.js:76 prefs/blurPage.js:150
-#: prefs/wobblyGroup.js:69
+#: prefs/taskbarPanel.js:39 prefs/wobblyGroup.js:69
 msgid "Custom"
 msgstr "Personalizada"
 
@@ -1033,7 +1319,7 @@ msgstr "No modo automático, stacks pequenas abrem em leque com o Dock embaixo; 
 msgid "Sort stack items by"
 msgstr "Ordenar itens das stacks por"
 
-#: prefs/modulesPage.js:64
+#: prefs/modulesPage.js:64 prefs/taskbarPanel.js:225
 msgid "Date"
 msgstr "Data"
 
@@ -1061,69 +1347,254 @@ msgstr "Remover"
 msgid "Choose a folder"
 msgstr "Escolha uma pasta"
 
-#: prefs/stylesPage.js:25
+#: prefs/stylesPage.js:26
 msgid "Styles"
 msgstr "Estilos"
 
-#: prefs/stylesPage.js:29
+#: prefs/stylesPage.js:30
 msgid "Bar style"
 msgstr "Estilo da barra"
 
-#: prefs/stylesPage.js:30
+#: prefs/stylesPage.js:31
 msgid "Pick a style to preview it, then apply it. Each style keeps its own options below."
 msgstr "Escolha um estilo para ver a prévia e depois aplique. Cada estilo tem as próprias opções logo abaixo."
 
-#: prefs/stylesPage.js:47
+#: prefs/stylesPage.js:48
 msgid "Apply"
 msgstr "Aplicar"
 
-#: prefs/stylesPage.js:94
+#: prefs/stylesPage.js:95
 msgid "Current style"
 msgstr "Estilo atual"
 
-#: prefs/stylesPage.js:97
+#: prefs/stylesPage.js:98
 msgid "Preview"
 msgstr "Prévia"
 
-#: prefs/stylesPage.js:97
+#: prefs/stylesPage.js:98
 msgid "Not applied yet"
 msgstr "Ainda não aplicado"
 
-#: prefs/stylesPage.js:111
+#: prefs/stylesPage.js:112
 msgid "Taskbars (Windows 10 and 7)"
 msgstr "Barras de tarefas (Windows 10 e 7)"
 
-#: prefs/stylesPage.js:112
+#: prefs/stylesPage.js:113
 msgid "Icon size"
 msgstr "Tamanho dos ícones"
 
-#: prefs/stylesPage.js:113
-msgid "Merge the top bar"
-msgstr "Juntar a barra superior"
-
 #: prefs/stylesPage.js:114
-msgid "Clock, tray, indicators and Activities move into the taskbar and the top bar disappears (taskbar at the bottom or top)"
-msgstr "Relógio, bandeja, indicadores e Atividades passam para a barra de tarefas e a barra de cima some (com a barra embaixo ou em cima)"
-
-#: prefs/stylesPage.js:115
 msgid "Show clock and date"
 msgstr "Mostrar relógio e data"
 
-#: prefs/stylesPage.js:116
-msgid "On monitors without the merged top bar"
-msgstr "Nos monitores sem a barra superior junta"
+#: prefs/stylesPage.js:115
+msgid "When the Panel mode is off"
+msgstr "Quando o modo Painel estiver desligado"
 
-#: prefs/stylesPage.js:120
+#: prefs/stylesPage.js:124
 msgid "Size and magnification are on the Layout page"
 msgstr "Tamanho e ampliação ficam na aba Disposição"
 
-#: prefs/stylesPage.js:121
+#: prefs/stylesPage.js:125
 msgid "Icon reflection"
 msgstr "Reflexo nos ícones"
 
-#: prefs/stylesPage.js:122
+#: prefs/stylesPage.js:126
 msgid "A subtle reflection under the icons (bottom Dock only)"
 msgstr "Um reflexo sutil embaixo dos ícones (só com o Dock na parte inferior)"
+
+#: prefs/taskbarPanel.js:43
+msgid "System Default"
+msgstr "Padrão do Sistema"
+
+#: prefs/taskbarPanel.js:44
+msgid "DD/MM/YYYY"
+msgstr "DD/MM/AAAA"
+
+#: prefs/taskbarPanel.js:45
+msgid "MM/DD/YYYY"
+msgstr "MM/DD/AAAA"
+
+#: prefs/taskbarPanel.js:46
+msgid "YYYY/MM/DD"
+msgstr "AAAA/MM/DD"
+
+#: prefs/taskbarPanel.js:47
+msgid "YYYY-MM-DD (ISO 8601)"
+msgstr "AAAA-MM-DD (ISO 8601)"
+
+#: prefs/taskbarPanel.js:48
+msgid "DD-MM-YYYY"
+msgstr "DD-MM-AAAA"
+
+#: prefs/taskbarPanel.js:49
+msgid "DD.MM.YYYY"
+msgstr "DD.MM.AAAA"
+
+#: prefs/taskbarPanel.js:50
+msgid "D/M/YYYY"
+msgstr "D/M/AAAA"
+
+#: prefs/taskbarPanel.js:51
+msgid "DD/MM/YY"
+msgstr "DD/MM/AA"
+
+#: prefs/taskbarPanel.js:53
+msgid "DD Mon YYYY"
+msgstr "DD MMM AAAA"
+
+#: prefs/taskbarPanel.js:54
+msgid "DD Month YYYY"
+msgstr "DD MMMM AAAA"
+
+#: prefs/taskbarPanel.js:55
+msgid "Day DD Mon"
+msgstr "DDD DD MMM"
+
+#: prefs/taskbarPanel.js:56
+msgid "Day DD/MM"
+msgstr "DDD DD/MM"
+
+#: prefs/taskbarPanel.js:57
+msgid "Weekday, DD Month YYYY"
+msgstr "DDDD, DD MMMM AAAA"
+
+#: prefs/taskbarPanel.js:91
+msgid "Date Format"
+msgstr "Formato da Data"
+
+#: prefs/taskbarPanel.js:92
+msgid "How the date under the clock is written"
+msgstr "Como a data abaixo do relógio é escrita"
+
+#: prefs/taskbarPanel.js:119
+msgid "Search Engine"
+msgstr "Mecanismo de Busca"
+
+#: prefs/taskbarPanel.js:120
+msgid "Provider used for web searches in the Start Menu"
+msgstr "Provedor usado nas buscas na web do Menu Iniciar"
+
+#: prefs/taskbarPanel.js:124
+#, javascript-format
+msgid "Custom Search Address (%s is the search text)"
+msgstr "Endereço de Busca Personalizado (%s é o texto da busca)"
+
+#: prefs/taskbarPanel.js:183
+msgid "Panel Mode"
+msgstr "Modo Painel"
+
+#: prefs/taskbarPanel.js:184
+msgid "Moves the GNOME top bar into the dock: workspaces, tray, Quick Settings and the clock in one bar"
+msgstr "Move a barra superior do GNOME para o dock: áreas de trabalho, bandeja, Configurações Rápidas e relógio em uma só barra"
+
+#: prefs/taskbarPanel.js:189
+msgid "Panel Layout"
+msgstr "Layout do Painel"
+
+#: prefs/taskbarPanel.js:190
+msgid "Workspace Indicator"
+msgstr "Indicador de Área de Trabalho"
+
+#: prefs/taskbarPanel.js:191
+msgid "Show the workspace pills at the start of the panel"
+msgstr "Mostra as pílulas das áreas de trabalho no início do painel"
+
+#: prefs/taskbarPanel.js:194
+msgid "Start Menu"
+msgstr "Menu Iniciar"
+
+#: prefs/taskbarPanel.js:195
+msgid "Opens from the start button of the Windows 10 and Windows 7 taskbars"
+msgstr "Abre pelo botão Iniciar das barras de tarefas Windows 10 e Windows 7"
+
+#: prefs/taskbarPanel.js:196
+msgid "Orla Dock Start Menu"
+msgstr "Menu Iniciar da Orla Dock"
+
+#: prefs/taskbarPanel.js:197
+msgid "Pinned apps, recent apps and files, search, Lock and Power. Turn off to open GNOME’s app grid instead"
+msgstr "Apps fixados, apps e arquivos recentes, busca, Bloquear e Energia. Desative para abrir a grade de apps do GNOME no lugar"
+
+#: prefs/taskbarPanel.js:199
+msgid "Recent Apps"
+msgstr "Apps Recentes"
+
+#: prefs/taskbarPanel.js:200
+msgid "Show the apps you use most under Pinned"
+msgstr "Mostra os apps que você mais usa abaixo de Fixados"
+
+#: prefs/taskbarPanel.js:201
+msgid "Continue Where You Left Off"
+msgstr "Continue de Onde Parou"
+
+#: prefs/taskbarPanel.js:202
+msgid "Show the files you opened recently"
+msgstr "Mostra os arquivos que você abriu recentemente"
+
+#: prefs/taskbarPanel.js:204
+msgid "Recent Files"
+msgstr "Arquivos Recentes"
+
+#: prefs/taskbarPanel.js:205
+msgid "How many files Continue where you left off shows"
+msgstr "Quantos arquivos Continue de onde parou mostra"
+
+#: prefs/taskbarPanel.js:207
+msgid "Search Providers"
+msgstr "Provedores de Busca"
+
+#: prefs/taskbarPanel.js:208
+msgid "Results from apps like Characters, Calendar and Calculator"
+msgstr "Resultados de apps como Caracteres, Agenda e Calculadora"
+
+#: prefs/taskbarPanel.js:209
+msgid "Web Search"
+msgstr "Busca na Web"
+
+#: prefs/taskbarPanel.js:210
+msgid "Offer to search the web for what you type"
+msgstr "Oferece pesquisar na web o que você digita"
+
+#: prefs/taskbarPanel.js:223
+msgid "Clock"
+msgstr "Relógio"
+
+#: prefs/taskbarPanel.js:224
+msgid "These are GNOME’s own clock settings, so the lock screen follows too"
+msgstr "Estas são as configurações de relógio do próprio GNOME, então a tela de bloqueio também as segue"
+
+#: prefs/taskbarPanel.js:225
+msgid "Second line under the time"
+msgstr "Segunda linha abaixo da hora"
+
+#: prefs/taskbarPanel.js:233
+msgid "Seconds"
+msgstr "Segundos"
+
+#: prefs/taskbarPanel.js:234
+msgid "24-Hour Time"
+msgstr "Formato de 24 Horas"
+
+#: prefs/taskbarPanel.js:251
+msgid "Small icons from other extensions live behind the arrow. Wide ones like CPU or network speed stay on the bar"
+msgstr "Os ícones pequenos de outras extensões ficam atrás da seta. Os largos, como CPU ou velocidade de rede, permanecem na barra"
+
+#: prefs/taskbarPanel.js:253
+msgid "Tidy Up Tray"
+msgstr "Organizar Bandeja"
+
+#: prefs/taskbarPanel.js:254
+msgid "Undo every move and reorder made from the tray"
+msgstr "Desfaz todas as mudanças de posição e ordem feitas pela bandeja"
+
+#: prefs/taskbarPanel.js:266
+msgid "Pin an icon to the bar"
+msgstr "Fixe um ícone na barra"
+
+#: prefs/taskbarPanel.js:267
+msgid "Open the tray from the arrow to pin, reorder, or move wide applets into it"
+msgstr "Abra a bandeja pela seta para fixar, reordenar ou mover applets largos para dentro dela"
 
 #: prefs/widgets.js:126
 msgid "Reset to defaults"
@@ -1272,6 +1743,24 @@ msgstr "Resolução da malha"
 #: prefs/wobblyGroup.js:94
 msgid "Spring points on each side of the window; more points bend more smoothly"
 msgstr "Pontos de mola em cada lado da janela; mais pontos entortam de forma mais suave"
+
+#~ msgid "Pin to Dynamic Panel"
+#~ msgstr "Fixar no Painel Dinâmico"
+
+#~ msgid "Unpin from Dynamic Panel"
+#~ msgstr "Desafixar do Painel Dinâmico"
+
+#~ msgid "Opens from the App Grid button in Panel mode and always in Independent mode"
+#~ msgstr "Abre pelo botão Grade de Apps no modo Painel e sempre no modo Independente"
+
+#~ msgid "Merge the top bar"
+#~ msgstr "Juntar a barra superior"
+
+#~ msgid "Clock, tray, indicators and Activities move into the taskbar and the top bar disappears (taskbar at the bottom or top)"
+#~ msgstr "Relógio, bandeja, indicadores e Atividades passam para a barra de tarefas e a barra de cima some (com a barra embaixo ou em cima)"
+
+#~ msgid "On monitors without the merged top bar"
+#~ msgstr "Nos monitores sem a barra superior junta"
 
 #~ msgid "Position on screen"
 #~ msgstr "Posição na tela"
