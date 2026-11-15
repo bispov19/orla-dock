@@ -1,7 +1,7 @@
 {
   "uuid": "orla-dock@viniciusbispo19",
   "name": "Orla Dock",
-  "description": "A dock for GNOME Shell with fan-style folder stacks, four bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.",
+  "description": "A dock for GNOME Shell inspired by the macOS Dock, made to fit your desktop.\n\n• Folders open as a fan that folds back the same way it opened\n• Four bar styles with a preview: macOS dock, Windows 10 taskbar, GNOME dock and Windows 7 taskbar\n• Pick the screen side by clicking a preview\n• Optionally touches the screen edge while a window is maximized",
   "shell-version": [
     "50",
     "51"

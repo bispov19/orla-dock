@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-13 14:43-0300\n"
+"POT-Creation-Date: 2026-11-15 16:00-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,59 +218,71 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: prefs/aboutPage.js:20
+#: prefs/aboutPage.js:37
+msgid "Fan animation"
+msgstr ""
+
+#: prefs/aboutPage.js:38
+msgid "Style selection"
+msgstr ""
+
+#: prefs/aboutPage.js:39
+msgid "Dock position"
+msgstr ""
+
+#: prefs/aboutPage.js:60
 msgid "About"
 msgstr ""
 
-#: prefs/aboutPage.js:37
+#: prefs/aboutPage.js:77
 #, javascript-format
 msgid "Version %s"
 msgstr ""
 
-#: prefs/aboutPage.js:41
-msgid "A dock for GNOME inspired by the macOS Dock, with a Windows 10 taskbar mode."
+#: prefs/aboutPage.js:81
+msgid "A dock for GNOME inspired by the macOS Dock, with GNOME, Windows 10 and Windows 7 styles."
 msgstr ""
 
-#: prefs/aboutPage.js:49
+#: prefs/aboutPage.js:94
 msgid "About me"
 msgstr ""
 
-#: prefs/aboutPage.js:53
+#: prefs/aboutPage.js:98
 msgid ""
 "Hi! I'm Vinicius Bispo (Vini), a Systems Analysis and Development student making the move into technology. I created Orla Dock from scratch to learn how GNOME works from the inside — and to have the dock I always wanted on my own desktop.\n"
 "\n"
 "The code is commented in Portuguese, step by step, so that other people who are starting out can learn from it too. Suggestions and contributions are very welcome!"
 msgstr ""
 
-#: prefs/aboutPage.js:58
+#: prefs/aboutPage.js:103
 msgid "My GitHub profile"
 msgstr ""
 
-#: prefs/aboutPage.js:62
+#: prefs/aboutPage.js:107
 msgid "Project"
 msgstr ""
 
-#: prefs/aboutPage.js:64
+#: prefs/aboutPage.js:109
 msgid "Source code"
 msgstr ""
 
-#: prefs/aboutPage.js:64
+#: prefs/aboutPage.js:109
 msgid "See the code, star it or contribute"
 msgstr ""
 
-#: prefs/aboutPage.js:66
+#: prefs/aboutPage.js:111
 msgid "Report a problem"
 msgstr ""
 
-#: prefs/aboutPage.js:66
+#: prefs/aboutPage.js:111
 msgid "Found a bug or have an idea? Open an issue"
 msgstr ""
 
-#: prefs/aboutPage.js:70
+#: prefs/aboutPage.js:115
 msgid "License"
 msgstr ""
 
-#: prefs/aboutPage.js:72
+#: prefs/aboutPage.js:117
 msgid "Orla Dock is free software, released under the GNU General Public License, version 3 or later (GPL-3.0-or-later). It comes with absolutely no warranty."
 msgstr ""
 
@@ -717,7 +729,7 @@ msgstr ""
 msgid "Strength of the rim highlight"
 msgstr ""
 
-#: prefs/blurPage.js:183 prefs/layoutPage.js:115 prefs/widgets.js:290
+#: prefs/blurPage.js:183 prefs/layoutPage.js:118 prefs/widgets.js:290
 msgid "Off"
 msgstr ""
 
@@ -737,183 +749,183 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: prefs/layoutPage.js:79
+#: prefs/layoutPage.js:81
 msgid "Position"
 msgstr ""
 
-#: prefs/layoutPage.js:79
+#: prefs/layoutPage.js:81
 msgid "Click a screen to move the Dock to that side"
 msgstr ""
 
-#: prefs/layoutPage.js:81
+#: prefs/layoutPage.js:84
 msgid "Distance from screen edge"
 msgstr ""
 
-#: prefs/layoutPage.js:82
+#: prefs/layoutPage.js:85
 msgid "Touch the edge when a window is maximized"
 msgstr ""
 
-#: prefs/layoutPage.js:83
+#: prefs/layoutPage.js:86
 msgid "The Dock drops its margin while a maximized window is on its screen and floats again when there is none"
 msgstr ""
 
-#: prefs/layoutPage.js:88 prefs/widgets.js:286
+#: prefs/layoutPage.js:91 prefs/widgets.js:286
 msgid "Size"
 msgstr ""
 
-#: prefs/layoutPage.js:96
+#: prefs/layoutPage.js:99
 msgid "Fluid"
 msgstr ""
 
-#: prefs/layoutPage.js:96
+#: prefs/layoutPage.js:99
 msgid "Domino"
 msgstr ""
 
-#: prefs/layoutPage.js:96
+#: prefs/layoutPage.js:99
 msgid "Cylinder"
 msgstr ""
 
-#: prefs/layoutPage.js:97
+#: prefs/layoutPage.js:100
 msgid "Magnetic"
 msgstr ""
 
-#: prefs/layoutPage.js:97
+#: prefs/layoutPage.js:100
 msgid "Jelly"
 msgstr ""
 
-#: prefs/layoutPage.js:97
+#: prefs/layoutPage.js:100
 msgid "Coverflow"
 msgstr ""
 
-#: prefs/layoutPage.js:99
+#: prefs/layoutPage.js:102
 msgid "Motion"
 msgstr ""
 
-#: prefs/layoutPage.js:100
+#: prefs/layoutPage.js:103
 msgid "The shape of the wave"
 msgstr ""
 
-#: prefs/layoutPage.js:104
+#: prefs/layoutPage.js:107
 msgid "Magnification details"
 msgstr ""
 
-#: prefs/layoutPage.js:105
+#: prefs/layoutPage.js:108
 msgid "How the icons grow under the pointer"
 msgstr ""
 
-#: prefs/layoutPage.js:107
+#: prefs/layoutPage.js:110
 msgid "Smoothness"
 msgstr ""
 
-#: prefs/layoutPage.js:108
+#: prefs/layoutPage.js:111
 msgid "Lower values glide more, higher values follow the pointer faster"
 msgstr ""
 
-#: prefs/layoutPage.js:109 prefs/wobblyGroup.js:69
+#: prefs/layoutPage.js:112 prefs/wobblyGroup.js:69
 msgid "Soft"
 msgstr ""
 
-#: prefs/layoutPage.js:109
+#: prefs/layoutPage.js:112
 msgid "Snappy"
 msgstr ""
 
-#: prefs/layoutPage.js:110
+#: prefs/layoutPage.js:113
 msgid "Reach"
 msgstr ""
 
-#: prefs/layoutPage.js:111
+#: prefs/layoutPage.js:114
 msgid "How many neighbouring icons grow along"
 msgstr ""
 
-#: prefs/layoutPage.js:112
+#: prefs/layoutPage.js:115
 msgid "Narrow"
 msgstr ""
 
-#: prefs/layoutPage.js:112
+#: prefs/layoutPage.js:115
 msgid "Wide"
 msgstr ""
 
-#: prefs/layoutPage.js:113
+#: prefs/layoutPage.js:116
 msgid "Lift"
 msgstr ""
 
-#: prefs/layoutPage.js:114
+#: prefs/layoutPage.js:117
 msgid "Extra lift of the magnified icon"
 msgstr ""
 
-#: prefs/layoutPage.js:116
+#: prefs/layoutPage.js:119
 msgid "Make room"
 msgstr ""
 
-#: prefs/layoutPage.js:117
+#: prefs/layoutPage.js:120
 msgid "Neighbours slide apart for the zoomed icon"
 msgstr ""
 
-#: prefs/layoutPage.js:118
+#: prefs/layoutPage.js:121
 msgid "Push strength"
 msgstr ""
 
-#: prefs/layoutPage.js:119
+#: prefs/layoutPage.js:122
 msgid "Higher values push the neighbours less"
 msgstr ""
 
-#: prefs/layoutPage.js:126
+#: prefs/layoutPage.js:129
 msgid "Motion details"
 msgstr ""
 
-#: prefs/layoutPage.js:130
+#: prefs/layoutPage.js:133
 msgid "Tilt"
 msgstr ""
 
-#: prefs/layoutPage.js:132
+#: prefs/layoutPage.js:135
 msgid "Curve"
 msgstr ""
 
-#: prefs/layoutPage.js:134
+#: prefs/layoutPage.js:137
 msgid "Pull"
 msgstr ""
 
-#: prefs/layoutPage.js:135
+#: prefs/layoutPage.js:138
 msgid "How strongly icons snap to the pointer"
 msgstr ""
 
-#: prefs/layoutPage.js:137
+#: prefs/layoutPage.js:140
 msgid "Stretch"
 msgstr ""
 
-#: prefs/layoutPage.js:139
+#: prefs/layoutPage.js:142
 msgid "Squash"
 msgstr ""
 
-#: prefs/layoutPage.js:141
+#: prefs/layoutPage.js:144
 msgid "Card angle"
 msgstr ""
 
-#: prefs/layoutPage.js:150
+#: prefs/layoutPage.js:153
 msgid "Spacing"
 msgstr ""
 
-#: prefs/layoutPage.js:151
+#: prefs/layoutPage.js:154
 msgid "Space between icons"
 msgstr ""
 
-#: prefs/layoutPage.js:152
+#: prefs/layoutPage.js:155
 msgid "Inner padding"
 msgstr ""
 
-#: prefs/layoutPage.js:153
+#: prefs/layoutPage.js:156
 msgid "Extra space between the icons and the Dock edge"
 msgstr ""
 
-#: prefs/layoutPage.js:155
+#: prefs/layoutPage.js:158
 msgid "Monitors"
 msgstr ""
 
-#: prefs/layoutPage.js:156
+#: prefs/layoutPage.js:159
 msgid "Show the Dock on all monitors"
 msgstr ""
 
-#: prefs/layoutPage.js:157
+#: prefs/layoutPage.js:160
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr ""
 

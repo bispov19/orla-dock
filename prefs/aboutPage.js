@@ -15,6 +15,46 @@ import {linkRow, textRow} from './rows.js';
 const REPO_URL = 'https://github.com/viniciusbispo19/orla-dock';
 const PROFILE_URL = 'https://github.com/viniciusbispo19';
 
+// As capturas mostradas no "Sobre" (cópias menores das de store/screenshots).
+const SCREENSHOTS = [
+    ['01-fan-animation.png', 'Fan animation'],
+    ['02-style-selection.png', 'Style selection'],
+    ['03-dock-position.png', 'Dock position'],
+];
+
+/**
+ * Um Adw.Carousel (deslizar de lado) com as capturas e as bolinhas
+ * embaixo. Cada captura tem a legenda dela. Se as imagens não estiverem
+ * instaladas, simplesmente não mostra nada.
+ */
+function screenshotsCarousel(extensionPath) {
+    const files = SCREENSHOTS
+        .map(([name, caption]) => [GLib.build_filenamev([extensionPath, 'icons', 'screenshots', name]), caption])
+        .filter(([path]) => GLib.file_test(path, GLib.FileTest.EXISTS));
+    if (!files.length)
+        return null;
+    const captions = {
+        'Fan animation': _('Fan animation'),
+        'Style selection': _('Style selection'),
+        'Dock position': _('Dock position'),
+    };
+    const carousel = new Adw.Carousel({allow_scroll_wheel: false, spacing: 12, margin_top: 18});
+    for (const [path, caption] of files) {
+        const page = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, spacing: 8, hexpand: true});
+        const picture = Gtk.Picture.new_for_filename(path);
+        picture.content_fit = Gtk.ContentFit.CONTAIN;
+        picture.height_request = 300;
+        picture.add_css_class('card');
+        page.append(picture);
+        page.append(new Gtk.Label({label: captions[caption], css_classes: ['dim-label']}));
+        carousel.append(page);
+    }
+    const box = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, spacing: 6});
+    box.append(carousel);
+    box.append(new Adw.CarouselIndicatorDots({carousel}));
+    return box;
+}
+
 export function aboutPage(metadata, extensionPath, window) {
     const page = new Adw.PreferencesPage({
         title: _('About'),
@@ -38,12 +78,17 @@ export function aboutPage(metadata, extensionPath, window) {
         css_classes: ['dim-label'],
     }));
     box.append(new Gtk.Label({
-        label: _('A dock for GNOME inspired by the macOS Dock, with a Windows 10 taskbar mode.'),
+        label: _('A dock for GNOME inspired by the macOS Dock, with GNOME, Windows 10 and Windows 7 styles.'),
         wrap: true,
         justify: Gtk.Justification.CENTER,
         max_width_chars: 50,
     }));
     header.add(box);
+
+    // --- Capturas (as mesmas da página da extensão), passando de lado ---
+    const shots = screenshotsCarousel(extensionPath);
+    if (shots)
+        header.add(shots);
 
     // --- Sobre mim ---
     const me = new Adw.PreferencesGroup({title: _('About me')});
