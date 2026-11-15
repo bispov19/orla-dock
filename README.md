@@ -1,6 +1,26 @@
+<p align="center"><img src="store/icon-256.png" width="128" alt="Orla Dock icon"></p>
+
 # Orla Dock
 
-Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas no estilo do Windows 10**. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
+**A dock for GNOME Shell with fan-style folder stacks, four bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.**
+
+| Fan animation | Style selection | Dock position |
+| --- | --- | --- |
+| ![Fan animation](store/screenshots/01-fan-animation.png) | ![Style selection](store/screenshots/02-style-selection.png) | ![Dock position](store/screenshots/03-dock-position.png) |
+
+## Description
+
+Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Folders on the dock open as a fan of files that rises from the icon, and the fan folds back into the icon along the same path when it closes. Icons magnify in a smooth wave as the pointer moves over them.
+
+Choose between four bar styles: a macOS-style dock, a Windows 10-style taskbar, a dock modelled on the GNOME dash and a Windows 7-style taskbar. Each style shows a preview before you apply it. In the taskbar styles, the GNOME top bar can be merged into the taskbar, bringing the clock, tray, indicators and Activities with it; switching back to a dock style restores the top bar.
+
+Place the dock at the bottom, top, left or right by clicking a preview of each side. An optional setting lets the floating dock drop its margin and touch the screen edge while a maximized window is on its monitor, and float again when there is none. Every setting applies instantly.
+
+---
+
+## Em português
+
+Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas no estilo do Windows 10 ou 7**. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
 
 ![A Orla Dock com a ampliação em onda](docs/screenshots/dock.png)
 

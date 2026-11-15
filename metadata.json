@@ -1,7 +1,7 @@
 {
   "uuid": "orla-dock@viniciusbispo19",
   "name": "Orla Dock",
-  "description": "A dock inspired by the macOS Dock: magnification, stacks, trash, auto-hide and much more.",
+  "description": "A dock for GNOME Shell with fan-style folder stacks, four bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.",
   "shell-version": [
     "50",
     "51"
