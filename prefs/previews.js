@@ -81,7 +81,7 @@ function appIcon(cr, x, y, s, [r, g, b]) {
     cr.fill();
 }
 
-/** Botão de aplicativos: grade 3×3 (fim, GNOME) ou "logo" (começo). */
+/** Botão de aplicativos: orbe (Windows 7), grade solta (GNOME) ou grade num círculo. */
 function appsButton(cr, x, y, s, style) {
     if (style.startOrb) {
         const orb = s * 1.25;
@@ -111,10 +111,18 @@ function appsButton(cr, x, y, s, style) {
         }
         return;
     }
+    // Genérico (sem logo de ninguém): uma grade num círculo azul.
     cr.arc(x + s / 2, y + s / 2, s / 2, 0, 2 * Math.PI);
-    cr.setSourceRGB(0.32, 0.6, 0.9);
+    cr.setSourceRGB(...ACCENT);
     cr.fill();
-    text(cr, 'f', x + s / 2, y + s * 0.78, s * 0.8, [1, 1, 1, 1]);
+    const dot = s / 9;
+    cr.setSourceRGBA(1, 1, 1, 0.95);
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            cr.arc(x + s / 2 + i * dot * 2.2, y + s / 2 + j * dot * 2.2, dot * 0.7, 0, 2 * Math.PI);
+            cr.fill();
+        }
+    }
 }
 
 /** Barra de ponta a ponta (barras de tarefas). */
