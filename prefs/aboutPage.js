@@ -78,7 +78,7 @@ export function aboutPage(metadata, extensionPath, window) {
         css_classes: ['dim-label'],
     }));
     box.append(new Gtk.Label({
-        label: _('A dock for GNOME inspired by the macOS Dock, with GNOME, Windows 10 and Windows 7 styles.'),
+        label: _('A dock for GNOME inspired by the macOS Dock, with GNOME and Windows 10 styles.'),
         wrap: true,
         justify: Gtk.Justification.CENTER,
         max_width_chars: 50,

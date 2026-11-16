@@ -192,7 +192,7 @@ export function taskbarPanelGroups(page, binder, isTaskbar) {
 
     // --- Menu Iniciar ---
     const start = group(page, _('Start Menu'),
-        _('Opens from the start button of the Windows 10 and Windows 7 taskbars'));
+        _('Opens from the start button of the Windows 10 taskbar'));
     start.add(switchRow(binder, 'start-menu', _('Orla Dock Start Menu'),
         _('Pinned apps, recent apps and files, search, Lock and Power. Turn off to open GNOME’s app grid instead')));
     const startRows = [

@@ -2,7 +2,7 @@
 
 # Orla Dock
 
-**A dock for GNOME Shell with fan-style folder stacks, four bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.**
+**A dock for GNOME Shell with fan-style folder stacks, three bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.**
 
 | Fan animation | Style selection | Dock position |
 | --- | --- | --- |
@@ -12,7 +12,7 @@
 
 Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Folders on the dock open as a fan of files that rises from the icon, and the fan folds back into the icon along the same path when it closes. Icons magnify in a smooth wave as the pointer moves over them.
 
-Choose between four bar styles: a macOS-style dock, a Windows 10-style taskbar, a dock modelled on the GNOME dash and a Windows 7-style taskbar. Each style shows a preview before you apply it. In the taskbar styles, the GNOME top bar can be merged into the taskbar, bringing the clock, tray, indicators and Activities with it; switching back to a dock style restores the top bar.
+Choose between three bar styles: a macOS-style dock, a Windows 10-style taskbar and a dock modelled on the GNOME dash. Each style shows a preview before you apply it. In the taskbar styles, the GNOME top bar can be merged into the taskbar, bringing the clock, tray, indicators and Activities with it; switching back to a dock style restores the top bar.
 
 Place the dock at the bottom, top, left or right by clicking a preview of each side. An optional setting lets the floating dock drop its margin and touch the screen edge while a maximized window is on its monitor, and float again when there is none. Every setting applies instantly.
 
@@ -20,7 +20,7 @@ Place the dock at the bottom, top, left or right by clicking a preview of each s
 
 ## Em português
 
-Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas no estilo do Windows 10 ou 7**. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
+Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas no estilo do Windows 10**. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
 
 ![A Orla Dock com a ampliação em onda](docs/screenshots/dock.png)
 
@@ -32,11 +32,10 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 
 ## Recursos
 
-**Quatro estilos**, escolhidos com prévia (como na Luma Dock: clique num cartão para ver e depois em "Aplicar")
+**Três estilos**, escolhidos com prévia (como na Luma Dock: clique num cartão para ver e depois em "Aplicar")
 - **Dock (macOS):** flutuante, centralizada, com ampliação em onda.
 - **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção.
 - **Dock (GNOME):** flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim e destaque arredondado em volta do ícone.
-- **Barra de tarefas (Windows 7):** barra de vidro, botão Iniciar redondo e apps abertos com moldura de botão.
 - Nas barras de tarefas, o **modo Painel e o Menu Iniciar da Luma Dock**: a barra de cima entra na de tarefas (indicador de workspaces, bandeja com seta para fixar e reordenar ícones, configurações rápidas e relógio com data), e o botão Iniciar abre o Menu Iniciar (fixados, recentes, arquivos, todos os apps, busca, calculadora, bloquear e desligar). Tudo volta ao normal nos estilos de dock.
 - **Posição escolhida clicando na prévia** de cada lado da tela.
 - **Encostar na borda com janela maximizada** (opcional): a dock perde a margem enquanto houver janela maximizada e volta a flutuar quando não houver.
@@ -72,6 +71,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - **Locais:** Pasta pessoal, Downloads, Documentos, Imagens, Vídeos e Música, cada um com o seu liga/desliga, além de outras pastas a gosto.
 - **USB e outras unidades** aparecem só enquanto estão conectadas (com Ejetar/Desmontar).
 - Lixeira com ícone cheio/vazio, Abrir e Esvaziar.
+- Ícone do Downloads em dois estilos, escolhidos pela prévia: **pasta com seta de download** (padrão, SVG próprio) ou **pasta com arquivos** (os mais recentes empilhados).
 - Uma dock independente por monitor; posição inferior, superior, esquerda ou direita.
 - Tamanho dinâmico (encolhe quando não cabe) e redimensionamento arrastando a divisória.
 - Atalho **Super+Alt+D** para ligar/desligar o auto-ocultar (configurável).

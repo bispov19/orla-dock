@@ -5,7 +5,7 @@
 //
 // Tudo é desenhado com o Cairo (a biblioteca de desenho 2D do GTK) num
 // Gtk.DrawingArea. A prévia do estilo NÃO depende do nome do estilo: ela lê
-// as "marcas" dele em lib/styles.js (ocupa a borda inteira? tem orbe? funde
+// as "marcas" dele em lib/styles.js (ocupa a borda inteira? o botão de aplicativos vai no fim? funde
 // a barra de cima?…). Assim um estilo novo já nasce com prévia.
 
 import cairo from 'gi://cairo';
@@ -81,25 +81,8 @@ function appIcon(cr, x, y, s, [r, g, b]) {
     cr.fill();
 }
 
-/** Botão de aplicativos: orbe (Windows 7), grade solta (GNOME) ou grade num círculo. */
+/** Botão de aplicativos: grade solta (GNOME) ou grade num círculo. */
 function appsButton(cr, x, y, s, style) {
-    if (style.startOrb) {
-        const orb = s * 1.25;
-        const cx = x + s / 2, cy = y + s / 2;
-        const g = new cairo.LinearGradient(0, cy - orb / 2, 0, cy + orb / 2);
-        g.addColorStopRGB(0, 0.45, 0.73, 1);
-        g.addColorStopRGB(1, 0.05, 0.24, 0.6);
-        cr.arc(cx, cy, orb / 2, 0, 2 * Math.PI);
-        cr.setSource(g);
-        cr.fillPreserve();
-        cr.setSourceRGBA(1, 1, 1, 0.6);
-        cr.setLineWidth(1);
-        cr.stroke();
-        cr.arc(cx, cy - orb * 0.18, orb * 0.3, Math.PI, 2 * Math.PI);
-        cr.setSourceRGBA(1, 1, 1, 0.28);
-        cr.fill();
-        return;
-    }
     if (style.appsButtonAtEnd) {
         const dot = s / 6;
         cr.setSourceRGBA(1, 1, 1, 0.92);
@@ -129,24 +112,12 @@ function appsButton(cr, x, y, s, style) {
 function paintTaskbar(cr, w, h, style) {
     const bh = Math.max(14, h * 0.12);
     const y = h - bh;
-    if (style.glassSheen) {
-        const g = new cairo.LinearGradient(0, y, 0, h);
-        g.addColorStopRGBA(0, 0.42, 0.52, 0.66, 0.88);
-        g.addColorStopRGBA(1, 0.12, 0.16, 0.24, 0.92);
-        cr.rectangle(0, y, w, bh);
-        cr.setSource(g);
-        cr.fill();
-        cr.rectangle(0, y, w, 1);
-        cr.setSourceRGBA(1, 1, 1, 0.45);
-        cr.fill();
-    } else {
-        cr.rectangle(0, y, w, bh);
-        cr.setSourceRGBA(0.10, 0.10, 0.13, 0.94);
-        cr.fill();
-    }
+    cr.rectangle(0, y, w, bh);
+    cr.setSourceRGBA(0.10, 0.10, 0.13, 0.94);
+    cr.fill();
 
     const icon = bh * 0.56;
-    const cell = icon * (style.runningFrame ? 1.9 : 1.75);
+    const cell = icon * 1.75;
     const cy = y + (bh - icon) / 2;
     let x = (cell - icon) / 2;
     appsButton(cr, x, cy, icon, style);
@@ -164,17 +135,7 @@ function paintTaskbar(cr, w, h, style) {
     APP_COLORS.forEach((color, i) => {
         const cellX = x + i * cell;
         const running = i < 3;
-        if (style.runningFrame && running) {
-            roundedRect(cr, cellX + 1, y + 2, cell - 2, bh - 4, 3);
-            const g = new cairo.LinearGradient(0, y, 0, h);
-            g.addColorStopRGBA(0, 1, 1, 1, i === 0 ? 0.38 : 0.24);
-            g.addColorStopRGBA(1, 1, 1, 1, 0.06);
-            cr.setSource(g);
-            cr.fillPreserve();
-            cr.setSourceRGBA(1, 1, 1, 0.4);
-            cr.setLineWidth(1);
-            cr.stroke();
-        } else if (i === 0 && style.cellHighlight) {
+        if (i === 0 && style.cellHighlight) {
             cr.rectangle(cellX, y, cell, bh);
             cr.setSourceRGBA(1, 1, 1, 0.14);
             cr.fill();

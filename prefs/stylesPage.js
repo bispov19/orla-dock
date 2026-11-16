@@ -109,7 +109,7 @@ export function stylesPage(binder) {
 
     // --- Opções específicas de cada estilo ---
     const isTaskbar = s => getStyle(s.get_string('bar-style')).fullWidth;
-    const taskbar = group(page, _('Taskbars (Windows 10 and 7)'));
+    const taskbar = group(page, _('Taskbar (Windows 10)'));
     taskbar.add(spinRow(binder, 'taskbar-icon-size', _('Icon size'), 16, 64));
     const ownClock = switchRow(binder, 'taskbar-clock', _('Show clock and date'),
         _('When the Panel mode is off'));
