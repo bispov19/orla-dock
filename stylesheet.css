@@ -280,23 +280,6 @@
 
 /* ---------- Ícone dinâmico do Calendário ---------- */
 
-.orla-calendar-icon {
-    background-gradient-direction: vertical;
-    background-gradient-start: #ffffff;
-    background-gradient-end: #ececf0;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.orla-calendar-month {
-    color: #ff3b30;
-    font-weight: bold;
-}
-
-.orla-calendar-day {
-    color: #1c1c1e;
-    font-weight: 300;
-}
-
 /* ======================================================================
    Modo painel e Menu Iniciar das barras de tarefas — CSS copiado da
    Luma Dock (Dhruva GNOME Extension, (C) 2026 NarkAgni, GPL-3.0-or-later),
