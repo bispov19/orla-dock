@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-15 16:01-0300\n"
+"POT-Creation-Date: 2026-11-16 10:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: lib/appIcon.js:419
+#: lib/appIcon.js:420
 msgid "Applications"
 msgstr ""
 
@@ -473,31 +473,31 @@ msgstr ""
 msgid "Glass bar edge to edge, round start button and framed open apps"
 msgstr ""
 
-#: lib/trash.js:60 lib/trash.js:106
+#: lib/trash.js:60 lib/trash.js:110
 msgid "Empty Trash"
 msgstr ""
 
-#: lib/trash.js:67 prefs/modulesPage.js:57
+#: lib/trash.js:67 prefs/behaviorPage.js:61 prefs/modulesPage.js:57
 msgid "Trash"
 msgstr ""
 
-#: lib/trash.js:101
+#: lib/trash.js:105
 msgid "Empty all items from Trash?"
 msgstr ""
 
-#: lib/trash.js:102
+#: lib/trash.js:106
 msgid "All items in the Trash will be permanently deleted."
 msgstr ""
 
-#: lib/trash.js:104 prefs/widgets.js:342
+#: lib/trash.js:108 prefs/widgets.js:342
 msgid "Cancel"
 msgstr ""
 
-#: lib/trash.js:124
+#: lib/trash.js:128
 msgid "Could not empty the Trash"
 msgstr ""
 
-#: lib/trash.js:175
+#: lib/trash.js:179
 msgid "Could not move to Trash"
 msgstr ""
 
@@ -849,22 +849,42 @@ msgid "Closed apps stay in the Dock for a while, like on macOS"
 msgstr ""
 
 #: prefs/behaviorPage.js:54
-msgid "Show today's date on the Calendar icon"
-msgstr ""
-
-#: prefs/behaviorPage.js:55
 msgid "Hide the GNOME dash in the Activities overview"
 msgstr ""
 
+#: prefs/behaviorPage.js:57
+msgid "Calendar and Trash icons"
+msgstr ""
+
 #: prefs/behaviorPage.js:58
-msgid "Hidden windows"
+msgid "Choose whether they follow the current icon theme or use the Dock's own look"
 msgstr ""
 
 #: prefs/behaviorPage.js:59
-msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
+msgid "Calendar"
+msgstr ""
+
+#: prefs/behaviorPage.js:60 prefs/behaviorPage.js:62
+msgid "Follow the icon theme"
+msgstr ""
+
+#: prefs/behaviorPage.js:60
+msgid "Today's date (Dock look)"
+msgstr ""
+
+#: prefs/behaviorPage.js:62
+msgid "Dock's own trash"
+msgstr ""
+
+#: prefs/behaviorPage.js:65
+msgid "Hidden windows"
 msgstr ""
 
 #: prefs/behaviorPage.js:66
+msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
+msgstr ""
+
+#: prefs/behaviorPage.js:73
 msgid "Window classes to hide"
 msgstr ""
 

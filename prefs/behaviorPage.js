@@ -51,8 +51,15 @@ export function behaviorPage(binder) {
     const apps = group(page, _('Apps on the Dock'));
     apps.add(switchRow(binder, 'show-recent', _('Show suggested and recent apps in Dock'),
         _('Closed apps stay in the Dock for a while, like on macOS')));
-    apps.add(switchRow(binder, 'dynamic-calendar-icon', _("Show today's date on the Calendar icon")));
     apps.add(switchRow(binder, 'hide-overview-dash', _('Hide the GNOME dash in the Activities overview')));
+
+    // --- Visual do Calendário e da Lixeira ---
+    const looks = group(page, _('Calendar and Trash icons'),
+        _('Choose whether they follow the current icon theme or use the Dock\'s own look'));
+    looks.add(enumRow(binder, 'calendar-icon-style', _('Calendar'),
+        [_('Follow the icon theme'), _("Today's date (Dock look)")]));
+    looks.add(enumRow(binder, 'trash-icon-style', _('Trash'),
+        [_('Follow the icon theme'), _("Dock's own trash")]));
 
     // --- Janelas ocultas (mesmo comportamento da Luma Dock) ---
     const hidden = group(page, _('Hidden windows'),

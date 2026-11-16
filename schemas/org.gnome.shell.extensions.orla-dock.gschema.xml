@@ -33,6 +33,11 @@
     <value nick="list" value="3"/>
   </enum>
 
+  <enum id="org.gnome.shell.extensions.orla-dock.IconLook">
+    <value nick="theme" value="0"/>
+    <value nick="dock" value="1"/>
+  </enum>
+
   <enum id="org.gnome.shell.extensions.orla-dock.StackSort">
     <value nick="date" value="0"/>
     <value nick="name" value="1"/>
@@ -261,7 +266,16 @@
     </key>
     <key name="dynamic-calendar-icon" type="b">
       <default>true</default>
-      <summary>Show today's date on the Calendar icon</summary>
+      <summary>Deprecated: replaced by calendar-icon-style</summary>
+      <description>Kept only to migrate old settings: when false, calendar-icon-style starts as "theme".</description>
+    </key>
+    <key name="calendar-icon-style" enum="org.gnome.shell.extensions.orla-dock.IconLook">
+      <default>'dock'</default>
+      <summary>Calendar icon look: follow the icon theme, or the Dock's own icon with today's date</summary>
+    </key>
+    <key name="trash-icon-style" enum="org.gnome.shell.extensions.orla-dock.IconLook">
+      <default>'theme'</default>
+      <summary>Trash icon look: follow the icon theme, or the Dock's own trash</summary>
     </key>
     <key name="ignored-window-classes" type="s">
       <default>'openlogi-*'</default>

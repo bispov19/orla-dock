@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-15 16:01-0300\n"
+"POT-Creation-Date: 2026-11-16 10:38-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/appIcon.js:419
+#: lib/appIcon.js:420
 msgid "Applications"
 msgstr "Aplicativos"
 
@@ -473,31 +473,31 @@ msgstr "Barra de tarefas (Windows 7)"
 msgid "Glass bar edge to edge, round start button and framed open apps"
 msgstr "Barra de vidro de ponta a ponta, botão Iniciar redondo e apps abertos com moldura"
 
-#: lib/trash.js:60 lib/trash.js:106
+#: lib/trash.js:60 lib/trash.js:110
 msgid "Empty Trash"
 msgstr "Esvaziar Lixeira"
 
-#: lib/trash.js:67 prefs/modulesPage.js:57
+#: lib/trash.js:67 prefs/behaviorPage.js:61 prefs/modulesPage.js:57
 msgid "Trash"
 msgstr "Lixeira"
 
-#: lib/trash.js:101
+#: lib/trash.js:105
 msgid "Empty all items from Trash?"
 msgstr "Esvaziar todos os itens da Lixeira?"
 
-#: lib/trash.js:102
+#: lib/trash.js:106
 msgid "All items in the Trash will be permanently deleted."
 msgstr "Todos os itens da Lixeira serão apagados permanentemente."
 
-#: lib/trash.js:104 prefs/widgets.js:342
+#: lib/trash.js:108 prefs/widgets.js:342
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: lib/trash.js:124
+#: lib/trash.js:128
 msgid "Could not empty the Trash"
 msgstr "Não foi possível esvaziar a Lixeira"
 
-#: lib/trash.js:175
+#: lib/trash.js:179
 msgid "Could not move to Trash"
 msgstr "Não foi possível mover para a Lixeira"
 
@@ -852,22 +852,42 @@ msgid "Closed apps stay in the Dock for a while, like on macOS"
 msgstr "Apps fechados continuam no Dock por um tempo, como no macOS"
 
 #: prefs/behaviorPage.js:54
-msgid "Show today's date on the Calendar icon"
-msgstr "Mostrar a data de hoje no ícone do Calendário"
-
-#: prefs/behaviorPage.js:55
 msgid "Hide the GNOME dash in the Activities overview"
 msgstr "Ocultar o dash do GNOME na Visão geral de atividades"
 
+#: prefs/behaviorPage.js:57
+msgid "Calendar and Trash icons"
+msgstr "Ícones do Calendário e da Lixeira"
+
 #: prefs/behaviorPage.js:58
+msgid "Choose whether they follow the current icon theme or use the Dock's own look"
+msgstr "Escolha se eles acompanham o tema de ícones atual ou usam o visual da própria Dock"
+
+#: prefs/behaviorPage.js:59
+msgid "Calendar"
+msgstr "Calendário"
+
+#: prefs/behaviorPage.js:60 prefs/behaviorPage.js:62
+msgid "Follow the icon theme"
+msgstr "Seguir o tema de ícones"
+
+#: prefs/behaviorPage.js:60
+msgid "Today's date (Dock look)"
+msgstr "Data de hoje (visual da Dock)"
+
+#: prefs/behaviorPage.js:62
+msgid "Dock's own trash"
+msgstr "Lixeira da Dock"
+
+#: prefs/behaviorPage.js:65
 msgid "Hidden windows"
 msgstr "Janelas ocultas"
 
-#: prefs/behaviorPage.js:59
+#: prefs/behaviorPage.js:66
 msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
 msgstr "Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como janelas comuns, o que faz um ícone extra aparecer no Dock. Janelas cuja classe corresponde a um destes padrões ficam de fora do Dock. Separe os padrões com vírgulas; * corresponde a qualquer texto."
 
-#: prefs/behaviorPage.js:66
+#: prefs/behaviorPage.js:73
 msgid "Window classes to hide"
 msgstr "Classes de janela a ocultar"
 
@@ -1744,6 +1764,9 @@ msgstr "Resolução da malha"
 msgid "Spring points on each side of the window; more points bend more smoothly"
 msgstr "Pontos de mola em cada lado da janela; mais pontos entortam de forma mais suave"
 
+#~ msgid "Show today's date on the Calendar icon"
+#~ msgstr "Mostrar a data de hoje no ícone do Calendário"
+
 #~ msgid "Pin to Dynamic Panel"
 #~ msgstr "Fixar no Painel Dinâmico"
 
@@ -1785,9 +1808,6 @@ msgstr "Pontos de mola em cada lado da janela; mais pontos entortam de forma mai
 
 #~ msgid "Grey"
 #~ msgstr "Cinza"
-
-#~ msgid "Stacks and Trash"
-#~ msgstr "Stacks e Lixeira"
 
 #~ msgid "Show Trash"
 #~ msgstr "Mostrar Lixeira"
