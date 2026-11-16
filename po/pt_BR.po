@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-16 14:42-0300\n"
+"POT-Creation-Date: 2026-11-16 14:48-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -156,7 +156,8 @@ msgstr "Página %d"
 #: lib/luma/ui/startmenu/HomeView.js:314
 #: lib/luma/ui/startmenu/SearchView.js:261
 #: lib/luma/ui/startmenu/StartMenu.js:312
-#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/trash.js:58
+#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:379
+#: lib/trash.js:58
 msgid "Open"
 msgstr "Abrir"
 
@@ -404,7 +405,7 @@ msgstr "Não foi possível abrir"
 msgid "Home"
 msgstr "Pasta pessoal"
 
-#: lib/stacks.js:257 lib/stacks.js:450
+#: lib/stacks.js:257 lib/stacks.js:558
 msgid "Open in Files"
 msgstr "Abrir no Arquivos"
 
@@ -437,7 +438,27 @@ msgstr "Ordenar por nome"
 msgid "Remove from Dock"
 msgstr "Remover do Dock"
 
-#: lib/stacks.js:495
+#: lib/stacks.js:382
+msgid "Open With"
+msgstr "Abrir com"
+
+#: lib/stacks.js:395
+msgid "Show in Folder"
+msgstr "Mostrar na pasta"
+
+#: lib/stacks.js:397
+msgid "Copy"
+msgstr "Copiar"
+
+#: lib/stacks.js:398
+msgid "Move to Trash"
+msgstr "Mover para a lixeira"
+
+#: lib/stacks.js:400
+msgid "Properties"
+msgstr "Propriedades"
+
+#: lib/stacks.js:603
 msgid "This folder is empty"
 msgstr "Esta pasta está vazia"
 
@@ -525,7 +546,9 @@ msgstr "Versão %s"
 msgid ""
 "A dock for GNOME inspired by the macOS Dock, with GNOME and Windows 10 "
 "styles."
-msgstr "Uma dock para o GNOME inspirada na Dock do macOS, com estilos GNOME e Windows 10."
+msgstr ""
+"Uma dock para o GNOME inspirada na Dock do macOS, com estilos GNOME e "
+"Windows 10."
 
 #: prefs/aboutPage.js:94
 msgid "About me"
@@ -1383,7 +1406,8 @@ msgstr "Ícone do Downloads"
 
 #: prefs/modulesPage.js:62
 msgid "Click a preview to choose how the Downloads folder looks on the Dock"
-msgstr "Clique numa prévia para escolher como a pasta Downloads aparece no Dock"
+msgstr ""
+"Clique numa prévia para escolher como a pasta Downloads aparece no Dock"
 
 #: prefs/modulesPage.js:67
 msgid "Stacks"
