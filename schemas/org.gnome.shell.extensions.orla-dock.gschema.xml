@@ -494,6 +494,15 @@
       <default>false</default>
       <summary>Show USB and other drives while they are connected</summary>
     </key>
+    <key name="downloads-icon-style" type="s">
+      <choices>
+        <choice value="files"/>
+        <choice value="arrow"/>
+      </choices>
+      <default>'arrow'</default>
+      <summary>Look of the Downloads icon</summary>
+      <description>"files": the newest files stacked on the icon; "arrow": a folder with a download arrow.</description>
+    </key>
     <key name="show-downloads" type="b">
       <default>true</default>
       <summary>Show the Downloads stack</summary>

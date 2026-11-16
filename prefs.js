@@ -40,7 +40,7 @@ export default class OrlaDockPreferences extends ExtensionPreferences {
         window.add(appearancePage(binder));
         window.add(blurPage(binder, this.path, window));
         window.add(behaviorPage(binder));
-        window.add(modulesPage(binder, window));
+        window.add(modulesPage(binder, window, this.path));
         // this.metadata = conteúdo do metadata.json; this.path = pasta da extensão.
         window.add(aboutPage(this.metadata, this.path, window));
 

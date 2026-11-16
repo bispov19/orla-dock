@@ -14,11 +14,12 @@ import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions
 
 import {enumRow, group, sliderRow, switchRow} from './rows.js';
 import {colorRow, imageRow} from './widgets.js';
+import {downloadsIconCards} from './downloadsIcon.js';
 
 const APPS_ICON_GRID = 1;
 const APPS_ICON_CUSTOM = 3;
 
-export function modulesPage(binder, window) {
+export function modulesPage(binder, window, extensionPath) {
     const settings = binder.settings;
     const page = new Adw.PreferencesPage({
         title: _('Modules'),
@@ -55,6 +56,12 @@ export function modulesPage(binder, window) {
     places.add(switchRow(binder, 'show-mounts', _('USB and other drives'),
         _('Appear while they are connected')));
     places.add(switchRow(binder, 'show-trash', _('Trash')));
+
+    // --- Ícone do Downloads: dois estilos, escolhidos pela prévia ---
+    const downloads = group(page, _('Downloads icon'),
+        _('Click a preview to choose how the Downloads folder looks on the Dock'));
+    downloads.add(downloadsIconCards(binder, extensionPath));
+    binder.showWhen('show-downloads', s => s.get_boolean('show-downloads'), downloads);
 
     // --- Stacks ---
     const stacks = group(page, _('Stacks'));
