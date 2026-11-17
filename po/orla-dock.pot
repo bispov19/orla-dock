@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-16 20:10-0300\n"
+"POT-Creation-Date: 2026-11-17 19:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,76 +18,76 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: lib/appIcon.js:425
+#: lib/appIcon.js:426
 msgid "Applications"
 msgstr ""
 
-#: lib/appMenu.js:59 lib/luma/ui/startmenu/SearchView.js:263
+#: lib/appMenu.js:60 lib/luma/ui/startmenu/SearchView.js:263
 #: lib/luma/ui/startmenu/StartMenu.js:313
 msgid "New Window"
 msgstr ""
 
-#: lib/appMenu.js:74
+#: lib/appMenu.js:75
 msgid "Options"
 msgstr ""
 
-#: lib/appMenu.js:78
+#: lib/appMenu.js:79
 msgid "Keep in Dock"
 msgstr ""
 
-#: lib/appMenu.js:88
+#: lib/appMenu.js:89
 msgid "App Details"
 msgstr ""
 
-#: lib/appMenu.js:94
+#: lib/appMenu.js:95
 msgid "Show All Windows"
 msgstr ""
 
-#: lib/appMenu.js:95
+#: lib/appMenu.js:96
 msgid "Hide"
 msgstr ""
 
-#: lib/appMenu.js:97
+#: lib/appMenu.js:98
 msgid "Close All Windows"
 msgstr ""
 
-#: lib/appMenu.js:106
+#: lib/appMenu.js:107
 msgid "Quit"
 msgstr ""
 
-#: lib/appMenu.js:167
+#: lib/appMenu.js:156
 msgid "Turn Hiding On"
 msgstr ""
 
-#: lib/appMenu.js:173
+#: lib/appMenu.js:162
 msgid "Turn Magnification On"
 msgstr ""
 
-#: lib/appMenu.js:186
+#: lib/appMenu.js:175
 msgid "Position on Screen"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Bottom"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Top"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Left"
 msgstr ""
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Right"
 msgstr ""
 
-#: lib/appMenu.js:195
+#: lib/appMenu.js:184
 msgid "Style"
 msgstr ""
 
-#: lib/appMenu.js:205
+#: lib/appMenu.js:194
 msgid "Dock Settings…"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 #: lib/luma/ui/startmenu/HomeView.js:314
 #: lib/luma/ui/startmenu/SearchView.js:261
 #: lib/luma/ui/startmenu/StartMenu.js:312
-#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:379
+#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:375
 #: lib/trash.js:58
 msgid "Open"
 msgstr ""
@@ -401,28 +401,28 @@ msgstr ""
 msgid "Could not open"
 msgstr ""
 
-#: lib/stacks.js:157 prefs/modulesPage.js:50
+#: lib/stacks.js:157 prefs/modulesPage.js:58
 msgid "Home"
 msgstr ""
 
-#: lib/stacks.js:257 lib/stacks.js:558
+#: lib/stacks.js:257 lib/stacks.js:554
 msgid "Open in Files"
 msgstr ""
 
 #: lib/stacks.js:259 prefs/appearancePage.js:69 prefs/appearancePage.js:76
-#: prefs/modulesPage.js:69
+#: prefs/modulesPage.js:77
 msgid "Automatic"
 msgstr ""
 
-#: lib/stacks.js:260 prefs/modulesPage.js:37 prefs/modulesPage.js:69
+#: lib/stacks.js:260 prefs/modulesPage.js:39 prefs/modulesPage.js:77
 msgid "Grid"
 msgstr ""
 
-#: lib/stacks.js:261 prefs/modulesPage.js:69
+#: lib/stacks.js:261 prefs/modulesPage.js:77
 msgid "Fan"
 msgstr ""
 
-#: lib/stacks.js:262 prefs/modulesPage.js:69
+#: lib/stacks.js:262 prefs/modulesPage.js:77
 msgid "List"
 msgstr ""
 
@@ -438,27 +438,27 @@ msgstr ""
 msgid "Remove from Dock"
 msgstr ""
 
-#: lib/stacks.js:382
+#: lib/stacks.js:378
 msgid "Open With"
 msgstr ""
 
-#: lib/stacks.js:395
+#: lib/stacks.js:391
 msgid "Show in Folder"
 msgstr ""
 
-#: lib/stacks.js:397
+#: lib/stacks.js:393
 msgid "Copy"
 msgstr ""
 
-#: lib/stacks.js:398
+#: lib/stacks.js:394
 msgid "Move to Trash"
 msgstr ""
 
-#: lib/stacks.js:400
+#: lib/stacks.js:396
 msgid "Properties"
 msgstr ""
 
-#: lib/stacks.js:603
+#: lib/stacks.js:599
 msgid "This folder is empty"
 msgstr ""
 
@@ -490,7 +490,7 @@ msgstr ""
 msgid "Empty Trash"
 msgstr ""
 
-#: lib/trash.js:67 prefs/behaviorPage.js:61 prefs/modulesPage.js:58
+#: lib/trash.js:67 prefs/behaviorPage.js:61 prefs/modulesPage.js:66
 msgid "Trash"
 msgstr ""
 
@@ -1265,139 +1265,155 @@ msgstr ""
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr ""
 
-#: prefs/modulesPage.js:25
+#: prefs/logoPicker.js:22
+msgid "From the system"
+msgstr ""
+
+#: prefs/logoPicker.js:71
+msgid "The logo your Linux distribution ships"
+msgstr ""
+
+#: prefs/modulesPage.js:27
 msgid "Modules"
 msgstr ""
 
-#: prefs/modulesPage.js:30
+#: prefs/modulesPage.js:32
 msgid "Applications button"
 msgstr ""
 
-#: prefs/modulesPage.js:31
+#: prefs/modulesPage.js:33
 msgid "Show the applications button"
 msgstr ""
 
-#: prefs/modulesPage.js:32
+#: prefs/modulesPage.js:34
 msgid "Separator after the button"
 msgstr ""
 
-#: prefs/modulesPage.js:33
+#: prefs/modulesPage.js:35
 msgid "A divider between the applications button and the apps, like the one before Downloads and the Trash"
 msgstr ""
 
-#: prefs/modulesPage.js:36
+#: prefs/modulesPage.js:38
 msgid "Icon"
 msgstr ""
 
-#: prefs/modulesPage.js:37
-msgid "System logo"
+#: prefs/modulesPage.js:39
+msgid "Logo"
 msgstr ""
 
-#: prefs/modulesPage.js:37
+#: prefs/modulesPage.js:39
 msgid "Coloured tile"
 msgstr ""
 
-#: prefs/modulesPage.js:37
+#: prefs/modulesPage.js:39
 msgid "Custom image"
 msgstr ""
 
-#: prefs/modulesPage.js:38
+#: prefs/modulesPage.js:40
 msgid "Grid colour"
 msgstr ""
 
-#: prefs/modulesPage.js:41
+#: prefs/modulesPage.js:43
 msgid "Image"
 msgstr ""
 
-#: prefs/modulesPage.js:44
+#: prefs/modulesPage.js:46
 msgid "Icon scale"
 msgstr ""
 
-#: prefs/modulesPage.js:49
-msgid "Places"
+#: prefs/modulesPage.js:50
+msgid "Button logo"
 msgstr ""
 
-#: prefs/modulesPage.js:49
-msgid "Shortcuts that open as stacks"
-msgstr ""
-
-#: prefs/modulesPage.js:51
-msgid "Downloads"
-msgstr ""
-
-#: prefs/modulesPage.js:52
-msgid "Documents"
-msgstr ""
-
-#: prefs/modulesPage.js:53
-msgid "Pictures"
-msgstr ""
-
-#: prefs/modulesPage.js:54
-msgid "Videos"
-msgstr ""
-
-#: prefs/modulesPage.js:55
-msgid "Music"
-msgstr ""
-
-#: prefs/modulesPage.js:56
-msgid "USB and other drives"
+#: prefs/modulesPage.js:50
+msgid "Click a logo to use it on the applications button"
 msgstr ""
 
 #: prefs/modulesPage.js:57
-msgid "Appear while they are connected"
+msgid "Places"
+msgstr ""
+
+#: prefs/modulesPage.js:57
+msgid "Shortcuts that open as stacks"
+msgstr ""
+
+#: prefs/modulesPage.js:59
+msgid "Downloads"
+msgstr ""
+
+#: prefs/modulesPage.js:60
+msgid "Documents"
 msgstr ""
 
 #: prefs/modulesPage.js:61
-msgid "Downloads icon"
+msgid "Pictures"
 msgstr ""
 
 #: prefs/modulesPage.js:62
-msgid "Click a preview to choose how the Downloads folder looks on the Dock"
+msgid "Videos"
 msgstr ""
 
-#: prefs/modulesPage.js:67
-msgid "Stacks"
+#: prefs/modulesPage.js:63
+msgid "Music"
 msgstr ""
 
-#: prefs/modulesPage.js:68
-msgid "Open stacks as"
+#: prefs/modulesPage.js:64
+msgid "USB and other drives"
+msgstr ""
+
+#: prefs/modulesPage.js:65
+msgid "Appear while they are connected"
+msgstr ""
+
+#: prefs/modulesPage.js:69
+msgid "Downloads icon"
 msgstr ""
 
 #: prefs/modulesPage.js:70
-msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
-msgstr ""
-
-#: prefs/modulesPage.js:71
-msgid "Sort stack items by"
-msgstr ""
-
-#: prefs/modulesPage.js:71 prefs/taskbarPanel.js:225
-msgid "Date"
-msgstr ""
-
-#: prefs/modulesPage.js:71
-msgid "Name"
+msgid "Click a preview to choose how the Downloads folder looks on the Dock"
 msgstr ""
 
 #: prefs/modulesPage.js:75
-msgid "Other folders"
+msgid "Stacks"
 msgstr ""
 
 #: prefs/modulesPage.js:76
+msgid "Open stacks as"
+msgstr ""
+
+#: prefs/modulesPage.js:78
+msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgstr ""
+
+#: prefs/modulesPage.js:79
+msgid "Sort stack items by"
+msgstr ""
+
+#: prefs/modulesPage.js:79 prefs/taskbarPanel.js:225
+msgid "Date"
+msgstr ""
+
+#: prefs/modulesPage.js:79
+msgid "Name"
+msgstr ""
+
+#: prefs/modulesPage.js:83
+msgid "Other folders"
+msgstr ""
+
+#: prefs/modulesPage.js:84
 msgid "Folders shown as stacks next to the Trash"
 msgstr ""
 
-#: prefs/modulesPage.js:82
+#: prefs/modulesPage.js:90
 msgid "Add folder…"
 msgstr ""
 
-#: prefs/modulesPage.js:99
+#: prefs/modulesPage.js:107
 msgid "Remove"
 msgstr ""
 
-#: prefs/modulesPage.js:117
+#: prefs/modulesPage.js:125
 msgid "Choose a folder"
 msgstr ""
 

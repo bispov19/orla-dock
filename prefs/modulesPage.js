@@ -15,7 +15,9 @@ import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions
 import {enumRow, group, sliderRow, switchRow} from './rows.js';
 import {colorRow, imageRow} from './widgets.js';
 import {downloadsIconCards} from './downloadsIcon.js';
+import {logoPicker} from './logoPicker.js';
 
+const APPS_ICON_LOGO = 0;
 const APPS_ICON_GRID = 1;
 const APPS_ICON_CUSTOM = 3;
 
@@ -34,7 +36,7 @@ export function modulesPage(binder, window, extensionPath) {
     apps.add(appsSeparator);
     binder.showWhen('show-apps-button', s => s.get_boolean('show-apps-button'), appsSeparator);
     apps.add(enumRow(binder, 'apps-button-icon', _('Icon'),
-        [_('System logo'), _('Grid'), _('Coloured tile'), _('Custom image')]));
+        [_('Logo'), _('Grid'), _('Coloured tile'), _('Custom image')]));
     const gridColor = colorRow(binder, 'apps-button-color', _('Grid colour'));
     apps.add(gridColor);
     binder.showWhen('apps-button-icon', s => s.get_enum('apps-button-icon') === APPS_ICON_GRID, gridColor);
@@ -43,6 +45,12 @@ export function modulesPage(binder, window, extensionPath) {
     binder.showWhen('apps-button-icon', s => s.get_enum('apps-button-icon') === APPS_ICON_CUSTOM, image);
     apps.add(sliderRow(binder, 'apps-button-icon-scale', _('Icon scale'), null,
         {lower: 50, upper: 200, step: 5, marks: [[50, '50%'], [100, '100%'], [200, '200%']]}, true));
+
+    // --- Logo do botão: galeria com prévia (padrão: o da Orla Dock) ---
+    const logos = group(page, _('Button logo'), _('Click a logo to use it on the applications button'));
+    logos.add(logoPicker(binder, extensionPath));
+    binder.showWhen(['show-apps-button', 'apps-button-icon'],
+        s => s.get_boolean('show-apps-button') && s.get_enum('apps-button-icon') === APPS_ICON_LOGO, logos);
 
     // --- Locais ---
     // Um liga/desliga por local, como na Luma. As pastas abrem como stacks.

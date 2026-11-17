@@ -243,6 +243,24 @@
       <default>'system-logo'</default>
       <summary>Icon of the applications button</summary>
     </key>
+    <key name="apps-button-logo" type="s">
+      <choices>
+        <choice value="orla-dock"/>
+        <choice value="system"/>
+        <choice value="fedora"/>
+        <choice value="gnome"/>
+        <choice value="ubuntu"/>
+        <choice value="debian"/>
+        <choice value="archlinux"/>
+        <choice value="manjaro"/>
+        <choice value="linuxmint"/>
+        <choice value="opensuse"/>
+        <choice value="elementary"/>
+      </choices>
+      <default>'orla-dock'</default>
+      <summary>Logo shown on the applications button</summary>
+      <description>Used when the button icon is set to "Logo". "system" follows LOGO= in /etc/os-release.</description>
+    </key>
     <key name="apps-button-color" type="s">
       <default>'#ffffff'</default>
       <summary>Color of the grid icon</summary>

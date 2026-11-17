@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-16 20:10-0300\n"
+"POT-Creation-Date: 2026-11-17 19:24-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,76 +18,76 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/appIcon.js:425
+#: lib/appIcon.js:426
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: lib/appMenu.js:59 lib/luma/ui/startmenu/SearchView.js:263
+#: lib/appMenu.js:60 lib/luma/ui/startmenu/SearchView.js:263
 #: lib/luma/ui/startmenu/StartMenu.js:313
 msgid "New Window"
 msgstr "Nova janela"
 
-#: lib/appMenu.js:74
+#: lib/appMenu.js:75
 msgid "Options"
 msgstr "Opções"
 
-#: lib/appMenu.js:78
+#: lib/appMenu.js:79
 msgid "Keep in Dock"
 msgstr "Manter no Dock"
 
-#: lib/appMenu.js:88
+#: lib/appMenu.js:89
 msgid "App Details"
 msgstr "Detalhes do app"
 
-#: lib/appMenu.js:94
+#: lib/appMenu.js:95
 msgid "Show All Windows"
 msgstr "Mostrar todas as janelas"
 
-#: lib/appMenu.js:95
+#: lib/appMenu.js:96
 msgid "Hide"
 msgstr "Ocultar"
 
-#: lib/appMenu.js:97
+#: lib/appMenu.js:98
 msgid "Close All Windows"
 msgstr "Fechar todas as janelas"
 
-#: lib/appMenu.js:106
+#: lib/appMenu.js:107
 msgid "Quit"
 msgstr "Encerrar"
 
-#: lib/appMenu.js:167
+#: lib/appMenu.js:156
 msgid "Turn Hiding On"
 msgstr "Ativar ocultação automática"
 
-#: lib/appMenu.js:173
+#: lib/appMenu.js:162
 msgid "Turn Magnification On"
 msgstr "Ativar ampliação"
 
-#: lib/appMenu.js:186
+#: lib/appMenu.js:175
 msgid "Position on Screen"
 msgstr "Posição na tela"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Bottom"
 msgstr "Inferior"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Top"
 msgstr "Superior"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Left"
 msgstr "Esquerda"
 
-#: lib/appMenu.js:188 prefs/layoutPage.js:32
+#: lib/appMenu.js:177 prefs/layoutPage.js:32
 msgid "Right"
 msgstr "Direita"
 
-#: lib/appMenu.js:195
+#: lib/appMenu.js:184
 msgid "Style"
 msgstr "Estilo"
 
-#: lib/appMenu.js:205
+#: lib/appMenu.js:194
 msgid "Dock Settings…"
 msgstr "Configurações do Dock…"
 
@@ -156,7 +156,7 @@ msgstr "Página %d"
 #: lib/luma/ui/startmenu/HomeView.js:314
 #: lib/luma/ui/startmenu/SearchView.js:261
 #: lib/luma/ui/startmenu/StartMenu.js:312
-#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:379
+#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:375
 #: lib/trash.js:58
 msgid "Open"
 msgstr "Abrir"
@@ -401,28 +401,28 @@ msgstr "Não foi possível desmontar a unidade"
 msgid "Could not open"
 msgstr "Não foi possível abrir"
 
-#: lib/stacks.js:157 prefs/modulesPage.js:50
+#: lib/stacks.js:157 prefs/modulesPage.js:58
 msgid "Home"
 msgstr "Pasta pessoal"
 
-#: lib/stacks.js:257 lib/stacks.js:558
+#: lib/stacks.js:257 lib/stacks.js:554
 msgid "Open in Files"
 msgstr "Abrir no Arquivos"
 
 #: lib/stacks.js:259 prefs/appearancePage.js:69 prefs/appearancePage.js:76
-#: prefs/modulesPage.js:69
+#: prefs/modulesPage.js:77
 msgid "Automatic"
 msgstr "Automático"
 
-#: lib/stacks.js:260 prefs/modulesPage.js:37 prefs/modulesPage.js:69
+#: lib/stacks.js:260 prefs/modulesPage.js:39 prefs/modulesPage.js:77
 msgid "Grid"
 msgstr "Grade"
 
-#: lib/stacks.js:261 prefs/modulesPage.js:69
+#: lib/stacks.js:261 prefs/modulesPage.js:77
 msgid "Fan"
 msgstr "Leque"
 
-#: lib/stacks.js:262 prefs/modulesPage.js:69
+#: lib/stacks.js:262 prefs/modulesPage.js:77
 msgid "List"
 msgstr "Lista"
 
@@ -438,27 +438,27 @@ msgstr "Ordenar por nome"
 msgid "Remove from Dock"
 msgstr "Remover do Dock"
 
-#: lib/stacks.js:382
+#: lib/stacks.js:378
 msgid "Open With"
 msgstr "Abrir com"
 
-#: lib/stacks.js:395
+#: lib/stacks.js:391
 msgid "Show in Folder"
 msgstr "Mostrar na pasta"
 
-#: lib/stacks.js:397
+#: lib/stacks.js:393
 msgid "Copy"
 msgstr "Copiar"
 
-#: lib/stacks.js:398
+#: lib/stacks.js:394
 msgid "Move to Trash"
 msgstr "Mover para a lixeira"
 
-#: lib/stacks.js:400
+#: lib/stacks.js:396
 msgid "Properties"
 msgstr "Propriedades"
 
-#: lib/stacks.js:603
+#: lib/stacks.js:599
 msgid "This folder is empty"
 msgstr "Esta pasta está vazia"
 
@@ -483,17 +483,14 @@ msgid "Dock (GNOME)"
 msgstr "Dock (GNOME)"
 
 #: lib/styles.js:131
-msgid ""
-"Floating like the GNOME dash, no magnification, applications button at the "
-"end"
-msgstr ""
-"Flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim"
+msgid "Floating like the GNOME dash, no magnification, applications button at the end"
+msgstr "Flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim"
 
 #: lib/trash.js:60 lib/trash.js:110
 msgid "Empty Trash"
 msgstr "Esvaziar Lixeira"
 
-#: lib/trash.js:67 prefs/behaviorPage.js:61 prefs/modulesPage.js:58
+#: lib/trash.js:67 prefs/behaviorPage.js:61 prefs/modulesPage.js:66
 msgid "Trash"
 msgstr "Lixeira"
 
@@ -543,12 +540,8 @@ msgid "Version %s"
 msgstr "Versão %s"
 
 #: prefs/aboutPage.js:81
-msgid ""
-"A dock for GNOME inspired by the macOS Dock, with GNOME and Windows 10 "
-"styles."
-msgstr ""
-"Uma dock para o GNOME inspirada na Dock do macOS, com estilos GNOME e "
-"Windows 10."
+msgid "A dock for GNOME inspired by the macOS Dock, with GNOME and Windows 10 styles."
+msgstr "Uma dock para o GNOME inspirada na Dock do macOS, com estilos GNOME e Windows 10."
 
 #: prefs/aboutPage.js:94
 msgid "About me"
@@ -556,23 +549,13 @@ msgstr "Sobre mim"
 
 #: prefs/aboutPage.js:98
 msgid ""
-"Hi! I'm Vinicius Bispo (Vini), a Systems Analysis and Development student "
-"making the move into technology. I created Orla Dock from scratch to learn "
-"how GNOME works from the inside — and to have the dock I always wanted on my "
-"own desktop.\n"
+"Hi! I'm Vinicius Bispo (Vini), a Systems Analysis and Development student making the move into technology. I created Orla Dock from scratch to learn how GNOME works from the inside — and to have the dock I always wanted on my own desktop.\n"
 "\n"
-"The code is commented in Portuguese, step by step, so that other people who "
-"are starting out can learn from it too. Suggestions and contributions are "
-"very welcome!"
+"The code is commented in Portuguese, step by step, so that other people who are starting out can learn from it too. Suggestions and contributions are very welcome!"
 msgstr ""
-"Olá! Eu sou o Vinicius Bispo (Vini), estudante de Análise e Desenvolvimento "
-"de Sistemas em transição de carreira para a tecnologia. Criei a Orla Dock do "
-"zero para aprender como o GNOME funciona por dentro — e para ter a dock que "
-"eu sempre quis no meu próprio desktop.\n"
+"Olá! Eu sou o Vinicius Bispo (Vini), estudante de Análise e Desenvolvimento de Sistemas em transição de carreira para a tecnologia. Criei a Orla Dock do zero para aprender como o GNOME funciona por dentro — e para ter a dock que eu sempre quis no meu próprio desktop.\n"
 "\n"
-"O código é comentado em português, passo a passo, para que outras pessoas "
-"que estão começando também possam aprender com ele. Sugestões e "
-"contribuições são muito bem-vindas!"
+"O código é comentado em português, passo a passo, para que outras pessoas que estão começando também possam aprender com ele. Sugestões e contribuições são muito bem-vindas!"
 
 #: prefs/aboutPage.js:103
 msgid "My GitHub profile"
@@ -603,13 +586,8 @@ msgid "License"
 msgstr "Licença"
 
 #: prefs/aboutPage.js:117
-msgid ""
-"Orla Dock is free software, released under the GNU General Public License, "
-"version 3 or later (GPL-3.0-or-later). It comes with absolutely no warranty."
-msgstr ""
-"A Orla Dock é software livre, distribuída sob a Licença Pública Geral GNU, "
-"versão 3 ou posterior (GPL-3.0-or-later). Ela não tem absolutamente nenhuma "
-"garantia."
+msgid "Orla Dock is free software, released under the GNU General Public License, version 3 or later (GPL-3.0-or-later). It comes with absolutely no warranty."
+msgstr "A Orla Dock é software livre, distribuída sob a Licença Pública Geral GNU, versão 3 ou posterior (GPL-3.0-or-later). Ela não tem absolutamente nenhuma garantia."
 
 #: prefs/appearancePage.js:19
 msgid "Appearance"
@@ -859,11 +837,8 @@ msgid "Minimize windows into application icon"
 msgstr "Minimizar janelas no ícone do aplicativo"
 
 #: prefs/behaviorPage.js:46
-msgid ""
-"When off, minimized windows go next to the Downloads folder and the Trash"
-msgstr ""
-"Quando desligado, as janelas minimizadas vão para o lado da pasta Downloads "
-"e da Lixeira"
+msgid "When off, minimized windows go next to the Downloads folder and the Trash"
+msgstr "Quando desligado, as janelas minimizadas vão para o lado da pasta Downloads e da Lixeira"
 
 #: prefs/behaviorPage.js:47
 msgid "Show window previews on hover"
@@ -874,11 +849,8 @@ msgid "Show notification badges and progress"
 msgstr "Mostrar contadores de notificação e progresso"
 
 #: prefs/behaviorPage.js:49
-msgid ""
-"Each app shows how many notifications it has waiting, even when pinned and "
-"closed"
-msgstr ""
-"Cada app mostra quantas notificações tem esperando, mesmo fixado e fechado"
+msgid "Each app shows how many notifications it has waiting, even when pinned and closed"
+msgstr "Cada app mostra quantas notificações tem esperando, mesmo fixado e fechado"
 
 #: prefs/behaviorPage.js:51
 msgid "Apps on the Dock"
@@ -901,11 +873,8 @@ msgid "Calendar and Trash icons"
 msgstr "Ícones do Calendário e da Lixeira"
 
 #: prefs/behaviorPage.js:58
-msgid ""
-"Choose whether they follow the current icon theme or use the Dock's own look"
-msgstr ""
-"Escolha se eles acompanham o tema de ícones atual ou usam o visual da "
-"própria Dock"
+msgid "Choose whether they follow the current icon theme or use the Dock's own look"
+msgstr "Escolha se eles acompanham o tema de ícones atual ou usam o visual da própria Dock"
 
 #: prefs/behaviorPage.js:59
 msgid "Calendar"
@@ -928,16 +897,8 @@ msgid "Hidden windows"
 msgstr "Janelas ocultas"
 
 #: prefs/behaviorPage.js:66
-msgid ""
-"Some apps show on-screen notices (like a Caps Lock indicator) as regular "
-"windows, which makes an extra icon pop up on the Dock. Windows whose class "
-"matches one of these patterns are left out of the Dock. Separate patterns "
-"with commas; * matches any text."
-msgstr ""
-"Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como "
-"janelas comuns, o que faz um ícone extra aparecer no Dock. Janelas cuja "
-"classe corresponde a um destes padrões ficam de fora do Dock. Separe os "
-"padrões com vírgulas; * corresponde a qualquer texto."
+msgid "Some apps show on-screen notices (like a Caps Lock indicator) as regular windows, which makes an extra icon pop up on the Dock. Windows whose class matches one of these patterns are left out of the Dock. Separate patterns with commas; * matches any text."
+msgstr "Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como janelas comuns, o que faz um ícone extra aparecer no Dock. Janelas cuja classe corresponde a um destes padrões ficam de fora do Dock. Separe os padrões com vírgulas; * corresponde a qualquer texto."
 
 #: prefs/behaviorPage.js:73
 msgid "Window classes to hide"
@@ -1144,12 +1105,8 @@ msgid "Touch the edge when a window is maximized"
 msgstr "Encostar na borda com janela maximizada"
 
 #: prefs/layoutPage.js:86
-msgid ""
-"The Dock drops its margin while a maximized window is on its screen and "
-"floats again when there is none"
-msgstr ""
-"O Dock perde a margem enquanto houver uma janela maximizada na tela dele e "
-"volta a flutuar quando não houver nenhuma"
+msgid "The Dock drops its margin while a maximized window is on its screen and floats again when there is none"
+msgstr "O Dock perde a margem enquanto houver uma janela maximizada na tela dele e volta a flutuar quando não houver nenhuma"
 
 #: prefs/layoutPage.js:91 prefs/widgets.js:286
 msgid "Size"
@@ -1201,8 +1158,7 @@ msgstr "Suavidade"
 
 #: prefs/layoutPage.js:111
 msgid "Lower values glide more, higher values follow the pointer faster"
-msgstr ""
-"Valores baixos deslizam mais; valores altos seguem o ponteiro mais rápido"
+msgstr "Valores baixos deslizam mais; valores altos seguem o ponteiro mais rápido"
 
 #: prefs/layoutPage.js:112 prefs/wobblyGroup.js:69
 msgid "Soft"
@@ -1312,147 +1268,155 @@ msgstr "Mostrar o Dock em todos os monitores"
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr "Quando desligado, o Dock aparece só no monitor principal"
 
-#: prefs/modulesPage.js:25
+#: prefs/logoPicker.js:22
+msgid "From the system"
+msgstr "Do sistema"
+
+#: prefs/logoPicker.js:71
+msgid "The logo your Linux distribution ships"
+msgstr "O logo que a sua distribuição Linux traz"
+
+#: prefs/modulesPage.js:27
 msgid "Modules"
 msgstr "Módulos"
 
-#: prefs/modulesPage.js:30
+#: prefs/modulesPage.js:32
 msgid "Applications button"
 msgstr "Botão de aplicativos"
 
-#: prefs/modulesPage.js:31
+#: prefs/modulesPage.js:33
 msgid "Show the applications button"
 msgstr "Mostrar o botão de aplicativos"
 
-#: prefs/modulesPage.js:32
+#: prefs/modulesPage.js:34
 msgid "Separator after the button"
 msgstr "Divisória depois do botão"
 
-#: prefs/modulesPage.js:33
-msgid ""
-"A divider between the applications button and the apps, like the one before "
-"Downloads and the Trash"
-msgstr ""
-"Uma divisória entre o botão de aplicativos e os apps, como a que fica antes "
-"do Downloads e da Lixeira"
+#: prefs/modulesPage.js:35
+msgid "A divider between the applications button and the apps, like the one before Downloads and the Trash"
+msgstr "Uma divisória entre o botão de aplicativos e os apps, como a que fica antes do Downloads e da Lixeira"
 
-#: prefs/modulesPage.js:36
+#: prefs/modulesPage.js:38
 msgid "Icon"
 msgstr "Ícone"
 
-#: prefs/modulesPage.js:37
-msgid "System logo"
-msgstr "Logo do sistema"
+#: prefs/modulesPage.js:39
+msgid "Logo"
+msgstr "Logo"
 
-#: prefs/modulesPage.js:37
+#: prefs/modulesPage.js:39
 msgid "Coloured tile"
 msgstr "Bloco colorido"
 
-#: prefs/modulesPage.js:37
+#: prefs/modulesPage.js:39
 msgid "Custom image"
 msgstr "Imagem personalizada"
 
-#: prefs/modulesPage.js:38
+#: prefs/modulesPage.js:40
 msgid "Grid colour"
 msgstr "Cor da grade"
 
-#: prefs/modulesPage.js:41
+#: prefs/modulesPage.js:43
 msgid "Image"
 msgstr "Imagem"
 
-#: prefs/modulesPage.js:44
+#: prefs/modulesPage.js:46
 msgid "Icon scale"
 msgstr "Escala do ícone"
 
-#: prefs/modulesPage.js:49
+#: prefs/modulesPage.js:50
+msgid "Button logo"
+msgstr "Logo do botão"
+
+#: prefs/modulesPage.js:50
+msgid "Click a logo to use it on the applications button"
+msgstr "Clique num logo para usá-lo no botão de aplicativos"
+
+#: prefs/modulesPage.js:57
 msgid "Places"
 msgstr "Locais"
 
-#: prefs/modulesPage.js:49
+#: prefs/modulesPage.js:57
 msgid "Shortcuts that open as stacks"
 msgstr "Atalhos que abrem como stacks"
 
-#: prefs/modulesPage.js:51
+#: prefs/modulesPage.js:59
 msgid "Downloads"
 msgstr "Downloads"
 
-#: prefs/modulesPage.js:52
+#: prefs/modulesPage.js:60
 msgid "Documents"
 msgstr "Documentos"
 
-#: prefs/modulesPage.js:53
+#: prefs/modulesPage.js:61
 msgid "Pictures"
 msgstr "Imagens"
 
-#: prefs/modulesPage.js:54
+#: prefs/modulesPage.js:62
 msgid "Videos"
 msgstr "Vídeos"
 
-#: prefs/modulesPage.js:55
+#: prefs/modulesPage.js:63
 msgid "Music"
 msgstr "Música"
 
-#: prefs/modulesPage.js:56
+#: prefs/modulesPage.js:64
 msgid "USB and other drives"
 msgstr "USB e outras unidades"
 
-#: prefs/modulesPage.js:57
+#: prefs/modulesPage.js:65
 msgid "Appear while they are connected"
 msgstr "Aparecem enquanto estiverem conectadas"
 
-#: prefs/modulesPage.js:61
+#: prefs/modulesPage.js:69
 msgid "Downloads icon"
 msgstr "Ícone do Downloads"
 
-#: prefs/modulesPage.js:62
+#: prefs/modulesPage.js:70
 msgid "Click a preview to choose how the Downloads folder looks on the Dock"
-msgstr ""
-"Clique numa prévia para escolher como a pasta Downloads aparece no Dock"
+msgstr "Clique numa prévia para escolher como a pasta Downloads aparece no Dock"
 
-#: prefs/modulesPage.js:67
+#: prefs/modulesPage.js:75
 msgid "Stacks"
 msgstr "Stacks"
 
-#: prefs/modulesPage.js:68
+#: prefs/modulesPage.js:76
 msgid "Open stacks as"
 msgstr "Abrir as stacks como"
 
-#: prefs/modulesPage.js:70
-msgid ""
-"Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
-msgstr ""
-"No modo automático, stacks pequenas abrem em leque com o Dock embaixo; nos "
-"outros casos, em grade"
+#: prefs/modulesPage.js:78
+msgid "Automatic uses a fan for small stacks on a bottom Dock, and a grid otherwise"
+msgstr "No modo automático, stacks pequenas abrem em leque com o Dock embaixo; nos outros casos, em grade"
 
-#: prefs/modulesPage.js:71
+#: prefs/modulesPage.js:79
 msgid "Sort stack items by"
 msgstr "Ordenar itens das stacks por"
 
-#: prefs/modulesPage.js:71 prefs/taskbarPanel.js:225
+#: prefs/modulesPage.js:79 prefs/taskbarPanel.js:225
 msgid "Date"
 msgstr "Data"
 
-#: prefs/modulesPage.js:71
+#: prefs/modulesPage.js:79
 msgid "Name"
 msgstr "Nome"
 
-#: prefs/modulesPage.js:75
+#: prefs/modulesPage.js:83
 msgid "Other folders"
 msgstr "Outras pastas"
 
-#: prefs/modulesPage.js:76
+#: prefs/modulesPage.js:84
 msgid "Folders shown as stacks next to the Trash"
 msgstr "Pastas exibidas como stacks ao lado da Lixeira"
 
-#: prefs/modulesPage.js:82
+#: prefs/modulesPage.js:90
 msgid "Add folder…"
 msgstr "Adicionar pasta…"
 
-#: prefs/modulesPage.js:99
+#: prefs/modulesPage.js:107
 msgid "Remove"
 msgstr "Remover"
 
-#: prefs/modulesPage.js:117
+#: prefs/modulesPage.js:125
 msgid "Choose a folder"
 msgstr "Escolha uma pasta"
 
@@ -1465,12 +1429,8 @@ msgid "Bar style"
 msgstr "Estilo da barra"
 
 #: prefs/stylesPage.js:31
-msgid ""
-"Pick a style to preview it, then apply it. Each style keeps its own options "
-"below."
-msgstr ""
-"Escolha um estilo para ver a prévia e depois aplique. Cada estilo tem as "
-"próprias opções logo abaixo."
+msgid "Pick a style to preview it, then apply it. Each style keeps its own options below."
+msgstr "Escolha um estilo para ver a prévia e depois aplique. Cada estilo tem as próprias opções logo abaixo."
 
 #: prefs/stylesPage.js:48
 msgid "Apply"
@@ -1594,12 +1554,8 @@ msgid "Panel Mode"
 msgstr "Modo Painel"
 
 #: prefs/taskbarPanel.js:184
-msgid ""
-"Moves the GNOME top bar into the dock: workspaces, tray, Quick Settings and "
-"the clock in one bar"
-msgstr ""
-"Move a barra superior do GNOME para o dock: áreas de trabalho, bandeja, "
-"Configurações Rápidas e relógio em uma só barra"
+msgid "Moves the GNOME top bar into the dock: workspaces, tray, Quick Settings and the clock in one bar"
+msgstr "Move a barra superior do GNOME para o dock: áreas de trabalho, bandeja, Configurações Rápidas e relógio em uma só barra"
 
 #: prefs/taskbarPanel.js:189
 msgid "Panel Layout"
@@ -1626,12 +1582,8 @@ msgid "Orla Dock Start Menu"
 msgstr "Menu Iniciar da Orla Dock"
 
 #: prefs/taskbarPanel.js:197
-msgid ""
-"Pinned apps, recent apps and files, search, Lock and Power. Turn off to open "
-"GNOME’s app grid instead"
-msgstr ""
-"Apps fixados, apps e arquivos recentes, busca, Bloquear e Energia. Desative "
-"para abrir a grade de apps do GNOME no lugar"
+msgid "Pinned apps, recent apps and files, search, Lock and Power. Turn off to open GNOME’s app grid instead"
+msgstr "Apps fixados, apps e arquivos recentes, busca, Bloquear e Energia. Desative para abrir a grade de apps do GNOME no lugar"
 
 #: prefs/taskbarPanel.js:199
 msgid "Recent Apps"
@@ -1679,9 +1631,7 @@ msgstr "Relógio"
 
 #: prefs/taskbarPanel.js:224
 msgid "These are GNOME’s own clock settings, so the lock screen follows too"
-msgstr ""
-"Estas são as configurações de relógio do próprio GNOME, então a tela de "
-"bloqueio também as segue"
+msgstr "Estas são as configurações de relógio do próprio GNOME, então a tela de bloqueio também as segue"
 
 #: prefs/taskbarPanel.js:225
 msgid "Second line under the time"
@@ -1696,12 +1646,8 @@ msgid "24-Hour Time"
 msgstr "Formato de 24 Horas"
 
 #: prefs/taskbarPanel.js:251
-msgid ""
-"Small icons from other extensions live behind the arrow. Wide ones like CPU "
-"or network speed stay on the bar"
-msgstr ""
-"Os ícones pequenos de outras extensões ficam atrás da seta. Os largos, como "
-"CPU ou velocidade de rede, permanecem na barra"
+msgid "Small icons from other extensions live behind the arrow. Wide ones like CPU or network speed stay on the bar"
+msgstr "Os ícones pequenos de outras extensões ficam atrás da seta. Os largos, como CPU ou velocidade de rede, permanecem na barra"
 
 #: prefs/taskbarPanel.js:253
 msgid "Tidy Up Tray"
@@ -1716,11 +1662,8 @@ msgid "Pin an icon to the bar"
 msgstr "Fixe um ícone na barra"
 
 #: prefs/taskbarPanel.js:267
-msgid ""
-"Open the tray from the arrow to pin, reorder, or move wide applets into it"
-msgstr ""
-"Abra a bandeja pela seta para fixar, reordenar ou mover applets largos para "
-"dentro dela"
+msgid "Open the tray from the arrow to pin, reorder, or move wide applets into it"
+msgstr "Abra a bandeja pela seta para fixar, reordenar ou mover applets largos para dentro dela"
 
 #: prefs/widgets.js:126
 msgid "Reset to defaults"
@@ -1779,23 +1722,16 @@ msgid "Wobbly windows"
 msgstr "Janelas balançando"
 
 #: prefs/wobblyGroup.js:45
-msgid ""
-"Windows bend like jelly while you drag them and settle down on their own"
-msgstr ""
-"As janelas entortam como gelatina enquanto você as arrasta e assentam "
-"sozinhas"
+msgid "Windows bend like jelly while you drag them and settle down on their own"
+msgstr "As janelas entortam como gelatina enquanto você as arrasta e assentam sozinhas"
 
 #: prefs/wobblyGroup.js:51
 msgid "“Compiz windows effect” is also enabled"
 msgstr "A extensão “Compiz windows effect” também está ativa"
 
 #: prefs/wobblyGroup.js:52
-msgid ""
-"To avoid applying the effect twice, Orla Dock leaves it to that extension. "
-"Turn it off in the Extensions app to use the Orla Dock effect."
-msgstr ""
-"Para não aplicar o efeito duas vezes, a Orla Dock deixa o balanço por conta "
-"dela. Desative-a no app Extensões para usar o efeito da Orla Dock."
+msgid "To avoid applying the effect twice, Orla Dock leaves it to that extension. Turn it off in the Extensions app to use the Orla Dock effect."
+msgstr "Para não aplicar o efeito duas vezes, a Orla Dock deixa o balanço por conta dela. Desative-a no app Extensões para usar o efeito da Orla Dock."
 
 #: prefs/wobblyGroup.js:65
 msgid "Wobbly windows effect"
@@ -1874,8 +1810,8 @@ msgid "Mesh resolution"
 msgstr "Resolução da malha"
 
 #: prefs/wobblyGroup.js:94
-msgid ""
-"Spring points on each side of the window; more points bend more smoothly"
-msgstr ""
-"Pontos de mola em cada lado da janela; mais pontos entortam de forma mais "
-"suave"
+msgid "Spring points on each side of the window; more points bend more smoothly"
+msgstr "Pontos de mola em cada lado da janela; mais pontos entortam de forma mais suave"
+
+#~ msgid "System logo"
+#~ msgstr "Logo do sistema"
