@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
-"Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
 "POT-Creation-Date: 2026-11-16 20:10-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"

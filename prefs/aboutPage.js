@@ -12,8 +12,8 @@ import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions
 
 import {linkRow, textRow} from './rows.js';
 
-const REPO_URL = 'https://github.com/viniciusbispo19/orla-dock';
-const PROFILE_URL = 'https://github.com/viniciusbispo19';
+const REPO_URL = 'https://github.com/bispov19/orla-dock';
+const PROFILE_URL = 'https://github.com/bispov19';
 
 // As capturas mostradas no "Sobre" (cópias menores das de store/screenshots).
 const SCREENSHOTS = [
@@ -100,7 +100,7 @@ export function aboutPage(metadata, extensionPath, window) {
         'works from the inside — and to have the dock I always wanted on my own desktop.\n\n' +
         'The code is commented in Portuguese, step by step, so that other people who are ' +
         'starting out can learn from it too. Suggestions and contributions are very welcome!')));
-    me.add(linkRow(window, _('My GitHub profile'), 'github.com/viniciusbispo19',
+    me.add(linkRow(window, _('My GitHub profile'), 'github.com/bispov19',
         PROFILE_URL, 'avatar-default-symbolic'));
 
     // --- Projeto ---

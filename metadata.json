@@ -3,15 +3,14 @@
   "name": "Orla Dock",
   "description": "A dock for GNOME Shell inspired by the macOS Dock, made to fit your desktop.\n\n• Folders open as a fan that folds back the same way it opened\n• Three bar styles with a preview: macOS dock, Windows 10 taskbar and GNOME dock\n• Pick the screen side by clicking a preview\n• Optionally touches the screen edge while a window is maximized",
   "shell-version": [
-    "50",
     "51"
   ],
-  "url": "https://github.com/viniciusbispo19/orla-dock",
+  "url": "https://github.com/bispov19/orla-dock",
   "settings-schema": "org.gnome.shell.extensions.orla-dock",
   "session-modes": [
     "user",
     "unlock-dialog"
   ],
   "gettext-domain": "orla-dock",
-  "version-name": "1.2.0"
+  "version-name": "1.3.0"
 }

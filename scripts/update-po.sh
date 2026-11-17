@@ -26,7 +26,7 @@ xgettext \
     --language=JavaScript \
     --keyword=_ --keyword=N_ --keyword=ngettext:1,2 --keyword=pgettext:1c,2 \
     --package-name="Orla Dock" \
-    --msgid-bugs-address="https://github.com/viniciusbispo19/orla-dock/issues" \
+    --msgid-bugs-address="https://github.com/bispov19/orla-dock/issues" \
     --add-comments=Translators \
     --no-wrap \
     --output="po/$DOMAIN.pot" \

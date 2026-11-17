@@ -78,7 +78,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 
 ## Compatibilidade
 
-- GNOME Shell 51 (testado) e 50 (declarado, não testado)
+- GNOME Shell 51 (Fedora 45, testado)
 - Wayland, com suporte a escala fracionária/HiDPI
 - Convive com Blur my Shell (sem blur duplicado), Just Perfection e AppIndicator
 
@@ -93,7 +93,7 @@ sudo dnf install git glib2-devel gettext mutter-devkit
 Clonar e instalar:
 
 ```sh
-git clone git@github.com:viniciusbispo19/orla-dock.git ~/Projetos/orla-dock
+git clone git@github.com:bispov19/orla-dock.git ~/Projetos/orla-dock
 cd ~/Projetos/orla-dock
 ./scripts/install.sh
 ```
@@ -168,6 +168,25 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/launcherEntry.js` | Contadores e progresso via D-Bus |
 | `lib/utils.js` | Eixos (4 posições), timeouts e utilidades |
 | `prefs.js`, `prefs/` | Janela de preferências (GTK 4 + libadwaita), uma aba por arquivo; as prévias ficam em `prefs/previews.js` |
+
+## Publicar no extensions.gnome.org
+
+1. Gere o pacote (compila as traduções e deixa de fora o que é só de desenvolvimento):
+
+   ```sh
+   ./scripts/pack.sh
+   ```
+
+2. Envie o arquivo `dist/orla-dock@viniciusbispo19.shell-extension.zip` em <https://extensions.gnome.org/upload/> (é preciso estar logado).
+3. Na página da extensão, use o ícone e as capturas da pasta `store/` e o texto de `store/description.md`.
+
+O que o pacote segue das regras de revisão:
+
+- `enable()` cria e `disable()` destrói tudo (atores, sinais, temporizadores e caches de módulo).
+- Nada é criado na importação dos módulos.
+- `metadata.json` declara só a versão testada do GNOME (51).
+- O modo `unlock-dialog` está justificado no início do `extension.js`: na tela bloqueada a Orla some e devolve a barra superior.
+- Sem `gschemas.compiled` no pacote e sem CSS que altere partes do GNOME fora da Orla.
 
 ## Limitações conhecidas
 
