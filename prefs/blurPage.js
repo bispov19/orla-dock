@@ -9,6 +9,7 @@
 //   - Fundo do estático: imagens prontas ou uma foto sua;
 //   - Vidro: visuais prontos (Cristal, Fosco, Vívido, Meia-noite) + ajustes;
 //   - Luz na borda: brilho e direção da luz.
+// No topo, uma prévia ao vivo (prefs/blurPreview.js).
 
 import Adw from 'gi://Adw';
 import GLib from 'gi://GLib';
@@ -16,6 +17,7 @@ import Gtk from 'gi://Gtk';
 
 import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
+import {BlurPreview} from './blurPreview.js';
 import {group, sliderRow} from './rows.js';
 import {colorRow, imageRow} from './widgets.js';
 
@@ -56,6 +58,11 @@ export function blurPage(binder, extensionPath, window) {
         icon_name: 'view-paged-symbolic',
     });
     const isOn = s => s.get_boolean('blur-enabled');
+
+    // --- Prévia ao vivo (a mesma receita do vidro da dock) ---
+    const preview = new Adw.PreferencesGroup();
+    preview.add(new BlurPreview(settings, extensionPath));
+    page.add(preview);
 
     // --- Liga/desliga ---
     const hero = group(page, _('Blur material'), _('Frosted glass behind the Dock'));

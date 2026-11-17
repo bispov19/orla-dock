@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/viniciusbispo19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-16 14:48-0300\n"
+"POT-Creation-Date: 2026-11-16 20:10-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -615,7 +615,7 @@ msgstr ""
 msgid "Appearance"
 msgstr "Aparência"
 
-#: prefs/appearancePage.js:24 prefs/appearancePage.js:46 prefs/blurPage.js:77
+#: prefs/appearancePage.js:24 prefs/appearancePage.js:46 prefs/blurPage.js:84
 msgid "Background"
 msgstr "Fundo"
 
@@ -747,7 +747,7 @@ msgstr "Cor do indicador"
 msgid "System accent"
 msgstr "Cor de destaque do sistema"
 
-#: prefs/appearancePage.js:69 prefs/appearancePage.js:76 prefs/blurPage.js:150
+#: prefs/appearancePage.js:69 prefs/appearancePage.js:76 prefs/blurPage.js:157
 #: prefs/taskbarPanel.js:39 prefs/wobblyGroup.js:69
 msgid "Custom"
 msgstr "Personalizada"
@@ -943,167 +943,167 @@ msgstr ""
 msgid "Window classes to hide"
 msgstr "Classes de janela a ocultar"
 
-#: prefs/blurPage.js:26
+#: prefs/blurPage.js:28
 msgid "Abstract"
 msgstr "Abstrato"
 
-#: prefs/blurPage.js:27
+#: prefs/blurPage.js:29
 msgid "Aurora"
 msgstr "Aurora"
 
-#: prefs/blurPage.js:28
+#: prefs/blurPage.js:30
 msgid "Cyberpunk"
 msgstr "Cyberpunk"
 
-#: prefs/blurPage.js:29
+#: prefs/blurPage.js:31
 msgid "Minimal"
 msgstr "Minimalista"
 
-#: prefs/blurPage.js:30
+#: prefs/blurPage.js:32
 msgid "Sunset"
 msgstr "Pôr do sol"
 
-#: prefs/blurPage.js:35
+#: prefs/blurPage.js:37
 msgid "Crystal"
 msgstr "Cristal"
 
-#: prefs/blurPage.js:36
+#: prefs/blurPage.js:38
 msgid "Frosted"
 msgstr "Fosco"
 
-#: prefs/blurPage.js:37
+#: prefs/blurPage.js:39
 msgid "Vivid"
 msgstr "Viva"
 
-#: prefs/blurPage.js:38
+#: prefs/blurPage.js:40
 msgid "Midnight"
 msgstr "Meia-noite"
 
-#: prefs/blurPage.js:55 prefs/blurPage.js:170
+#: prefs/blurPage.js:57 prefs/blurPage.js:177
 msgid "Blur"
 msgstr "Desfoque"
 
-#: prefs/blurPage.js:61
+#: prefs/blurPage.js:68
 msgid "Blur material"
 msgstr "Material de desfoque"
 
-#: prefs/blurPage.js:61
+#: prefs/blurPage.js:68
 msgid "Frosted glass behind the Dock"
 msgstr "Vidro fosco atrás do Dock"
 
-#: prefs/blurPage.js:67
+#: prefs/blurPage.js:74
 msgid "Mode"
 msgstr "Modo"
 
-#: prefs/blurPage.js:68
+#: prefs/blurPage.js:75
 msgid "Dynamic"
 msgstr "Dinâmico"
 
-#: prefs/blurPage.js:68
+#: prefs/blurPage.js:75
 msgid "Follows windows and wallpaper behind the Dock in real time"
 msgstr "Acompanha as janelas e o papel de parede atrás do Dock em tempo real"
 
-#: prefs/blurPage.js:70
+#: prefs/blurPage.js:77
 msgid "Static"
 msgstr "Estático"
 
-#: prefs/blurPage.js:70
+#: prefs/blurPage.js:77
 msgid "A fixed image behind the glass — lighter on the graphics card"
 msgstr "Uma imagem fixa atrás do vidro — mais leve para a placa de vídeo"
 
-#: prefs/blurPage.js:77
+#: prefs/blurPage.js:84
 msgid "The image that static blur is made from"
 msgstr "A imagem usada pelo desfoque estático"
 
-#: prefs/blurPage.js:79
+#: prefs/blurPage.js:86
 msgid "Presets"
 msgstr "Prontos"
 
-#: prefs/blurPage.js:80 prefs/blurPage.js:126
+#: prefs/blurPage.js:87 prefs/blurPage.js:133
 msgid "Your photo"
 msgstr "Sua foto"
 
-#: prefs/blurPage.js:134
+#: prefs/blurPage.js:141
 msgid "Glass"
 msgstr "Vidro"
 
-#: prefs/blurPage.js:134
+#: prefs/blurPage.js:141
 msgid "Start from a look, then fine-tune"
 msgstr "Comece por um visual e depois ajuste"
 
-#: prefs/blurPage.js:167
+#: prefs/blurPage.js:174
 msgid "Tint"
 msgstr "Tom"
 
-#: prefs/blurPage.js:167
+#: prefs/blurPage.js:174
 msgid "Colour washed over the glass"
 msgstr "Cor aplicada sobre o vidro"
 
-#: prefs/blurPage.js:168
+#: prefs/blurPage.js:175
 msgid "Tint strength"
 msgstr "Força do tom"
 
-#: prefs/blurPage.js:168
+#: prefs/blurPage.js:175
 msgid "How much of the tint shows"
 msgstr "Quanto do tom aparece"
 
-#: prefs/blurPage.js:170
+#: prefs/blurPage.js:177
 msgid "How soft the background becomes"
 msgstr "Quão suave o fundo fica"
 
-#: prefs/blurPage.js:172
+#: prefs/blurPage.js:179
 msgid "Vibrancy"
 msgstr "Vibração"
 
-#: prefs/blurPage.js:172
+#: prefs/blurPage.js:179
 msgid "Colour saturation seen through the glass"
 msgstr "Saturação das cores vistas através do vidro"
 
-#: prefs/blurPage.js:174
+#: prefs/blurPage.js:181
 msgid "Brightness"
 msgstr "Brilho"
 
-#: prefs/blurPage.js:175
+#: prefs/blurPage.js:182
 msgid "Darker glass on the left, lighter on the right"
 msgstr "Vidro mais escuro à esquerda, mais claro à direita"
 
-#: prefs/blurPage.js:176
+#: prefs/blurPage.js:183
 msgid "Dark"
 msgstr "Escuro"
 
-#: prefs/blurPage.js:176
+#: prefs/blurPage.js:183
 msgid "Light"
 msgstr "Claro"
 
-#: prefs/blurPage.js:180
+#: prefs/blurPage.js:187
 msgid "Edge light"
 msgstr "Luz na borda"
 
-#: prefs/blurPage.js:180
+#: prefs/blurPage.js:187
 msgid "A thin highlight along the rim of the glass"
 msgstr "Um brilho fino ao longo da borda do vidro"
 
-#: prefs/blurPage.js:182
+#: prefs/blurPage.js:189
 msgid "Glow"
 msgstr "Brilho"
 
-#: prefs/blurPage.js:182
+#: prefs/blurPage.js:189
 msgid "Strength of the rim highlight"
 msgstr "Força do brilho na borda"
 
-#: prefs/blurPage.js:183 prefs/layoutPage.js:118 prefs/widgets.js:290
+#: prefs/blurPage.js:190 prefs/layoutPage.js:118 prefs/widgets.js:290
 msgid "Off"
 msgstr "Não"
 
-#: prefs/blurPage.js:183 prefs/wobblyGroup.js:69
+#: prefs/blurPage.js:190 prefs/wobblyGroup.js:69
 msgid "Strong"
 msgstr "Forte"
 
-#: prefs/blurPage.js:184
+#: prefs/blurPage.js:191
 msgid "Light direction"
 msgstr "Direção da luz"
 
-#: prefs/blurPage.js:184
+#: prefs/blurPage.js:191
 msgid "Where the light falls from"
 msgstr "De onde vem a luz"
 
