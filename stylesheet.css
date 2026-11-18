@@ -809,3 +809,49 @@
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.08);
 }
+
+/* Pilha aberta: no lugar do ícone, um quadrado translúcido com a seta para
+   baixo, como no macOS. */
+.orla-stack-open-tile.orla-dark {
+    background-color: rgba(150, 150, 160, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.orla-stack-open-tile.orla-light {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.orla-dark .orla-stack-open-chevron {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.orla-light .orla-stack-open-chevron {
+    color: rgba(28, 28, 30, 0.82);
+}
+
+/* Topo do leque: "N mais em Arquivos" + o botão redondo com a seta. */
+.orla-fan-more-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 99px;
+}
+
+.orla-dark .orla-fan-more-icon {
+    background-color: rgba(70, 70, 78, 0.92);
+    color: #f2f2f2;
+}
+
+.orla-light .orla-fan-more-icon {
+    background-color: rgba(240, 240, 244, 0.95);
+    color: #1c1c1e;
+}
+
+.orla-fan-more-icon StIcon {
+    icon-size: 22px;
+}
+
+.orla-fan-more:hover .orla-fan-more-icon {
+    background-color: rgba(53, 132, 228, 0.95);
+    color: #ffffff;
+}

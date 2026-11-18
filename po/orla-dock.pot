@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-17 19:24-0300\n"
+"POT-Creation-Date: 2026-11-17 19:32-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,7 @@ msgstr ""
 #: lib/luma/ui/startmenu/HomeView.js:314
 #: lib/luma/ui/startmenu/SearchView.js:261
 #: lib/luma/ui/startmenu/StartMenu.js:312
-#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:375
+#: lib/luma/ui/startmenu/StartMenu.js:358 lib/mounts.js:63 lib/stacks.js:465
 #: lib/trash.js:58
 msgid "Open"
 msgstr ""
@@ -397,68 +397,75 @@ msgstr ""
 msgid "Could not unmount the drive"
 msgstr ""
 
-#: lib/stacks.js:80
+#: lib/stacks.js:82
 msgid "Could not open"
 msgstr ""
 
-#: lib/stacks.js:157 prefs/modulesPage.js:58
+#: lib/stacks.js:167 prefs/modulesPage.js:58
 msgid "Home"
 msgstr ""
 
-#: lib/stacks.js:257 lib/stacks.js:554
+#: lib/stacks.js:344 lib/stacks.js:644 lib/stacks.js:668
 msgid "Open in Files"
 msgstr ""
 
-#: lib/stacks.js:259 prefs/appearancePage.js:69 prefs/appearancePage.js:76
+#: lib/stacks.js:346 prefs/appearancePage.js:69 prefs/appearancePage.js:76
 #: prefs/modulesPage.js:77
 msgid "Automatic"
 msgstr ""
 
-#: lib/stacks.js:260 prefs/modulesPage.js:39 prefs/modulesPage.js:77
+#: lib/stacks.js:347 prefs/modulesPage.js:39 prefs/modulesPage.js:77
 msgid "Grid"
 msgstr ""
 
-#: lib/stacks.js:261 prefs/modulesPage.js:77
+#: lib/stacks.js:348 prefs/modulesPage.js:77
 msgid "Fan"
 msgstr ""
 
-#: lib/stacks.js:262 prefs/modulesPage.js:77
+#: lib/stacks.js:349 prefs/modulesPage.js:77
 msgid "List"
 msgstr ""
 
-#: lib/stacks.js:264
+#: lib/stacks.js:351
 msgid "Sort by Date"
 msgstr ""
 
-#: lib/stacks.js:265
+#: lib/stacks.js:352
 msgid "Sort by Name"
 msgstr ""
 
-#: lib/stacks.js:267
+#: lib/stacks.js:354
 msgid "Remove from Dock"
 msgstr ""
 
-#: lib/stacks.js:378
+#: lib/stacks.js:468
 msgid "Open With"
 msgstr ""
 
-#: lib/stacks.js:391
+#: lib/stacks.js:481
 msgid "Show in Folder"
 msgstr ""
 
-#: lib/stacks.js:393
+#: lib/stacks.js:483
 msgid "Copy"
 msgstr ""
 
-#: lib/stacks.js:394
+#: lib/stacks.js:484
 msgid "Move to Trash"
 msgstr ""
 
-#: lib/stacks.js:396
+#: lib/stacks.js:486
 msgid "Properties"
 msgstr ""
 
-#: lib/stacks.js:599
+#: lib/stacks.js:667
+#, javascript-format
+msgid "%s more in Files"
+msgid_plural "%s more in Files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/stacks.js:729
 msgid "This folder is empty"
 msgstr ""
 

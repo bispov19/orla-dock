@@ -67,7 +67,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - **Janelas ocultas:** padrões de classe de janela (com `*`) que a dock ignora.
 
 **Recursos do macOS**
-- Stacks em grade, leque ou lista.
+- Stacks em grade, leque ou lista. Como no macOS, enquanto a pilha está aberta o ícone vira um quadrado com a seta para baixo, e o topo do leque mostra "N mais em Arquivos".
 - **Locais:** Pasta pessoal, Downloads, Documentos, Imagens, Vídeos e Música, cada um com o seu liga/desliga, além de outras pastas a gosto.
 - **USB e outras unidades** aparecem só enquanto estão conectadas (com Ejetar/Desmontar).
 - Lixeira com ícone cheio/vazio, Abrir e Esvaziar.
