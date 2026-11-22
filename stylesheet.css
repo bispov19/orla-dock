@@ -1,0 +1,870 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * stylesheet.css — estilos da Orla Dock.
+ *
+ * O GNOME Shell carrega este arquivo automaticamente. É CSS "do St" (o
+ * toolkit do Shell): parecido com o CSS da web, mas com menos propriedades.
+ * Tamanhos e posições que dependem do tamanho dos ícones são calculados no
+ * JavaScript; aqui ficam cores, fontes e detalhes fixos.
+ *
+ * As classes .orla-dark / .orla-light seguem o tema claro/escuro do sistema.
+ */
+
+/* ---------- Dock ---------- */
+
+.orla-item {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+.orla-indicator {
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.orla-light .orla-indicator {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.orla-separator {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.orla-light .orla-separator {
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+/* Botão da grade de apps: um "quadradinho" com gradiente, como o Launchpad. */
+.orla-showapps-tile {
+    background-gradient-direction: vertical;
+    background-gradient-start: #7a8cff;
+    background-gradient-end: #4a5bd9;
+}
+
+.orla-showapps-icon {
+    color: #ffffff;
+}
+
+/* Bolinha de notificação (contador) */
+.orla-badge {
+    background-color: #ff3b30;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 4px;
+}
+
+/* Barra de progresso */
+.orla-progress {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.orla-progress-fill {
+    background-color: #0a84ff;
+}
+
+/* ---------- Rótulo (tooltip) ---------- */
+
+.orla-tooltip {
+    border-radius: 7px;
+    padding: 4px 10px;
+    font-size: 10.5pt;
+    background-color: rgba(40, 40, 44, 0.92);
+    color: #f2f2f2;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orla-tooltip.orla-light {
+    background-color: rgba(250, 250, 252, 0.95);
+    color: #1c1c1e;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Aviso "Arquivo copiado — cole com Ctrl+V" (arquivo do leque solto numa
+   janela). Usa as cores do rótulo; só muda o tamanho e o ícone. */
+.orla-drop-toast {
+    spacing: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+}
+
+.orla-drop-toast-icon {
+    icon-size: 16px;
+}
+
+/* ---------- Miniaturas de janelas ---------- */
+
+.orla-previews {
+    spacing: 8px;
+    padding: 8px;
+    border-radius: 14px;
+    background-color: rgba(36, 36, 40, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orla-previews.orla-light {
+    background-color: rgba(246, 246, 248, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.orla-preview {
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.orla-preview:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.orla-light .orla-preview:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.orla-preview-header {
+    spacing: 6px;
+    padding-bottom: 6px;
+}
+
+.orla-preview-title {
+    font-size: 9.5pt;
+    max-width: 200px;
+}
+
+.orla-dark .orla-preview-title {
+    color: #f2f2f2;
+}
+
+.orla-light .orla-preview-title {
+    color: #1c1c1e;
+}
+
+.orla-preview-close {
+    border-radius: 99px;
+    padding: 3px;
+    background-color: rgba(127, 127, 127, 0.25);
+}
+
+.orla-preview-close:hover {
+    background-color: #ff5f57;
+    color: #ffffff;
+}
+
+/* ---------- Stacks ---------- */
+
+.orla-stack-panel {
+    padding: 12px;
+    border-radius: 16px;
+    background-color: rgba(36, 36, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    spacing: 8px;
+}
+
+.orla-light .orla-stack-panel {
+    background-color: rgba(246, 246, 248, 0.97);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.orla-stack-panel-list {
+    width: 320px;
+}
+
+.orla-stack-title {
+    font-weight: bold;
+    font-size: 11pt;
+    padding: 0 4px 4px;
+}
+
+.orla-stack-grid {
+    spacing-rows: 4px;
+    spacing-columns: 4px;
+}
+
+.orla-stack-file {
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.orla-stack-file:hover,
+.orla-stack-file:focus {
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-stack-grid .orla-stack-file-box,
+.orla-stack-file.orla-stack-grid .orla-stack-file-box {
+    spacing: 4px;
+    width: 92px;
+}
+
+.orla-stack-file.orla-stack-list .orla-stack-file-box {
+    spacing: 10px;
+}
+
+.orla-stack-file-label {
+    font-size: 9pt;
+}
+
+.orla-dark .orla-stack-file-label,
+.orla-dark .orla-stack-title,
+.orla-dark .orla-stack-empty {
+    color: #f2f2f2;
+}
+
+.orla-light .orla-stack-file-label,
+.orla-light .orla-stack-title,
+.orla-light .orla-stack-empty {
+    color: #1c1c1e;
+}
+
+/* Leque: o nome numa "pílula" à esquerda do ícone. */
+.orla-stack-file.orla-stack-fan {
+    padding: 2px;
+}
+
+.orla-stack-file.orla-stack-fan .orla-stack-file-box {
+    spacing: 8px;
+}
+
+.orla-fan-label {
+    padding: 3px 10px;
+    border-radius: 99px;
+    background-color: rgba(30, 30, 34, 0.9);
+    color: #f2f2f2;
+    max-width: 220px;
+}
+
+.orla-light .orla-fan-label {
+    background-color: rgba(250, 250, 252, 0.95);
+    color: #1c1c1e;
+}
+
+.orla-stack-open {
+    border-radius: 99px;
+    padding: 5px 14px;
+    font-size: 9.5pt;
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-stack-open:hover {
+    background-color: rgba(127, 127, 127, 0.36);
+}
+
+.orla-dark .orla-stack-open {
+    color: #f2f2f2;
+}
+
+.orla-light .orla-stack-open {
+    color: #1c1c1e;
+}
+
+.orla-stack-empty {
+    padding: 24px;
+    font-style: italic;
+}
+
+/* ---------- Lixeira ---------- */
+
+.orla-item:drop .orla-icon-bin {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+}
+
+/* ---------- Barra de tarefas (estilo Windows 10) ---------- */
+
+/* ---------- Modo Painel: relógio e indicador de workspaces ---------- */
+
+.orla-panel-clock-time,
+.orla-panel-clock-date {
+    color: #ffffff;
+    text-align: center;
+    font-feature-settings: "tnum";
+}
+
+.orla-panel-clock-time {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.orla-panel-clock-date {
+    font-size: 11.5px;
+    font-weight: 500;
+}
+
+.orla-panel-clock-solo .orla-panel-clock-time {
+    font-size: 14px;
+}
+
+.orla-ws {
+    spacing: 5px;
+}
+
+.orla-ws-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 99px;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition-duration: 180ms;
+}
+
+.orla-ws-dot.orla-ws-active {
+    width: 18px;
+    background-color: #ffffff;
+}
+
+.orla-ws-dot.orla-ws-vertical.orla-ws-active {
+    width: 7px;
+    height: 18px;
+}
+
+/* As caixas do começo e do fim da barra no modo Painel. Os botões que vêm
+   do painel do GNOME (relógio, configurações rápidas, bandeja) perdem o
+   estilo da barra de cima ao mudar de lugar; aqui eles ganham o da Orla. */
+.orla-panel-box {
+    spacing: 2px;
+    padding: 0 4px;
+}
+
+.orla-panel-box .panel-button {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 13px;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    transition-duration: 140ms;
+}
+
+.orla-panel-box .panel-button:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.orla-panel-box .panel-button:active,
+.orla-panel-box .panel-button:checked {
+    background-color: rgba(255, 255, 255, 0.24);
+}
+
+.orla-panel-box .system-status-icon {
+    icon-size: 16px;
+    padding: 0 2px;
+}
+
+.orla-light .orla-panel-box .panel-button {
+    color: #1c1c1e;
+}
+
+.orla-light .orla-panel-box .panel-button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.orla-light .orla-panel-box .panel-button:active,
+.orla-light .orla-panel-box .panel-button:checked {
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
+/* ---------- Bandeja (menu da seta no fim da barra) ---------- */
+
+.orla-tray-zone {
+    spacing: 2px;
+}
+
+.orla-tray {
+    min-width: 180px;
+    padding: 10px;
+    spacing: 8px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    color: #f2f2f2;
+}
+
+.orla-tray.orla-light {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1c1c1e;
+}
+
+.orla-tray-header {
+    spacing: 12px;
+    padding: 0 2px;
+}
+
+.orla-tray-title {
+    font-weight: 700;
+    font-size: 12.5px;
+}
+
+.orla-tray-action {
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: inherit;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.orla-tray-action:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.orla-light .orla-tray-action {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.orla-light .orla-tray-action:hover {
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
+.orla-tray-grid {
+    spacing: 4px;
+}
+
+.orla-tray-cell .panel-button,
+.orla-tray-wide .panel-button {
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.orla-tray-cell .panel-button:hover,
+.orla-tray-wide .panel-button:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+.orla-light .orla-tray-cell .panel-button:hover,
+.orla-light .orla-tray-wide .panel-button:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.orla-tray .system-status-icon {
+    icon-size: 18px;
+}
+
+.orla-tray-section {
+    spacing: 4px;
+}
+
+.orla-tray-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0.7;
+    padding: 4px 2px 0;
+}
+
+.orla-tray-row {
+    spacing: 4px;
+    padding: 4px 6px;
+    border-radius: 8px;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.orla-light .orla-tray-row {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.orla-tray-icon-button {
+    padding: 4px;
+    border-radius: 6px;
+    color: inherit;
+}
+
+.orla-tray-icon-button:hover {
+    background-color: rgba(127, 127, 127, 0.25);
+}
+
+.orla-tray-empty,
+.orla-tray-note {
+    font-size: 11.5px;
+    opacity: 0.65;
+    padding: 2px;
+}
+
+.orla-tray-footer {
+    spacing: 8px;
+}
+
+/* ---------- Menu Iniciar ---------- */
+
+.orla-start {
+    width: 620px;
+    padding: 18px 18px 10px;
+    spacing: 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+    color: #f2f2f2;
+}
+
+.orla-start.orla-light {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1c1c1e;
+}
+
+.orla-start-search {
+    padding: 9px 14px;
+    border-radius: 99px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    caret-color: #2dd4bf;
+    selection-background-color: #2dd4bf;
+}
+
+.orla-start-search:focus {
+    border-color: #2dd4bf;
+}
+
+.orla-light .orla-start-search {
+    border-color: rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.orla-start-search .hint-text {
+    color: rgba(127, 127, 127, 0.9);
+}
+
+.orla-start-search-icon {
+    icon-size: 16px;
+    padding-right: 8px;
+}
+
+.orla-start-body {
+    height: 470px;
+}
+
+.orla-start-view {
+    spacing: 6px;
+}
+
+.orla-start-section-header {
+    padding: 4px 4px 2px;
+    spacing: 8px;
+}
+
+.orla-start-section-title {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.orla-start-pill {
+    padding: 3px 12px;
+    border-radius: 99px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: inherit;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.orla-start-pill:hover,
+.orla-start-pill:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.orla-light .orla-start-pill {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.orla-light .orla-start-pill:hover,
+.orla-light .orla-start-pill:focus {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+.orla-start-cell {
+    padding: 8px 4px 4px;
+    border-radius: 10px;
+    color: inherit;
+    width: 92px;
+}
+
+.orla-start-cell-box {
+    spacing: 5px;
+}
+
+.orla-start-cell-name {
+    font-size: 11.5px;
+    text-align: center;
+}
+
+.orla-start-cell:hover,
+.orla-start-cell:focus,
+.orla-start-row:hover,
+.orla-start-row:focus,
+.orla-start-context-item:hover,
+.orla-start-context-item:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.orla-light .orla-start-cell:hover,
+.orla-light .orla-start-cell:focus,
+.orla-light .orla-start-row:hover,
+.orla-light .orla-start-row:focus,
+.orla-light .orla-start-context-item:hover,
+.orla-light .orla-start-context-item:focus {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.orla-start-cell:drop {
+    background-color: rgba(45, 212, 191, 0.3);
+}
+
+.orla-start-running {
+    width: 4px;
+    height: 4px;
+    border-radius: 99px;
+    background-color: #2dd4bf;
+}
+
+.orla-start-folder-icon {
+    padding: 3px;
+    border-radius: 10px;
+    background-color: rgba(127, 127, 127, 0.25);
+}
+
+.orla-start-dots {
+    spacing: 6px;
+    padding: 2px 0 4px;
+}
+
+.orla-start-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 99px;
+    background-color: rgba(127, 127, 127, 0.45);
+}
+
+.orla-start-dot:checked {
+    width: 18px;
+    background-color: #2dd4bf;
+}
+
+.orla-start-recent-row {
+    spacing: 0;
+}
+
+.orla-start-row {
+    padding: 6px 8px;
+    border-radius: 8px;
+    color: inherit;
+}
+
+.orla-start-row-box {
+    spacing: 10px;
+}
+
+.orla-start-row-title {
+    font-size: 12.5px;
+}
+
+.orla-start-row-subtitle {
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+.orla-start-best {
+    background-color: rgba(45, 212, 191, 0.14);
+}
+
+.orla-start-best .orla-start-row-title {
+    font-weight: 700;
+}
+
+.orla-start-empty {
+    padding: 40px 0;
+    opacity: 0.65;
+}
+
+.orla-start-letter {
+    font-weight: 700;
+    font-size: 12px;
+    color: #2dd4bf;
+    padding: 8px 8px 2px;
+}
+
+.orla-start-rail {
+    padding-left: 6px;
+}
+
+.orla-start-rail-key {
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 6px;
+    color: inherit;
+}
+
+.orla-start-rail-key:hover {
+    background-color: rgba(127, 127, 127, 0.25);
+}
+
+.orla-start-round {
+    padding: 8px;
+    border-radius: 99px;
+    color: inherit;
+}
+
+.orla-start-round:hover,
+.orla-start-round:focus {
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-start-footer {
+    spacing: 6px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.orla-start-user {
+    padding: 4px 10px 4px 4px;
+    border-radius: 99px;
+    color: inherit;
+}
+
+.orla-start-user:hover,
+.orla-start-user:focus {
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-start-user-box {
+    spacing: 8px;
+    font-weight: 600;
+    font-size: 12.5px;
+}
+
+.orla-start-avatar {
+    border-radius: 99px;
+}
+
+.orla-start-context,
+.orla-start-folder {
+    padding: 6px;
+    border-radius: 12px;
+    background-color: rgba(36, 36, 40, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    color: #f2f2f2;
+}
+
+.orla-light .orla-start-context,
+.orla-light .orla-start-folder {
+    background-color: rgba(250, 250, 252, 0.98);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1c1c1e;
+}
+
+.orla-start-context {
+    min-width: 190px;
+}
+
+.orla-start-context-item {
+    padding: 7px 12px;
+    border-radius: 7px;
+    color: inherit;
+    font-size: 12.5px;
+    text-align: left;
+}
+
+.orla-start-separator {
+    height: 1px;
+    margin: 4px 6px;
+    background-color: rgba(127, 127, 127, 0.25);
+}
+
+.orla-start-folder {
+    padding: 12px;
+    spacing: 8px;
+}
+
+.orla-start-folder-title {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+}
+
+.orla-start-folder-title:focus {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+/* Barra clara: relógio e pontos escuros, para ter contraste. */
+.orla-light .orla-panel-clock-time,
+.orla-light .orla-panel-clock-date {
+    color: #1c1c1e;
+}
+
+.orla-light .orla-ws-dot {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.orla-light .orla-ws-dot.orla-ws-active {
+    background-color: #1c1c1e;
+}
+
+.orla-taskbar-clock {
+    padding: 2px 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.orla-taskbar-clock:hover {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+.orla-taskbar-time {
+    font-size: 10pt;
+}
+
+.orla-taskbar-date {
+    font-size: 9pt;
+}
+
+/* ---------- Ícone dinâmico do Calendário ---------- */
+
+/* Pilha aberta: no lugar do ícone, um quadrado translúcido com a seta para
+   baixo, como no macOS. */
+.orla-stack-open-tile.orla-dark {
+    background-color: rgba(150, 150, 160, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.orla-stack-open-tile.orla-light {
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.orla-dark .orla-stack-open-chevron {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.orla-light .orla-stack-open-chevron {
+    color: rgba(28, 28, 30, 0.82);
+}
+
+/* Topo do leque: "N mais em Arquivos" + o botão redondo com a seta. */
+.orla-fan-more-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 99px;
+}
+
+.orla-dark .orla-fan-more-icon {
+    background-color: rgba(70, 70, 78, 0.92);
+    color: #f2f2f2;
+}
+
+.orla-light .orla-fan-more-icon {
+    background-color: rgba(240, 240, 244, 0.95);
+    color: #1c1c1e;
+}
+
+.orla-fan-more-icon StIcon {
+    icon-size: 22px;
+}
+
+.orla-fan-more:hover .orla-fan-more-icon {
+    background-color: rgba(53, 132, 228, 0.95);
+    color: #ffffff;
+}

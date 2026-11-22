@@ -1,0 +1,23 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2026 Vinicius Bispo
+ *
+ * prefs.css — estilos da janela de PREFERÊNCIAS (GTK 4 + libadwaita).
+ *
+ * O stylesheet.css é do GNOME Shell (St) e não vale aqui: as preferências
+ * rodam num processo GTK separado. Este arquivo é carregado pelo prefs.js
+ * com um Gtk.CssProvider.
+ *
+ * As cores vêm das variáveis do libadwaita (--card-bg-color…), que já têm
+ * um valor para o tema claro e outro para o escuro.
+ */
+
+/* Cartão do topo da aba "Sobre". */
+.about-hero {
+    padding: 32px 24px 28px;
+    border-radius: 16px;
+    border: 1px solid #2dd4bf;
+    /* O fundo dos cards do libadwaita: um pouco mais claro que a janela. */
+    background-color: var(--card-bg-color);
+    /* Um brilho turquesa bem leve em volta da borda. */
+    box-shadow: 0 0 0 3px alpha(#2dd4bf, 0.12);
+}

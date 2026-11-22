@@ -1,0 +1,6 @@
+{
+  "uuid": "orla-test@local",
+  "name": "Orla Dock — testes",
+  "description": "Roda os testes da Orla Dock dentro de um GNOME Shell de teste. Usada só pelo scripts/test-shell.sh.",
+  "shell-version": ["51"]
+}

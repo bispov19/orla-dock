@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Schema GSettings da Orla Dock.
+
+  O GSettings é o sistema de configurações do GNOME: cada opção ("key") tem
+  um tipo, um valor padrão e fica salva no dconf do usuário. Tanto a extensão
+  quanto a janela de preferências leem/escrevem aqui, e quem estiver ouvindo
+  o sinal "changed" é avisado na hora — é assim que as mudanças aparecem
+  na dock sem reiniciar nada.
+
+  Tipos usados: "b" = booleano, "i" = inteiro, "d" = número decimal,
+  "s" = texto, "as" = lista de textos.
+-->
+<schemalist gettext-domain="orla-dock">
+
+  <!-- Enums: listas fechadas de valores possíveis. -->
+  <enum id="org.gnome.shell.extensions.orla-dock.Position">
+    <value nick="bottom" value="0"/>
+    <value nick="top" value="1"/>
+    <value nick="left" value="2"/>
+    <value nick="right" value="3"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.MinimizeEffect">
+    <value nick="genie" value="0"/>
+    <value nick="scale" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.StackView">
+    <value nick="auto" value="0"/>
+    <value nick="grid" value="1"/>
+    <value nick="fan" value="2"/>
+    <value nick="list" value="3"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.IconLook">
+    <value nick="theme" value="0"/>
+    <value nick="dock" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.StackSort">
+    <value nick="date" value="0"/>
+    <value nick="name" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.AppsIcon">
+    <value nick="system-logo" value="0"/>
+    <value nick="grid" value="1"/>
+    <value nick="tile" value="2"/>
+    <value nick="custom" value="3"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.Theme">
+    <value nick="system" value="0"/>
+    <value nick="custom" value="1"/>
+    <value nick="wallpaper" value="2"/>
+    <value nick="carbon" value="3"/>
+    <value nick="nord" value="4"/>
+    <value nick="catppuccin" value="5"/>
+    <value nick="gruvbox" value="6"/>
+    <value nick="dracula" value="7"/>
+    <value nick="tokyo-night" value="8"/>
+    <value nick="frost" value="9"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.GradientDirection">
+    <value nick="vertical" value="0"/>
+    <value nick="horizontal" value="1"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.IndicatorStyle">
+    <value nick="dot" value="0"/>
+    <value nick="dash" value="1"/>
+    <value nick="line" value="2"/>
+    <value nick="square" value="3"/>
+    <value nick="windows" value="4"/>
+  </enum>
+
+  <enum id="org.gnome.shell.extensions.orla-dock.ColorMode">
+    <value nick="auto" value="0"/>
+    <value nick="accent" value="1"/>
+    <value nick="custom" value="2"/>
+  </enum>
+
+  <schema id="org.gnome.shell.extensions.orla-dock"
+          path="/org/gnome/shell/extensions/orla-dock/">
+
+    <!-- ===== Dock ===== -->
+    <key name="bar-style" type="s">
+      <default>'dock'</default>
+      <summary>Bar style: the id of a style registered in lib/styles.js</summary>
+    </key>
+    <key name="taskbar-icon-size" type="i">
+      <range min="16" max="64"/>
+      <default>28</default>
+      <summary>Icon size in taskbar mode</summary>
+    </key>
+    <key name="taskbar-clock" type="b">
+      <default>true</default>
+      <summary>Show the clock and date at the end of the taskbar</summary>
+    </key>
+    <key name="taskbar-merge-panel" type="b">
+      <default>true</default>
+      <summary>Merge the GNOME top bar into the taskbar</summary>
+      <description>In the taskbar styles the clock, tray, indicators and Activities move into the taskbar and the top bar disappears (bottom or top taskbar only).</description>
+    </key>
+    <key name="hug-edge-when-maximized" type="b">
+      <default>true</default>
+      <summary>Touch the screen edge while a window is maximized</summary>
+      <description>The floating Dock drops its margin and touches the edge while a maximized window is on its monitor, and floats again when there is none.</description>
+    </key>
+    <key name="position" enum="org.gnome.shell.extensions.orla-dock.Position">
+      <default>'bottom'</default>
+      <summary>Dock position on screen</summary>
+    </key>
+    <key name="icon-size" type="i">
+      <range min="24" max="128"/>
+      <default>48</default>
+      <summary>Icon size in logical pixels</summary>
+    </key>
+    <key name="magnification" type="d">
+      <range min="1.0" max="3.0"/>
+      <default>2.0</default>
+      <summary>Maximum magnification factor (1.0 disables magnification)</summary>
+    </key>
+    <key name="magnification-radius" type="d">
+      <range min="1.5" max="6.0"/>
+      <default>3.5</default>
+      <summary>How far the magnification wave reaches, in icons</summary>
+    </key>
+    <key name="magnification-rise" type="i">
+      <range min="0" max="40"/>
+      <default>10</default>
+      <summary>Extra lift of the magnified icon, in pixels</summary>
+    </key>
+    <key name="magnification-style" type="s">
+      <choices>
+        <choice value='fluid'/>
+        <choice value='domino'/>
+        <choice value='cylinder'/>
+        <choice value='magnetic'/>
+        <choice value='jelly'/>
+        <choice value='coverflow'/>
+      </choices>
+      <default>'fluid'</default>
+      <summary>Motion of the magnification wave</summary>
+    </key>
+    <key name="magnification-make-room" type="b">
+      <default>true</default>
+      <summary>Neighbours slide apart for the magnified icon</summary>
+    </key>
+    <key name="magnification-push" type="d">
+      <range min="1.0" max="3.0"/>
+      <default>2.3</default>
+      <summary>Push strength (higher pushes neighbours less)</summary>
+    </key>
+    <key name="magnification-domino-tilt" type="i">
+      <range min="2" max="40"/>
+      <default>14</default>
+      <summary>Domino: tilt in degrees</summary>
+    </key>
+    <key name="magnification-cylinder-angle" type="i">
+      <range min="10" max="60"/>
+      <default>32</default>
+      <summary>Cylinder: curve in degrees</summary>
+    </key>
+    <key name="magnification-magnetic-strength" type="i">
+      <range min="2" max="30"/>
+      <default>12</default>
+      <summary>Magnetic: how strongly icons snap to the pointer, in pixels</summary>
+    </key>
+    <key name="magnification-jelly-stretch" type="d">
+      <range min="0.1" max="1.5"/>
+      <default>0.75</default>
+      <summary>Jelly: stretch</summary>
+    </key>
+    <key name="magnification-jelly-squish" type="d">
+      <range min="0.1" max="0.9"/>
+      <default>0.5</default>
+      <summary>Jelly: squash</summary>
+    </key>
+    <key name="magnification-coverflow-angle" type="i">
+      <range min="15" max="65"/>
+      <default>38</default>
+      <summary>Coverflow: card angle in degrees</summary>
+    </key>
+    <key name="magnification-smoothness" type="d">
+      <range min="0.08" max="0.6"/>
+      <default>0.26</default>
+      <summary>How quickly icons follow the pointer (higher is snappier)</summary>
+    </key>
+    <key name="minimize-effect" enum="org.gnome.shell.extensions.orla-dock.MinimizeEffect">
+      <default>'genie'</default>
+      <summary>Animation used when minimizing windows</summary>
+    </key>
+    <key name="minimize-duration" type="i">
+      <range min="100" max="1500"/>
+      <default>550</default>
+      <summary>Duration of the minimize and restore animation, in milliseconds</summary>
+    </key>
+    <key name="minimize-to-app" type="b">
+      <default>true</default>
+      <summary>Minimize windows into the application icon</summary>
+      <description>When false, minimized windows get their own item near the trash, like on macOS.</description>
+    </key>
+    <key name="autohide" type="b">
+      <default>false</default>
+      <summary>Automatically hide and show the dock</summary>
+    </key>
+    <key name="orla-toggle-autohide" type="as">
+      <default><![CDATA[['<Super><Alt>d']]]></default>
+      <summary>Keyboard shortcut to toggle auto-hide</summary>
+    </key>
+    <key name="animate-launch" type="b">
+      <default>true</default>
+      <summary>Bounce the icon while an application is opening</summary>
+    </key>
+    <key name="bounce-on-attention" type="b">
+      <default>true</default>
+      <summary>Bounce the icon when an application requests attention</summary>
+    </key>
+    <key name="show-indicators" type="b">
+      <default>true</default>
+      <summary>Show indicators for open applications</summary>
+    </key>
+    <key name="show-recent" type="b">
+      <default>false</default>
+      <summary>Show suggested and recent applications in the dock</summary>
+    </key>
+    <key name="recent-apps" type="as">
+      <default>[]</default>
+      <summary>Recently closed applications (internal)</summary>
+    </key>
+    <key name="show-apps-button" type="b">
+      <default>true</default>
+      <summary>Show the applications grid button</summary>
+    </key>
+    <key name="apps-button-separator" type="b">
+      <default>true</default>
+      <summary>Separator between the applications button and the apps</summary>
+    </key>
+    <key name="apps-button-icon" enum="org.gnome.shell.extensions.orla-dock.AppsIcon">
+      <default>'system-logo'</default>
+      <summary>Icon of the applications button</summary>
+    </key>
+    <key name="apps-button-logo" type="s">
+      <choices>
+        <choice value="orla-dock"/>
+        <choice value="system"/>
+        <choice value="fedora"/>
+        <choice value="gnome"/>
+        <choice value="ubuntu"/>
+        <choice value="debian"/>
+        <choice value="archlinux"/>
+        <choice value="manjaro"/>
+        <choice value="linuxmint"/>
+        <choice value="opensuse"/>
+        <choice value="elementary"/>
+      </choices>
+      <default>'orla-dock'</default>
+      <summary>Logo shown on the applications button</summary>
+      <description>Used when the button icon is set to "Logo". "system" follows LOGO= in /etc/os-release.</description>
+    </key>
+    <key name="apps-button-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Color of the grid icon</summary>
+    </key>
+    <key name="apps-button-custom-icon" type="s">
+      <default>''</default>
+      <summary>Path of a custom image for the applications button</summary>
+    </key>
+    <key name="apps-button-icon-scale" type="i">
+      <range min="50" max="200"/>
+      <default>100</default>
+      <summary>Size of the applications button icon, in percent</summary>
+    </key>
+    <key name="window-previews" type="b">
+      <default>true</default>
+      <summary>Show live window previews when hovering an application icon</summary>
+    </key>
+    <key name="show-badges" type="b">
+      <default>true</default>
+      <summary>Show notification badges and progress bars on icons</summary>
+    </key>
+    <key name="dynamic-calendar-icon" type="b">
+      <default>true</default>
+      <summary>Deprecated: replaced by calendar-icon-style</summary>
+      <description>Kept only to migrate old settings: when false, calendar-icon-style starts as "theme".</description>
+    </key>
+    <key name="calendar-icon-style" enum="org.gnome.shell.extensions.orla-dock.IconLook">
+      <default>'dock'</default>
+      <summary>Calendar icon look: follow the icon theme, or the Dock's own icon with today's date</summary>
+    </key>
+    <key name="trash-icon-style" enum="org.gnome.shell.extensions.orla-dock.IconLook">
+      <default>'theme'</default>
+      <summary>Trash icon look: follow the icon theme, or the Dock's own trash</summary>
+    </key>
+    <key name="ignored-window-classes" type="s">
+      <default>'openlogi-*'</default>
+      <summary>Hidden windows: window classes the dock ignores</summary>
+      <description>Windows whose class (Wayland app_id) matches one of these patterns never show up on the dock. Separate patterns with commas; "*" matches any text.</description>
+    </key>
+    <key name="hide-overview-dash" type="b">
+      <default>true</default>
+      <summary>Hide the native dash in the Activities overview</summary>
+    </key>
+
+    <!-- ===== Aparência ===== -->
+    <key name="theme" enum="org.gnome.shell.extensions.orla-dock.Theme">
+      <default>'system'</default>
+      <summary>Color theme of the dock</summary>
+    </key>
+    <key name="background-color" type="s">
+      <default>'#241f31'</default>
+      <summary>Background color for the custom theme</summary>
+    </key>
+    <key name="use-gradient" type="b">
+      <default>false</default>
+      <summary>Blend the custom background into a second color</summary>
+    </key>
+    <key name="gradient-color" type="s">
+      <default>'#3d3846'</default>
+      <summary>Second color of the gradient</summary>
+    </key>
+    <key name="gradient-direction" enum="org.gnome.shell.extensions.orla-dock.GradientDirection">
+      <default>'vertical'</default>
+      <summary>Direction of the gradient</summary>
+    </key>
+    <key name="background-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.45</default>
+      <summary>Opacity of the dock background tint</summary>
+    </key>
+    <key name="border-width" type="i">
+      <range min="0" max="4"/>
+      <default>1</default>
+      <summary>Width of the outline around the dock</summary>
+    </key>
+    <key name="border-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Color of the outline</summary>
+    </key>
+    <key name="border-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.14</default>
+      <summary>Opacity of the outline</summary>
+    </key>
+    <key name="icon-spacing" type="i">
+      <range min="0" max="24"/>
+      <default>6</default>
+      <summary>Space between icons</summary>
+    </key>
+    <key name="dock-padding" type="i">
+      <range min="0" max="20"/>
+      <default>0</default>
+      <summary>Extra space between the icons and the dock edge</summary>
+    </key>
+    <key name="indicator-style" enum="org.gnome.shell.extensions.orla-dock.IndicatorStyle">
+      <default>'dot'</default>
+      <summary>Shape of the running-app indicator</summary>
+    </key>
+    <key name="indicator-color-mode" enum="org.gnome.shell.extensions.orla-dock.ColorMode">
+      <default>'auto'</default>
+      <summary>Where the indicator color comes from</summary>
+    </key>
+    <key name="indicator-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Custom indicator color</summary>
+    </key>
+    <key name="indicator-size" type="i">
+      <range min="2" max="12"/>
+      <default>4</default>
+      <summary>Size of the indicator</summary>
+    </key>
+    <key name="indicator-glow" type="b">
+      <default>false</default>
+      <summary>Soft glow around the indicator</summary>
+    </key>
+    <key name="badge-color-mode" enum="org.gnome.shell.extensions.orla-dock.ColorMode">
+      <default>'auto'</default>
+      <summary>Where the notification badge color comes from</summary>
+    </key>
+    <key name="badge-color" type="s">
+      <default>'#ff3b30'</default>
+      <summary>Custom notification badge color</summary>
+    </key>
+    <key name="popup-opacity" type="d">
+      <range min="0.3" max="1.0"/>
+      <default>0.94</default>
+      <summary>Opacity of labels, previews and stacks</summary>
+    </key>
+    <key name="separator-thickness" type="i">
+      <range min="0" max="6"/>
+      <default>1</default>
+      <summary>Thickness of the separators (0 hides them)</summary>
+    </key>
+    <key name="separator-length" type="d">
+      <range min="0.2" max="1.0"/>
+      <default>0.75</default>
+      <summary>Length of the separators, as a share of the icon size</summary>
+    </key>
+    <key name="separator-color" type="s">
+      <default>'#ffffff'</default>
+      <summary>Color of the separators</summary>
+    </key>
+    <key name="separator-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.3</default>
+      <summary>Opacity of the separators</summary>
+    </key>
+    <key name="corner-radius" type="i">
+      <range min="0" max="40"/>
+      <default>18</default>
+      <summary>Corner radius of the dock</summary>
+    </key>
+    <key name="dock-margin" type="i">
+      <range min="0" max="40"/>
+      <default>6</default>
+      <summary>Distance between the dock and the screen edge</summary>
+    </key>
+    <key name="icon-reflection" type="b">
+      <default>false</default>
+      <summary>Show a reflection under the icons</summary>
+    </key>
+
+    <!-- ===== Vidro da Orla (a receita está em lib/glassMath.js) ===== -->
+    <key name="blur-enabled" type="b">
+      <default>false</default>
+      <summary>Frosted glass behind the dock</summary>
+    </key>
+    <key name="blur-mode" type="s">
+      <choices>
+        <choice value='dynamic'/>
+        <choice value='static'/>
+      </choices>
+      <default>'dynamic'</default>
+      <summary>Dynamic follows what is behind the dock; static uses an image</summary>
+    </key>
+    <key name="blur-static-source" type="s">
+      <choices>
+        <choice value='preset'/>
+        <choice value='custom'/>
+      </choices>
+      <default>'preset'</default>
+      <summary>Image used by the static blur</summary>
+    </key>
+    <key name="blur-static-preset" type="s">
+      <default>'abstract-dark'</default>
+      <summary>Preset image for the static blur</summary>
+    </key>
+    <key name="blur-custom-photo" type="s">
+      <default>''</default>
+      <summary>Path of your own photo for the static blur</summary>
+    </key>
+    <key name="blur-intensity" type="d">
+      <range min="0.0" max="64.0"/>
+      <default>34.0</default>
+      <summary>How soft the background becomes</summary>
+    </key>
+    <key name="blur-vibrancy" type="d">
+      <range min="0.5" max="2.0"/>
+      <default>1.45</default>
+      <summary>Colour saturation seen through the glass</summary>
+    </key>
+    <key name="blur-brightness" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.1</default>
+      <summary>Tone of the glass, from dark (0) to light (1)</summary>
+      <description>The brightness band the adaptive glass pulls the background towards.</description>
+    </key>
+    <key name="blur-tint-color" type="s">
+      <default>'#16202A'</default>
+      <summary>Colour washed over the glass</summary>
+    </key>
+    <key name="blur-tint-opacity" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.3</default>
+      <summary>How much of the tint shows</summary>
+    </key>
+    <key name="blur-border-glow" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.55</default>
+      <summary>Strength of the light and shadow along the rim</summary>
+    </key>
+    <key name="blur-highlight-angle" type="d">
+      <range min="0.0" max="360.0"/>
+      <default>300.0</default>
+      <summary>Where the light on the rim falls from, in degrees</summary>
+    </key>
+    <key name="blur-adaptive" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.85</default>
+      <summary>How much the glass evens out bright and dark backgrounds</summary>
+    </key>
+    <key name="blur-refraction" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.5</default>
+      <summary>How much the thick edge of the glass bends the background</summary>
+    </key>
+    <key name="blur-dispersion" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.3</default>
+      <summary>Faint rainbow split of colours along the edge</summary>
+    </key>
+    <key name="blur-sheen" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.35</default>
+      <summary>Soft reflection of light coming from the top</summary>
+    </key>
+    <key name="blur-grain" type="d">
+      <range min="0.0" max="1.0"/>
+      <default>0.3</default>
+      <summary>Barely visible grain that keeps dark gradients smooth</summary>
+    </key>
+
+    <!-- ===== Stacks e Lixeira ===== -->
+    <key name="show-home" type="b">
+      <default>false</default>
+      <summary>Show the Home folder</summary>
+    </key>
+    <key name="show-documents" type="b">
+      <default>false</default>
+      <summary>Show the Documents folder</summary>
+    </key>
+    <key name="show-pictures" type="b">
+      <default>false</default>
+      <summary>Show the Pictures folder</summary>
+    </key>
+    <key name="show-videos" type="b">
+      <default>false</default>
+      <summary>Show the Videos folder</summary>
+    </key>
+    <key name="show-music" type="b">
+      <default>false</default>
+      <summary>Show the Music folder</summary>
+    </key>
+    <key name="show-mounts" type="b">
+      <default>false</default>
+      <summary>Show USB and other drives while they are connected</summary>
+    </key>
+    <key name="downloads-icon-style" type="s">
+      <choices>
+        <choice value="files"/>
+        <choice value="arrow"/>
+      </choices>
+      <default>'arrow'</default>
+      <summary>Look of the Downloads icon</summary>
+      <description>"files": the newest files stacked on the icon; "arrow": a folder with a download arrow.</description>
+    </key>
+    <key name="show-downloads" type="b">
+      <default>true</default>
+      <summary>Show the Downloads stack</summary>
+    </key>
+    <key name="show-trash" type="b">
+      <default>true</default>
+      <summary>Show the trash</summary>
+    </key>
+    <key name="stack-view" enum="org.gnome.shell.extensions.orla-dock.StackView">
+      <default>'auto'</default>
+      <summary>How stacks open: automatic, grid, fan or list</summary>
+    </key>
+    <key name="stack-sort" enum="org.gnome.shell.extensions.orla-dock.StackSort">
+      <default>'date'</default>
+      <summary>Sort order of stack items</summary>
+    </key>
+    <key name="stack-folders" type="as">
+      <default>[]</default>
+      <summary>Additional folders shown as stacks (URIs)</summary>
+    </key>
+
+    <!-- ===== Monitores ===== -->
+    <key name="multi-monitor" type="b">
+      <default>true</default>
+      <summary>Show the dock on all monitors</summary>
+      <description>If false, the dock is shown only on the primary monitor.</description>
+    </key>
+
+    <!-- Janelas balançando (wobbly windows) -->
+    <key name="wobbly-enabled" type="b">
+      <default>true</default>
+      <summary>Wobbly windows</summary>
+      <description>Windows bend and wobble like jelly while they are moved.</description>
+    </key>
+    <key name="wobbly-preset" type="s">
+      <choices>
+        <choice value="soft"/>
+        <choice value="normal"/>
+        <choice value="strong"/>
+        <choice value="custom"/>
+      </choices>
+      <default>'normal'</default>
+      <summary>Wobble intensity preset</summary>
+      <description>Only used by the preferences window to fill the spring, friction and mass values.</description>
+    </key>
+    <key name="wobbly-spring" type="d">
+      <range min="100" max="1200"/>
+      <default>400</default>
+      <summary>Spring constant</summary>
+      <description>Higher values make the window snap back faster and bend less.</description>
+    </key>
+    <key name="wobbly-friction" type="d">
+      <range min="3" max="24"/>
+      <default>9</default>
+      <summary>Friction</summary>
+      <description>Higher values stop the wobbling sooner.</description>
+    </key>
+    <key name="wobbly-mass" type="d">
+      <range min="0.5" max="2.5"/>
+      <default>1</default>
+      <summary>Mass</summary>
+      <description>Heavier windows swing slower and wider.</description>
+    </key>
+    <key name="wobbly-mesh" type="i">
+      <range min="3" max="12"/>
+      <default>6</default>
+      <summary>Mesh resolution</summary>
+      <description>Number of spring points on each side of the window.</description>
+    </key>
+    <key name="wobbly-resize" type="b">
+      <default>true</default>
+      <summary>Wobble when resizing</summary>
+    </key>
+    <key name="wobbly-maximize" type="b">
+      <default>false</default>
+      <summary>Wobble when maximizing, restoring and moving with the keyboard</summary>
+    </key>
+    <!-- Modo Painel e Menu Iniciar das barras de tarefas -->
+    <key name="start-menu" type="b">
+      <default>true</default>
+      <summary>Start menu</summary>
+      <description>On the taskbar, open the Orla Dock Start Menu from the start button instead of GNOME's app grid.</description>
+    </key>
+    <key name="start-menu-pinned" type="as">
+      <default>[]</default>
+      <summary>Start menu pinned items</summary>
+      <description>App IDs and folder keys pinned to the start menu. Empty uses the dock order.</description>
+    </key>
+    <key name="start-menu-folders" type="s">
+      <default>'[]'</default>
+      <summary>Start menu folders</summary>
+      <description>Folders made in the start menu, as JSON.</description>
+    </key>
+    <key name="start-menu-recent-apps" type="b">
+      <default>true</default>
+      <summary>Start menu recent apps</summary>
+      <description>Show the Recent apps row on the start menu's home page.</description>
+    </key>
+    <key name="start-menu-continue" type="b">
+      <default>true</default>
+      <summary>Start menu recent files</summary>
+      <description>Show Continue where you left off on the start menu's home page.</description>
+    </key>
+    <key name="start-menu-search-providers" type="b">
+      <default>true</default>
+      <summary>Start menu search providers</summary>
+      <description>Include results from GNOME search providers, like Characters and Calendar, in start menu search.</description>
+    </key>
+    <key name="start-menu-web-search" type="b">
+      <default>true</default>
+      <summary>Start menu web search</summary>
+      <description>Offer a web search for the typed text at the end of start menu search results.</description>
+    </key>
+    <key name="start-menu-web-search-url" type="s">
+      <default>'https://duckduckgo.com/?q=%s'</default>
+      <summary>Start menu web search URL</summary>
+      <description>Address used for web search. %s is replaced with the search text.</description>
+    </key>
+    <key name="start-menu-recent-files" type="i">
+      <range min="1" max="50"/>
+      <default>10</default>
+      <summary>Start menu recent files</summary>
+      <description>How many recent files the start menu shows under Continue where you left off.</description>
+    </key>
+    <key name="start-menu-recent-app-ids" type="as">
+      <default>[]</default>
+      <summary>Start menu recent app history</summary>
+      <description>App IDs ordered from the most recently opened or closed, used for the start menu's Recent apps row.</description>
+    </key>
+    <key name="start-menu-all-apps-grid" type="b">
+      <default>false</default>
+      <summary>Start menu all apps as a grid</summary>
+      <description>Show the start menu's All apps page as a grid of icons instead of a list.</description>
+    </key>
+    <key name="tray-order" type="as">
+      <default>[]</default>
+      <summary>Tray icon order</summary>
+      <description>Order of the icons inside the tray popup.</description>
+    </key>
+    <key name="tray-panel-indicators" type="as">
+      <default>[]</default>
+      <summary>Tray icons shown on the panel</summary>
+      <description>Small status icons the user chose to keep on the panel instead of inside the tray.</description>
+    </key>
+    <key name="tray-wide-indicators" type="as">
+      <default>[]</default>
+      <summary>Wide applets shown in the tray</summary>
+      <description>Wide applets, such as ones with text or graphs, the user chose to show as a row inside the tray instead of on the panel.</description>
+    </key>
+    <key name="panel-applet-order" type="as">
+      <default>[]</default>
+      <summary>Order of extension applets on the panel, changed with Ctrl + drag</summary>
+    </key>
+    <key name="panel-workspace-indicator" type="b">
+      <default>true</default>
+      <summary>Panel Workspace Indicator</summary>
+      <description>Show the workspace pills at the start of the panel in Panel Mode.</description>
+    </key>
+    <key name="panel-date-format" type="s">
+      <default>'%d/%m/%Y'</default>
+      <summary>Panel Date Format</summary>
+      <description>GLib date format used for the date line under the panel clock.</description>
+    </key>
+  </schema>
+</schemalist>
