@@ -54,7 +54,7 @@
     <value nick="system" value="0"/>
     <value nick="custom" value="1"/>
     <value nick="wallpaper" value="2"/>
-    <value nick="carbon" value="3"/>
+    <value nick="graphite" value="3"/>
     <value nick="nord" value="4"/>
     <value nick="catppuccin" value="5"/>
     <value nick="gruvbox" value="6"/>
@@ -445,7 +445,7 @@
       <summary>Image used by the static blur</summary>
     </key>
     <key name="blur-static-preset" type="s">
-      <default>'abstract-dark'</default>
+      <default>'tide'</default>
       <summary>Preset image for the static blur</summary>
     </key>
     <key name="blur-custom-photo" type="s">

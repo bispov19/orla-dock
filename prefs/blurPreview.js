@@ -31,6 +31,7 @@ import Graphene from 'gi://Graphene';
 import Gsk from 'gi://Gsk';
 import Gtk from 'gi://Gtk';
 
+import {backdropPath} from '../lib/glassBackdrops.js';
 import {SHEEN_GAIN, SHEEN_REACH, colorTransform, glassParams, rimLight} from '../lib/glassMath.js';
 import {dockStyle, hexToRgb} from '../lib/themes.js';
 
@@ -134,10 +135,8 @@ class OrlaBlurPreview extends Gtk.Widget {
         let path = null;
         if (s.get_string('blur-static-source') === 'custom')
             path = s.get_string('blur-custom-photo') || null;
-        if (!path || !GLib.file_test(path, GLib.FileTest.EXISTS)) {
-            const preset = s.get_string('blur-static-preset').replace(/[^a-z0-9-]/g, '');
-            path = GLib.build_filenamev([this._path, 'icons', 'glass', `${preset}.svg`]);
-        }
+        if (!path || !GLib.file_test(path, GLib.FileTest.EXISTS))
+            path = backdropPath(this._path, s.get_string('blur-static-preset'));
         this._staticImage = loadTexture(path);
     }
 

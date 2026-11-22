@@ -1,36 +1,28 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // SPDX-FileCopyrightText: 2026 Vinicius Bispo
 //
-// prefs/blurPage.js — aba "Desfoque": o vidro fosco atrás da dock.
+// prefs/blurPage.js — aba "Desfoque": o Vidro da Orla atrás da dock.
 //
-//   - liga/desliga (no cabeçalho);
-//   - Modo: Dinâmico (o que está atrás da dock) ou Estático (uma imagem);
-//   - Fundo do estático: imagens prontas ou uma foto sua;
-//   - Vidro: visuais prontos (Orla, Lente, Névoa, Noite, Seda) e o material;
-//   - Lente: refração e dispersão na borda;
-//   - Luz: reflexo, relevo da borda, direção da luz e granulado.
-// No topo, uma prévia ao vivo (prefs/blurPreview.js).
+//   prévia ao vivo        (prefs/blurPreview.js)
+//   liga/desliga          no cabeçalho do primeiro grupo
+//   de onde vem o vidro   Dinâmico (o que está atrás da dock) ou Estático
+//   fundo do estático     cartões com os fundos prontos e a sua foto
+//   Vidro / Lente / Luz   visuais prontos e cada ajuste do material
 
 import Adw from 'gi://Adw';
-import GLib from 'gi://GLib';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 
 import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
+import {BACKDROPS, backdropId, backdropPath} from '../lib/glassBackdrops.js';
 import {BlurPreview} from './blurPreview.js';
 import {group, sliderRow} from './rows.js';
-import {colorRow, imageRow} from './widgets.js';
+import {colorRow} from './widgets.js';
 
 const N_ = text => text;
-
-// Imagens prontas do modo estático (icons/glass/<id>.svg).
-const PRESETS = [
-    ['abstract-dark', N_('Abstract')],
-    ['aurora', N_('Aurora')],
-    ['cyberpunk', N_('Cyberpunk')],
-    ['minimal', N_('Minimal')],
-    ['sunset', N_('Sunset')],
-];
+const CARD_W = 128;
+const CARD_H = 72;
 
 // Visuais prontos do Vidro da Orla. Cada um é um ponto de partida: depois
 // dá para ajustar cada controle (aí o visual vira "Personalizado").
@@ -67,136 +59,162 @@ const GLASS_KEYS = ['blur-brightness', 'blur-adaptive', 'blur-tint-color', 'blur
 const LENS_KEYS = ['blur-refraction', 'blur-dispersion'];
 const LIGHT_KEYS = ['blur-sheen', 'blur-border-glow', 'blur-highlight-angle', 'blur-grain'];
 
-/** Um "cartão" de escolha: linha com rádio, ícone e descrição. */
-function choiceRow(title, subtitle, icon, radioGroup) {
-    const radio = new Gtk.CheckButton({valign: Gtk.Align.CENTER, group: radioGroup});
-    const row = new Adw.ActionRow({title, subtitle, activatable_widget: radio});
-    row.add_prefix(radio);
-    row.add_suffix(new Gtk.Image({icon_name: icon, css_classes: ['dim-label']}));
-    return {row, radio};
+/** O seletor Dinâmico | Estático, numa linha só. */
+function sourceRow(binder) {
+    const settings = binder.settings;
+    const row = new Adw.ActionRow({title: _('Glass source')});
+    // Largura mínima: sem ela, a descrição da linha espreme as opções.
+    const toggles = new Adw.ToggleGroup({valign: Gtk.Align.CENTER, width_request: 210, homogeneous: true});
+    toggles.add(new Adw.Toggle({name: 'dynamic', label: _('Dynamic')}));
+    toggles.add(new Adw.Toggle({name: 'static', label: _('Static')}));
+    row.add_suffix(toggles);
+    const hints = {
+        dynamic: _('Follows windows and wallpaper behind the Dock in real time'),
+        static: _('A fixed image behind the glass — lighter on the graphics card'),
+    };
+    const sync = () => {
+        const mode = settings.get_string('blur-mode');
+        if (toggles.active_name !== mode)
+            toggles.active_name = mode;
+        row.subtitle = hints[mode] ?? '';
+    };
+    toggles.connect('notify::active-name', () => {
+        const mode = toggles.active_name;
+        if (mode && settings.get_string('blur-mode') !== mode)
+            settings.set_string('blur-mode', mode);
+    });
+    binder._watch('blur-mode', sync);
+    sync();
+    return row;
 }
 
-export function blurPage(binder, extensionPath, window) {
+/** Um cartão do fundo estático: a imagem e o nome embaixo. */
+function backdropCard(file, label) {
+    const picture = new Gtk.Picture({
+        file,
+        content_fit: Gtk.ContentFit.COVER,
+        width_request: CARD_W,
+        height_request: CARD_H,
+        overflow: Gtk.Overflow.HIDDEN,
+        css_classes: ['card'],
+    });
+    const box = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, spacing: 6});
+    box.append(picture);
+    box.append(new Gtk.Label({label, css_classes: ['caption']}));
+    const button = new Gtk.ToggleButton({child: box, css_classes: ['flat']});
+    return {button, picture};
+}
+
+/**
+ * Os fundos do modo estático numa fileira de cartões; o último é "Sua foto"
+ * (escolher abre o seletor de imagens e o cartão passa a mostrar a foto).
+ */
+function backdropPicker(binder, extensionPath, window) {
     const settings = binder.settings;
-    const page = new Adw.PreferencesPage({
-        title: _('Blur'),
-        icon_name: 'view-paged-symbolic',
-    });
-    const isOn = s => s.get_boolean('blur-enabled');
-
-    // --- Prévia ao vivo (a mesma receita do vidro da dock) ---
-    const preview = new Adw.PreferencesGroup();
-    preview.add(new BlurPreview(settings, extensionPath));
-    page.add(preview);
-
-    // --- Liga/desliga ---
-    const hero = group(page, _('Blur material'), _('Frosted glass behind the Dock'));
-    const enable = new Gtk.Switch({valign: Gtk.Align.CENTER});
-    binder.bool('blur-enabled', enable);
-    hero.set_header_suffix(enable);
-
-    // --- Modo ---
-    const mode = group(page, _('Mode'));
-    const dynamic = choiceRow(_('Dynamic'), _('Follows windows and wallpaper behind the Dock in real time'),
-        'view-refresh-symbolic', null);
-    const still = choiceRow(_('Static'), _('A fixed image behind the glass — lighter on the graphics card'),
-        'image-x-generic-symbolic', dynamic.radio);
-    mode.add(dynamic.row);
-    mode.add(still.row);
-    binder.choice('blur-mode', new Map([['dynamic', dynamic.radio], ['static', still.radio]]));
-
-    // --- Fundo do modo estático ---
-    const source = group(page, _('Background'), _('The image that static blur is made from'));
-    const switcher = new Gtk.Box({valign: Gtk.Align.CENTER, css_classes: ['linked']});
-    const presetBtn = new Gtk.ToggleButton({label: _('Presets')});
-    const customBtn = new Gtk.ToggleButton({label: _('Your photo'), group: presetBtn});
-    switcher.append(presetBtn);
-    switcher.append(customBtn);
-    source.set_header_suffix(switcher);
-    binder.choice('blur-static-source', new Map([['preset', presetBtn], ['custom', customBtn]]));
-
-    // Gtk.FlowBox: uma grade que se ajusta à largura, com as miniaturas.
-    const flow = new Gtk.FlowBox({
-        selection_mode: Gtk.SelectionMode.SINGLE,
-        homogeneous: true,
-        min_children_per_line: 2,
-        max_children_per_line: 5,
-        column_spacing: 6,
-        row_spacing: 6,
-        margin_top: 8, margin_bottom: 8, margin_start: 8, margin_end: 8,
-    });
-    const children = new Map();
-    for (const [id, name] of PRESETS) {
-        const box = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, spacing: 4});
-        const picture = Gtk.Picture.new_for_filename(
-            GLib.build_filenamev([extensionPath, 'icons', 'glass', `${id}.svg`]));
-        picture.set_content_fit(Gtk.ContentFit.COVER);
-        picture.set_size_request(112, 64);
-        picture.set_overflow(Gtk.Overflow.HIDDEN);
-        picture.add_css_class('card');
-        box.append(picture);
-        box.append(new Gtk.Label({label: _(name), css_classes: ['caption']}));
-        const child = new Gtk.FlowBoxChild({child: box});
-        flow.append(child);
-        children.set(id, child);
-    }
-    const syncPreset = () => {
-        const child = children.get(settings.get_string('blur-static-preset'));
-        if (child)
-            flow.select_child(child);
-    };
-    flow.connect('child-activated', (_f, child) => {
-        for (const [id, c] of children) {
-            if (c === child)
-                settings.set_string('blur-static-preset', id);
-        }
-    });
-    binder._watch('blur-static-preset', syncPreset);
-    syncPreset();
-    const presetRow = new Adw.PreferencesRow({activatable: false, child: flow});
-    source.add(presetRow);
-    const photoRow = imageRow(binder, 'blur-custom-photo', _('Your photo'), window);
-    source.add(photoRow);
-    binder.showWhen('blur-static-source', s => s.get_string('blur-static-source') === 'preset', presetRow);
-    binder.showWhen('blur-static-source', s => s.get_string('blur-static-source') === 'custom', photoRow);
-    binder.showWhen(['blur-enabled', 'blur-mode'],
-        s => isOn(s) && s.get_string('blur-mode') === 'static', source);
-
-    // --- Vidro ---
-    // --- Vidro: visuais prontos e o material ---
-    const material = group(page, _('Glass'), _('Start from a look, then fine-tune'));
-    binder.resetButton(material, [...GLASS_KEYS, ...LENS_KEYS, ...LIGHT_KEYS]);
-    const looks = new Gtk.FlowBox({
+    const strip = new Gtk.FlowBox({
         selection_mode: Gtk.SelectionMode.NONE,
         homogeneous: true,
         min_children_per_line: 3,
         max_children_per_line: 6,
-        column_spacing: 8, row_spacing: 8,
+        margin_top: 6, margin_bottom: 6, margin_start: 6, margin_end: 6,
+    });
+    const cards = [];
+    for (const {id, name} of BACKDROPS) {
+        const card = backdropCard(Gio.File.new_for_path(backdropPath(extensionPath, id)), _(name));
+        card.button.connect('clicked', () => {
+            settings.set_string('blur-static-source', 'preset');
+            settings.set_string('blur-static-preset', id);
+            sync();
+        });
+        cards.push({id, ...card});
+        strip.append(card.button);
+    }
+    const photo = backdropCard(null, _('Your photo'));
+    photo.button.connect('clicked', () => {
+        const filter = new Gtk.FileFilter({name: _('Images')});
+        filter.add_mime_type('image/*');
+        const filters = new Gio.ListStore({item_type: Gtk.FileFilter});
+        filters.append(filter);
+        new Gtk.FileDialog({title: _('Choose an image'), filters}).open(window, null, (dialog, res) => {
+            try {
+                const path = dialog.open_finish(res)?.get_path();
+                if (path) {
+                    settings.set_string('blur-custom-photo', path);
+                    settings.set_string('blur-static-source', 'custom');
+                }
+            } catch {
+                // cancelado
+            }
+            sync();
+        });
+    });
+    strip.append(photo.button);
+
+    function sync() {
+        const custom = settings.get_string('blur-static-source') === 'custom';
+        const preset = backdropId(settings.get_string('blur-static-preset'));
+        for (const card of cards)
+            card.button.active = !custom && card.id === preset;
+        const path = settings.get_string('blur-custom-photo');
+        photo.picture.file = path ? Gio.File.new_for_path(path) : null;
+        photo.button.active = custom;
+    }
+    ['blur-static-source', 'blur-static-preset', 'blur-custom-photo'].forEach(key => binder._watch(key, sync));
+    sync();
+    return new Adw.PreferencesRow({activatable: false, child: strip});
+}
+
+export function blurPage(binder, extensionPath, window) {
+    const settings = binder.settings;
+    const page = new Adw.PreferencesPage({title: _('Blur'), icon_name: 'view-paged-symbolic'});
+    const isOn = s => s.get_boolean('blur-enabled');
+
+    const preview = new Adw.PreferencesGroup();
+    preview.add(new BlurPreview(settings, extensionPath));
+    page.add(preview);
+
+    const hero = group(page, _('Blur material'), _('Frosted glass behind the Dock'));
+    const enable = new Gtk.Switch({valign: Gtk.Align.CENTER});
+    binder.bool('blur-enabled', enable);
+    hero.set_header_suffix(enable);
+    const mode = sourceRow(binder);
+    hero.add(mode);
+    binder.showWhen('blur-enabled', isOn, mode);
+
+    const backdrop = group(page, _('Background'), _('The image the static glass is made from'));
+    backdrop.add(backdropPicker(binder, extensionPath, window));
+    binder.showWhen(['blur-enabled', 'blur-mode'],
+        s => isOn(s) && s.get_string('blur-mode') === 'static', backdrop);
+
+    // --- Vidro: visuais prontos e o material ---
+    const material = group(page, _('Glass'), _('Start from a look, then fine-tune'));
+    binder.resetButton(material, [...GLASS_KEYS, ...LENS_KEYS, ...LIGHT_KEYS]);
+    // Os visuais num seletor só: o que bate com os ajustes atuais fica
+    // marcado; mexendo em qualquer ajuste, nenhum fica (é o seu visual).
+    const looks = new Adw.ToggleGroup({
+        homogeneous: true,
         margin_top: 10, margin_bottom: 10, margin_start: 10, margin_end: 10,
     });
-    const lookButtons = [];
-    for (const [name, values] of LOOKS) {
-        const button = new Gtk.Button({label: _(name), css_classes: ['pill']});
-        button.connect('clicked', () => {
-            for (const [key, value] of Object.entries(values))
-                settings.set_double(key, value);
-        });
-        looks.append(button);
-        lookButtons.push([button, values]);
-    }
-    const customLook = new Gtk.Button({label: _('Custom'), css_classes: ['pill'], sensitive: false});
-    looks.append(customLook);
-    // Destaca o visual que corresponde aos valores atuais (ou "Personalizado").
+    LOOKS.forEach(([name], i) => looks.add(new Adw.Toggle({name: `look-${i}`, label: _(name)})));
+    const currentLook = () => LOOKS.findIndex(([, values]) => Object.entries(values)
+        .every(([key, v]) => Math.abs(settings.get_double(key) - v) < 0.005));
+    let syncing = false;
     const syncLooks = () => {
-        let matched = false;
-        for (const [button, values] of lookButtons) {
-            const match = !matched && Object.entries(values)
-                .every(([key, v]) => Math.abs(settings.get_double(key) - v) < 0.005);
-            button[match ? 'add_css_class' : 'remove_css_class']('suggested-action');
-            matched ||= match;
-        }
-        customLook[matched ? 'remove_css_class' : 'add_css_class']('suggested-action');
+        syncing = true;
+        const index = currentLook();
+        if (index >= 0)
+            looks.active_name = `look-${index}`;
+        else
+            looks.active = Gtk.INVALID_LIST_POSITION;
+        syncing = false;
     };
+    looks.connect('notify::active-name', () => {
+        const match = /^look-(\d+)$/.exec(looks.active_name ?? '');
+        if (syncing || !match)
+            return;
+        for (const [key, value] of Object.entries(LOOKS[Number(match[1])][1]))
+            settings.set_double(key, value);
+    });
     LOOK_KEYS.forEach(key => binder._watch(key, syncLooks));
     syncLooks();
     material.add(new Adw.PreferencesRow({activatable: false, child: looks}));
@@ -216,7 +234,7 @@ export function blurPage(binder, extensionPath, window) {
         {lower: 0, upper: 64, step: 1, marks: [[0, '0 px'], [64, '64 px']]}));
     material.add(sliderRow(binder, 'blur-vibrancy', _('Vibrancy'), _('Colour saturation seen through the glass'),
         {lower: 0.5, upper: 2, step: 0.05, digits: 2, marks: [[0.5, '0.5×'], [1, '1×'], [2, '2×']]}));
-    binder.showWhen('blur-enabled', isOn, material, mode);
+    binder.showWhen('blur-enabled', isOn, material);
 
     // --- Lente: o vidro tem espessura ---
     const lens = group(page, _('Lens'),

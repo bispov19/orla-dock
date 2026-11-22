@@ -21,6 +21,7 @@ import Meta from 'gi://Meta';
 import Shell from 'gi://Shell';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
@@ -564,7 +565,7 @@ async function testStartMenu(settings) {
     await sleep(300);
     check(apps.every(app => menu.data.isPinned(app)), 'menu iniciar: "Fixar no Início" funciona');
     const [a, b] = apps.map(app => app.get_id());
-    menu.data.makeFolder(a, b, menu.newFolderName());
+    menu.data.groupApps(a, b, menu.newFolderName());
     await sleep(400);
     const folder = menu.data.folders[0];
     check(Boolean(folder) && folder.apps.length === 2, 'menu iniciar: soltar um app em outro cria uma pasta');
@@ -640,6 +641,34 @@ async function testGlass(settings) {
     await sleep(1000);
 }
 
+// ---------- Contador de notificações (bolinha no ícone) ----------
+
+async function testNotificationBadges() {
+    const counter = manager().notificationCounter;
+    const app = Shell.AppSystem.get_default().lookup_app('org.gnome.TextEditor.desktop');
+    if (!app) {
+        log('INFO', 'Editor de Texto não instalado; pulando o contador de notificações');
+        return;
+    }
+    const id = app.get_id();
+    const before = counter.count(id);
+    const source = new MessageTray.Source({
+        title: app.get_name(),
+        policy: MessageTray.NotificationPolicy.newForApp(app),
+    });
+    Main.messageTray.add(source);
+    const notes = [1, 2].map(n => new MessageTray.Notification({source, title: `Teste ${n}`, body: 'contador'}));
+    notes.forEach(note => source.addNotification(note));
+    await sleep(500);
+    check(counter.count(id) === before + 2, `contador: duas notificações do app contam 2 (${counter.count(id)})`);
+    notes[0].destroy();
+    await sleep(500);
+    check(counter.count(id) === before + 1, `contador: dispensar uma baixa para 1 (${counter.count(id)})`);
+    source.destroy();
+    await sleep(500);
+    check(counter.count(id) === before, `contador: sem a fonte, volta a ${before} (${counter.count(id)})`);
+}
+
 async function testDisableEnable() {
     await Main.extensionManager.disableExtension(UUID);
     await sleep(1000);
@@ -665,6 +694,7 @@ async function run() {
     await testStackDrag(settings);
     await testPanelMode(settings);
     await testStartMenu(settings);
+    await testNotificationBadges();
     await testGlass(settings);
     if (!QUICK)
         await testAllSettings(settings);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-22 16:50-0300\n"
+"POT-Creation-Date: 2026-11-22 17:13-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: lib/appIcon.js:426
+#: lib/appIcon.js:428
 msgid "Applications"
 msgstr "Aplicativos"
 
@@ -90,6 +90,26 @@ msgstr "Estilo"
 msgid "Dock Settings…"
 msgstr "Configurações do Dock…"
 
+#: lib/glassBackdrops.js:16
+msgid "Tide"
+msgstr "Maré"
+
+#: lib/glassBackdrops.js:17
+msgid "Coral"
+msgstr "Coral"
+
+#: lib/glassBackdrops.js:18
+msgid "Haze"
+msgstr "Bruma"
+
+#: lib/glassBackdrops.js:19
+msgid "Amber"
+msgstr "Âmbar"
+
+#: lib/glassBackdrops.js:20
+msgid "Night sky"
+msgstr "Noturno"
+
 #: lib/mounts.js:63 lib/stacks.js:572 lib/start/startMenu.js:463
 #: lib/start/startMenu.js:489 lib/trash.js:58
 msgid "Open"
@@ -111,59 +131,59 @@ msgstr "Não foi possível ejetar a unidade"
 msgid "Could not unmount the drive"
 msgstr "Não foi possível desmontar a unidade"
 
-#: lib/panel/tray.js:418
+#: lib/panel/tray.js:424
 msgid "Manage tray"
 msgstr "Gerenciar bandeja"
 
-#: lib/panel/tray.js:418 prefs/panelOptions.js:152
+#: lib/panel/tray.js:424 prefs/panelOptions.js:152
 msgid "Tray"
 msgstr "Bandeja"
 
-#: lib/panel/tray.js:426
+#: lib/panel/tray.js:432
 msgid "Done"
 msgstr "Concluído"
 
-#: lib/panel/tray.js:426
+#: lib/panel/tray.js:432
 msgid "Manage"
 msgstr "Gerenciar"
 
-#: lib/panel/tray.js:439
+#: lib/panel/tray.js:445
 msgid "No icons in the tray"
 msgstr "Nenhum ícone na bandeja"
 
-#: lib/panel/tray.js:478
+#: lib/panel/tray.js:484
 msgid "In the tray"
 msgstr "Na bandeja"
 
-#: lib/panel/tray.js:479
+#: lib/panel/tray.js:485
 msgid "On the bar"
 msgstr "Na barra"
 
-#: lib/panel/tray.js:482
+#: lib/panel/tray.js:488
 msgid "Choices are saved"
 msgstr "As escolhas ficam salvas"
 
-#: lib/panel/tray.js:487 prefs/panelOptions.js:156
+#: lib/panel/tray.js:493 prefs/panelOptions.js:156
 msgid "Reset"
 msgstr "Redefinir"
 
-#: lib/panel/tray.js:497
+#: lib/panel/tray.js:503
 msgid "Nothing here"
 msgstr "Nada aqui"
 
-#: lib/panel/tray.js:501
+#: lib/panel/tray.js:507
 msgid "Move up"
 msgstr "Subir"
 
-#: lib/panel/tray.js:503
+#: lib/panel/tray.js:509
 msgid "Move down"
 msgstr "Descer"
 
-#: lib/panel/tray.js:506
+#: lib/panel/tray.js:512
 msgid "Show on the bar"
 msgstr "Mostrar na barra"
 
-#: lib/panel/tray.js:507
+#: lib/panel/tray.js:513
 msgid "Move to the tray"
 msgstr "Mandar para a bandeja"
 
@@ -246,7 +266,7 @@ msgstr "Esta pasta está vazia"
 msgid "Back"
 msgstr "Voltar"
 
-#: lib/start/allApps.js:30 lib/start/home.js:51
+#: lib/start/allApps.js:30 lib/start/home.js:64
 msgid "All apps"
 msgstr "Todos os apps"
 
@@ -254,24 +274,24 @@ msgstr "Todos os apps"
 msgid "Switch between list and grid"
 msgstr "Alternar entre lista e grade"
 
-#: lib/start/home.js:51
+#: lib/start/home.js:64
 msgid "Pinned"
 msgstr "Fixados"
 
-#: lib/start/home.js:121 lib/start/startMenu.js:477
+#: lib/start/home.js:134 lib/start/startMenu.js:477
 msgid "Unpin from Start"
 msgstr "Desafixar do Início"
 
-#: lib/start/home.js:135
+#: lib/start/home.js:148
 #, javascript-format
 msgid "Page %d"
 msgstr "Página %d"
 
-#: lib/start/home.js:249 prefs/panelOptions.js:68
+#: lib/start/home.js:262 prefs/panelOptions.js:68
 msgid "Recent apps"
 msgstr "Apps recentes"
 
-#: lib/start/home.js:275 prefs/panelOptions.js:69
+#: lib/start/home.js:288 prefs/panelOptions.js:69
 msgid "Continue where you left off"
 msgstr "Continue de onde parou"
 
@@ -338,8 +358,8 @@ msgid "No results for “%s”"
 msgstr "Nenhum resultado para “%s”"
 
 #: lib/start/startMenu.js:123
-msgid "Search apps, files and settings"
-msgstr "Pesquisar apps, arquivos e configurações"
+msgid "Type an app, file, setting or a calculation"
+msgstr "Digite um app, arquivo, configuração ou uma conta"
 
 #: lib/start/startMenu.js:159
 msgid "Power Off / Log Out"
@@ -506,7 +526,7 @@ msgstr "Orla Dock é um projeto independente e de código aberto."
 msgid "Appearance"
 msgstr "Aparência"
 
-#: prefs/appearancePage.js:24 prefs/appearancePage.js:46 prefs/blurPage.js:109
+#: prefs/appearancePage.js:24 prefs/appearancePage.js:46 prefs/blurPage.js:184
 msgid "Background"
 msgstr "Fundo"
 
@@ -525,6 +545,10 @@ msgstr "Cor personalizada"
 #: prefs/appearancePage.js:26
 msgid "Wallpaper colour"
 msgstr "Cor do papel de parede"
+
+#: prefs/appearancePage.js:27
+msgid "Graphite"
+msgstr "Grafite"
 
 #: prefs/appearancePage.js:28
 msgid "A ready palette, or your own colours"
@@ -638,7 +662,7 @@ msgstr "Cor do indicador"
 msgid "System accent"
 msgstr "Cor de destaque do sistema"
 
-#: prefs/appearancePage.js:69 prefs/appearancePage.js:76 prefs/blurPage.js:187
+#: prefs/appearancePage.js:69 prefs/appearancePage.js:76
 #: prefs/panelOptions.js:87 prefs/wobblyGroup.js:69
 msgid "Custom"
 msgstr "Personalizada"
@@ -817,226 +841,210 @@ msgstr "Alguns apps mostram avisos na tela (como um indicador de Caps Lock) como
 msgid "Window classes to hide"
 msgstr "Classes de janela a ocultar"
 
-#: prefs/blurPage.js:28
-msgid "Abstract"
-msgstr "Abstrato"
-
-#: prefs/blurPage.js:29
-msgid "Aurora"
-msgstr "Aurora"
-
 #: prefs/blurPage.js:30
-msgid "Cyberpunk"
-msgstr "Cyberpunk"
-
-#: prefs/blurPage.js:31
-msgid "Minimal"
-msgstr "Minimalista"
-
-#: prefs/blurPage.js:32
-msgid "Sunset"
-msgstr "Pôr do sol"
-
-#: prefs/blurPage.js:38
 msgid "Orla"
 msgstr "Orla"
 
-#: prefs/blurPage.js:43 prefs/blurPage.js:222
+#: prefs/blurPage.js:35 prefs/blurPage.js:240
 msgid "Lens"
 msgstr "Lente"
 
-#: prefs/blurPage.js:48
+#: prefs/blurPage.js:40
 msgid "Mist"
 msgstr "Névoa"
 
-#: prefs/blurPage.js:53
+#: prefs/blurPage.js:45
 msgid "Night"
 msgstr "Noite"
 
-#: prefs/blurPage.js:58
+#: prefs/blurPage.js:50
 msgid "Silk"
 msgstr "Seda"
 
-#: prefs/blurPage.js:82 prefs/blurPage.js:215
-msgid "Blur"
-msgstr "Desfoque"
+#: prefs/blurPage.js:65
+msgid "Glass source"
+msgstr "De onde vem o vidro"
 
-#: prefs/blurPage.js:93
-msgid "Blur material"
-msgstr "Material de desfoque"
-
-#: prefs/blurPage.js:93
-msgid "Frosted glass behind the Dock"
-msgstr "Vidro fosco atrás do Dock"
-
-#: prefs/blurPage.js:99
-msgid "Mode"
-msgstr "Modo"
-
-#: prefs/blurPage.js:100
+#: prefs/blurPage.js:68
 msgid "Dynamic"
 msgstr "Dinâmico"
 
-#: prefs/blurPage.js:100
-msgid "Follows windows and wallpaper behind the Dock in real time"
-msgstr "Acompanha as janelas e o papel de parede atrás do Dock em tempo real"
-
-#: prefs/blurPage.js:102
+#: prefs/blurPage.js:69
 msgid "Static"
 msgstr "Estático"
 
-#: prefs/blurPage.js:102
+#: prefs/blurPage.js:72
+msgid "Follows windows and wallpaper behind the Dock in real time"
+msgstr "Acompanha as janelas e o papel de parede atrás do Dock em tempo real"
+
+#: prefs/blurPage.js:73
 msgid "A fixed image behind the glass — lighter on the graphics card"
 msgstr "Uma imagem fixa atrás do vidro — mais leve para a placa de vídeo"
 
-#: prefs/blurPage.js:109
-msgid "The image that static blur is made from"
-msgstr "A imagem usada pelo desfoque estático"
-
-#: prefs/blurPage.js:111
-msgid "Presets"
-msgstr "Prontos"
-
-#: prefs/blurPage.js:112 prefs/blurPage.js:158
+#: prefs/blurPage.js:132
 msgid "Your photo"
 msgstr "Sua foto"
 
-#: prefs/blurPage.js:167
+#: prefs/blurPage.js:134 prefs/widgets.js:195
+msgid "Images"
+msgstr "Imagens"
+
+#: prefs/blurPage.js:138 prefs/widgets.js:199
+msgid "Choose an image"
+msgstr "Escolha uma imagem"
+
+#: prefs/blurPage.js:169 prefs/blurPage.js:233
+msgid "Blur"
+msgstr "Desfoque"
+
+#: prefs/blurPage.js:176
+msgid "Blur material"
+msgstr "Material de desfoque"
+
+#: prefs/blurPage.js:176
+msgid "Frosted glass behind the Dock"
+msgstr "Vidro fosco atrás do Dock"
+
+#: prefs/blurPage.js:184
+msgid "The image the static glass is made from"
+msgstr "A imagem de onde o vidro estático é feito"
+
+#: prefs/blurPage.js:190
 msgid "Glass"
 msgstr "Vidro"
 
-#: prefs/blurPage.js:167
+#: prefs/blurPage.js:190
 msgid "Start from a look, then fine-tune"
 msgstr "Comece por um visual e depois ajuste"
 
-#: prefs/blurPage.js:205
+#: prefs/blurPage.js:223
 msgid "Tone"
 msgstr "Tom"
 
-#: prefs/blurPage.js:206
+#: prefs/blurPage.js:224
 msgid "The glass keeps this brightness over any background"
 msgstr "O vidro mantém este brilho sobre qualquer fundo"
 
-#: prefs/blurPage.js:207
+#: prefs/blurPage.js:225
 msgid "Dark"
 msgstr "Escuro"
 
-#: prefs/blurPage.js:207
+#: prefs/blurPage.js:225
 msgid "Light"
 msgstr "Claro"
 
-#: prefs/blurPage.js:208
+#: prefs/blurPage.js:226
 msgid "Adaptive"
 msgstr "Adaptação"
 
-#: prefs/blurPage.js:209
+#: prefs/blurPage.js:227
 msgid "How much bright and dark backgrounds are evened out"
 msgstr "Quanto os fundos claros e escuros são equilibrados"
 
-#: prefs/blurPage.js:210 prefs/blurPage.js:226 prefs/blurPage.js:228
-#: prefs/blurPage.js:235 prefs/blurPage.js:238 prefs/blurPage.js:242
+#: prefs/blurPage.js:228 prefs/blurPage.js:244 prefs/blurPage.js:246
+#: prefs/blurPage.js:253 prefs/blurPage.js:256 prefs/blurPage.js:260
 #: prefs/layoutPage.js:118 prefs/widgets.js:290
 msgid "Off"
 msgstr "Não"
 
-#: prefs/blurPage.js:210
+#: prefs/blurPage.js:228
 msgid "Full"
 msgstr "Total"
 
-#: prefs/blurPage.js:211
+#: prefs/blurPage.js:229
 msgid "Glass colour"
 msgstr "Cor do vidro"
 
-#: prefs/blurPage.js:212
+#: prefs/blurPage.js:230
 msgid "Its hue colours the glass; the brightness comes from the background"
 msgstr "A matiz dela colore o vidro; o brilho vem do fundo"
 
-#: prefs/blurPage.js:213
+#: prefs/blurPage.js:231
 msgid "Colour strength"
 msgstr "Força da cor"
 
-#: prefs/blurPage.js:213
+#: prefs/blurPage.js:231
 msgid "How much of the colour shows"
 msgstr "Quanto da cor aparece"
 
-#: prefs/blurPage.js:215
+#: prefs/blurPage.js:233
 msgid "How soft the background becomes"
 msgstr "Quão suave o fundo fica"
 
-#: prefs/blurPage.js:217
+#: prefs/blurPage.js:235
 msgid "Vibrancy"
 msgstr "Vibração"
 
-#: prefs/blurPage.js:217
+#: prefs/blurPage.js:235
 msgid "Colour saturation seen through the glass"
 msgstr "Saturação das cores vistas através do vidro"
 
-#: prefs/blurPage.js:223
+#: prefs/blurPage.js:241
 msgid "The thick, curved edge of the glass bends what is behind it — visible on the Dock itself"
 msgstr "A borda grossa e curva do vidro dobra o que está atrás — aparece na própria Dock"
 
-#: prefs/blurPage.js:225
+#: prefs/blurPage.js:243
 msgid "Refraction"
 msgstr "Refração"
 
-#: prefs/blurPage.js:225
+#: prefs/blurPage.js:243
 msgid "How much the edge bends the background"
 msgstr "Quanto a borda curva o fundo"
 
-#: prefs/blurPage.js:226 prefs/blurPage.js:228 prefs/blurPage.js:235
-#: prefs/blurPage.js:238 prefs/wobblyGroup.js:69
+#: prefs/blurPage.js:244 prefs/blurPage.js:246 prefs/blurPage.js:253
+#: prefs/blurPage.js:256 prefs/wobblyGroup.js:69
 msgid "Strong"
 msgstr "Forte"
 
-#: prefs/blurPage.js:227
+#: prefs/blurPage.js:245
 msgid "Dispersion"
 msgstr "Dispersão"
 
-#: prefs/blurPage.js:227
+#: prefs/blurPage.js:245
 msgid "A faint rainbow where the edge bends light"
 msgstr "Um arco-íris sutil onde a borda curva a luz"
 
-#: prefs/blurPage.js:232
+#: prefs/blurPage.js:250
 msgid "Lighting"
 msgstr "Luz"
 
-#: prefs/blurPage.js:232
+#: prefs/blurPage.js:250
 msgid "How light falls on the glass"
 msgstr "Como a luz bate no vidro"
 
-#: prefs/blurPage.js:234
+#: prefs/blurPage.js:252
 msgid "Sheen"
 msgstr "Reflexo"
 
-#: prefs/blurPage.js:234
+#: prefs/blurPage.js:252
 msgid "A soft reflection coming from the top"
 msgstr "Um reflexo suave vindo de cima"
 
-#: prefs/blurPage.js:236
+#: prefs/blurPage.js:254
 msgid "Edge relief"
 msgstr "Relevo da borda"
 
-#: prefs/blurPage.js:237
+#: prefs/blurPage.js:255
 msgid "Light on one side of the rim, a thin shadow on the other"
 msgstr "Luz de um lado da borda, uma sombra fina do outro"
 
-#: prefs/blurPage.js:239
+#: prefs/blurPage.js:257
 msgid "Light direction"
 msgstr "Direção da luz"
 
-#: prefs/blurPage.js:239
+#: prefs/blurPage.js:257
 msgid "Where the light falls from"
 msgstr "De onde vem a luz"
 
-#: prefs/blurPage.js:241
+#: prefs/blurPage.js:259
 msgid "Grain"
 msgstr "Granulado"
 
-#: prefs/blurPage.js:241
+#: prefs/blurPage.js:259
 msgid "Barely visible texture that keeps dark gradients smooth"
 msgstr "Textura quase invisível que deixa os degradês escuros suaves"
 
-#: prefs/blurPage.js:242
+#: prefs/blurPage.js:260
 msgid "Visible"
 msgstr "Visível"
 
@@ -1612,14 +1620,6 @@ msgstr "Nenhuma"
 #: prefs/widgets.js:193
 msgid "Choose…"
 msgstr "Escolher…"
-
-#: prefs/widgets.js:195
-msgid "Images"
-msgstr "Imagens"
-
-#: prefs/widgets.js:199
-msgid "Choose an image"
-msgstr "Escolha uma imagem"
 
 #: prefs/widgets.js:283 prefs/widgets.js:290
 msgid "Small"

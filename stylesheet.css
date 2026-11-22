@@ -362,6 +362,12 @@
     background-color: rgba(0, 0, 0, 0.14);
 }
 
+/* Selo com o ícone do app sobre a miniatura de uma janela minimizada. */
+.orla-window-seal {
+    border-radius: 99px;
+    background-color: rgba(20, 20, 24, 0.55);
+}
+
 /* ---------- Bandeja (menu da seta no fim da barra) ---------- */
 
 .orla-tray-zone {

@@ -24,7 +24,7 @@ export function appearancePage(binder) {
     const background = group(page, _('Background'));
     background.add(enumRow(binder, 'theme', _('Theme'), [
         _('System (light or dark)'), _('Custom colour'), _('Wallpaper colour'),
-        'Carbon', 'Nord', 'Catppuccin Mocha', 'Gruvbox', 'Dracula', 'Tokyo Night', 'Frost',
+        _('Graphite'), 'Nord', 'Catppuccin Mocha', 'Gruvbox', 'Dracula', 'Tokyo Night', 'Frost',
     ], _('A ready palette, or your own colours')));
     const custom = [
         colorRow(binder, 'background-color', _('Colour')),

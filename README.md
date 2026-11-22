@@ -44,7 +44,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 **Aparência e animações**
 - Cantos arredondados e transparência.
 - **Vidro da Orla:** um material próprio, no modo dinâmico (o que está atrás da dock) ou estático (imagens prontas ou sua foto). Ele se **adapta** ao brilho do fundo (os ícones ficam legíveis sobre qualquer papel de parede), tem **refração** na borda grossa e curva, **dispersão** (um arco-íris sutil onde a borda curva a luz), **reflexo** vindo de cima, **relevo** na borda (luz de um lado, sombra do outro, com direção) e **granulado** contra faixas em degradês escuros. Visuais prontos: Orla, Lente, Névoa, Noite e Seda. A prévia das preferências usa a mesma conta de cor da dock.
-- Temas prontos (Sistema, Cor personalizada com gradiente, Cor do papel de parede, Carbon, Nord, Catppuccin, Gruvbox, Dracula, Tokyo Night, Frost).
+- Temas prontos (Sistema, Cor personalizada com gradiente, Cor do papel de parede, Grafite, Nord, Catppuccin, Gruvbox, Dracula, Tokyo Night, Frost).
 - Contorno, espaçamento e preenchimento ajustáveis.
 - Ampliação em onda **suavizada a cada quadro** (os vizinhos crescem junto), com ajustes de suavidade, alcance e elevação, nas 4 posições.
 - **Movimentos da ampliação**: Fluido, Dominó, Cilindro, Magnético, Gelatina e Coverflow, com "Abrir espaço", força do empurrão e ajustes próprios de cada movimento.
