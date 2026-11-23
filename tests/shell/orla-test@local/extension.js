@@ -669,6 +669,42 @@ async function testNotificationBadges() {
     check(counter.count(id) === before, `contador: sem a fonte, volta a ${before} (${counter.count(id)})`);
 }
 
+// ---------- Tela bloqueada ----------
+
+/** No modo de bloqueio nada da Orla pode ficar na tela (regra do EGO). */
+async function testLockScreen(settings) {
+    settings.set_string('bar-style', 'taskbar');
+    await sleep(1500);
+    Main.sessionMode.pushMode('unlock-dialog');
+    await sleep(1200);
+    check(orlaActors() === 0, 'bloqueio: nenhuma dock na tela bloqueada');
+    check(Main.layoutManager.panelBox.visible, 'bloqueio: a barra de cima do GNOME volta');
+    Main.sessionMode.popMode('unlock-dialog');
+    await sleep(1500);
+    check(orlaActors() >= 1, 'bloqueio: ao desbloquear, a dock volta');
+    settings.reset('bar-style');
+    await sleep(1200);
+}
+
+// ---------- Arquivos recentes do Menu Iniciar ----------
+
+async function testRecentFiles() {
+    const data = manager()._docks[0];
+    const file = Gio.File.new_for_path(`${OUT}/relatorio-recente.txt`);
+    GLib.file_set_contents(file.get_path(), 'teste\n');
+    const when = GLib.DateTime.new_now_utc().format_iso8601();
+    const xbel = `<?xml version="1.0" encoding="UTF-8"?>
+<xbel version="1.0"><bookmark href="${file.get_uri()}" added="${when}" modified="${when}" visited="${when}"/></xbel>`;
+    GLib.file_set_contents(GLib.build_filenamev([GLib.get_user_data_dir(), 'recently-used.xbel']), xbel);
+    const {StartData} = await import('../orla-dock@viniciusbispo19/lib/start/data.js');
+    const start = new StartData(orla().stateObj.getSettings(), manager().appTracker);
+    const recent = await start.recentFiles(5);
+    start.destroy();
+    check(recent.some(entry => entry.name === 'relatorio-recente.txt'),
+        `menu iniciar: "Continuar de onde parou" acha os arquivos recentes (${recent.map(e => e.name).join(', ')})`);
+    void data;
+}
+
 async function testDisableEnable() {
     await Main.extensionManager.disableExtension(UUID);
     await sleep(1000);
@@ -695,6 +731,8 @@ async function run() {
     await testPanelMode(settings);
     await testStartMenu(settings);
     await testNotificationBadges();
+    await testRecentFiles();
+    await testLockScreen(settings);
     await testGlass(settings);
     if (!QUICK)
         await testAllSettings(settings);

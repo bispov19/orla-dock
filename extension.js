@@ -18,12 +18,6 @@
 //   as docks voltam. Motivo: se a extensão fosse desligada, o Dash nativo
 //   do GNOME voltaria e piscaria na tela a cada desbloqueio.
 //
-// Note for reviewers (unlock-dialog): on lock the DockManager destroys every
-// dock and restores the top bar, so nothing from Orla Dock is shown or
-// reactive on the lock screen (its keybinding is NORMAL/OVERVIEW only). The
-// mode is kept only so that unlocking does not flash GNOME's native Dash
-// before the extension is re-enabled.
-//
 // Este arquivo é propositalmente pequeno: todo o trabalho fica no
 // DockManager (lib/dockManager.js), que por sua vez destrói em cascata
 // tudo o que criou. Repare também que nada é feito "solto" no topo do
@@ -41,6 +35,14 @@ export default class OrlaDockExtension extends Extension {
         this._wobbly = new WobblyWindows(this.getSettings());
     }
 
+    // Note for reviewers — why "unlock-dialog" is in session-modes:
+    // on lock, the DockManager destroys every dock (and the taskbar's Panel
+    // mode, Start Menu and tray) and gives the top bar back, so nothing from
+    // Orla Dock is shown or reactive on the lock screen; its keybinding is
+    // registered for NORMAL and OVERVIEW only, and the wobbly-windows effect
+    // only reacts to window moves, which cannot happen while locked. The
+    // mode is kept so that unlocking does not flash GNOME's native Dash
+    // before the extension is enabled again. disable() still destroys all.
     disable() {
         this._wobbly?.destroy();
         this._wobbly = null;

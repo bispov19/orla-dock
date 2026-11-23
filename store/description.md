@@ -1,13 +1,17 @@
 # Orla Dock
 
-**Author:** vinicius
+**Author:** Vinicius Bispo
 
-A dock for GNOME Shell with fan-style folder stacks, three bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.
+A dock for GNOME Shell with wave magnification, folder stacks that open as a fan, dock and taskbar styles, a Start Menu and an adaptive frosted glass.
 
 ## Description
 
-Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Folders on the dock open as a fan of files that rises from the icon, and the fan folds back into the icon along the same path when it closes. Icons magnify in a smooth wave as the pointer moves over them.
+Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Icons magnify in a smooth wave as the pointer moves over them, windows minimize into their icon with a Genie effect, and hovering an app shows live previews of its windows.
 
-Choose between three bar styles: a macOS-style dock, a Windows 10-style taskbar and a dock modelled on the GNOME dash. Each style shows a preview before you apply it. In the taskbar styles, the GNOME top bar can be merged into the taskbar, bringing the clock, tray, indicators and Activities with it; switching back to a dock style restores the top bar.
+Folders on the dock open as stacks: a fan of files that rises from the icon and folds back along the same path, or a grid or a list. Files can be dragged out of a stack onto an app icon, onto the Trash, or onto any window, where they are copied so you can paste them.
 
-Place the dock at the bottom, top, left or right by clicking a preview of each side. An optional setting lets the floating dock drop its margin and touch the screen edge while a maximized window is on its monitor, and float again when there is none. Every setting applies instantly.
+Choose between dock and taskbar styles, each shown in a preview before you apply it. In the taskbar, Panel mode brings the GNOME top bar into the bar: workspaces, a tray for other extensions' icons, Quick Settings and the clock, with notifications shown next to it. The Start Menu searches apps, settings, files, other apps' results and the web, does quick calculations and keeps pinned apps, folders and recent files.
+
+Orla Glass is the extension's own frosted material: it adapts to bright and dark backgrounds, bends what is behind its thick edge, and adds a soft sheen and a lit rim. It can follow what is behind the dock or use a still image.
+
+Place the dock on any side of the screen by clicking a preview. An optional setting lets the floating dock touch the screen edge while a window is maximized. Every setting applies instantly.

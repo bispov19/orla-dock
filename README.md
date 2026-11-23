@@ -122,6 +122,7 @@ gnome-extensions prefs orla-dock@viniciusbispo19
 | `scripts/pack.sh` | Gera o pacote `.zip` em `dist/` |
 | `scripts/test-shell.sh` | Testa a extensão num GNOME Shell de teste sem janela (veja abaixo) |
 | `scripts/test-prefs.sh` | Abre todas as abas das preferências nos temas claro e escuro e salva capturas |
+| `scripts/check.sh` | Confere as regras de revisão do extensions.gnome.org que dá para verificar automaticamente |
 
 ### Testes
 
@@ -174,6 +175,8 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/start/` | Menu Iniciar: a janela (`startMenu.js`), telas (`home.js`, `allApps.js`, `search.js`), dados (`data.js`) e a calculadora |
 | `lib/glassMath.js` | A receita do Vidro da Orla (o shader e a conta de cor da prévia) |
 | `lib/fileClipboard.js` | Copiar arquivos (arquivo do leque solto numa janela) |
+| `lib/files.js` | Leitura de arquivos e pastas sem travar o Shell (promessas sobre o Gio) |
+| `lib/glassBackdrops.js` | Os fundos prontos do vidro estático |
 | `lib/maximizeWatcher.js` | Detecta janela maximizada (encostar na borda) |
 | `lib/notificationCounter.js` | Notificações do GNOME por app |
 | `lib/windowFilter.js` | Janelas ocultas |
@@ -195,22 +198,36 @@ journalctl -f -o cat /usr/bin/gjs
 
 ## Publicar no extensions.gnome.org
 
-1. Gere o pacote (compila as traduções e deixa de fora o que é só de desenvolvimento):
+Roteiro de cada envio:
+
+1. Atualize `version-name` no `metadata.json` (o número de versão do EGO é dado pelo próprio site, não vai no arquivo).
+2. Confira as regras de revisão que dá para verificar automaticamente:
+
+   ```sh
+   ./scripts/check.sh
+   ```
+
+3. Rode os testes (`./scripts/test-shell.sh` e `./scripts/test-prefs.sh`).
+4. Gere o pacote (o `check.sh` já gera; o arquivo fica em `dist/`):
 
    ```sh
    ./scripts/pack.sh
    ```
 
-2. Envie o arquivo `dist/orla-dock@viniciusbispo19.shell-extension.zip` em <https://extensions.gnome.org/upload/> (é preciso estar logado).
-3. Na página da extensão, use o ícone e as capturas da pasta `store/` e o texto de `store/description.md`.
+5. Envie `dist/orla-dock@viniciusbispo19.shell-extension.zip` em <https://extensions.gnome.org/upload/> (é preciso estar logado).
+6. Na página da extensão, use o ícone e as capturas da pasta `store/` e o texto de `store/description.md`.
 
-O que o pacote segue das regras de revisão:
+O que o projeto segue das regras de revisão (e o `check.sh` confere):
 
-- `enable()` cria e `disable()` destrói tudo (atores, sinais, temporizadores e caches de módulo).
-- Nada é criado na importação dos módulos.
-- `metadata.json` declara só a versão testada do GNOME (51).
-- O modo `unlock-dialog` está justificado no início do `extension.js`: na tela bloqueada a Orla some e devolve a barra superior.
-- Sem `gschemas.compiled` no pacote e sem CSS que altere partes do GNOME fora da Orla.
+- `enable()` cria e `disable()` destrói tudo: atores, sinais, temporizadores (todos passam pelas classes de `lib/utils.js`) e caches de módulo. O teste do Shell desativa e reativa a extensão e confere que nada sobra.
+- Nada é criado na importação dos módulos: só constantes.
+- Nada trava o Shell: leitura de arquivos e chamadas D-Bus são assíncronas (`lib/files.js`).
+- Cada processo usa só as bibliotecas dele: GTK/Adw só nas preferências; St/Clutter/Meta só no Shell.
+- Sem APIs antigas (`Lang`, `Mainloop`, `ByteArray`) e sem `eval`.
+- `metadata.json` declara só a versão testada do GNOME (51) e o schema segue `org.gnome.shell.extensions.orla-dock`.
+- O modo `unlock-dialog` está justificado no `disable()` do `extension.js`: na tela bloqueada nada da Orla aparece (o teste do Shell confere).
+- O pacote leva só os arquivos da extensão: sem testes, scripts, `gschemas.compiled` ou arquivos de desenvolvimento.
+- Compatibilidade com outras extensões: se a "Compiz windows effect" estiver ativa, a Orla não aplica as janelas balançando (para não haver efeito em dobro).
 
 ## Limitações conhecidas
 
