@@ -2,33 +2,47 @@
 
 # Orla Dock
 
-**A dock for GNOME Shell with fan-style folder stacks, three bar styles you can preview before applying, and a clickable position picker. It can also drop its margin and touch the screen edge while a window is maximized.**
+**A dock for GNOME Shell with wave magnification, folder stacks that open as a fan, dock and taskbar styles, a Start Menu and an adaptive frosted glass.**
 
-| Fan animation | Style selection | Dock position |
-| --- | --- | --- |
-| ![Fan animation](store/screenshots/01-fan-animation.png) | ![Style selection](store/screenshots/02-style-selection.png) | ![Dock position](store/screenshots/03-dock-position.png) |
+| Dock with Orla Glass | Taskbar with the Start Menu |
+| --- | --- |
+| ![Dock with Orla Glass](store/screenshots/01-dock-glass.png) | ![Taskbar with the Start Menu](store/screenshots/02-taskbar-start-menu.png) |
+
+| Folder stack as a fan | Glass settings |
+| --- | --- |
+| ![Folder stack as a fan](store/screenshots/03-stack-fan.png) | ![Glass settings](store/screenshots/04-glass-settings.png) |
 
 ## Description
 
-Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Folders on the dock open as a fan of files that rises from the icon, and the fan folds back into the icon along the same path when it closes. Icons magnify in a smooth wave as the pointer moves over them.
+Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Icons magnify in a smooth wave as the pointer moves over them, windows minimize into their icon with a Genie effect, and hovering an app shows live previews of its windows.
 
-Choose between three bar styles: a macOS-style dock, a Windows 10-style taskbar and a dock modelled on the GNOME dash. Each style shows a preview before you apply it. In the taskbar styles, the GNOME top bar can be merged into the taskbar, bringing the clock, tray, indicators and Activities with it; switching back to a dock style restores the top bar.
+Folders on the dock open as stacks: a fan of files that rises from the icon and folds back along the same path, or a grid or a list. Files can be dragged out of a stack onto an app icon, onto the Trash, or onto any window, where they are copied so you can paste them.
 
-Place the dock at the bottom, top, left or right by clicking a preview of each side. An optional setting lets the floating dock drop its margin and touch the screen edge while a maximized window is on its monitor, and float again when there is none. Every setting applies instantly.
+Choose between dock and taskbar styles, each shown in a preview before you apply it. In the taskbar, Panel mode brings the GNOME top bar into the bar: workspaces, a tray for other extensions' icons, Quick Settings and the clock, with notifications shown next to it. The Start Menu searches apps, settings, files, other apps' results and the web, does quick calculations and keeps pinned apps, folders and recent files.
+
+Orla Glass is the extension's own frosted material: it adapts to bright and dark backgrounds, bends what is behind its thick edge, and adds a soft sheen and a lit rim. It can follow what is behind the dock or use a still image.
+
+Place the dock on any side of the screen by clicking a preview. An optional setting lets the floating dock touch the screen edge while a window is maximized. Every setting applies instantly.
 
 ---
 
 ## Em português
 
-Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas no estilo do Windows 10**. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
+Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones em onda, efeito Gênio, Stacks, Lixeira, auto-ocultar, miniaturas ao vivo e muito mais. Também vira uma **barra de tarefas**, com modo Painel e Menu Iniciar. É uma extensão nativa: todo o código roda dentro do GNOME Shell, sem processos externos.
 
-![A Orla Dock com a ampliação em onda](docs/screenshots/dock.png)
+![A Orla Dock com o Vidro da Orla e a ampliação em onda](docs/screenshots/dock.png)
 
-![O modo barra de tarefas](docs/screenshots/taskbar.png)
+![A barra de tarefas no modo Painel, com o Menu Iniciar aberto](docs/screenshots/taskbar-start.png)
 
-| Stack em leque | Stack em grade | Preferências | Sobre |
-| --- | --- | --- | --- |
-| ![Stack em leque](docs/screenshots/stack-fan.png) | ![Stack em grade](docs/screenshots/stack-grid.png) | ![Preferências](docs/screenshots/preferences.png) | ![Sobre](docs/screenshots/about.png) |
+![A bandeja aberta no fim da barra de tarefas](docs/screenshots/taskbar.png)
+
+| Pilha em leque | Pilha em grade |
+| --- | --- |
+| ![Pilha em leque](docs/screenshots/stack-fan.png) | ![Pilha em grade](docs/screenshots/stack-grid.png) |
+
+| Preferências | Vidro | Sobre |
+| --- | --- | --- |
+| ![Preferências](docs/screenshots/preferences.png) | ![Aba Desfoque](docs/screenshots/glass.png) | ![Sobre](docs/screenshots/about.png) |
 
 ## Recursos
 
@@ -123,6 +137,7 @@ gnome-extensions prefs orla-dock@viniciusbispo19
 | `scripts/test-shell.sh` | Testa a extensão num GNOME Shell de teste sem janela (veja abaixo) |
 | `scripts/test-prefs.sh` | Abre todas as abas das preferências nos temas claro e escuro e salva capturas |
 | `scripts/check.sh` | Confere as regras de revisão do extensions.gnome.org que dá para verificar automaticamente |
+| `scripts/screenshots.sh` | Refaz as capturas (`docs/screenshots/` em português, `store/screenshots/` em inglês) num GNOME Shell de teste, com papel de parede padrão e arquivos de exemplo |
 
 ### Testes
 

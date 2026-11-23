@@ -1,5 +1,6 @@
 [
-  {"file": "screenshots/01-fan-animation.png", "caption": "Fan animation"},
-  {"file": "screenshots/02-style-selection.png", "caption": "Style selection"},
-  {"file": "screenshots/03-dock-position.png", "caption": "Dock position"}
+  {"file": "screenshots/01-dock-glass.png", "caption": "Dock with Orla Glass and wave magnification"},
+  {"file": "screenshots/02-taskbar-start-menu.png", "caption": "Taskbar in Panel mode with the Start Menu"},
+  {"file": "screenshots/03-stack-fan.png", "caption": "A folder stack opened as a fan"},
+  {"file": "screenshots/04-glass-settings.png", "caption": "Orla Glass settings with a live preview"}
 ]

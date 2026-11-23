@@ -18,6 +18,8 @@ import Adw from 'gi://Adw?version=1';
 import System from 'system';
 
 const [extensionDir, outDir, scheme = 'light'] = ARGV;
+// Altura da janela (capturas mais altas mostram mais da aba).
+const HEIGHT = Number(GLib.getenv('ORLA_PREFS_HEIGHT') || 0);
 
 String.prototype.format = imports.format.format;
 Gio.resources_register(Gio.Resource.load(
@@ -42,6 +44,18 @@ metadata.dir = Gio.File.new_for_path(extensionDir);
 const Prefs = (await import(`file://${extensionDir}/prefs.js`)).default;
 prefs = new Prefs(metadata);
 
+// Opções iniciais (para capturas): ORLA_PREFS_SETUP='{"chave": valor, ...}'.
+const setup = JSON.parse(GLib.getenv('ORLA_PREFS_SETUP') || '{}');
+const settings = prefs.getSettings();
+for (const [key, value] of Object.entries(setup)) {
+    if (typeof value === 'boolean')
+        settings.set_boolean(key, value);
+    else if (typeof value === 'number')
+        settings.set_double(key, value);
+    else
+        settings.set_string(key, value);
+}
+
 const window = new Adw.PreferencesWindow();
 const pages = [];
 const add = window.add.bind(window);
@@ -50,6 +64,8 @@ window.add = page => {
     add(page);
 };
 await prefs.fillPreferencesWindow(window);
+if (HEIGHT)
+    window.set_default_size(1000, HEIGHT);
 window.present();
 
 // Passo a passo com callbacks (e não async/await): dentro de um

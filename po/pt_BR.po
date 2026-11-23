@@ -293,7 +293,7 @@ msgstr "Apps recentes"
 
 #: lib/start/home.js:288 prefs/panelOptions.js:69
 msgid "Continue where you left off"
-msgstr "Continue de onde parou"
+msgstr "Continuar de onde parou"
 
 #: lib/start/search.js:77
 msgid "Calculator"

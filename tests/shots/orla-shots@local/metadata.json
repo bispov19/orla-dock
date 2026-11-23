@@ -1,0 +1,6 @@
+{
+  "uuid": "orla-shots@local",
+  "name": "Orla Dock — capturas",
+  "description": "Monta as cenas e tira as capturas da Orla Dock. Usada só pelo scripts/screenshots.sh.",
+  "shell-version": ["51"]
+}
