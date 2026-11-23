@@ -54,6 +54,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - O **Menu Iniciar**: busca (apps, configurações, arquivos, resultados de outros apps, calculadora, comandos com `>` e web), fixados em páginas com pastas (arraste um app em cima de outro), apps recentes, "Continuar de onde parou", todos os apps em lista ou grade com índice de letras, menu de contexto e energia. Tudo volta ao normal nos estilos de dock.
 - **Posição escolhida clicando na prévia** de cada lado da tela.
 - **Encostar na borda com janela maximizada** (opcional): a dock perde a margem enquanto houver janela maximizada e volta a flutuar quando não houver.
+- **Barra do GNOME embaixo com a dock em cima** (opcional, ligada por padrão): com a dock na posição Superior, a barra do sistema desce para a borda de baixo, os menus dela abrem para cima e os avisos de notificação aparecem abaixo da dock. Ao mudar de posição, bloquear a tela ou desligar a extensão, tudo volta ao lugar.
 
 **Aparência e animações**
 - Cantos arredondados e transparência.
@@ -193,6 +194,7 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/files.js` | Leitura de arquivos e pastas sem travar o Shell (promessas sobre o Gio) |
 | `lib/glassBackdrops.js` | Os fundos prontos do vidro estático |
 | `lib/maximizeWatcher.js` | Detecta janela maximizada (encostar na borda) |
+| `lib/panelMover.js` | Leva a barra do GNOME para baixo quando a dock fica em cima (e devolve) |
 | `lib/notificationCounter.js` | Notificações do GNOME por app |
 | `lib/windowFilter.js` | Janelas ocultas |
 | `lib/taskbarClock.js` | Relógio com data do modo barra de tarefas |

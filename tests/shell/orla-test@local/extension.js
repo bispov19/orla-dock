@@ -669,6 +669,122 @@ async function testNotificationBadges() {
     check(counter.count(id) === before, `contador: sem a fonte, volta a ${before} (${counter.count(id)})`);
 }
 
+// ---------- Barra do GNOME embaixo com a dock em cima ----------
+
+async function testPanelMover(settings, win) {
+    const box = Main.layoutManager.panelBox;
+    const monitor = Main.layoutManager.primaryMonitor;
+    const panelTop = () => box.get_transformed_position()[1];
+    const atBottom = () => Math.abs(panelTop() - (monitor.y + monitor.height - box.height)) < 1;
+    const atTop = () => Math.abs(panelTop() - monitor.y) < 1 && box.translation_y === 0;
+    const arrowOf = name => Main.panel.statusArea[name]?.menu?._boxPointer?._userArrowSide;
+    Main.overview.hide();
+    settings.set_enum('position', 1);   // Superior
+    await sleep(2500);
+    const dock = () => manager()._docks[0];
+
+    check(atBottom(), `barra embaixo: a barra desce para a borda de baixo (y=${panelTop()})`);
+    check(Main.panel.has_style_class_name('orla-panel-bottom'), 'barra embaixo: a classe orla-panel-bottom é aplicada');
+    check(Math.abs(dock().dockRect.y - monitor.y) < 1, `barra embaixo: a dock usa a borda de cima de verdade (y=${dock().dockRect.y})`);
+    check(arrowOf('dateMenu') === St.Side.BOTTOM && arrowOf('quickSettings') === St.Side.BOTTOM,
+        'barra embaixo: calendário e configurações rápidas abrem para cima');
+
+    const area = Main.layoutManager.getWorkAreaForMonitor(Main.layoutManager.primaryIndex);
+    check(area.y + area.height <= panelTop() + 1 && area.y >= dock().dockRect.y + 1,
+        `barra embaixo: a área livre fica entre a dock e a barra (${area.y}..${area.y + area.height})`);
+
+    // Uma janela própria (as dos cenários anteriores podem ter sido fechadas).
+    win = await openWindow();
+    if (win) {
+        Main.activateWindow(win);
+        win.maximize();
+        await sleep(1300);
+        const r = win.get_frame_rect();
+        check(r.y + r.height <= panelTop() + 1, `barra embaixo: janela maximizada para acima da barra (fim em ${r.y + r.height})`);
+        await screenshot('16-barra-embaixo-maximizada');
+        win.unmaximize();
+        win.delete(global.get_current_time());
+        await sleep(800);
+    }
+
+    // Menu de verdade: abre acima da barra.
+    const quick = Main.panel.statusArea.quickSettings;
+    quick.menu.open();
+    await sleep(600);
+    const [, menuY] = quick.menu.actor.get_transformed_position();
+    check(menuY + quick.menu.actor.height <= panelTop() + 1, 'barra embaixo: o menu das configurações rápidas abre acima da barra');
+    await screenshot('17-barra-embaixo-menu');
+    quick.menu.close();
+    await sleep(400);
+
+    // Indicador acrescentado depois (como o de outra extensão).
+    const late = new PanelMenu.Button(0.5, 'Tarde');
+    late.add_child(new St.Icon({icon_name: 'starred-symbolic', style_class: 'system-status-icon'}));
+    Main.panel.addToStatusArea('orla-test-late', late);
+    await sleep(500);
+    check(late.menu._boxPointer._userArrowSide === St.Side.BOTTOM, 'barra embaixo: indicador novo também abre para cima');
+
+    // Aviso de notificação: abaixo da dock.
+    Main.notify('Orla', 'Aviso com a dock em cima');
+    await sleep(1500);
+    const banner = Main.messageTray._bannerBin;
+    const [, by] = banner.get_transformed_position();
+    check(banner.height > 0 && by >= dock().dockRect.y + dock().geometry.thickness - 1,
+        `barra embaixo: o aviso aparece abaixo da dock (y=${Math.round(by)})`);
+    await screenshot('18-barra-embaixo-aviso');
+    Main.messageTray._hideNotification?.(false);
+    await sleep(800);
+
+    // Visão geral e canto ativo.
+    Main.overview.show();
+    await sleep(1200);
+    check(Main.overview.visible && atBottom(), 'barra embaixo: a visão geral abre com a barra embaixo');
+    await screenshot('19-barra-embaixo-visao-geral');
+    Main.overview.hide();
+    await sleep(1000);
+    const corner = Main.layoutManager.hotCorners.find(Boolean);
+    check(Boolean(corner) && corner._x === monitor.x && corner._y === monitor.y,
+        'barra embaixo: o canto ativo continua no canto de cima à esquerda');
+
+    // Bloquear e desbloquear.
+    Main.sessionMode.pushMode('unlock-dialog');
+    await sleep(1200);
+    check(atTop() && !Main.panel.has_style_class_name('orla-panel-bottom'), 'barra embaixo: na tela bloqueada a barra volta ao topo');
+    Main.sessionMode.popMode('unlock-dialog');
+    await sleep(1500);
+    check(atBottom(), 'barra embaixo: ao desbloquear, a barra volta para baixo');
+
+    // Trocar a posição várias vezes, rápido.
+    for (const pos of [0, 1, 0, 1, 2, 1, 0, 1])
+        settings.set_enum('position', pos);
+    await sleep(2500);
+    check(atBottom() && arrowOf('dateMenu') === St.Side.BOTTOM, 'barra embaixo: trocas rápidas terminam no lugar certo');
+
+    // Desligar a opção: a barra sobe e a dock desce para baixo dela.
+    settings.set_boolean('panel-to-bottom', false);
+    await sleep(1500);
+    check(atTop() && Math.abs(dock().dockRect.y - (monitor.y + box.height)) < 1,
+        'barra embaixo: com a opção desligada, a barra fica em cima e a dock logo abaixo');
+    settings.reset('panel-to-bottom');
+    await sleep(1500);
+
+    // Desativar a extensão com a dock em cima: nada fica para trás.
+    await Main.extensionManager.disableExtension(UUID);
+    await sleep(800);
+    check(atTop() && !Main.panel.has_style_class_name('orla-panel-bottom') && arrowOf('dateMenu') === St.Side.TOP &&
+        late.menu._boxPointer._userArrowSide === St.Side.TOP && banner.translation_y === 0,
+    'barra embaixo: desativar devolve a barra, os menus e os avisos como eram');
+    await Main.extensionManager.enableExtension(UUID);
+    await sleep(2000);
+    check(atBottom(), 'barra embaixo: reativar com a dock em cima leva a barra para baixo de novo');
+
+    // Volta para baixo: tudo no lugar original.
+    settings.reset('position');
+    await sleep(1800);
+    check(atTop() && arrowOf('dateMenu') === St.Side.TOP, 'barra embaixo: dock embaixo de novo, barra no topo e menus como antes');
+    late.destroy();
+}
+
 // ---------- Tela bloqueada ----------
 
 /** No modo de bloqueio nada da Orla pode ficar na tela (regra do EGO). */
@@ -732,6 +848,7 @@ async function run() {
     await testStartMenu(settings);
     await testNotificationBadges();
     await testRecentFiles();
+    await testPanelMover(settings, win);
     await testLockScreen(settings);
     await testGlass(settings);
     if (!QUICK)

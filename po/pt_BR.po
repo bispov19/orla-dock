@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-22 17:13-0300\n"
+"POT-Creation-Date: 2026-11-22 21:49-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: lib/appMenu.js:60 lib/start/startMenu.js:465
+#: lib/appMenu.js:60 lib/start/startMenu.js:471
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -110,8 +110,8 @@ msgstr "Âmbar"
 msgid "Night sky"
 msgstr "Noturno"
 
-#: lib/mounts.js:63 lib/stacks.js:572 lib/start/startMenu.js:463
-#: lib/start/startMenu.js:489 lib/trash.js:58
+#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:469
+#: lib/start/startMenu.js:495 lib/trash.js:58
 msgid "Open"
 msgstr "Abrir"
 
@@ -195,70 +195,70 @@ msgstr "Não foi possível abrir"
 msgid "Home"
 msgstr "Pasta pessoal"
 
-#: lib/stacks.js:351 lib/stacks.js:771
+#: lib/stacks.js:352 lib/stacks.js:768
 msgid "Open in Files"
 msgstr "Abrir no Arquivos"
 
-#: lib/stacks.js:353 prefs/appearancePage.js:69 prefs/appearancePage.js:76
+#: lib/stacks.js:354 prefs/appearancePage.js:69 prefs/appearancePage.js:76
 #: prefs/modulesPage.js:77
 msgid "Automatic"
 msgstr "Automático"
 
-#: lib/stacks.js:354 prefs/modulesPage.js:39 prefs/modulesPage.js:77
+#: lib/stacks.js:355 prefs/modulesPage.js:39 prefs/modulesPage.js:77
 msgid "Grid"
 msgstr "Grade"
 
-#: lib/stacks.js:355 prefs/modulesPage.js:77
+#: lib/stacks.js:356 prefs/modulesPage.js:77
 msgid "Fan"
 msgstr "Leque"
 
-#: lib/stacks.js:356 prefs/modulesPage.js:77
+#: lib/stacks.js:357 prefs/modulesPage.js:77
 msgid "List"
 msgstr "Lista"
 
-#: lib/stacks.js:358
+#: lib/stacks.js:359
 msgid "Sort by Date"
 msgstr "Ordenar por data"
 
-#: lib/stacks.js:359
+#: lib/stacks.js:360
 msgid "Sort by Name"
 msgstr "Ordenar por nome"
 
-#: lib/stacks.js:361
+#: lib/stacks.js:362
 msgid "Remove from Dock"
 msgstr "Remover do Dock"
 
-#: lib/stacks.js:446
+#: lib/stacks.js:447
 msgid "File copied — paste it with Ctrl+V"
 msgstr "Arquivo copiado — cole com Ctrl+V"
 
-#: lib/stacks.js:575
+#: lib/stacks.js:572
 msgid "Open With"
 msgstr "Abrir com"
 
-#: lib/stacks.js:588
+#: lib/stacks.js:585
 msgid "Show in Folder"
 msgstr "Mostrar na pasta"
 
-#: lib/stacks.js:590
+#: lib/stacks.js:587
 msgid "Copy"
 msgstr "Copiar"
 
-#: lib/stacks.js:591
+#: lib/stacks.js:588
 msgid "Move to Trash"
 msgstr "Mover para a lixeira"
 
-#: lib/stacks.js:593
+#: lib/stacks.js:590
 msgid "Properties"
 msgstr "Propriedades"
 
 #. Translators: %s is a folder name, e.g. "Open in Downloads".
-#: lib/stacks.js:794
+#: lib/stacks.js:791
 #, javascript-format
 msgid "Open in %s"
 msgstr "Abrir em %s"
 
-#: lib/stacks.js:855
+#: lib/stacks.js:852
 msgid "This folder is empty"
 msgstr "Esta pasta está vazia"
 
@@ -278,7 +278,7 @@ msgstr "Alternar entre lista e grade"
 msgid "Pinned"
 msgstr "Fixados"
 
-#: lib/start/home.js:134 lib/start/startMenu.js:477
+#: lib/start/home.js:134 lib/start/startMenu.js:483
 msgid "Unpin from Start"
 msgstr "Desafixar do Início"
 
@@ -315,7 +315,7 @@ msgstr "App"
 msgid "Apps"
 msgstr "Apps"
 
-#: lib/start/search.js:97 lib/start/startMenu.js:157
+#: lib/start/search.js:97 lib/start/startMenu.js:158
 msgid "Settings"
 msgstr "Configurações"
 
@@ -357,71 +357,71 @@ msgstr "Executar no terminal · Ctrl+Enter"
 msgid "No results for “%s”"
 msgstr "Nenhum resultado para “%s”"
 
-#: lib/start/startMenu.js:123
+#: lib/start/startMenu.js:124
 msgid "Type an app, file, setting or a calculation"
 msgstr "Digite um app, arquivo, configuração ou uma conta"
 
-#: lib/start/startMenu.js:159
+#: lib/start/startMenu.js:160
 msgid "Power Off / Log Out"
 msgstr "Desligar / Encerrar Sessão"
 
-#: lib/start/startMenu.js:182
+#: lib/start/startMenu.js:183
 msgid "Lock"
 msgstr "Bloquear"
 
-#: lib/start/startMenu.js:183
+#: lib/start/startMenu.js:184
 msgid "Switch User"
 msgstr "Trocar de Usuário"
 
-#: lib/start/startMenu.js:184
+#: lib/start/startMenu.js:185
 msgid "Log Out"
 msgstr "Encerrar Sessão"
 
-#: lib/start/startMenu.js:185
+#: lib/start/startMenu.js:186
 msgid "Suspend"
 msgstr "Suspender"
 
-#: lib/start/startMenu.js:186
+#: lib/start/startMenu.js:187
 msgid "Hibernate"
 msgstr "Hibernar"
 
-#: lib/start/startMenu.js:187
+#: lib/start/startMenu.js:188
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: lib/start/startMenu.js:188
+#: lib/start/startMenu.js:189
 msgid "Power Off"
 msgstr "Desligar"
 
-#: lib/start/startMenu.js:442
+#: lib/start/startMenu.js:448
 msgid "No terminal found"
 msgstr "Nenhum terminal encontrado"
 
-#: lib/start/startMenu.js:447
+#: lib/start/startMenu.js:453
 msgid "Could not run the command"
 msgstr "Não foi possível executar o comando"
 
-#: lib/start/startMenu.js:453
+#: lib/start/startMenu.js:459
 msgid "New Folder"
 msgstr "Nova Pasta"
 
-#: lib/start/startMenu.js:475
+#: lib/start/startMenu.js:481
 msgid "Remove from Folder"
 msgstr "Remover da Pasta"
 
-#: lib/start/startMenu.js:479
+#: lib/start/startMenu.js:485
 msgid "Pin to Start"
 msgstr "Fixar no Início"
 
-#: lib/start/startMenu.js:482
+#: lib/start/startMenu.js:488
 msgid "Unpin from Taskbar"
 msgstr "Desafixar da barra de tarefas"
 
-#: lib/start/startMenu.js:483
+#: lib/start/startMenu.js:489
 msgid "Pin to Taskbar"
 msgstr "Fixar na barra de tarefas"
 
-#: lib/start/startMenu.js:490
+#: lib/start/startMenu.js:496
 msgid "Show in Files"
 msgstr "Mostrar em Arquivos"
 
@@ -943,7 +943,7 @@ msgstr "Quanto os fundos claros e escuros são equilibrados"
 
 #: prefs/blurPage.js:228 prefs/blurPage.js:244 prefs/blurPage.js:246
 #: prefs/blurPage.js:253 prefs/blurPage.js:256 prefs/blurPage.js:260
-#: prefs/layoutPage.js:118 prefs/widgets.js:290
+#: prefs/layoutPage.js:128 prefs/widgets.js:290
 msgid "Off"
 msgstr "Não"
 
@@ -1124,175 +1124,183 @@ msgstr "Posição"
 msgid "Click a screen to move the Dock to that side"
 msgstr "Clique numa tela para levar o Dock para aquele lado"
 
-#: prefs/layoutPage.js:84
+#: prefs/layoutPage.js:86
+msgid "Move the top bar to the bottom"
+msgstr "Mover a barra superior para baixo"
+
+#: prefs/layoutPage.js:87
+msgid "When the Dock is at the top, the system bar moves to the bottom of the screen"
+msgstr "Quando o Dock estiver em cima, a barra do sistema vai para a parte de baixo da tela"
+
+#: prefs/layoutPage.js:94
 msgid "Distance from screen edge"
 msgstr "Distância da borda da tela"
 
-#: prefs/layoutPage.js:85
+#: prefs/layoutPage.js:95
 msgid "Touch the edge when a window is maximized"
 msgstr "Encostar na borda com janela maximizada"
 
-#: prefs/layoutPage.js:86
+#: prefs/layoutPage.js:96
 msgid "The Dock drops its margin while a maximized window is on its screen and floats again when there is none"
 msgstr "O Dock perde a margem enquanto houver uma janela maximizada na tela dele e volta a flutuar quando não houver nenhuma"
 
-#: prefs/layoutPage.js:91 prefs/widgets.js:286
+#: prefs/layoutPage.js:101 prefs/widgets.js:286
 msgid "Size"
 msgstr "Tamanho"
 
-#: prefs/layoutPage.js:99
+#: prefs/layoutPage.js:109
 msgid "Fluid"
 msgstr "Fluido"
 
-#: prefs/layoutPage.js:99
+#: prefs/layoutPage.js:109
 msgid "Domino"
 msgstr "Dominó"
 
-#: prefs/layoutPage.js:99
+#: prefs/layoutPage.js:109
 msgid "Cylinder"
 msgstr "Cilindro"
 
-#: prefs/layoutPage.js:100
+#: prefs/layoutPage.js:110
 msgid "Magnetic"
 msgstr "Magnético"
 
-#: prefs/layoutPage.js:100
+#: prefs/layoutPage.js:110
 msgid "Jelly"
 msgstr "Gelatina"
 
-#: prefs/layoutPage.js:100
+#: prefs/layoutPage.js:110
 msgid "Coverflow"
 msgstr "Coverflow"
 
-#: prefs/layoutPage.js:102
+#: prefs/layoutPage.js:112
 msgid "Motion"
 msgstr "Movimento"
 
-#: prefs/layoutPage.js:103
+#: prefs/layoutPage.js:113
 msgid "The shape of the wave"
 msgstr "O formato da onda"
 
-#: prefs/layoutPage.js:107
+#: prefs/layoutPage.js:117
 msgid "Magnification details"
 msgstr "Ajustes da ampliação"
 
-#: prefs/layoutPage.js:108
+#: prefs/layoutPage.js:118
 msgid "How the icons grow under the pointer"
 msgstr "Como os ícones crescem sob o ponteiro"
 
-#: prefs/layoutPage.js:110
+#: prefs/layoutPage.js:120
 msgid "Smoothness"
 msgstr "Suavidade"
 
-#: prefs/layoutPage.js:111
+#: prefs/layoutPage.js:121
 msgid "Lower values glide more, higher values follow the pointer faster"
 msgstr "Valores baixos deslizam mais; valores altos seguem o ponteiro mais rápido"
 
-#: prefs/layoutPage.js:112 prefs/wobblyGroup.js:69
+#: prefs/layoutPage.js:122 prefs/wobblyGroup.js:69
 msgid "Soft"
 msgstr "Suave"
 
-#: prefs/layoutPage.js:112
+#: prefs/layoutPage.js:122
 msgid "Snappy"
 msgstr "Rápido"
 
-#: prefs/layoutPage.js:113
+#: prefs/layoutPage.js:123
 msgid "Reach"
 msgstr "Alcance"
 
-#: prefs/layoutPage.js:114
+#: prefs/layoutPage.js:124
 msgid "How many neighbouring icons grow along"
 msgstr "Quantos ícones vizinhos crescem junto"
 
-#: prefs/layoutPage.js:115
+#: prefs/layoutPage.js:125
 msgid "Narrow"
 msgstr "Estreito"
 
-#: prefs/layoutPage.js:115
+#: prefs/layoutPage.js:125
 msgid "Wide"
 msgstr "Amplo"
 
-#: prefs/layoutPage.js:116
+#: prefs/layoutPage.js:126
 msgid "Lift"
 msgstr "Elevação"
 
-#: prefs/layoutPage.js:117
+#: prefs/layoutPage.js:127
 msgid "Extra lift of the magnified icon"
 msgstr "Quanto o ícone ampliado sobe"
 
-#: prefs/layoutPage.js:119
+#: prefs/layoutPage.js:129
 msgid "Make room"
 msgstr "Abrir espaço"
 
-#: prefs/layoutPage.js:120
+#: prefs/layoutPage.js:130
 msgid "Neighbours slide apart for the zoomed icon"
 msgstr "Os vizinhos se afastam para o ícone ampliado"
 
-#: prefs/layoutPage.js:121
+#: prefs/layoutPage.js:131
 msgid "Push strength"
 msgstr "Força do empurrão"
 
-#: prefs/layoutPage.js:122
+#: prefs/layoutPage.js:132
 msgid "Higher values push the neighbours less"
 msgstr "Valores maiores empurram menos os vizinhos"
 
-#: prefs/layoutPage.js:129
+#: prefs/layoutPage.js:139
 msgid "Motion details"
 msgstr "Detalhes do movimento"
 
-#: prefs/layoutPage.js:133
+#: prefs/layoutPage.js:143
 msgid "Tilt"
 msgstr "Inclinação"
 
-#: prefs/layoutPage.js:135
+#: prefs/layoutPage.js:145
 msgid "Curve"
 msgstr "Curvatura"
 
-#: prefs/layoutPage.js:137
+#: prefs/layoutPage.js:147
 msgid "Pull"
 msgstr "Atração"
 
-#: prefs/layoutPage.js:138
+#: prefs/layoutPage.js:148
 msgid "How strongly icons snap to the pointer"
 msgstr "Quanto os ícones são puxados pelo ponteiro"
 
-#: prefs/layoutPage.js:140
+#: prefs/layoutPage.js:150
 msgid "Stretch"
 msgstr "Esticar"
 
-#: prefs/layoutPage.js:142
+#: prefs/layoutPage.js:152
 msgid "Squash"
 msgstr "Achatar"
 
-#: prefs/layoutPage.js:144
+#: prefs/layoutPage.js:154
 msgid "Card angle"
 msgstr "Ângulo do cartão"
 
-#: prefs/layoutPage.js:153
+#: prefs/layoutPage.js:163
 msgid "Spacing"
 msgstr "Espaçamento"
 
-#: prefs/layoutPage.js:154
+#: prefs/layoutPage.js:164
 msgid "Space between icons"
 msgstr "Espaço entre os ícones"
 
-#: prefs/layoutPage.js:155
+#: prefs/layoutPage.js:165
 msgid "Inner padding"
 msgstr "Preenchimento interno"
 
-#: prefs/layoutPage.js:156
+#: prefs/layoutPage.js:166
 msgid "Extra space between the icons and the Dock edge"
 msgstr "Espaço extra entre os ícones e a borda do Dock"
 
-#: prefs/layoutPage.js:158
+#: prefs/layoutPage.js:168
 msgid "Monitors"
 msgstr "Monitores"
 
-#: prefs/layoutPage.js:159
+#: prefs/layoutPage.js:169
 msgid "Show the Dock on all monitors"
 msgstr "Mostrar o Dock em todos os monitores"
 
-#: prefs/layoutPage.js:160
+#: prefs/layoutPage.js:170
 msgid "When off, the Dock appears only on the primary monitor"
 msgstr "Quando desligado, o Dock aparece só no monitor principal"
 

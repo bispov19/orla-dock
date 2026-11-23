@@ -26,11 +26,21 @@
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
 import {DockManager} from './lib/dockManager.js';
+import {PanelMover} from './lib/panelMover.js';
 import {WobblyWindows} from './lib/wobbly.js';
 
 export default class OrlaDockExtension extends Extension {
     enable() {
         this._manager = new DockManager(this);
+        // Barra do GNOME embaixo quando a dock está em cima. Os "ganchos"
+        // ligam os dois sem um conhecer o código do outro: a barra avisa
+        // quando terminou de mover (a dock se reposiciona) e pergunta onde
+        // termina a dock (para pôr os avisos de notificação abaixo dela).
+        this._panelMover = new PanelMover(this.getSettings(), {
+            onMoved: () => this._manager?.onPanelMoved(),
+            dockBottom: () => this._manager?.topDockBottom() ?? null,
+        });
+        this._panelMover.enable();
         // Janelas balançando: independente da dock (nem sabe que ela existe).
         this._wobbly = new WobblyWindows(this.getSettings());
     }
@@ -44,6 +54,10 @@ export default class OrlaDockExtension extends Extension {
     // mode is kept so that unlocking does not flash GNOME's native Dash
     // before the extension is enabled again. disable() still destroys all.
     disable() {
+        // Primeiro a barra volta para o topo (com a dock ainda viva para se
+        // reposicionar), depois o resto.
+        this._panelMover?.disable();
+        this._panelMover = null;
         this._wobbly?.destroy();
         this._wobbly = null;
         this._manager?.destroy();

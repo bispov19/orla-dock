@@ -81,6 +81,16 @@ export function layoutPage(binder) {
     const cards = group(page, _('Position'), _('Click a screen to move the Dock to that side'));
     cards.add(positionCards(binder));
     const place = group(page, '');
+    // Logo abaixo dos cartões: só vale com a dock em cima, então fica
+    // apagada (insensível) nas outras posições, para a pessoa ver que existe.
+    const panelDown = switchRow(binder, 'panel-to-bottom', _('Move the top bar to the bottom'),
+        _('When the Dock is at the top, the system bar moves to the bottom of the screen'));
+    const syncPanelDown = () => {
+        panelDown.sensitive = binder.settings.get_enum('position') === 1;   // 1 = Superior
+    };
+    binder._watch('position', syncPanelDown);
+    syncPanelDown();
+    place.add(panelDown);
     place.add(spinRow(binder, 'dock-margin', _('Distance from screen edge'), 0, 40));
     const hug = switchRow(binder, 'hug-edge-when-maximized', _('Touch the edge when a window is maximized'),
         _('The Dock drops its margin while a maximized window is on its screen and floats again when there is none'));

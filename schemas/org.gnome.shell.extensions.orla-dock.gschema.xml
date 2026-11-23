@@ -113,6 +113,11 @@
       <default>'bottom'</default>
       <summary>Dock position on screen</summary>
     </key>
+    <key name="panel-to-bottom" type="b">
+      <default>true</default>
+      <summary>Move the top bar to the bottom when the Dock is on top</summary>
+      <description>While the Dock is at the top of the screen, GNOME's top bar moves to the bottom edge, so the two do not compete for the same space.</description>
+    </key>
     <key name="icon-size" type="i">
       <range min="24" max="128"/>
       <default>48</default>
