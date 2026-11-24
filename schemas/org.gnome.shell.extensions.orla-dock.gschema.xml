@@ -848,6 +848,15 @@
       <summary>Progress outline thickness</summary>
       <description>Thickness of the progress outline: thin (2 px) or medium (3 px).</description>
     </key>
+    <key name="wavebar-music-pill-volume-position" type="s">
+      <choices>
+        <choice value="card"/>
+        <choice value="dock"/>
+      </choices>
+      <default>'card'</default>
+      <summary>Music volume position</summary>
+      <description>Where the player volume slider is: inside the music card, or at the end of the dock as its own control.</description>
+    </key>
     <key name="wavebar-music-pill-lyrics-cache-stamp" type="i">
       <default>0</default>
       <summary>Lyrics cache reset</summary>

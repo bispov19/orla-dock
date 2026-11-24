@@ -855,8 +855,8 @@ async function testMusic(settings) {
     await sleep(700);
 
     // 4) Compacto = um ícone; expandido = mais largo, com o título.
-    const item = musicItem();
-    const g = dock().geometry;
+    let item = musicItem();
+    let g = dock().geometry;
     check(Math.abs(item.cellLength(g) - g.cellLength) < 1, 'música: compacto tem o tamanho de um ícone');
     settings.set_string(`${K}mode`, 'expanded');
     await sleep(900);
@@ -921,6 +921,82 @@ async function testMusic(settings) {
     await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
     await sleep(800);
     check(!card.isOpen, 'música: clique direito de novo fecha o card');
+
+    // 6b) Card: aleatório, repetir e volume.
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(800);
+    check(card._shuffle.reactive && card._repeat.reactive, 'card: aleatório e repetir disponíveis');
+    await mouse.click(...centerOf(card._shuffle));
+    await sleep(700);
+    check(current().shuffle === true && card._shuffle.has_style_pseudo_class('checked'),
+        'card: aleatório liga (e fica destacado)');
+    await mouse.click(...centerOf(card._repeat));
+    await sleep(700);
+    const loop1 = current().loopStatus;
+    await mouse.click(...centerOf(card._repeat));
+    await sleep(700);
+    const loop2 = current().loopStatus;
+    check(loop1 === 'Playlist' && loop2 === 'Track' && card._repeat.child.icon_name.includes('repeat-song'),
+        `card: repetir alterna lista → música (${loop1} → ${loop2})`);
+    await mouse.click(...centerOf(card._repeat));
+    await sleep(700);
+    check(current().loopStatus === 'None' && !card._repeat.has_style_pseudo_class('checked'), 'card: repetir desliga');
+    const vol = card._volume;
+    check(vol.visible && manager().music.volume.mode === 'mpris', `card: barra de volume (modo ${manager().music.volume.mode})`);
+    await screenshot('38-card-volume');
+    const [bx, by] = vol.bar.get_transformed_position();
+    await mouse.click(bx + 8 + (vol.bar.width - 16) * 0.25, by + vol.bar.height / 2);
+    await sleep(800);
+    check(Math.abs(current().volume - 0.25) < 0.05, `card: clicar na barra muda o volume (${current().volume.toFixed(2)})`);
+    current().setVolume(0.8);
+    await sleep(800);
+    check(Math.abs(vol.bar.value - 0.8) < 0.02 && vol.muteButton.child.icon_name.includes('high'),
+        `card: volume mudado por fora aparece na hora (${vol.bar.value.toFixed(2)})`);
+    await mouse.click(...centerOf(vol.muteButton));
+    await sleep(700);
+    check(current().volume < 0.01 && vol.muteButton.child.icon_name.includes('muted'), 'card: o alto-falante silencia');
+    await mouse.click(...centerOf(vol.muteButton));
+    await sleep(700);
+    check(Math.abs(current().volume - 0.8) < 0.02, `card: e volta ao volume de antes (${current().volume.toFixed(2)})`);
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(700);
+
+    // 6c) Volume no canto da dock.
+    settings.set_string(`${K}volume-position`, 'dock');
+    await sleep(1200);
+    keys = itemKeys(dock());
+    check(keys.at(-1) === 'music-volume' && keys.at(-2) === 'sep:volume',
+        `volume na dock: último item, com divisória (${keys.slice(-3).join(', ')})`);
+    const dv = dock().findItem('music-volume');
+    const dvBase = dv.cellLength(g);
+    await mouse.moveAndSettle(...centerOf(dv));
+    await sleep(700);
+    check(dv.cellLength(g) > dvBase * 2, 'volume na dock: com o mouse em cima, abre a barra');
+    await screenshot('39-volume-dock');
+    const before2 = current().volume;
+    await mouse.scroll(...centerOf(dv._control.bar), Clutter.ScrollDirection.DOWN);
+    await sleep(700);
+    check(current().volume < before2, `volume na dock: a roda muda o volume (${before2.toFixed(2)} → ${current().volume.toFixed(2)})`);
+    await mouse.moveAndSettle(5, 5);
+    await sleep(1400);
+    check(Math.abs(dv.cellLength(g) - dvBase) < 1, 'volume na dock: sem o mouse, volta ao ícone');
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(700);
+    check(!card._volume.visible, 'volume na dock: some do card');
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(600);
+    settings.set_string('position', 'left');
+    await sleep(1800);
+    const dvSide = manager()._docks[0].findItem('music-volume');
+    check(dvSide?._control.orientation === Clutter.Orientation.VERTICAL, 'volume na dock: na dock lateral fica em pé');
+    settings.set_string('position', 'bottom');
+    await sleep(1800);
+    settings.reset(`${K}volume-position`);
+    await sleep(1200);
+    check(!itemKeys(dock()).includes('music-volume'), 'volume no card de novo: o controle sai da dock');
+    // A dock foi recriada (lado mudou): o widget é outro.
+    item = musicItem();
+    g = dock().geometry;
 
     // 7) Letra em tempo real (cache semeado: sem internet).
     await seedLyrics({title: 'Canção Teste', artists: ['Banda Teste'], album: 'Disco', length: 200e6});
@@ -992,7 +1068,7 @@ async function testMusic(settings) {
 
     // 8) Dois players: o card alterna entre eles.
     const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art',
-        '--paused', '--length', '0');
+        '--paused', '--length', '0', '--no-volume', '--no-loop');
     await sleep(1000);
     check(manager().music.players.length === 2, 'música: dois players ao mesmo tempo');
     manager().music.manager.selectPlayer(manager().music.players.find(p => p.metadata.title === 'Outra'));
@@ -1001,6 +1077,15 @@ async function testMusic(settings) {
     check(item.has_style_class_name('wavebar-music-pill-idle') === false && item._cover.has_style_class_name('wavebar-music-pill-no-cover'),
         'música: faixa sem capa mostra a nota musical');
     check(!item._ring.visible, 'música: sem duração (ao vivo), o contorno fica escondido');
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(800);
+    const cardB = manager()._musicCard;
+    check(cardB.isOpen && !cardB._shuffle.reactive && !cardB._repeat.reactive && cardB._shuffle.visible,
+        'card: player sem aleatório/repetir, botões esmaecidos (não somem)');
+    check(!cardB._volume.bar.reactive && manager().music.volume.mode === 'none',
+        'card: player sem volume (e sem áudio), barra esmaecida');
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(600);
     b.force_exit();
     await sleep(1500);
     check(manager().music.players.length === 1, 'música: player fechado sai da lista');

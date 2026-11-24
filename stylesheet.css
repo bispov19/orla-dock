@@ -1367,3 +1367,72 @@
 .wavebar-music-pill-menu-item:focus {
     background-color: rgba(127, 127, 127, 0.2);
 }
+
+/* ---------- Volume, aleatório e repetir (widget de música) ---------- */
+
+/* Aleatório e repetir: apagados quando desligados, cor de destaque ligados. */
+.wavebar-music-pill-control.wavebar-music-pill-toggle {
+    padding: 8px;
+}
+
+.wavebar-music-pill-control.wavebar-music-pill-toggle StIcon {
+    icon-size: 17px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-control.wavebar-music-pill-toggle StIcon {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.wavebar-music-pill-control.wavebar-music-pill-toggle:checked StIcon {
+    color: -st-accent-color;
+}
+
+.wavebar-music-pill-volume {
+    spacing: 6px;
+}
+
+.wavebar-music-pill-volume-bar {
+    min-height: 22px;
+    min-width: 22px;
+}
+
+.wavebar-music-pill-volume-icon StIcon {
+    icon-size: 16px;
+}
+
+.wavebar-music-pill-volume-percent {
+    min-width: 34px;
+    font-size: 0.8em;
+    font-feature-settings: "tnum";
+    text-align: right;
+    opacity: 0.8;
+}
+
+.wavebar-music-pill-card-volume {
+    padding: 0 2px;
+}
+
+/* No canto da dock: só o alto-falante; aberto, um fundo de pílula. */
+.wavebar-music-pill-dockvol {
+    border-radius: 999px;
+    color: #f2f2f2;
+    transition-duration: 200ms;
+}
+
+.orla-light .wavebar-music-pill-dockvol {
+    color: #1c1c1e;
+}
+
+.wavebar-music-pill-dockvol.wavebar-music-pill-dockvol-open {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+.wavebar-music-pill-dockvol .wavebar-music-pill-volume-icon {
+    padding: 0;
+}
+
+.wavebar-music-pill-dockvol .wavebar-music-pill-volume-percent {
+    min-width: 30px;
+    padding-right: 6px;
+}

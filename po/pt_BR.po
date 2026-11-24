@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-24 17:17-0300\n"
+"POT-Creation-Date: 2026-11-24 17:52-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: lib/appMenu.js:60 lib/start/startMenu.js:536
+#: lib/appMenu.js:60 lib/start/startMenu.js:539
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -110,8 +110,8 @@ msgstr "Âmbar"
 msgid "Night sky"
 msgstr "Noturno"
 
-#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:534
-#: lib/start/startMenu.js:556 lib/start/styles/modern.js:166 lib/trash.js:58
+#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:537
+#: lib/start/startMenu.js:559 lib/start/styles/modern.js:166 lib/trash.js:58
 msgid "Open"
 msgstr "Abrir"
 
@@ -131,62 +131,98 @@ msgstr "Não foi possível ejetar a unidade"
 msgid "Could not unmount the drive"
 msgstr "Não foi possível desmontar a unidade"
 
-#: lib/music/card.js:128
+#: lib/music/card.js:133
 msgid "Previous player"
 msgstr "Player anterior"
 
-#: lib/music/card.js:142
+#: lib/music/card.js:147
 msgid "Next player"
 msgstr "Próximo player"
 
 #
-#: lib/music/card.js:144
+#: lib/music/card.js:149
 msgid "More options"
 msgstr "Mais opções"
 
-#: lib/music/card.js:206 lib/music/wavebarMusicPill.js:291
+#: lib/music/card.js:211 lib/music/wavebarMusicPill.js:291
 msgid "Previous track"
 msgstr "Faixa anterior"
 
-#: lib/music/card.js:208 lib/music/wavebarMusicPill.js:293
+#: lib/music/card.js:213 lib/music/wavebarMusicPill.js:293
 msgid "Play or pause"
 msgstr "Tocar ou pausar"
 
 #
 #
-#: lib/music/card.js:210 lib/music/wavebarMusicPill.js:296
+#: lib/music/card.js:215 lib/music/wavebarMusicPill.js:296
 msgid "Next track"
 msgstr "Próxima faixa"
 
+#: lib/music/card.js:219
+msgid "Shuffle"
+msgstr "Aleatório"
+
+#: lib/music/card.js:222
+msgid "Repeat"
+msgstr "Repetir"
+
 #
-#: lib/music/card.js:353
+#: lib/music/card.js:408
 msgid "Compact mode"
 msgstr "Modo compacto"
 
-#: lib/music/card.js:353
+#: lib/music/card.js:408
 msgid "Expanded mode"
 msgstr "Modo expandido"
 
 #
-#: lib/music/card.js:355
+#: lib/music/card.js:410
 msgid "Disable music widget"
 msgstr "Desativar widget de música"
 
-#: lib/music/card.js:359 lib/start/parts.js:652 lib/start/parts.js:677
+#: lib/music/card.js:414 lib/start/parts.js:652 lib/start/parts.js:677
 #: lib/start/search.js:97 lib/start/styles/alphabetical.js:45
 msgid "Settings"
 msgstr "Configurações"
 
-#: lib/music/card.js:414
+#: lib/music/card.js:469
 msgid "Unknown title"
 msgstr "Título desconhecido"
 
-#: lib/music/card.js:416
+#: lib/music/card.js:471
 msgid "Unknown artist"
 msgstr "Artista desconhecido"
 
+#: lib/music/card.js:485
+msgid "Shuffle: on"
+msgstr "Aleatório: ligado"
+
+#: lib/music/card.js:485
+msgid "Shuffle: off"
+msgstr "Aleatório: desligado"
+
+#: lib/music/card.js:489
+msgid "Repeat: off"
+msgstr "Repetir: desligado"
+
+#: lib/music/card.js:489
+msgid "Repeat: playlist"
+msgstr "Repetir: lista"
+
+#: lib/music/card.js:489
+msgid "Repeat: this song"
+msgstr "Repetir: esta música"
+
+#: lib/music/volumeBar.js:360
+msgid "Unmute"
+msgstr "Ativar som"
+
+#: lib/music/volumeBar.js:360
+msgid "Mute"
+msgstr "Silenciar"
+
 #: lib/music/wavebarMusicPill.js:446 prefs/modulesPage.js:63
-#: prefs/musicPage.js:59
+#: prefs/musicPage.js:169
 msgid "Music"
 msgstr "Música"
 
@@ -339,12 +375,12 @@ msgstr "Continuar de onde parou"
 msgid "Power Off / Log Out"
 msgstr "Desligar / Encerrar Sessão"
 
-#: lib/start/parts.js:637 lib/start/startMenu.js:575
+#: lib/start/parts.js:637 lib/start/startMenu.js:578
 #: lib/start/styles/classic.js:151
 msgid "Lock"
 msgstr "Bloquear"
 
-#: lib/start/parts.js:645 lib/start/startMenu.js:578
+#: lib/start/parts.js:645 lib/start/startMenu.js:581
 #: lib/start/styles/classic.js:149
 msgid "Suspend"
 msgstr "Suspender"
@@ -407,44 +443,44 @@ msgstr "Executar no terminal · Ctrl+Enter"
 msgid "No results for “%s”"
 msgstr "Nenhum resultado para “%s”"
 
-#: lib/start/startMenu.js:522
+#: lib/start/startMenu.js:525
 msgid "No terminal found"
 msgstr "Nenhum terminal encontrado"
 
-#: lib/start/startMenu.js:527
+#: lib/start/startMenu.js:530
 msgid "Could not run the command"
 msgstr "Não foi possível executar o comando"
 
-#: lib/start/startMenu.js:546
+#: lib/start/startMenu.js:549
 msgid "Unpin"
 msgstr "Desafixar"
 
 #
-#: lib/start/startMenu.js:547
+#: lib/start/startMenu.js:550
 msgid "Pin"
 msgstr "Fixar"
 
-#: lib/start/startMenu.js:550 lib/start/startMenu.js:557
+#: lib/start/startMenu.js:553 lib/start/startMenu.js:560
 msgid "Show in Files"
 msgstr "Mostrar em Arquivos"
 
-#: lib/start/startMenu.js:576 lib/start/styles/classic.js:153
+#: lib/start/startMenu.js:579 lib/start/styles/classic.js:153
 msgid "Switch User"
 msgstr "Trocar de Usuário"
 
-#: lib/start/startMenu.js:577 lib/start/styles/classic.js:152
+#: lib/start/startMenu.js:580 lib/start/styles/classic.js:152
 msgid "Log Out"
 msgstr "Encerrar Sessão"
 
-#: lib/start/startMenu.js:579
+#: lib/start/startMenu.js:582
 msgid "Hibernate"
 msgstr "Hibernar"
 
-#: lib/start/startMenu.js:580 lib/start/styles/classic.js:150
+#: lib/start/startMenu.js:583 lib/start/styles/classic.js:150
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: lib/start/startMenu.js:581
+#: lib/start/startMenu.js:584
 msgid "Power Off"
 msgstr "Desligar"
 
@@ -1600,166 +1636,192 @@ msgid "Choose a folder"
 msgstr "Escolha uma pasta"
 
 #
+#: prefs/musicPage.js:88
+msgid "In the card"
+msgstr "No card"
+
+#: prefs/musicPage.js:88
+msgid "Next to the controls (default)"
+msgstr "Junto aos controles (padrão)"
+
+#
+#: prefs/musicPage.js:89
+msgid "Dock corner"
+msgstr "Canto da dock"
+
+#: prefs/musicPage.js:89
+msgid "Its own control at the end of the dock"
+msgstr "Controle próprio no fim da dock"
+
+#
 #. Translators: título de aba; curto, porque as abas dividem a largura.
-#: prefs/musicPage.js:55
+#: prefs/musicPage.js:165
 msgctxt "preferences tab"
 msgid "Music"
 msgstr "Música"
 
-#: prefs/musicPage.js:60
+#: prefs/musicPage.js:170
 msgid "The song that is playing, right on the dock: between the applications button and Files"
 msgstr "A música que está tocando, direto na dock: entre o botão de aplicativos e o Arquivos"
 
-#: prefs/musicPage.js:61
+#: prefs/musicPage.js:171
 msgid "Enable wavebar-music-pill"
 msgstr "Ativar wavebar-music-pill"
 
-#: prefs/musicPage.js:62
+#: prefs/musicPage.js:172
 msgid "Reads the players through MPRIS (Spotify, browsers, local players)"
 msgstr "Lê os players pelo MPRIS (Spotify, navegadores, players locais)"
 
-#: prefs/musicPage.js:72
+#: prefs/musicPage.js:182
 msgid "Look"
 msgstr "Aparência"
 
-#: prefs/musicPage.js:74
+#: prefs/musicPage.js:184
 msgid "Display mode"
 msgstr "Modo de exibição"
 
-#: prefs/musicPage.js:75
+#: prefs/musicPage.js:185
 msgid "Compact is the size of an icon; expanded shows title and artist"
 msgstr "Compacto tem o tamanho de um ícone; expandido mostra título e artista"
 
-#: prefs/musicPage.js:76
+#: prefs/musicPage.js:186
 msgid "Compact"
 msgstr "Compacto"
 
-#: prefs/musicPage.js:76
+#: prefs/musicPage.js:186
 msgid "Expanded"
 msgstr "Expandido"
 
 #
-#: prefs/musicPage.js:80
+#: prefs/musicPage.js:190
 msgid "Show separators"
 msgstr "Mostrar separadores"
 
-#: prefs/musicPage.js:81
+#: prefs/musicPage.js:191
 msgid "A separator on each side of the widget"
 msgstr "Um separador de cada lado do widget"
 
 #
-#: prefs/musicPage.js:82
+#: prefs/musicPage.js:192
 msgid "Show album cover"
 msgstr "Mostrar capa do álbum"
 
-#: prefs/musicPage.js:83
+#: prefs/musicPage.js:193
 msgid "Scroll long titles automatically"
 msgstr "Rolagem automática do título longo"
 
-#: prefs/musicPage.js:84
+#: prefs/musicPage.js:194
 msgid "Maximum width when expanded"
 msgstr "Largura máxima no modo expandido"
 
-#: prefs/musicPage.js:86
+#: prefs/musicPage.js:196
 msgid "Show even without a player"
 msgstr "Mostrar mesmo sem player"
 
-#: prefs/musicPage.js:87
+#: prefs/musicPage.js:197
 msgid "A discreet music item stays on the dock"
 msgstr "Um item de música discreto fica na dock"
 
 #
-#: prefs/musicPage.js:89
+#: prefs/musicPage.js:199
 msgid "Behavior"
 msgstr "Comportamento"
 
-#: prefs/musicPage.js:90
+#: prefs/musicPage.js:200
 msgid "Always show previous and next"
 msgstr "Mostrar sempre anterior e próxima"
 
-#: prefs/musicPage.js:91
+#: prefs/musicPage.js:201
 msgid "Off: play/pause is always there, and previous and next appear when the pointer is over the widget"
 msgstr "Desligado: o tocar/pausar fica sempre, e anterior e próxima aparecem com o mouse sobre o widget"
 
-#: prefs/musicPage.js:92
+#: prefs/musicPage.js:202
 msgid "Expand on hover"
 msgstr "Expandir ao passar o mouse"
 
-#: prefs/musicPage.js:93
+#: prefs/musicPage.js:203
 msgid "Expand when the track changes"
 msgstr "Expandir ao trocar de faixa"
 
-#: prefs/musicPage.js:94
+#: prefs/musicPage.js:204
 msgid "For how long"
 msgstr "Por quanto tempo"
 
 #
 #
-#: prefs/musicPage.js:99
+#: prefs/musicPage.js:209
 msgid "Progress"
 msgstr "Progresso"
 
-#: prefs/musicPage.js:100
+#: prefs/musicPage.js:210
 msgid "Progress outline"
 msgstr "Contorno de progresso"
 
-#: prefs/musicPage.js:101
+#: prefs/musicPage.js:211
 msgid "An outline around the widget that goes all the way around as the song plays"
 msgstr "Um contorno em volta do widget que dá a volta inteira enquanto a música toca"
 
 #
-#: prefs/musicPage.js:102
+#: prefs/musicPage.js:212
 msgid "Outline thickness"
 msgstr "Espessura do contorno"
 
-#: prefs/musicPage.js:103
+#: prefs/musicPage.js:213
 msgid "Thin (2 px)"
 msgstr "Fina (2 px)"
 
-#: prefs/musicPage.js:103
+#: prefs/musicPage.js:213
 msgid "Medium (3 px)"
 msgstr "Média (3 px)"
 
 #
 #
-#: prefs/musicPage.js:107
+#: prefs/musicPage.js:217
 msgid "Color from the album cover"
 msgstr "Cor dinâmica pela capa"
 
-#: prefs/musicPage.js:108
+#: prefs/musicPage.js:218
 msgid "The outline, the widget and the play button take the main color of the cover. Off: the dock accent color"
 msgstr "O contorno, o widget e o botão de tocar ganham a cor principal da capa. Desligado: a cor de destaque da dock"
 
-#: prefs/musicPage.js:110
+#: prefs/musicPage.js:220
+msgid "Volume"
+msgstr "Volume"
+
+#: prefs/musicPage.js:221
+msgid "The player volume: from the player itself (MPRIS) or, when it does not offer it, from its audio stream"
+msgstr "O volume do player: pelo próprio player (MPRIS) ou, quando ele não oferece, pelo fluxo de áudio dele"
+
+#: prefs/musicPage.js:224
 msgid "Lyrics"
 msgstr "Letras"
 
-#: prefs/musicPage.js:111
+#: prefs/musicPage.js:225
 msgid "Show real-time lyrics"
 msgstr "Mostrar letra em tempo real"
 
-#: prefs/musicPage.js:112
+#: prefs/musicPage.js:226
 msgid "Sends the song title and artist to LRCLIB to find the lyrics. Shown in the expanded mode and in the card"
 msgstr "Envia título e artista da música ao LRCLIB para buscar a letra. Aparece no modo expandido e no card"
 
-#: prefs/musicPage.js:113
+#: prefs/musicPage.js:227
 msgid "Clear lyrics cache"
 msgstr "Limpar cache de letras"
 
-#: prefs/musicPage.js:114
+#: prefs/musicPage.js:228
 msgid "Lyrics already found (and the ones not found) are kept to avoid asking again"
 msgstr "As letras já encontradas (e as não encontradas) ficam guardadas para não perguntar de novo"
 
-#: prefs/musicPage.js:115
+#: prefs/musicPage.js:229
 msgid "Clear"
 msgstr "Limpar"
 
-#: prefs/musicPage.js:122
+#: prefs/musicPage.js:236
 #, javascript-format
 msgid "Lyrics cache cleared (%d files)"
 msgstr "Cache de letras limpo (%d arquivos)"
 
-#: prefs/musicPage.js:128
+#: prefs/musicPage.js:242
 msgid "If the Wavebar extension is also active, the music indicator will appear in both places."
 msgstr "Se a extensão Wavebar também estiver ativa, o indicador de música aparecerá nos dois lugares."
 

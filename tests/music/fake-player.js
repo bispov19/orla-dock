@@ -16,7 +16,7 @@ import GLib from 'gi://GLib';
 import System from 'system';
 
 const opts = {name: 'orla_fake', identity: 'Fake Player', title: 'Fake Song', artist: 'Fake Artist',
-    album: 'Fake Album', length: 200, paused: false, prev: true, next: true, art: true, color: [0.85, 0.2, 0.3]};
+    album: 'Fake Album', length: 200, paused: false, prev: true, next: true, art: true, color: [0.85, 0.2, 0.3], volume: true, loop: true};
 const args = System.programArgs;
 for (let i = 0; i < args.length; i++) {
     const next = () => args[++i];
@@ -32,6 +32,8 @@ for (let i = 0; i < args.length; i++) {
     case '--no-next': opts.next = false; break;
     case '--no-art': opts.art = false; break;
     case '--color': opts.color = next().split(',').map(Number); break;
+    case '--no-volume': opts.volume = false; break;
+    case '--no-loop': opts.loop = false; break;
     case '--long': opts.title = 'Uma música com um título comprido demais para caber inteiro na pílula da dock'; break;
     }
 }
@@ -54,6 +56,8 @@ const coverUri = GLib.filename_to_uri(coverPath, null);
 let index = 0;
 let status = opts.paused ? 'Paused' : 'Playing';
 let volume = 0.5;
+let loopStatus = 'None';
+let shuffle = false;
 let basePos = 0;
 let baseTime = GLib.get_monotonic_time();
 const position = () => basePos + (status === 'Playing' ? GLib.get_monotonic_time() - baseTime : 0);
@@ -97,7 +101,8 @@ const PLAYER_XML = `<node><interface name="org.mpris.MediaPlayer2.Player">
   <property name="PlaybackStatus" type="s" access="read"/>
   <property name="Rate" type="d" access="read"/>
   <property name="Metadata" type="a{sv}" access="read"/>
-  <property name="Volume" type="d" access="readwrite"/>
+  ${opts.volume ? '<property name="Volume" type="d" access="readwrite"/>' : ''}
+  ${opts.loop ? '<property name="LoopStatus" type="s" access="readwrite"/><property name="Shuffle" type="b" access="readwrite"/>' : ''}
   <property name="Position" type="x" access="read"/>
   <property name="CanGoNext" type="b" access="read"/>
   <property name="CanGoPrevious" type="b" access="read"/>
@@ -114,6 +119,8 @@ function notify(...props) {
         PlaybackStatus: new GLib.Variant('s', status),
         Metadata: new GLib.Variant('a{sv}', metadata()),
         Volume: new GLib.Variant('d', volume),
+        LoopStatus: new GLib.Variant('s', loopStatus),
+        Shuffle: new GLib.Variant('b', shuffle),
     };
     for (const p of props)
         exported.emit_property_changed(p, values[p]);
@@ -157,6 +164,22 @@ const player = {
         volume = Math.max(0, Math.min(1, v));
         notify('Volume');
         print(`VOLUME ${volume.toFixed(2)}`);
+    },
+    get LoopStatus() {
+        return loopStatus;
+    },
+    set LoopStatus(v) {
+        loopStatus = v;
+        notify('LoopStatus');
+        print(`LOOP ${v}`);
+    },
+    get Shuffle() {
+        return shuffle;
+    },
+    set Shuffle(v) {
+        shuffle = v;
+        notify('Shuffle');
+        print(`SHUFFLE ${v}`);
     },
     Rate: 1,
     CanGoNext: opts.next, CanGoPrevious: opts.prev, CanPlay: true, CanPause: true, CanSeek: true, CanControl: true,
