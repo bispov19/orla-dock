@@ -1,0 +1,6 @@
+{
+  "uuid": "orla-perf@local",
+  "name": "Orla Dock — medições",
+  "description": "Mede a fluidez da Visão Geral, das áreas de trabalho e do Menu Iniciar com e sem a Orla Dock. Só para desenvolvimento.",
+  "shell-version": ["51"]
+}

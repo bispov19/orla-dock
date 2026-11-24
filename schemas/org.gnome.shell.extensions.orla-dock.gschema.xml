@@ -677,6 +677,17 @@
       <summary>Animate the start menu</summary>
       <description>Short fade and slide when the start menu opens and closes.</description>
     </key>
+    <key name="start-menu-opacity" type="d">
+      <range min="0.85" max="1.0"/>
+      <default>1.0</default>
+      <summary>Start menu opacity</summary>
+      <description>Opacity of the start menu background. The minimum keeps text readable over any wallpaper.</description>
+    </key>
+    <key name="start-menu-glass" type="b">
+      <default>false</default>
+      <summary>Start menu glass</summary>
+      <description>Show a frosted copy of the wallpaper behind the start menu. Computed once, light on the graphics card.</description>
+    </key>
     <key name="start-menu-shortcut" type="as">
       <default>[]</default>
       <summary>Start menu shortcut</summary>

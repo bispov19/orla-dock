@@ -669,7 +669,7 @@ async function testStartMenu(settings) {
     await sleep(200);
     m = startMenu();
     check(m._box.width > mediumWidth, `tamanho grande: mais largo (${mediumWidth} → ${m._box.width})`);
-    check(m._box.opacity === 255, 'sem animação: aparece na hora');
+    check(m._frame.opacity === 255 && m._frame.scale_x === 1, 'sem animação: aparece na hora');
     m.close();
     await sleep(300);
 
@@ -732,6 +732,8 @@ async function testAppGridHook(settings) {
     // 4) Com a Visão Geral aberta, o botão de grade do dash: fecha e abre o menu.
     controls.dash.showAppsButton.checked = true;
     await waitFor(() => startMenu()?.isOpen, 3000);
+    await waitFor(() => !Main.overview.visible, 3000);
+    await sleep(200);
     check(startMenu()?.isOpen && !Main.overview.visible && !controls.dash.showAppsButton.checked,
         'App Grid: botão de grade do dash fecha a Visão Geral e abre o menu');
     startMenu().close();
@@ -741,8 +743,16 @@ async function testAppGridHook(settings) {
     global.display.emit('overlay-key');
     await sleep(60);
     global.display.emit('overlay-key');
+    const t0 = GLib.get_monotonic_time();
     await waitFor(() => startMenu()?.isOpen, 3000);
+    const openedMs = (GLib.get_monotonic_time() - t0) / 1000;
+    check(openedMs < 120, `App Grid: Super duas vezes — o menu começa a abrir junto com a saída da Visão Geral (${Math.round(openedMs)} ms)`);
+    await waitFor(() => !Main.overview.visible, 3000);
+    await sleep(200);
+    const entry = startMenu()?.style?.entry;
     check(startMenu()?.isOpen && !Main.overview.visible, 'App Grid: Super duas vezes abre o menu');
+    check(Boolean(entry) && global.stage.get_key_focus() === entry.clutter_text,
+        'App Grid: depois que a Visão Geral sai, o teclado continua no menu');
     await screenshot('18-menu-duplo-super');
     startMenu().close();
     await sleep(400);

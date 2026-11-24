@@ -11,7 +11,7 @@ import Gtk from 'gi://Gtk';
 import {gettext as _, pgettext} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import {drawingArea, roundedRect} from './previews.js';
-import {group, spinRow, switchRow} from './rows.js';
+import {group, sliderRow, spinRow, switchRow} from './rows.js';
 import {ShortcutRow} from './widgets.js';
 
 // Buscadores para "Pesquisar na web" (%s = o texto digitado).
@@ -300,6 +300,13 @@ export function startMenuPage(binder) {
     ]));
     place.add(switchRow(binder, 'start-menu-animate', _('Animation'),
         _('A short fade and slide when opening and closing')));
+
+    const background = group(page, _('Background'));
+    background.add(sliderRow(binder, 'start-menu-opacity', _('Opacity'),
+        _('Text stays readable over any wallpaper, even at the minimum'),
+        {lower: 0.85, upper: 1, step: 0.01, digits: 2, format: v => `${Math.round(v * 100)}%`}));
+    background.add(switchRow(binder, 'start-menu-glass', _('Glass effect'),
+        _('A frosted copy of the wallpaper behind the menu (computed once; off by default)')));
 
     const content = group(page, _('Content'));
     const files = spinRow(binder, 'start-menu-recent-files', _('How many recent files'), 1, 50);

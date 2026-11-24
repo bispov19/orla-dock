@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-23 09:44-0300\n"
+"POT-Creation-Date: 2026-11-24 12:11-0300\n"
 "PO-Revision-Date: 2026-11-12 07:11-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Brazilian Portuguese\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Applications"
 msgstr "Aplicativos"
 
-#: lib/appMenu.js:60 lib/start/startMenu.js:515
+#: lib/appMenu.js:60 lib/start/startMenu.js:536
 msgid "New Window"
 msgstr "Nova janela"
 
@@ -110,8 +110,8 @@ msgstr "Âmbar"
 msgid "Night sky"
 msgstr "Noturno"
 
-#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:513
-#: lib/start/startMenu.js:535 lib/start/styles/modern.js:156 lib/trash.js:58
+#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:534
+#: lib/start/startMenu.js:556 lib/start/styles/modern.js:166 lib/trash.js:58
 msgid "Open"
 msgstr "Abrir"
 
@@ -262,40 +262,40 @@ msgstr "Abrir em %s"
 msgid "This folder is empty"
 msgstr "Esta pasta está vazia"
 
-#: lib/start/parts.js:207
+#: lib/start/parts.js:250
 #, javascript-format
 msgid "Page %d"
 msgstr "Página %d"
 
-#: lib/start/parts.js:395 lib/start/styles/alphabetical.js:107
+#: lib/start/parts.js:470 lib/start/styles/alphabetical.js:117
 #, javascript-format
 msgid "Apps starting with %s"
 msgstr "Apps que começam com %s"
 
-#: lib/start/parts.js:481
+#: lib/start/parts.js:553
 msgid "Continue where you left off"
 msgstr "Continuar de onde parou"
 
-#: lib/start/parts.js:556 lib/start/styles/alphabetical.js:51
+#: lib/start/parts.js:628 lib/start/styles/alphabetical.js:51
 msgid "Power Off / Log Out"
 msgstr "Desligar / Encerrar Sessão"
 
-#: lib/start/parts.js:565 lib/start/startMenu.js:554
+#: lib/start/parts.js:637 lib/start/startMenu.js:575
 #: lib/start/styles/classic.js:151
 msgid "Lock"
 msgstr "Bloquear"
 
-#: lib/start/parts.js:573 lib/start/startMenu.js:557
+#: lib/start/parts.js:645 lib/start/startMenu.js:578
 #: lib/start/styles/classic.js:149
 msgid "Suspend"
 msgstr "Suspender"
 
-#: lib/start/parts.js:580 lib/start/parts.js:605 lib/start/search.js:97
+#: lib/start/parts.js:652 lib/start/parts.js:677 lib/start/search.js:97
 #: lib/start/styles/alphabetical.js:45
 msgid "Settings"
 msgstr "Configurações"
 
-#: lib/start/parts.js:598 lib/start/search.js:123
+#: lib/start/parts.js:670 lib/start/search.js:123
 msgid "Files"
 msgstr "Arquivos"
 
@@ -353,44 +353,44 @@ msgstr "Executar no terminal · Ctrl+Enter"
 msgid "No results for “%s”"
 msgstr "Nenhum resultado para “%s”"
 
-#: lib/start/startMenu.js:501
+#: lib/start/startMenu.js:522
 msgid "No terminal found"
 msgstr "Nenhum terminal encontrado"
 
-#: lib/start/startMenu.js:506
+#: lib/start/startMenu.js:527
 msgid "Could not run the command"
 msgstr "Não foi possível executar o comando"
 
-#: lib/start/startMenu.js:525
+#: lib/start/startMenu.js:546
 msgid "Unpin"
 msgstr "Desafixar"
 
 #
-#: lib/start/startMenu.js:526
+#: lib/start/startMenu.js:547
 msgid "Pin"
 msgstr "Fixar"
 
-#: lib/start/startMenu.js:529 lib/start/startMenu.js:536
+#: lib/start/startMenu.js:550 lib/start/startMenu.js:557
 msgid "Show in Files"
 msgstr "Mostrar em Arquivos"
 
-#: lib/start/startMenu.js:555 lib/start/styles/classic.js:153
+#: lib/start/startMenu.js:576 lib/start/styles/classic.js:153
 msgid "Switch User"
 msgstr "Trocar de Usuário"
 
-#: lib/start/startMenu.js:556 lib/start/styles/classic.js:152
+#: lib/start/startMenu.js:577 lib/start/styles/classic.js:152
 msgid "Log Out"
 msgstr "Encerrar Sessão"
 
-#: lib/start/startMenu.js:558
+#: lib/start/startMenu.js:579
 msgid "Hibernate"
 msgstr "Hibernar"
 
-#: lib/start/startMenu.js:559 lib/start/styles/classic.js:150
+#: lib/start/startMenu.js:580 lib/start/styles/classic.js:150
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: lib/start/startMenu.js:560
+#: lib/start/startMenu.js:581
 msgid "Power Off"
 msgstr "Desligar"
 
@@ -398,12 +398,12 @@ msgstr "Desligar"
 msgid "Search apps, files and settings"
 msgstr "Pesquisar apps, arquivos e configurações"
 
-#: lib/start/styles/alphabetical.js:75 lib/start/styles/categories.js:137
+#: lib/start/styles/alphabetical.js:75 lib/start/styles/categories.js:143
 #: lib/start/styles/modern.js:42
 msgid "Pinned"
 msgstr "Fixados"
 
-#: lib/start/styles/base.js:66
+#: lib/start/styles/base.js:75
 msgid "Type to search apps, files and settings"
 msgstr "Digite para pesquisar apps, arquivos e configurações"
 
@@ -449,24 +449,24 @@ msgstr "Sistema"
 
 #
 #: lib/start/styles/categories.js:54 lib/start/styles/launchpad.js:44
-#: prefs/startMenuPage.js:312
+#: prefs/startMenuPage.js:319
 msgid "Search"
 msgstr "Pesquisar"
 
-#: lib/start/styles/categories.js:94
+#: lib/start/styles/categories.js:100
 #, javascript-format
 msgid "Workspace %d"
 msgstr "Área de trabalho %d"
 
-#: lib/start/styles/categories.js:106
+#: lib/start/styles/categories.js:112
 msgid "New workspace"
 msgstr "Nova área de trabalho"
 
-#: lib/start/styles/categories.js:144
+#: lib/start/styles/categories.js:150
 msgid "Other"
 msgstr "Outros"
 
-#: lib/start/styles/categories.js:154
+#: lib/start/styles/categories.js:160
 #, javascript-format
 msgid "%d apps"
 msgstr "%d apps"
@@ -476,7 +476,7 @@ msgstr "%d apps"
 msgid "All Programs"
 msgstr "Todos os programas"
 
-#: lib/start/styles/classic.js:82 lib/start/styles/modern.js:73
+#: lib/start/styles/classic.js:82 lib/start/styles/modern.js:74
 msgid "Back"
 msgstr "Voltar"
 
@@ -496,7 +496,7 @@ msgstr "Mais opções de energia"
 msgid "Type an app, file, setting or a calculation"
 msgstr "Digite um app, arquivo, configuração ou uma conta"
 
-#: lib/start/styles/modern.js:42 lib/start/styles/modern.js:74
+#: lib/start/styles/modern.js:42 lib/start/styles/modern.js:75
 msgid "All apps"
 msgstr "Todos os apps"
 
@@ -504,19 +504,19 @@ msgstr "Todos os apps"
 msgid "Right-click an app and choose “Pin” to see it here"
 msgstr "Clique com o botão direito num app e escolha “Fixar” para vê-lo aqui"
 
-#: lib/start/styles/modern.js:76
+#: lib/start/styles/modern.js:77
 msgid "Switch between list and grid"
 msgstr "Alternar entre lista e grade"
 
-#: lib/start/styles/modern.js:148 prefs/startMenuPage.js:306
+#: lib/start/styles/modern.js:159 prefs/startMenuPage.js:313
 msgid "Recent apps"
 msgstr "Apps recentes"
 
-#: lib/start/widgets.js:132
+#: lib/start/widgets.js:151
 msgid "Just now"
 msgstr "Agora mesmo"
 
-#: lib/start/widgets.js:139
+#: lib/start/widgets.js:158
 msgid "Yesterday"
 msgstr "Ontem"
 
@@ -614,6 +614,7 @@ msgid "Appearance"
 msgstr "Aparência"
 
 #: prefs/appearancePage.js:24 prefs/appearancePage.js:46 prefs/blurPage.js:184
+#: prefs/startMenuPage.js:304
 msgid "Background"
 msgstr "Fundo"
 
@@ -670,6 +671,7 @@ msgid "Horizontal"
 msgstr "Horizontal"
 
 #: prefs/appearancePage.js:41 prefs/appearancePage.js:89
+#: prefs/startMenuPage.js:305
 msgid "Opacity"
 msgstr "Opacidade"
 
@@ -1738,44 +1740,56 @@ msgstr "Animação"
 msgid "A short fade and slide when opening and closing"
 msgstr "Um esmaecer e deslizar curto ao abrir e fechar"
 
+#: prefs/startMenuPage.js:306
+msgid "Text stays readable over any wallpaper, even at the minimum"
+msgstr "O texto continua legível sobre qualquer papel de parede, mesmo no mínimo"
+
+#: prefs/startMenuPage.js:308
+msgid "Glass effect"
+msgstr "Efeito de vidro"
+
+#: prefs/startMenuPage.js:309
+msgid "A frosted copy of the wallpaper behind the menu (computed once; off by default)"
+msgstr "Uma cópia fosca do papel de parede atrás do menu (calculada uma vez; desligada por padrão)"
+
 #
-#: prefs/startMenuPage.js:304
+#: prefs/startMenuPage.js:311
 msgid "Content"
 msgstr "Conteúdo"
 
 #
-#: prefs/startMenuPage.js:305
+#: prefs/startMenuPage.js:312
 msgid "How many recent files"
 msgstr "Quantos arquivos recentes"
 
 #
-#: prefs/startMenuPage.js:306
+#: prefs/startMenuPage.js:313
 msgid "The apps you opened last"
 msgstr "Os últimos apps que você abriu"
 
 #
-#: prefs/startMenuPage.js:307
+#: prefs/startMenuPage.js:314
 msgid "Recent files"
 msgstr "Arquivos recentes"
 
 #
-#: prefs/startMenuPage.js:308
+#: prefs/startMenuPage.js:315
 msgid "Continue where you left off (Modern Classic style)"
 msgstr "Continuar de onde parou (estilo Clássico moderno)"
 
-#: prefs/startMenuPage.js:313
+#: prefs/startMenuPage.js:320
 msgid "Results from other apps"
 msgstr "Resultados de outros apps"
 
-#: prefs/startMenuPage.js:314
+#: prefs/startMenuPage.js:321
 msgid "Search results from apps like Calendar, Contacts and Characters"
 msgstr "Resultados de apps como Agenda, Contatos e Caracteres"
 
-#: prefs/startMenuPage.js:315
+#: prefs/startMenuPage.js:322
 msgid "Web search"
 msgstr "Pesquisa na web"
 
-#: prefs/startMenuPage.js:315
+#: prefs/startMenuPage.js:322
 msgid "Offer to search the web for what you type"
 msgstr "Oferece pesquisar na web o que você digita"
 

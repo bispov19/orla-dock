@@ -492,23 +492,22 @@
 
 /* ---------- Menu Iniciar ---------- */
 
+/* O fundo (cor e opacidade) vem do código: lib/start/startMenu.js. Sombra
+   curta e leve: o GNOME a desenha uma vez e reaproveita. Nenhum estado
+   do menu usa "transition" de CSS: o destaque aparece e some na hora. */
 .orla-start {
     padding: 18px 18px 10px;
     spacing: 12px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    background-color: rgb(32, 32, 36);
     color: #f2f2f2;
 }
 
-/* Fundo liso (sem vidro e sem dock no monitor): claro ou escuro. */
-.orla-start.orla-dark {
-    background-color: rgba(30, 30, 34, 0.97);
-}
-
 .orla-start.orla-light {
-    background-color: rgba(246, 246, 248, 0.97);
-    border-color: rgba(0, 0, 0, 0.1);
+    background-color: rgb(248, 248, 250);
+    border-color: rgba(0, 0, 0, 0.12);
     color: #1c1c1e;
 }
 
@@ -535,8 +534,13 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* Texto de dica com contraste AA (4,5:1) nos dois temas. */
 .orla-start-search .hint-text {
-    color: rgba(127, 127, 127, 0.9);
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.orla-light .orla-start-search .hint-text {
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .orla-start-search-icon {
@@ -663,7 +667,7 @@
 
 .orla-start-row-subtitle {
     font-size: 11px;
-    opacity: 0.65;
+    opacity: 0.72;
 }
 
 .orla-start-best {
@@ -684,6 +688,11 @@
     font-size: 12px;
     color: #2dd4bf;
     padding: 8px 8px 2px;
+}
+
+/* O verde-água claro não tem contraste sobre o fundo claro: um mais escuro. */
+.orla-light .orla-start-letter {
+    color: #0f766e;
 }
 
 .orla-start-rail {
