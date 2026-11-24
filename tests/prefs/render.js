@@ -96,16 +96,23 @@ function capture(i) {
     }
     const page = pages[i];
     window.set_visible_page(page);
-    after(700, () => {
+    const shoot = (tries = 0) => {
         const [w, h] = [window.get_width(), window.get_height()];
         const snapshot = new Gtk.Snapshot();
         new Gtk.WidgetPaintable({widget: window}).snapshot(snapshot, w, h);
-        const texture = window.get_native().get_renderer().render_texture(snapshot.to_node(), null);
+        const node = snapshot.to_node();
+        // Máquina carregada: o GTK ainda não desenhou a janela; espera e tenta de novo.
+        if (!node && tries < 5) {
+            after(400, () => shoot(tries + 1));
+            return;
+        }
+        const texture = window.get_native().get_renderer().render_texture(node, null);
         const file = `${outDir}/${scheme}-${i + 1}.png`;
         texture.save_to_png(file);
         print(`PASS aba "${page.title}" (${scheme}) → ${file}`);
         capture(i + 1);
-    });
+    };
+    after(700, () => shoot());
 }
 
 after(1200, () => capture(0));

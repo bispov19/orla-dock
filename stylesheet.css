@@ -1051,21 +1051,23 @@
     spacing: 7px;
     border-radius: 999px;
     color: #f2f2f2;
-    transition-duration: 250ms;
+    /* O fundo tingido muda de cor com a faixa: transição suave. */
+    transition-duration: 600ms;
 }
 
 .orla-light .wavebar-music-pill {
     color: #1c1c1e;
 }
 
-/* Expandida: o fundo de pílula na cor de destaque, translúcida. */
+/* Larga: fundo de pílula (a cor vem da capa, em lib/music/wavebarMusicPill.js;
+   este é o padrão até ela chegar). */
 .wavebar-music-pill.wavebar-music-pill-wide {
-    background-color: st-transparentize(-st-accent-color, 0.55);
+    background-color: rgba(40, 40, 46, 0.94);
     padding-right: 6px;
 }
 
-.wavebar-music-pill.wavebar-music-pill-wide.wavebar-music-pill-paused {
-    background-color: rgba(127, 127, 127, 0.28);
+.orla-light .wavebar-music-pill.wavebar-music-pill-wide {
+    background-color: rgba(236, 236, 240, 0.94);
 }
 
 .wavebar-music-pill-cover {
@@ -1100,20 +1102,25 @@
     spacing: 0;
 }
 
+.wavebar-music-pill-title {
+    font-weight: 700;
+}
+
 .wavebar-music-pill-marquee {
     -st-hfade-offset: 14px;
 }
 
-.wavebar-music-pill-lyric {
-    opacity: 0.68;
+.wavebar-music-pill-artist {
+    opacity: 0.7;
 }
 
-.wavebar-music-pill-trail {
-    spacing: 2px;
+/* A linha da letra: em destaque, logo abaixo do título. */
+.wavebar-music-pill-lyric {
+    font-weight: 700;
 }
 
 .wavebar-music-pill-controls {
-    spacing: 1px;
+    spacing: 2px;
 }
 
 .wavebar-music-pill-ctl {
@@ -1132,6 +1139,17 @@
 
 .wavebar-music-pill-ctl:insensitive {
     opacity: 0.35;
+}
+
+/* Tocar/pausar: um círculo preenchido com a cor da música (inline). */
+.wavebar-music-pill-ctl.wavebar-music-pill-play {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #1c1c1e;
+    transition-duration: 600ms;
+}
+
+.wavebar-music-pill-ctl.wavebar-music-pill-play:hover {
+    background-color: rgba(255, 255, 255, 1);
 }
 
 /* ---------- Card do widget de música ---------- */

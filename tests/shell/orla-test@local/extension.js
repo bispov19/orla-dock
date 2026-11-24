@@ -861,8 +861,8 @@ async function testMusic(settings) {
     settings.set_string(`${K}mode`, 'expanded');
     await sleep(900);
     check(item.cellLength(g) > g.cellLength * 2, `música: expandido fica mais largo (${Math.round(item.cellLength(g))} px)`);
-    check(item._title.text.includes('Canção Teste') && item._title.text.includes('Banda Teste'),
-        `música: título e artista (${item._title.text})`);
+    check(item._title.text === 'Canção Teste' && item._artist.text === 'Banda Teste',
+        `música: título em cima e artista embaixo (${item._title.text} / ${item._artist.text})`);
     await screenshot('31-musica-expandido');
 
     // 5) Botões de controle.
@@ -943,8 +943,56 @@ async function testMusic(settings) {
     current().play();
     await sleep(600);
 
+    // 7b) Contorno de progresso, cor da capa e anterior/próxima no hover.
+    settings.set_boolean(`${K}controls`, false);
+    settings.set_boolean(`${K}lyrics`, false);
+    await mouse.moveAndSettle(5, 5);
+    await sleep(1200);
+    const ring = item._ring;
+    const frac = current().position / current().metadata.length;
+    check(ring.visible && Math.abs(ring.progress - frac) < 0.02,
+        `música: o contorno mostra o progresso (${ring.progress.toFixed(3)} ≈ ${frac.toFixed(3)})`);
+    const red = ring.color;
+    check(red[0] > red[1] + 0.15 && red[0] > red[2] + 0.15,
+        `música: o contorno pega a cor da capa (${red.map(v => v.toFixed(2)).join(', ')})`);
+    check(item._prev.width < 1 && item._next.width < 1 && item._play.width > 0,
+        'música: sem o mouse, só o tocar/pausar');
+    const wide = item.cellLength(g);
+    await mouse.moveAndSettle(...centerOf(item._details));
+    await sleep(500);
+    check(item._prev.width > 1 && item._next.opacity > 200, 'música: com o mouse em cima, anterior e próxima aparecem');
+    check(Math.abs(item.cellLength(g) - wide) < 1, 'música: os botões entram sem mudar a largura da pílula');
+    await screenshot('36-musica-hover');
+    await mouse.moveAndSettle(5, 5);
+    await sleep(500);
+    check(item._prev.width < 1, 'música: ao tirar o mouse, anterior e próxima somem');
+    await screenshot('37-musica-contorno');
+
+    current().setPosition(current().metadata.length * 0.5);
+    await sleep(700);
+    check(Math.abs(ring.progress - 0.5) < 0.03, `música: pular na música leva o contorno até lá (${ring.progress.toFixed(3)})`);
+    current().pause();
+    await sleep(700);
+    check(!item._ringTimer.active, 'música: pausado, o contorno não tem timer');
+    current().play();
+    await sleep(700);
+    check(item._ringTimer.active, 'música: tocando, o timer leve do contorno volta');
+
+    settings.set_boolean(`${K}dynamic-color`, false);
+    await sleep(1300);
+    const plain = ring.color;
+    check(plain.some((v, i) => Math.abs(v - red[i]) > 0.08), 'música: sem a cor dinâmica, volta a cor de destaque da dock');
+    settings.reset(`${K}dynamic-color`);
+    await sleep(1300);
+    settings.set_boolean(`${K}progress`, false);
+    await sleep(400);
+    check(!ring.visible && !item._ringTimer.active, 'música: contorno desligado some (sem timer)');
+    settings.reset(`${K}progress`);
+    await sleep(400);
+
     // 8) Dois players: o card alterna entre eles.
-    const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art', '--paused');
+    const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art',
+        '--paused', '--length', '0');
     await sleep(1000);
     check(manager().music.players.length === 2, 'música: dois players ao mesmo tempo');
     manager().music.manager.selectPlayer(manager().music.players.find(p => p.metadata.title === 'Outra'));
@@ -952,6 +1000,7 @@ async function testMusic(settings) {
     check(!item._prev.reactive && !item._next.reactive, 'música: sem anterior/próxima no player, botões desabilitados');
     check(item.has_style_class_name('wavebar-music-pill-idle') === false && item._cover.has_style_class_name('wavebar-music-pill-no-cover'),
         'música: faixa sem capa mostra a nota musical');
+    check(!item._ring.visible, 'música: sem duração (ao vivo), o contorno fica escondido');
     b.force_exit();
     await sleep(1500);
     check(manager().music.players.length === 1, 'música: player fechado sai da lista');

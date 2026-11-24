@@ -87,14 +87,25 @@ export function musicPage(binder, window) {
         _('A discreet music item stays on the dock')));
 
     const behavior = dependent(_('Behavior'));
-    behavior.add(switchRow(binder, `${KEY}controls`, _('Show control buttons in the widget'),
-        _('Previous, play/pause and next. In compact mode they appear on hover')));
+    behavior.add(switchRow(binder, `${KEY}controls`, _('Always show previous and next'),
+        _('Off: play/pause is always there, and previous and next appear when the pointer is over the widget')));
     behavior.add(switchRow(binder, `${KEY}expand-on-hover`, _('Expand on hover')));
     behavior.add(switchRow(binder, `${KEY}expand-on-track-change`, _('Expand when the track changes')));
     const duration = sliderRow(binder, `${KEY}track-change-duration`, _('For how long'), null,
         {lower: 2, upper: 10, step: 1, format: v => `${Math.round(v)} s`}, true);
     behavior.add(duration);
     binder.showWhen(`${KEY}expand-on-track-change`, s => s.get_boolean(`${KEY}expand-on-track-change`), duration);
+
+    const progress = dependent(_('Progress'));
+    progress.add(switchRow(binder, `${KEY}progress`, _('Progress outline'),
+        _('An outline around the widget that goes all the way around as the song plays')));
+    const thickness = new Adw.ComboRow({title: _('Outline thickness'),
+        model: Gtk.StringList.new([_('Thin (2 px)'), _('Medium (3 px)')])});
+    binder.stringCombo(`${KEY}progress-width`, thickness, ['thin', 'medium']);
+    progress.add(thickness);
+    binder.showWhen(`${KEY}progress`, st => st.get_boolean(`${KEY}progress`), thickness);
+    progress.add(switchRow(binder, `${KEY}dynamic-color`, _('Color from the album cover'),
+        _('The outline, the widget and the play button take the main color of the cover. Off: the dock accent color')));
 
     const lyrics = dependent(_('Lyrics'));
     lyrics.add(switchRow(binder, `${KEY}lyrics`, _('Show real-time lyrics'),

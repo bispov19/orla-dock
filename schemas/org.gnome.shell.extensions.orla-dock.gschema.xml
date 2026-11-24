@@ -829,6 +829,25 @@
       <summary>Show without a player</summary>
       <description>Keep a discreet music item on the dock even when no player is open.</description>
     </key>
+    <key name="wavebar-music-pill-progress" type="b">
+      <default>true</default>
+      <summary>Music progress outline</summary>
+      <description>Draw the song progress as an outline around the music widget.</description>
+    </key>
+    <key name="wavebar-music-pill-dynamic-color" type="b">
+      <default>true</default>
+      <summary>Color from the album cover</summary>
+      <description>Color the progress outline, the widget and its play button with the dominant color of the album cover. Off: the dock accent color.</description>
+    </key>
+    <key name="wavebar-music-pill-progress-width" type="s">
+      <choices>
+        <choice value="thin"/>
+        <choice value="medium"/>
+      </choices>
+      <default>'thin'</default>
+      <summary>Progress outline thickness</summary>
+      <description>Thickness of the progress outline: thin (2 px) or medium (3 px).</description>
+    </key>
     <key name="wavebar-music-pill-lyrics-cache-stamp" type="i">
       <default>0</default>
       <summary>Lyrics cache reset</summary>

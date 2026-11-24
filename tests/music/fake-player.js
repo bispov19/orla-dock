@@ -10,12 +10,13 @@
 // Responde a Play/Pause/PlayPause/Next/Previous/SetPosition/Seek e aceita
 // Volume por Properties.Set, como um player de verdade.
 
+import Cairo from 'cairo';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import System from 'system';
 
 const opts = {name: 'orla_fake', identity: 'Fake Player', title: 'Fake Song', artist: 'Fake Artist',
-    album: 'Fake Album', length: 200, paused: false, prev: true, next: true, art: true};
+    album: 'Fake Album', length: 200, paused: false, prev: true, next: true, art: true, color: [0.85, 0.2, 0.3]};
 const args = System.programArgs;
 for (let i = 0; i < args.length; i++) {
     const next = () => args[++i];
@@ -30,9 +31,25 @@ for (let i = 0; i < args.length; i++) {
     case '--no-prev': opts.prev = false; break;
     case '--no-next': opts.next = false; break;
     case '--no-art': opts.art = false; break;
+    case '--color': opts.color = next().split(',').map(Number); break;
     case '--long': opts.title = 'Uma música com um título comprido demais para caber inteiro na pílula da dock'; break;
     }
 }
+
+// Uma capa gerada na hora: fundo na cor pedida, com um círculo claro.
+const coverPath = GLib.build_filenamev([GLib.get_user_runtime_dir(), `orla-fake-${opts.name}.png`]);
+{
+    const surface = new Cairo.ImageSurface(Cairo.Format.RGB24, 64, 64);
+    const cr = new Cairo.Context(surface);
+    cr.setSourceRGB(...opts.color);
+    cr.paint();
+    cr.setSourceRGB(0.95, 0.95, 0.95);
+    cr.arc(32, 32, 10, 0, 2 * Math.PI);
+    cr.fill();
+    cr.$dispose();
+    surface.writeToPNG(coverPath);
+}
+const coverUri = GLib.filename_to_uri(coverPath, null);
 
 let index = 0;
 let status = opts.paused ? 'Paused' : 'Playing';
@@ -53,13 +70,12 @@ function metadata() {
         'xesam:title': new GLib.Variant('s', title()),
         'xesam:artist': new GLib.Variant('as', [opts.artist]),
         'xesam:album': new GLib.Variant('s', opts.album),
-        'mpris:length': new GLib.Variant('x', opts.length * 1e6),
     };
-    // Uma capa gerada na hora (data: com um PNG 1x1 colorido).
-    if (opts.art) {
-        md['mpris:artUrl'] = new GLib.Variant('s',
-            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
-    }
+    // Sem duração (--length 0) = como uma transmissão ao vivo.
+    if (opts.length > 0)
+        md['mpris:length'] = new GLib.Variant('x', opts.length * 1e6);
+    if (opts.art)
+        md['mpris:artUrl'] = new GLib.Variant('s', coverUri);
     return md;
 }
 
