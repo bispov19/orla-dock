@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-22 21:49-0300\n"
+"POT-Creation-Date: 2026-11-23 09:44-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/appIcon.js:428
+#: lib/appIcon.js:433
 msgid "Applications"
 msgstr ""
 
-#: lib/appMenu.js:60 lib/start/startMenu.js:471
+#: lib/appMenu.js:60 lib/start/startMenu.js:515
 msgid "New Window"
 msgstr ""
 
@@ -81,7 +81,7 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: lib/appMenu.js:184
+#: lib/appMenu.js:184 prefs/startMenuPage.js:285
 msgid "Style"
 msgstr ""
 
@@ -109,8 +109,8 @@ msgstr ""
 msgid "Night sky"
 msgstr ""
 
-#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:469
-#: lib/start/startMenu.js:495 lib/trash.js:58
+#: lib/mounts.js:63 lib/stacks.js:569 lib/start/startMenu.js:513
+#: lib/start/startMenu.js:535 lib/start/styles/modern.js:156 lib/trash.js:58
 msgid "Open"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "Manage tray"
 msgstr ""
 
-#: lib/panel/tray.js:424 prefs/panelOptions.js:152
+#: lib/panel/tray.js:424 prefs/panelOptions.js:95
 msgid "Tray"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Choices are saved"
 msgstr ""
 
-#: lib/panel/tray.js:493 prefs/panelOptions.js:156
+#: lib/panel/tray.js:493 prefs/panelOptions.js:99
 msgid "Reset"
 msgstr ""
 
@@ -261,37 +261,41 @@ msgstr ""
 msgid "This folder is empty"
 msgstr ""
 
-#: lib/start/allApps.js:29
-msgid "Back"
-msgstr ""
-
-#: lib/start/allApps.js:30 lib/start/home.js:64
-msgid "All apps"
-msgstr ""
-
-#: lib/start/allApps.js:32
-msgid "Switch between list and grid"
-msgstr ""
-
-#: lib/start/home.js:64
-msgid "Pinned"
-msgstr ""
-
-#: lib/start/home.js:134 lib/start/startMenu.js:483
-msgid "Unpin from Start"
-msgstr ""
-
-#: lib/start/home.js:148
+#: lib/start/parts.js:207
 #, javascript-format
 msgid "Page %d"
 msgstr ""
 
-#: lib/start/home.js:262 prefs/panelOptions.js:68
-msgid "Recent apps"
+#: lib/start/parts.js:395 lib/start/styles/alphabetical.js:107
+#, javascript-format
+msgid "Apps starting with %s"
 msgstr ""
 
-#: lib/start/home.js:288 prefs/panelOptions.js:69
+#: lib/start/parts.js:481
 msgid "Continue where you left off"
+msgstr ""
+
+#: lib/start/parts.js:556 lib/start/styles/alphabetical.js:51
+msgid "Power Off / Log Out"
+msgstr ""
+
+#: lib/start/parts.js:565 lib/start/startMenu.js:554
+#: lib/start/styles/classic.js:151
+msgid "Lock"
+msgstr ""
+
+#: lib/start/parts.js:573 lib/start/startMenu.js:557
+#: lib/start/styles/classic.js:149
+msgid "Suspend"
+msgstr ""
+
+#: lib/start/parts.js:580 lib/start/parts.js:605 lib/start/search.js:97
+#: lib/start/styles/alphabetical.js:45
+msgid "Settings"
+msgstr ""
+
+#: lib/start/parts.js:598 lib/start/search.js:123
+msgid "Files"
 msgstr ""
 
 #: lib/start/search.js:77
@@ -314,10 +318,6 @@ msgstr ""
 msgid "Apps"
 msgstr ""
 
-#: lib/start/search.js:97 lib/start/startMenu.js:158
-msgid "Settings"
-msgstr ""
-
 #: lib/start/search.js:106
 msgid "Web"
 msgstr ""
@@ -329,10 +329,6 @@ msgstr ""
 
 #: lib/start/search.js:109
 msgid "Opens in your browser"
-msgstr ""
-
-#: lib/start/search.js:123
-msgid "Files"
 msgstr ""
 
 #: lib/start/search.js:154
@@ -356,79 +352,163 @@ msgstr ""
 msgid "No results for “%s”"
 msgstr ""
 
-#: lib/start/startMenu.js:124
-msgid "Type an app, file, setting or a calculation"
-msgstr ""
-
-#: lib/start/startMenu.js:160
-msgid "Power Off / Log Out"
-msgstr ""
-
-#: lib/start/startMenu.js:183
-msgid "Lock"
-msgstr ""
-
-#: lib/start/startMenu.js:184
-msgid "Switch User"
-msgstr ""
-
-#: lib/start/startMenu.js:185
-msgid "Log Out"
-msgstr ""
-
-#: lib/start/startMenu.js:186
-msgid "Suspend"
-msgstr ""
-
-#: lib/start/startMenu.js:187
-msgid "Hibernate"
-msgstr ""
-
-#: lib/start/startMenu.js:188
-msgid "Restart"
-msgstr ""
-
-#: lib/start/startMenu.js:189
-msgid "Power Off"
-msgstr ""
-
-#: lib/start/startMenu.js:448
+#: lib/start/startMenu.js:501
 msgid "No terminal found"
 msgstr ""
 
-#: lib/start/startMenu.js:453
+#: lib/start/startMenu.js:506
 msgid "Could not run the command"
 msgstr ""
 
-#: lib/start/startMenu.js:459
-msgid "New Folder"
+#: lib/start/startMenu.js:525
+msgid "Unpin"
 msgstr ""
 
-#: lib/start/startMenu.js:481
-msgid "Remove from Folder"
+#: lib/start/startMenu.js:526
+msgid "Pin"
 msgstr ""
 
-#: lib/start/startMenu.js:485
-msgid "Pin to Start"
-msgstr ""
-
-#: lib/start/startMenu.js:488
-msgid "Unpin from Taskbar"
-msgstr ""
-
-#: lib/start/startMenu.js:489
-msgid "Pin to Taskbar"
-msgstr ""
-
-#: lib/start/startMenu.js:496
+#: lib/start/startMenu.js:529 lib/start/startMenu.js:536
 msgid "Show in Files"
 msgstr ""
 
-#: lib/start/widgets.js:125
-msgid "Just now"
+#: lib/start/startMenu.js:555 lib/start/styles/classic.js:153
+msgid "Switch User"
+msgstr ""
+
+#: lib/start/startMenu.js:556 lib/start/styles/classic.js:152
+msgid "Log Out"
+msgstr ""
+
+#: lib/start/startMenu.js:558
+msgid "Hibernate"
+msgstr ""
+
+#: lib/start/startMenu.js:559 lib/start/styles/classic.js:150
+msgid "Restart"
+msgstr ""
+
+#: lib/start/startMenu.js:560
+msgid "Power Off"
+msgstr ""
+
+#: lib/start/styles/alphabetical.js:61
+msgid "Search apps, files and settings"
+msgstr ""
+
+#: lib/start/styles/alphabetical.js:75 lib/start/styles/categories.js:137
+#: lib/start/styles/modern.js:42
+msgid "Pinned"
+msgstr ""
+
+#: lib/start/styles/base.js:66
+msgid "Type to search apps, files and settings"
+msgstr ""
+
+#: lib/start/styles/categories.js:37
+msgid "Internet"
+msgstr ""
+
+#: lib/start/styles/categories.js:38
+msgid "Office"
+msgstr ""
+
+#: lib/start/styles/categories.js:39
+msgid "Graphics"
+msgstr ""
+
+#: lib/start/styles/categories.js:40
+msgid "Sound & Video"
+msgstr ""
+
+#: lib/start/styles/categories.js:41
+msgid "Games"
+msgstr ""
+
+#: lib/start/styles/categories.js:42
+msgid "Development"
+msgstr ""
+
+#: lib/start/styles/categories.js:43
+msgid "Education & Science"
+msgstr ""
+
+#: lib/start/styles/categories.js:44
+msgid "Accessories"
+msgstr ""
+
+#: lib/start/styles/categories.js:45
+msgid "System"
+msgstr ""
+
+#: lib/start/styles/categories.js:54 lib/start/styles/launchpad.js:44
+#: prefs/startMenuPage.js:312
+msgid "Search"
+msgstr ""
+
+#: lib/start/styles/categories.js:94
+#, javascript-format
+msgid "Workspace %d"
+msgstr ""
+
+#: lib/start/styles/categories.js:106
+msgid "New workspace"
+msgstr ""
+
+#: lib/start/styles/categories.js:144
+msgid "Other"
+msgstr ""
+
+#: lib/start/styles/categories.js:154
+#, javascript-format
+msgid "%d apps"
+msgstr ""
+
+#: lib/start/styles/classic.js:67
+msgid "All Programs"
+msgstr ""
+
+#: lib/start/styles/classic.js:82 lib/start/styles/modern.js:73
+msgid "Back"
+msgstr ""
+
+#: lib/start/styles/classic.js:90
+msgid "Search programs and files"
+msgstr ""
+
+#: lib/start/styles/classic.js:122
+msgid "Shut Down"
+msgstr ""
+
+#: lib/start/styles/classic.js:128
+msgid "More power options"
+msgstr ""
+
+#: lib/start/styles/modern.js:37
+msgid "Type an app, file, setting or a calculation"
+msgstr ""
+
+#: lib/start/styles/modern.js:42 lib/start/styles/modern.js:74
+msgid "All apps"
+msgstr ""
+
+#: lib/start/styles/modern.js:50
+msgid "Right-click an app and choose “Pin” to see it here"
+msgstr ""
+
+#: lib/start/styles/modern.js:76
+msgid "Switch between list and grid"
+msgstr ""
+
+#: lib/start/styles/modern.js:148 prefs/startMenuPage.js:306
+msgid "Recent apps"
 msgstr ""
 
 #: lib/start/widgets.js:132
+msgid "Just now"
+msgstr ""
+
+#: lib/start/widgets.js:139
 msgid "Yesterday"
 msgstr ""
 
@@ -662,7 +742,7 @@ msgid "System accent"
 msgstr ""
 
 #: prefs/appearancePage.js:69 prefs/appearancePage.js:76
-#: prefs/panelOptions.js:87 prefs/wobblyGroup.js:69
+#: prefs/startMenuPage.js:238 prefs/wobblyGroup.js:69
 msgid "Custom"
 msgstr ""
 
@@ -1063,51 +1143,55 @@ msgstr ""
 msgid "A clean folder with a download arrow"
 msgstr ""
 
-#: prefs.js:41
+#: prefs.js:42
 msgid "An elegant, fluid dock for GNOME Shell, inspired by the macOS Dock."
 msgstr ""
 
-#: prefs.js:47
+#: prefs.js:48
 msgid "Web Developer · Author and maintainer"
 msgstr ""
 
-#: prefs.js:50
+#: prefs.js:51
 msgid "Wave magnification"
 msgstr ""
 
-#: prefs.js:51
+#: prefs.js:52
 msgid "Three styles: macOS, Windows 10 and GNOME"
 msgstr ""
 
-#: prefs.js:52
-msgid "Glass blur"
-msgstr ""
-
 #: prefs.js:53
-msgid "Fan, grid and list stacks"
+msgid "Start Menu in five styles"
 msgstr ""
 
 #: prefs.js:54
-msgid "Genie minimize effect"
+msgid "Glass blur"
 msgstr ""
 
-#: prefs.js:55 prefs/wobblyGroup.js:44
-msgid "Wobbly windows"
+#: prefs.js:55
+msgid "Fan, grid and list stacks"
 msgstr ""
 
 #: prefs.js:56
-msgid "Live window previews"
+msgid "Genie minimize effect"
 msgstr ""
 
-#: prefs.js:57
-msgid "Notification badges"
+#: prefs.js:57 prefs/wobblyGroup.js:44
+msgid "Wobbly windows"
 msgstr ""
 
 #: prefs.js:58
-msgid "Touches the edge with a maximized window"
+msgid "Live window previews"
 msgstr ""
 
 #: prefs.js:59
+msgid "Notification badges"
+msgstr ""
+
+#: prefs.js:60
+msgid "Touches the edge with a maximized window"
+msgstr ""
+
+#: prefs.js:61
 msgid "One dock per monitor"
 msgstr ""
 
@@ -1115,7 +1199,7 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: prefs/layoutPage.js:81
+#: prefs/layoutPage.js:81 prefs/startMenuPage.js:289
 msgid "Position"
 msgstr ""
 
@@ -1143,7 +1227,7 @@ msgstr ""
 msgid "The Dock drops its margin while a maximized window is on its screen and floats again when there is none"
 msgstr ""
 
-#: prefs/layoutPage.js:101 prefs/widgets.js:286
+#: prefs/layoutPage.js:101 prefs/startMenuPage.js:296 prefs/widgets.js:286
 msgid "Size"
 msgstr ""
 
@@ -1427,7 +1511,7 @@ msgstr ""
 msgid "Sort stack items by"
 msgstr ""
 
-#: prefs/modulesPage.js:79 prefs/panelOptions.js:116
+#: prefs/modulesPage.js:79 prefs/panelOptions.js:59
 msgid "Date"
 msgstr ""
 
@@ -1455,113 +1539,223 @@ msgstr ""
 msgid "Choose a folder"
 msgstr ""
 
-#: prefs/panelOptions.js:63
-msgid "Start Menu"
+#: prefs/panelOptions.js:52
+msgid "Clock"
 msgstr ""
 
-#: prefs/panelOptions.js:63
-msgid "Opens from the start button of the taskbar"
+#: prefs/panelOptions.js:52
+msgid "GNOME’s own clock settings, so the lock screen follows too"
 msgstr ""
 
-#: prefs/panelOptions.js:64
-msgid "Orla Dock Start Menu"
+#: prefs/panelOptions.js:59
+msgid "Second line under the time"
 msgstr ""
 
 #: prefs/panelOptions.js:65
-msgid "Pinned apps, recent apps and files, search and power options. Off: GNOME’s app grid"
+msgid "Date format"
 msgstr ""
 
-#: prefs/panelOptions.js:68
-msgid "The apps you opened last, under Pinned"
+#: prefs/panelOptions.js:66
+msgid "How the date under the clock is written"
 msgstr ""
 
-#: prefs/panelOptions.js:69
-msgid "Files you opened recently"
+#: prefs/panelOptions.js:74
+msgid "Seconds"
 msgstr ""
 
-#: prefs/panelOptions.js:70
-msgid "How many files"
+#: prefs/panelOptions.js:75
+msgid "24-hour time"
 msgstr ""
 
-#: prefs/panelOptions.js:71
-msgid "Results from other apps"
+#: prefs/panelOptions.js:96
+msgid "Icons from other extensions live behind the arrow at the end of the bar; ones with text stay on the bar. Use “Manage” in the tray to move or reorder them"
 msgstr ""
 
-#: prefs/panelOptions.js:72
-msgid "Search results from apps like Calendar, Contacts and Characters"
+#: prefs/panelOptions.js:98
+msgid "Reset the tray"
 msgstr ""
 
-#: prefs/panelOptions.js:73
-msgid "Web search"
+#: prefs/panelOptions.js:98
+msgid "Undo every move and reorder"
 msgstr ""
 
-#: prefs/panelOptions.js:73
-msgid "Offer to search the web for what you type"
+#: prefs/panelOptions.js:116
+msgid "Panel Mode"
 msgstr ""
 
-#: prefs/panelOptions.js:77
+#: prefs/panelOptions.js:117
+msgid "Moves the GNOME top bar into the taskbar: workspaces, tray, Quick Settings and the clock in one bar"
+msgstr ""
+
+#: prefs/panelOptions.js:121
+msgid "Workspace indicator"
+msgstr ""
+
+#: prefs/panelOptions.js:122
+msgid "Dots at the start of the bar; scroll over them to switch workspaces"
+msgstr ""
+
+#: prefs/startMenuPage.js:167
+msgid "Classic"
+msgstr ""
+
+#: prefs/startMenuPage.js:167
+msgid "Two columns, like Windows 7"
+msgstr ""
+
+#: prefs/startMenuPage.js:168
+msgid "Modern Classic"
+msgstr ""
+
+#: prefs/startMenuPage.js:168
+msgid "Search, pinned grid and recents"
+msgstr ""
+
+#: prefs/startMenuPage.js:169
+msgid "Compact Categories"
+msgstr ""
+
+#: prefs/startMenuPage.js:169
+msgid "Workspaces and app categories"
+msgstr ""
+
+#: prefs/startMenuPage.js:170
+msgid "Alphabetical List"
+msgstr ""
+
+#: prefs/startMenuPage.js:170
+msgid "A to Z with letter index"
+msgstr ""
+
+#: prefs/startMenuPage.js:171
+msgid "Floating Grid"
+msgstr ""
+
+#: prefs/startMenuPage.js:171
+msgid "Large centered icons in pages"
+msgstr ""
+
+#: prefs/startMenuPage.js:239
+msgid "Search engine"
+msgstr ""
+
+#: prefs/startMenuPage.js:240
 #, javascript-format
 msgid "Search address (%s is the text you type)"
 msgstr ""
 
-#: prefs/panelOptions.js:85
-msgid "Search engine"
+#. Translators: título de aba; curto, porque as abas dividem a largura.
+#: prefs/startMenuPage.js:270
+msgctxt "preferences tab"
+msgid "Start Menu"
 msgstr ""
 
-#: prefs/panelOptions.js:109
-msgid "Clock"
+#: prefs/startMenuPage.js:274
+msgid "Start Menu"
 msgstr ""
 
-#: prefs/panelOptions.js:109
-msgid "GNOME’s own clock settings, so the lock screen follows too"
+#: prefs/startMenuPage.js:275
+msgid "A start menu with pinned apps, recents, search and power options"
 msgstr ""
 
-#: prefs/panelOptions.js:116
-msgid "Second line under the time"
+#: prefs/startMenuPage.js:276
+msgid "Use the start menu instead of the App Grid"
 msgstr ""
 
-#: prefs/panelOptions.js:122
-msgid "Date format"
+#: prefs/startMenuPage.js:277
+msgid "Pressing Super twice, the app grid button and Super+A open the menu. A single Super still opens the Overview"
 msgstr ""
 
-#: prefs/panelOptions.js:123
-msgid "How the date under the clock is written"
+#: prefs/startMenuPage.js:278
+msgid "Taskbar start button opens the menu"
 msgstr ""
 
-#: prefs/panelOptions.js:131
-msgid "Seconds"
+#: prefs/startMenuPage.js:279
+msgid "On the taskbar styles, even when the option above is off"
 msgstr ""
 
-#: prefs/panelOptions.js:132
-msgid "24-hour time"
+#: prefs/startMenuPage.js:281
+msgid "Extra shortcut"
 msgstr ""
 
-#: prefs/panelOptions.js:153
-msgid "Icons from other extensions live behind the arrow at the end of the bar; ones with text stay on the bar. Use “Manage” in the tray to move or reorder them"
+#: prefs/startMenuPage.js:282
+msgid "Opens or closes the menu"
 msgstr ""
 
-#: prefs/panelOptions.js:155
-msgid "Reset the tray"
+#: prefs/startMenuPage.js:288
+msgid "Position and Size"
 msgstr ""
 
-#: prefs/panelOptions.js:155
-msgid "Undo every move and reorder"
+#: prefs/startMenuPage.js:290
+msgid "The Floating Grid style always opens in the center"
 msgstr ""
 
-#: prefs/panelOptions.js:173
-msgid "Panel Mode"
+#: prefs/startMenuPage.js:291
+msgid "Next to the dock"
 msgstr ""
 
-#: prefs/panelOptions.js:174
-msgid "Moves the GNOME top bar into the taskbar: workspaces, tray, Quick Settings and the clock in one bar"
+#: prefs/startMenuPage.js:292
+msgid "Screen corner"
 msgstr ""
 
-#: prefs/panelOptions.js:178
-msgid "Workspace indicator"
+#: prefs/startMenuPage.js:293
+msgid "Centered"
 msgstr ""
 
-#: prefs/panelOptions.js:179
-msgid "Dots at the start of the bar; scroll over them to switch workspaces"
+#: prefs/startMenuPage.js:297 prefs/widgets.js:283 prefs/widgets.js:290
+msgid "Small"
+msgstr ""
+
+#: prefs/startMenuPage.js:298
+msgid "Medium"
+msgstr ""
+
+#: prefs/startMenuPage.js:299 prefs/widgets.js:283 prefs/widgets.js:290
+msgid "Large"
+msgstr ""
+
+#: prefs/startMenuPage.js:301
+msgid "Animation"
+msgstr ""
+
+#: prefs/startMenuPage.js:302
+msgid "A short fade and slide when opening and closing"
+msgstr ""
+
+#: prefs/startMenuPage.js:304
+msgid "Content"
+msgstr ""
+
+#: prefs/startMenuPage.js:305
+msgid "How many recent files"
+msgstr ""
+
+#: prefs/startMenuPage.js:306
+msgid "The apps you opened last"
+msgstr ""
+
+#: prefs/startMenuPage.js:307
+msgid "Recent files"
+msgstr ""
+
+#: prefs/startMenuPage.js:308
+msgid "Continue where you left off (Modern Classic style)"
+msgstr ""
+
+#: prefs/startMenuPage.js:313
+msgid "Results from other apps"
+msgstr ""
+
+#: prefs/startMenuPage.js:314
+msgid "Search results from apps like Calendar, Contacts and Characters"
+msgstr ""
+
+#: prefs/startMenuPage.js:315
+msgid "Web search"
+msgstr ""
+
+#: prefs/startMenuPage.js:315
+msgid "Offer to search the web for what you type"
 msgstr ""
 
 #: prefs/stylesPage.js:26
@@ -1626,14 +1820,6 @@ msgstr ""
 
 #: prefs/widgets.js:193
 msgid "Choose…"
-msgstr ""
-
-#: prefs/widgets.js:283 prefs/widgets.js:290
-msgid "Small"
-msgstr ""
-
-#: prefs/widgets.js:283 prefs/widgets.js:290
-msgid "Large"
 msgstr ""
 
 #: prefs/widgets.js:293

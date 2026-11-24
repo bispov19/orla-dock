@@ -522,6 +522,24 @@ function texts(actor, out = []) {
     return out;
 }
 
+const startMenu = () => manager()?._startMenu ?? null;
+const pressEsc = async () => {
+    const kb = global.stage.context.get_backend().get_default_seat()
+        .create_virtual_device(Clutter.InputDeviceType.KEYBOARD_DEVICE);
+    kb.notify_key(GLib.get_monotonic_time(), 1, Clutter.KeyState.PRESSED);
+    kb.notify_key(GLib.get_monotonic_time(), 1, Clutter.KeyState.RELEASED);
+    await sleep(500);
+};
+
+async function waitFor(predicate, ms = 3000) {
+    for (let t = 0; t < ms; t += 100) {
+        if (predicate())
+            return true;
+        await sleep(100);
+    }
+    return predicate();
+}
+
 async function testStartMenu(settings) {
     settings.set_string('bar-style', 'taskbar');
     settings.set_boolean('start-menu', true);
@@ -531,66 +549,222 @@ async function testStartMenu(settings) {
     const mouse = new VirtualPointer();
     await mouse.click(...centerOf(dock.startButton));
     await sleep(700);
-    const menu = dock._startMenu;
+    const menu = startMenu();
     check(Boolean(menu?.isOpen), 'menu iniciar: o botão Iniciar abre o menu');
     if (!menu?.isOpen)
         return;
-    check(menu._home._grid.get_n_children() > 0, 'menu iniciar: mostra os fixados');
+    const style = menu.style;
+    check(style.id === 'modern', `menu iniciar: estilo padrão é o Clássico moderno (${style.id})`);
+    check(style._pinned._grid.get_n_children() > 0, 'menu iniciar: mostra os fixados (favoritos do GNOME)');
     await screenshot('11-menu-iniciar');
 
-    menu._entry.set_text('2+3*4');
+    style.entry.set_text('2+3*4');
     await sleep(300);
-    check(texts(menu._search.actor).some(t => t.includes('14')), 'menu iniciar: a busca faz contas (2+3*4 = 14)');
-    menu._entry.set_text('calc');
+    check(texts(style.results.actor).some(t => t.includes('14')), 'menu iniciar: a busca faz contas (2+3*4 = 14)');
+    style.entry.set_text('calc');
     await sleep(600);
-    const found = texts(menu._search.actor);
+    const found = texts(style.results.actor);
     check(found.some(t => /calcul/i.test(t)), `menu iniciar: a busca acha apps (${found.slice(0, 4).join(' | ')})`);
+    check(!style._home.visible, 'menu iniciar: durante a busca, os resultados tomam o lugar do início');
     await screenshot('12-menu-busca');
-    menu._entry.set_text('> echo oi');
+    style.entry.set_text('> echo oi');
     await sleep(300);
-    check(Boolean(menu._search._commandRun), 'menu iniciar: ">" vira comando');
-    menu._entry.set_text('');
+    check(Boolean(style.results._commandRun), 'menu iniciar: ">" vira comando');
+    style.entry.set_text('');
     await sleep(300);
 
-    menu.showAllApps();
+    style.showAll(true);
     await sleep(500);
-    check(menu._allApps._headers.size > 0, 'menu iniciar: "Todos os apps" lista os apps por letra');
+    check(style._alpha.letters.length > 0, 'menu iniciar: "Todos os apps" lista os apps por letra');
     await screenshot('13-menu-todos');
-    menu.showHome();
+    check(style.escape() && style._home.visible, 'menu iniciar: Esc volta de "Todos os apps" para o início');
+
+    // Fixar = favoritos do GNOME (os mesmos da dock).
+    const app = menu.data.allApps().find(a => !menu.data.isPinned(a));
+    const before = global.settings.get_strv('favorite-apps');
+    menu.data.pin(app);
+    await sleep(300);
+    check(global.settings.get_strv('favorite-apps').includes(app.get_id()),
+        'menu iniciar: "Fixar" acrescenta aos favoritos do GNOME');
+    menu.data.movePinned(app, 0);
+    await sleep(300);
+    check(menu.data.pinnedApps()[0]?.get_id() === app.get_id(), 'menu iniciar: reordenar muda a ordem dos favoritos');
+    global.settings.set_strv('favorite-apps', before);
     await sleep(300);
 
-    // Fixar, criar pasta e abrir a pasta.
-    const apps = menu.data.allApps().filter(app => !menu.data.isPinned(app)).slice(0, 2);
-    apps.forEach(app => menu.data.pin(app));
-    await sleep(300);
-    check(apps.every(app => menu.data.isPinned(app)), 'menu iniciar: "Fixar no Início" funciona');
-    const [a, b] = apps.map(app => app.get_id());
-    menu.data.groupApps(a, b, menu.newFolderName());
-    await sleep(400);
-    const folder = menu.data.folders[0];
-    check(Boolean(folder) && folder.apps.length === 2, 'menu iniciar: soltar um app em outro cria uma pasta');
-    menu.showFolder(folder.id);
-    await sleep(400);
-    check(menu._layer.visible, 'menu iniciar: a pasta abre');
-    await screenshot('14-menu-pasta');
     const [px, py] = menu._box.get_transformed_position();
-    menu.showContextMenu(menu.appMenu(apps[0]), px + 100, py + 200);
+    menu.showContextMenu(menu.appMenu(app), px + 100, py + 200);
     await sleep(300);
-    check(texts(menu._layer).length >= 3, `menu iniciar: o menu de contexto abre (${texts(menu._layer).join(' | ')})`);
+    const items = texts(menu._layer);
+    check(items.length >= 3 && items.some(t => /Fixar|Pin/.test(t)),
+        `menu iniciar: o menu de contexto abre (${items.join(' | ')})`);
     await screenshot('15-menu-contexto');
-    menu._hideLayer();
+    menu.hideLayer();
 
-    // Esc fecha.
-    const kb = global.stage.context.get_backend().get_default_seat()
-        .create_virtual_device(Clutter.InputDeviceType.KEYBOARD_DEVICE);
-    kb.notify_key(GLib.get_monotonic_time(), 1, Clutter.KeyState.PRESSED);
-    kb.notify_key(GLib.get_monotonic_time(), 1, Clutter.KeyState.RELEASED);
-    await sleep(500);
+    await pressEsc();
     check(!menu.isOpen, 'menu iniciar: Esc fecha o menu');
 
-    for (const key of ['start-menu-pinned', 'start-menu-folders', 'bar-style', 'start-menu'])
+    // Cada estilo abre, cabe na tela e busca.
+    const monitor = Main.layoutManager.primaryMonitor;
+    for (const id of ['classic', 'modern', 'categories', 'alphabetical', 'launchpad']) {
+        settings.set_string('start-menu-style', id);
+        await sleep(200);
+        manager().openStartMenu(dock);
+        await sleep(600);
+        const m = startMenu();
+        check(m.isOpen && m.style.id === id, `estilo ${id}: abre`);
+        const [bx, by] = m._box.get_transformed_position();
+        const fits = bx >= monitor.x && by >= monitor.y &&
+            bx + m._box.width <= monitor.x + monitor.width && by + m._box.height <= monitor.y + monitor.height;
+        check(fits, `estilo ${id}: cabe no monitor (${Math.round(bx)},${Math.round(by)} ${m._box.width}x${m._box.height})`);
+        await screenshot(`16-estilo-${id}`);
+        m.style.entry.set_text('calc');
+        await sleep(600);
+        check(texts(m.style.results.actor).some(t => /calcul/i.test(t)), `estilo ${id}: a busca funciona`);
+        m.style.entry.set_text('');
+        if (id === 'categories') {
+            const row = m.style._list.get_first_child();
+            row.emit('clicked', 0);
+            await sleep(400);
+            check(m._layer.visible && texts(m._layer).length > 1, 'estilo categories: a categoria abre o submenu');
+            await screenshot('17-estilo-categories-submenu');
+            m.hideLayer();
+        }
+        if (id === 'alphabetical') {
+            m.style._showLetters(true);
+            await sleep(300);
+            check(m.style._letters.visible, 'estilo alphabetical: a grade de letras abre');
+            await screenshot('17-estilo-alphabetical-letras');
+            m.style.escape();
+        }
+        m.close();
+        await sleep(400);
+    }
+
+    // Posição e tamanho.
+    settings.set_string('start-menu-style', 'modern');
+    settings.set_string('start-menu-position', 'center');
+    await sleep(200);
+    manager().openStartMenu(dock);
+    await sleep(500);
+    let m = startMenu();
+    const [cx, cy] = m._box.get_transformed_position();
+    const middle = cx + m._box.width / 2;
+    check(Math.abs(middle - (monitor.x + monitor.width / 2)) < 20, `posição centro: centralizado (${Math.round(middle)})`);
+    void cy;
+    m.close();
+    await sleep(400);
+    settings.set_string('start-menu-position', 'corner');
+    manager().openStartMenu(dock);
+    await sleep(500);
+    m = startMenu();
+    const [kx] = m._box.get_transformed_position();
+    check(kx < monitor.x + 40, `posição canto: no canto esquerdo (${Math.round(kx)})`);
+    const mediumWidth = m._box.width;
+    m.close();
+    await sleep(400);
+    settings.set_string('start-menu-size', 'large');
+    settings.set_boolean('start-menu-animate', false);
+    manager().openStartMenu(dock);
+    await sleep(200);
+    m = startMenu();
+    check(m._box.width > mediumWidth, `tamanho grande: mais largo (${mediumWidth} → ${m._box.width})`);
+    check(m._box.opacity === 255, 'sem animação: aparece na hora');
+    m.close();
+    await sleep(300);
+
+    for (const key of ['bar-style', 'start-menu', 'start-menu-style', 'start-menu-position', 'start-menu-size',
+        'start-menu-animate'])
         settings.reset(key);
     await sleep(1500);
+}
+
+/**
+ * "Usar menu iniciar no lugar da App Grid": cada caminho do GNOME que
+ * abriria a App Grid abre o menu; um Super sozinho continua abrindo a Visão
+ * Geral; desligar devolve as funções originais do GNOME.
+ */
+async function testAppGridHook(settings) {
+    settings.reset('start-menu-replace-grid');
+    Main.overview.hide();
+    await sleep(1000);
+    const controls = Main.overview._overview.controls;
+    const adjustment = controls._stateAdjustment;
+    const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+    const originalShow = Main.overview.show;
+    const originalEase = adjustment.ease;
+    check(!own(Main.overview, 'show') && !own(adjustment, 'ease'), 'App Grid: desligado, nada do GNOME é trocado');
+
+    // Desligado: showApps abre a App Grid de verdade.
+    Main.overview.showApps();
+    await waitFor(() => Main.overview.visible && !Main.overview.animationInProgress);
+    await sleep(300);
+    check(Main.overview.visible && controls.dash.showAppsButton.checked && !startMenu()?.isOpen,
+        'App Grid: desligado, a App Grid do GNOME abre');
+    Main.overview.hide();
+    await waitFor(() => !Main.overview.visible);
+    await sleep(500);
+
+    settings.set_boolean('start-menu-replace-grid', true);
+    await sleep(300);
+    check(own(Main.overview, 'show') && own(adjustment, 'ease'), 'App Grid: ligado, os dois pontos são interceptados');
+
+    // 1) Main.overview.showApps() (o botão de apps da dock, por exemplo).
+    Main.overview.showApps();
+    await sleep(600);
+    check(startMenu()?.isOpen && !Main.overview.visible, 'App Grid: showApps() abre o menu');
+    startMenu().close();
+    await sleep(400);
+
+    // 2) Super+A com a Visão Geral fechada (o mesmo código do atalho).
+    controls._toggleAppsPage();
+    await sleep(600);
+    check(startMenu()?.isOpen && !Main.overview.visible, 'App Grid: Super+A abre o menu');
+    startMenu().close();
+    await sleep(400);
+
+    // 3) Um Super: a Visão Geral normal.
+    global.display.emit('overlay-key');
+    await waitFor(() => Main.overview.visible && !Main.overview.animationInProgress);
+    await sleep(300);
+    check(Main.overview.visible && !startMenu()?.isOpen, 'App Grid: um Super ainda abre a Visão Geral');
+
+    // 4) Com a Visão Geral aberta, o botão de grade do dash: fecha e abre o menu.
+    controls.dash.showAppsButton.checked = true;
+    await waitFor(() => startMenu()?.isOpen, 3000);
+    check(startMenu()?.isOpen && !Main.overview.visible && !controls.dash.showAppsButton.checked,
+        'App Grid: botão de grade do dash fecha a Visão Geral e abre o menu');
+    startMenu().close();
+    await sleep(400);
+
+    // 5) Super duas vezes (o 2º com a Visão Geral ainda abrindo).
+    global.display.emit('overlay-key');
+    await sleep(60);
+    global.display.emit('overlay-key');
+    await waitFor(() => startMenu()?.isOpen, 3000);
+    check(startMenu()?.isOpen && !Main.overview.visible, 'App Grid: Super duas vezes abre o menu');
+    await screenshot('18-menu-duplo-super');
+    startMenu().close();
+    await sleep(400);
+
+    // Desligar devolve tudo como era.
+    settings.set_boolean('start-menu-replace-grid', false);
+    await sleep(300);
+    check(!own(Main.overview, 'show') && !own(adjustment, 'ease') &&
+        Main.overview.show === originalShow && adjustment.ease === originalEase,
+    'App Grid: desligar devolve as funções originais do GNOME');
+    Main.overview.showApps();
+    await waitFor(() => Main.overview.visible && !Main.overview.animationInProgress);
+    await sleep(300);
+    check(Main.overview.visible && controls.dash.showAppsButton.checked && !startMenu()?.isOpen,
+        'App Grid: depois de desligar, a App Grid do GNOME volta');
+    Main.overview.hide();
+    await waitFor(() => !Main.overview.visible);
+    await sleep(500);
+
+    // Fica ligado para o teste de desativar a extensão conferir a limpeza.
+    settings.set_boolean('start-menu-replace-grid', true);
+    await sleep(300);
 }
 
 // ---------- Vidro ----------
@@ -822,9 +996,21 @@ async function testRecentFiles() {
 }
 
 async function testDisableEnable() {
+    const adjustment = Main.overview._overview.controls._stateAdjustment;
+    const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
     await Main.extensionManager.disableExtension(UUID);
     await sleep(1000);
     check(orlaActors() === 0, 'desativar não deixa atores para trás');
+    check(!own(Main.overview, 'show') && !own(adjustment, 'ease'),
+        'desativar com o menu no lugar da App Grid devolve as funções do GNOME');
+    Main.overview.showApps();
+    await waitFor(() => Main.overview.visible && !Main.overview.animationInProgress);
+    await sleep(300);
+    check(Main.overview.visible && Main.overview._overview.controls.dash.showAppsButton.checked,
+        'desativada a extensão, a App Grid do GNOME abre');
+    Main.overview.hide();
+    await waitFor(() => !Main.overview.visible);
+    await sleep(500);
     await Main.extensionManager.enableExtension(UUID);
     await sleep(2000);
     check(orla()?.state === 1 && orlaActors() >= 1, 'reativar funciona');
@@ -846,6 +1032,7 @@ async function run() {
     await testStackDrag(settings);
     await testPanelMode(settings);
     await testStartMenu(settings);
+    await testAppGridHook(settings);
     await testNotificationBadges();
     await testRecentFiles();
     await testPanelMover(settings, win);

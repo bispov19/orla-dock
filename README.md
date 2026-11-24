@@ -18,7 +18,7 @@ Orla Dock is a native GNOME Shell extension inspired by the macOS Dock. Icons ma
 
 Folders on the dock open as stacks: a fan of files that rises from the icon and folds back along the same path, or a grid or a list. Files can be dragged out of a stack onto an app icon, onto the Trash, or onto any window, where they are copied so you can paste them.
 
-Choose between dock and taskbar styles, each shown in a preview before you apply it. In the taskbar, Panel mode brings the GNOME top bar into the bar: workspaces, a tray for other extensions' icons, Quick Settings and the clock, with notifications shown next to it. The Start Menu searches apps, settings, files, other apps' results and the web, does quick calculations and keeps pinned apps, folders and recent files.
+Choose between dock and taskbar styles, each shown in a preview before you apply it. In the taskbar, Panel mode brings the GNOME top bar into the bar: workspaces, a tray for other extensions' icons, Quick Settings and the clock, with notifications shown next to it. The Start Menu searches apps, settings, files, other apps' results and the web, does quick calculations and shows pinned apps (shared with GNOME's favorites) and recent files. It comes in five styles (Classic two columns, Modern Classic, Compact Categories, Alphabetical List and Floating Grid) and can optionally replace GNOME's App Grid: pressing Super twice, the app grid button and Super+A open it, while a single Super still opens the Overview.
 
 Orla Glass is the extension's own frosted material: it adapts to bright and dark backgrounds, bends what is behind its thick edge, and adds a soft sheen and a lit rim. It can follow what is behind the dock or use a still image.
 
@@ -51,7 +51,15 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
 - **Barra de tarefas (Windows 10):** de ponta a ponta, ícones à esquerda, destaque do app em foco, sublinhado nos apps abertos, alerta laranja quando um app pede atenção.
 - **Dock (GNOME):** flutuante como a Dash do GNOME, sem ampliação, botão de aplicativos no fim e destaque arredondado em volta do ícone.
 - Nas barras de tarefas, o **modo Painel**: a barra de cima entra na de tarefas (indicador de workspaces que troca de área com a rodinha, bandeja com seta onde dá para fixar, mandar para a bandeja e reordenar ícones, configurações rápidas e relógio com data), e os avisos de notificação surgem acima do relógio.
-- O **Menu Iniciar**: busca (apps, configurações, arquivos, resultados de outros apps, calculadora, comandos com `>` e web), fixados em páginas com pastas (arraste um app em cima de outro), apps recentes, "Continuar de onde parou", todos os apps em lista ou grade com índice de letras, menu de contexto e energia. Tudo volta ao normal nos estilos de dock.
+- O **Menu Iniciar**, em cinco estilos (aba *Menu Iniciar* das preferências, com prévias):
+  - **Clássico fiel** — duas colunas como no Windows 7: fixados, recentes e "Todos os programas" à esquerda, busca embaixo; foto, nome, pastas e Configurações à direita; botão Desligar com Suspender, Reiniciar, Bloquear e Sair;
+  - **Clássico moderno** — busca no topo, fixados em páginas, recentes e "Continuar de onde parou", barra com usuário, bloquear, suspender e energia;
+  - **Compacto por categorias** — áreas de trabalho no topo (clicar troca, + cria), categorias com submenus, busca e energia;
+  - **Lista alfabética** — todos os apps de A a Z, clicar numa letra pula para outra, fixados na coluna ao lado;
+  - **Grade flutuante** — painel no centro com ícones grandes em páginas e os fixados em destaque.
+
+  Em todos: busca instantânea (apps, configurações, arquivos, resultados de outros apps, calculadora, comandos com `>` e web), fixados **iguais aos favoritos do GNOME** (arraste para reordenar), menu de contexto (fixar/desafixar, nova janela, ações do app, mostrar no Arquivos), teclado completo (setas, Enter, Esc, digitar para buscar, Tab entre áreas), abre no monitor do ponteiro, segue o tema claro/escuro. Posição (junto da dock, canto ou centro), tamanho, animação e um atalho extra são configuráveis.
+- **Menu Iniciar no lugar da App Grid** (opcional, desligado por padrão): Super duas vezes, o botão de apps do dash e Super+A abrem o menu (com a Visão Geral aberta, ela fecha antes). Um Super sozinho continua abrindo a Visão Geral. Desligando a opção ou a extensão, a App Grid do GNOME volta sem resíduo.
 - **Posição escolhida clicando na prévia** de cada lado da tela.
 - **Encostar na borda com janela maximizada** (opcional): a dock perde a margem enquanto houver janela maximizada e volta a flutuar quando não houver.
 - **Barra do GNOME embaixo com a dock em cima** (opcional, ligada por padrão): com a dock na posição Superior, a barra do sistema desce para a borda de baixo, os menus dela abrem para cima e os avisos de notificação aparecem abaixo da dock. Ao mudar de posição, bloquear a tela ou desligar a extensão, tudo volta ao lugar.
@@ -140,6 +148,21 @@ gnome-extensions prefs orla-dock@viniciusbispo19
 | `scripts/check.sh` | Confere as regras de revisão do extensions.gnome.org que dá para verificar automaticamente |
 | `scripts/screenshots.sh` | Refaz as capturas (`docs/screenshots/` em português, `store/screenshots/` em inglês) num GNOME Shell de teste, com papel de parede padrão e arquivos de exemplo |
 
+### Testar numa sessão aninhada
+
+Sem precisar sair da sua sessão (no Wayland não existe "Alt+F2 → r"):
+
+```sh
+./scripts/install.sh           # compila schema/traduções e liga o link
+./scripts/nested.sh            # = dbus-run-session -- gnome-shell --devkit --wayland
+# dentro da janela, num terminal:
+gnome-extensions enable orla-dock@viniciusbispo19
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/orla-dock@viniciusbispo19/schemas \
+    set org.gnome.shell.extensions.orla-dock start-menu-replace-grid true
+```
+
+Depois de mudar o código, feche a janela da sessão aninhada e rode `./scripts/nested.sh` de novo.
+
 ### Testes
 
 Os dois scripts usam configurações próprias e temporárias, então não mudam as suas.
@@ -148,7 +171,7 @@ Os dois scripts usam configurações próprias e temporárias, então não mudam
 ./scripts/test-shell.sh
 ```
 
-Inicia um GNOME Shell sem janela com a Orla e a extensão de testes (`tests/shell/orla-test@local`), que confere por dentro: a dock aparece, encosta na borda com janela maximizada nas 4 posições (e a janela não fica por baixo dela), o Gênio minimiza e restaura, os arquivos do leque podem ser arrastados (para uma janela do Nautilus e colados com Ctrl+V, para um lugar vazio, para o ícone de um app) e o clique continua abrindo, todas as opções do schema podem ser mudadas sem derrubar a dock, e desativar não deixa nada para trás. Qualquer erro ou aviso vindo dos arquivos da Orla no log também conta como falha. Leva uns 2 minutos; `--quick` pula a parte das opções.
+Inicia um GNOME Shell sem janela com a Orla e a extensão de testes (`tests/shell/orla-test@local`), que confere por dentro: a dock aparece, encosta na borda com janela maximizada nas 4 posições (e a janela não fica por baixo dela), o Gênio minimiza e restaura, os arquivos do leque podem ser arrastados (para uma janela do Nautilus e colados com Ctrl+V, para um lugar vazio, para o ícone de um app) e o clique continua abrindo, os cinco estilos do Menu Iniciar abrem, cabem na tela e buscam, o menu substitui a App Grid em todos os caminhos (showApps, Super+A, botão do dash, Super duas vezes) enquanto um Super sozinho abre a Visão Geral, desligar a opção ou a extensão devolve as funções originais do GNOME, todas as opções do schema podem ser mudadas sem derrubar a dock, e desativar não deixa nada para trás. Qualquer erro ou aviso vindo dos arquivos da Orla no log também conta como falha. Leva uns 2 minutos; `--quick` pula a parte das opções.
 
 ```sh
 ./scripts/test-prefs.sh
@@ -188,7 +211,8 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/genieMath.js` | Matemática do efeito Gênio (testável fora do Shell) |
 | `lib/mounts.js` | Unidades USB e outras |
 | `lib/panel/` | Modo Painel: relógio, workspaces, bandeja, configurações rápidas, notificações e a barra de cima (`panelMode.js` monta tudo; `panelSlot.js` move itens do painel do GNOME e devolve) |
-| `lib/start/` | Menu Iniciar: a janela (`startMenu.js`), telas (`home.js`, `allApps.js`, `search.js`), dados (`data.js`) e a calculadora |
+| `lib/start/` | Menu Iniciar: a casca comum (`startMenu.js`), a interceptação da App Grid (`appGridHook.js`), dados (`data.js`), peças compartilhadas (`parts.js`, `widgets.js`), busca (`search.js`) e a calculadora |
+| `lib/start/styles/` | Um arquivo por estilo do Menu Iniciar (`classic.js`, `modern.js`, `categories.js`, `alphabetical.js`, `launchpad.js`) e a base comum (`base.js`) |
 | `lib/glassMath.js` | A receita do Vidro da Orla (o shader e a conta de cor da prévia) |
 | `lib/fileClipboard.js` | Copiar arquivos (arquivo do leque solto numa janela) |
 | `lib/files.js` | Leitura de arquivos e pastas sem travar o Shell (promessas sobre o Gio) |
@@ -251,6 +275,7 @@ O que o projeto segue das regras de revisão (e o `check.sh` confere):
 - **Arquivos arrastados de outros programas:** no Wayland, o GNOME Shell recebe o movimento do arraste, mas não o arquivo. Por isso, parar um arquivo sobre um ícone traz o app para frente (como no Mac) para você soltar direto na janela dele. Arquivos arrastados das Stacks da própria Orla abrem direto no app.
 - **Arrastar um arquivo das Stacks para a janela de outro app:** no Wayland só um app pode iniciar um arraste que outro app receba; o Shell não tem como entregar o arquivo arrastado. Por isso, ao soltar sobre uma janela, a Orla copia o arquivo e traz a janela para a frente, e você cola com Ctrl+V. A área de transferência do Shell guarda um formato por vez: em gerenciadores de arquivos vai o formato do Nautilus (testado: cola o arquivo na pasta); nos demais apps vai `text/uri-list`, o formato padrão de lista de arquivos. Se um site não aceitar colar arquivos, use o botão de anexar dele.
 - **Refração e dispersão na prévia:** a prévia das preferências mostra a cor, o reflexo e o relevo exatamente como na dock, mas a refração e a dispersão (que releem o fundo em outro ponto) aparecem só na dock de verdade.
+- **Menu Iniciar no lugar da App Grid:** a Orla troca, só na instância, duas funções internas do GNOME 51 (`Main.overview.show` e o `ease` da régua de estados da Visão Geral). Se uma versão futura mudar esses nomes, a opção simplesmente não pega e a App Grid normal continua (aviso no log). O gesto de três dedos para cima duas vezes termina no menu só quando o gesto acaba (a grade aparece um instante durante o gesto).
 - O Gênio usa um detalhe interno do Shell (`Main.wm._minimizing`); se ele mudar numa versão futura, a Orla volta sozinha para a animação nativa.
 
 ## Licença

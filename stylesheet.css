@@ -493,7 +493,6 @@
 /* ---------- Menu Iniciar ---------- */
 
 .orla-start {
-    width: 620px;
     padding: 18px 18px 10px;
     spacing: 12px;
     border-radius: 16px;
@@ -502,9 +501,19 @@
     color: #f2f2f2;
 }
 
+/* Fundo liso (sem vidro e sem dock no monitor): claro ou escuro. */
+.orla-start.orla-dark {
+    background-color: rgba(30, 30, 34, 0.97);
+}
+
 .orla-start.orla-light {
+    background-color: rgba(246, 246, 248, 0.97);
     border-color: rgba(0, 0, 0, 0.1);
     color: #1c1c1e;
+}
+
+.orla-start-layout {
+    spacing: 12px;
 }
 
 .orla-start-search {
@@ -533,10 +542,6 @@
 .orla-start-search-icon {
     icon-size: 16px;
     padding-right: 8px;
-}
-
-.orla-start-body {
-    height: 470px;
 }
 
 .orla-start-view {
@@ -619,12 +624,6 @@
     height: 4px;
     border-radius: 99px;
     background-color: #2dd4bf;
-}
-
-.orla-start-folder-icon {
-    padding: 3px;
-    border-radius: 10px;
-    background-color: rgba(127, 127, 127, 0.25);
 }
 
 .orla-start-dots {
@@ -742,7 +741,7 @@
 }
 
 .orla-start-context,
-.orla-start-folder {
+.orla-start-flyout {
     padding: 6px;
     border-radius: 12px;
     background-color: rgba(36, 36, 40, 0.97);
@@ -752,7 +751,7 @@
 }
 
 .orla-light .orla-start-context,
-.orla-light .orla-start-folder {
+.orla-light .orla-start-flyout {
     background-color: rgba(250, 250, 252, 0.98);
     border-color: rgba(0, 0, 0, 0.1);
     color: #1c1c1e;
@@ -776,23 +775,182 @@
     background-color: rgba(127, 127, 127, 0.25);
 }
 
-.orla-start-folder {
-    padding: 12px;
-    spacing: 8px;
+.orla-start-flyout {
+    padding: 8px;
+    spacing: 4px;
+    min-width: 240px;
 }
 
-.orla-start-folder-title {
-    font-weight: 700;
-    font-size: 14px;
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: none;
-    background-color: transparent;
+.orla-start-flyout-title {
+    padding: 4px 8px 6px;
+}
+
+.orla-start-letter:hover,
+.orla-start-letter:focus {
+    background-color: rgba(127, 127, 127, 0.18);
+    border-radius: 6px;
+}
+
+/* ---- Estilo Clássico fiel (duas colunas) ---- */
+.orla-start-style-classic {
+    padding: 0;
+}
+
+.orla-start-style-classic .orla-start-layout {
+    spacing: 0;
+}
+
+.orla-start-classic-left {
+    padding: 12px 10px 12px 12px;
+    spacing: 6px;
+}
+
+.orla-start-classic-right {
+    padding: 16px 10px 12px;
+    spacing: 4px;
+    border-radius: 0 16px 16px 0;
+    background-color: rgba(127, 127, 127, 0.13);
+}
+
+.orla-start-classic-pinned .orla-start-row-title {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.orla-start-classic-more .orla-start-row-title {
+    font-weight: 600;
+}
+
+.orla-start-classic-user {
+    padding: 6px;
+    border-radius: 12px;
     color: inherit;
 }
 
-.orla-start-folder-title:focus {
-    background-color: rgba(127, 127, 127, 0.18);
+.orla-start-classic-user:hover,
+.orla-start-classic-user:focus,
+.orla-start-workspace:hover,
+.orla-start-workspace:focus,
+.orla-start-letter-key:hover,
+.orla-start-letter-key:focus {
+    background-color: rgba(127, 127, 127, 0.22);
+}
+
+.orla-start-place .orla-start-row-title {
+    font-size: 12.5px;
+}
+
+.orla-start-classic-power {
+    spacing: 1px;
+}
+
+.orla-start-classic-power-main,
+.orla-start-classic-power-more {
+    padding: 6px 14px;
+    color: inherit;
+    font-weight: 600;
+    font-size: 12.5px;
+    background-color: rgba(127, 127, 127, 0.2);
+}
+
+.orla-start-classic-power-main {
+    border-radius: 8px 0 0 8px;
+}
+
+.orla-start-classic-power-more {
+    padding: 6px 8px;
+    border-radius: 0 8px 8px 0;
+}
+
+.orla-start-classic-power-main:hover,
+.orla-start-classic-power-main:focus,
+.orla-start-classic-power-more:hover,
+.orla-start-classic-power-more:focus {
+    background-color: rgba(127, 127, 127, 0.35);
+}
+
+/* ---- Estilo Compacto por categorias ---- */
+.orla-start-workspaces {
+    spacing: 6px;
+}
+
+.orla-start-workspace {
+    min-width: 30px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    color: inherit;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: rgba(127, 127, 127, 0.12);
+}
+
+.orla-start-workspace:checked {
+    background-color: #2dd4bf;
+    color: #0b2b27;
+}
+
+.orla-start-category .orla-start-row-title {
+    font-weight: 600;
+}
+
+/* ---- Estilo Lista alfabética ---- */
+.orla-start-style-alphabetical .orla-start-layout {
+    spacing: 10px;
+}
+
+.orla-start-alpha-rail {
+    spacing: 4px;
+    padding-right: 6px;
+    border-right: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.orla-start-alpha-middle {
+    spacing: 8px;
+}
+
+.orla-start-alpha-pinned {
+    padding-left: 10px;
+    border-left: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.orla-start-letter-grid {
+    padding: 12px;
+}
+
+.orla-start-letter-key {
+    margin: 3px;
+    padding: 10px 0;
+    border-radius: 8px;
+    color: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: rgba(127, 127, 127, 0.12);
+}
+
+.orla-start-letter-key:insensitive {
+    opacity: 0.3;
+}
+
+/* ---- Estilo Grade flutuante central ---- */
+.orla-start-style-launchpad {
+    padding: 22px 26px 14px;
+    border-radius: 22px;
+}
+
+.orla-start-launchpad-pinned {
+    padding: 6px;
+    border-radius: 16px;
+    background-color: rgba(45, 212, 191, 0.12);
+}
+
+.orla-start-cell-big {
+    width: 116px;
+    padding: 10px 4px 6px;
+    border-radius: 14px;
+}
+
+.orla-start-cell-big .orla-start-cell-name {
+    font-size: 12.5px;
 }
 
 /* Barra clara: relógio e pontos escuros, para ter contraste. */

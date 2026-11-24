@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: 2026 Vinicius Bispo
 //
 // prefs/panelOptions.js — opções da barra de tarefas na aba Estilos: modo
-// Painel, Menu Iniciar, relógio e bandeja. Só aparecem com um estilo de
+// Painel, relógio e bandeja. Só aparecem com um estilo de
 // barra de tarefas escolhido.
 
 import Adw from 'gi://Adw';
@@ -12,19 +12,7 @@ import Gtk from 'gi://Gtk';
 
 import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-import {group, spinRow, switchRow} from './rows.js';
-
-// Buscadores para "Pesquisar na web" (%s = o texto digitado).
-const ENGINES = [
-    ['DuckDuckGo', 'https://duckduckgo.com/?q=%s'],
-    ['Google', 'https://www.google.com/search?q=%s'],
-    ['Bing', 'https://www.bing.com/search?q=%s'],
-    ['Brave Search', 'https://search.brave.com/search?q=%s'],
-    ['Startpage', 'https://www.startpage.com/do/search?query=%s'],
-    ['Ecosia', 'https://www.ecosia.org/search?q=%s'],
-    ['Kagi', 'https://kagi.com/search?q=%s'],
-    ['Qwant', 'https://www.qwant.com/?q=%s'],
-];
+import {group, switchRow} from './rows.js';
 
 // Formatos da data embaixo do relógio (códigos do GLib.DateTime.format).
 const DATE_FORMATS = ['%x', '%d/%m/%Y', '%d/%m/%y', '%-d/%-m/%Y', '%m/%d/%Y', '%Y-%m-%d',
@@ -56,51 +44,6 @@ function stringChoiceRow(binder, settings, key, title, subtitle, choices, {custo
     binder.watchOther(settings, key, sync);
     sync();
     return row;
-}
-
-function startMenuGroup(page, binder) {
-    const settings = binder.settings;
-    const start = group(page, _('Start Menu'), _('Opens from the start button of the taskbar'));
-    start.add(switchRow(binder, 'start-menu', _('Orla Dock Start Menu'),
-        _('Pinned apps, recent apps and files, search and power options. Off: GNOME’s app grid')));
-
-    const rows = [
-        switchRow(binder, 'start-menu-recent-apps', _('Recent apps'), _('The apps you opened last, under Pinned')),
-        switchRow(binder, 'start-menu-continue', _('Continue where you left off'), _('Files you opened recently')),
-        spinRow(binder, 'start-menu-recent-files', _('How many files'), 1, 50),
-        switchRow(binder, 'start-menu-search-providers', _('Results from other apps'),
-            _('Search results from apps like Calendar, Contacts and Characters')),
-        switchRow(binder, 'start-menu-web-search', _('Web search'), _('Offer to search the web for what you type')),
-    ];
-    rows.forEach(row => start.add(row));
-
-    const address = new Adw.EntryRow({title: _('Search address (%s is the text you type)')});
-    address.text = settings.get_string('start-menu-web-search-url');
-    address.connect('apply', () => {
-        const url = address.text.trim();
-        if (url.includes('%s'))
-            settings.set_string('start-menu-web-search-url', url);
-    });
-    address.show_apply_button = true;
-    const engine = stringChoiceRow(binder, settings, 'start-menu-web-search-url', _('Search engine'), null,
-        ENGINES, {
-            custom: _('Custom'),
-            onChange: isCustom => {
-                address.visible = isCustom && settings.get_boolean('start-menu-web-search');
-                if (!isCustom)
-                    address.text = settings.get_string('start-menu-web-search-url');
-            },
-        });
-    start.add(engine);
-    start.add(address);
-
-    const on = s => s.get_boolean('start-menu');
-    binder.showWhen('start-menu', on, ...rows);
-    binder.showWhen(['start-menu', 'start-menu-continue'],
-        s => on(s) && s.get_boolean('start-menu-continue'), rows[2]);
-    binder.showWhen(['start-menu', 'start-menu-web-search'],
-        s => on(s) && s.get_boolean('start-menu-web-search'), engine);
-    return start;
 }
 
 function clockGroup(page, binder) {
@@ -179,11 +122,10 @@ export function panelOptionGroups(page, binder, isTaskbar) {
         _('Dots at the start of the bar; scroll over them to switch workspaces'));
     panel.add(workspaces);
 
-    const start = startMenuGroup(page, binder);
     const clock = clockGroup(page, binder);
     const tray = trayGroup(page, binder);
 
     const panelOn = s => isTaskbar(s) && s.get_boolean('taskbar-merge-panel');
-    binder.showWhen('bar-style', isTaskbar, panel, start);
+    binder.showWhen('bar-style', isTaskbar, panel);
     binder.showWhen(['bar-style', 'taskbar-merge-panel'], panelOn, workspaces, clock, tray);
 }

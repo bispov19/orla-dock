@@ -633,17 +633,54 @@
     <key name="start-menu" type="b">
       <default>true</default>
       <summary>Start menu</summary>
-      <description>On the taskbar, open the Orla Dock Start Menu from the start button instead of GNOME's app grid.</description>
+      <description>On the taskbar, the start button opens the Orla Dock Start Menu instead of GNOME's app grid.</description>
     </key>
-    <key name="start-menu-pinned" type="as">
+    <key name="start-menu-replace-grid" type="b">
+      <default>false</default>
+      <summary>Start menu instead of the app grid</summary>
+      <description>Double Super, the dash app grid button and Super+A open the Orla Dock Start Menu instead of GNOME's app grid. A single Super still opens the Overview.</description>
+    </key>
+    <key name="start-menu-style" type="s">
+      <choices>
+        <choice value="classic"/>
+        <choice value="modern"/>
+        <choice value="categories"/>
+        <choice value="alphabetical"/>
+        <choice value="launchpad"/>
+      </choices>
+      <default>'modern'</default>
+      <summary>Start menu style</summary>
+      <description>Layout of the start menu: classic (two columns), modern, categories, alphabetical or launchpad (centered grid).</description>
+    </key>
+    <key name="start-menu-position" type="s">
+      <choices>
+        <choice value="dock"/>
+        <choice value="corner"/>
+        <choice value="center"/>
+      </choices>
+      <default>'dock'</default>
+      <summary>Start menu position</summary>
+      <description>Where the start menu opens: next to the dock, in a corner of the screen, or centered.</description>
+    </key>
+    <key name="start-menu-size" type="s">
+      <choices>
+        <choice value="small"/>
+        <choice value="medium"/>
+        <choice value="large"/>
+      </choices>
+      <default>'medium'</default>
+      <summary>Start menu size</summary>
+      <description>Overall size of the start menu.</description>
+    </key>
+    <key name="start-menu-animate" type="b">
+      <default>true</default>
+      <summary>Animate the start menu</summary>
+      <description>Short fade and slide when the start menu opens and closes.</description>
+    </key>
+    <key name="start-menu-shortcut" type="as">
       <default>[]</default>
-      <summary>Start menu pinned items</summary>
-      <description>App IDs and folder keys pinned to the start menu. Empty uses the dock order.</description>
-    </key>
-    <key name="start-menu-folders" type="s">
-      <default>'[]'</default>
-      <summary>Start menu folders</summary>
-      <description>Folders made in the start menu, as JSON.</description>
+      <summary>Start menu shortcut</summary>
+      <description>Extra keyboard shortcut that opens or closes the start menu. Empty means none.</description>
     </key>
     <key name="start-menu-recent-apps" type="b">
       <default>true</default>

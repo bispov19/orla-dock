@@ -131,7 +131,7 @@ async function sceneTaskbar(settings, mouse) {
     const d = dock();
     d.toggleStartMenu();
     await sleep(1200);
-    const menu = d._startMenu;
+    const menu = orla().stateObj._manager._startMenu;
     // A foto do usuário não vai para as capturas públicas.
     const avatar = (function find(a) {
         if (a.has_style_class_name?.('orla-start-avatar'))

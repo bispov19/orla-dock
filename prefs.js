@@ -26,6 +26,7 @@ import {behaviorPage} from './prefs/behaviorPage.js';
 import {blurPage} from './prefs/blurPage.js';
 import {layoutPage} from './prefs/layoutPage.js';
 import {modulesPage} from './prefs/modulesPage.js';
+import {startMenuPage} from './prefs/startMenuPage.js';
 import {stylesPage} from './prefs/stylesPage.js';
 import {Binder} from './prefs/widgets.js';
 
@@ -49,6 +50,7 @@ function aboutInfo(metadata, extensionPath) {
         features: [
             _('Wave magnification'),
             _('Three styles: macOS, Windows 10 and GNOME'),
+            _('Start Menu in five styles'),
             _('Glass blur'),
             _('Fan, grid and list stacks'),
             _('Genie minimize effect'),
@@ -100,6 +102,7 @@ export default class OrlaDockPreferences extends ExtensionPreferences {
         window.add(appearancePage(binder));
         window.add(blurPage(binder, this.path, window));
         window.add(behaviorPage(binder));
+        window.add(startMenuPage(binder));
         window.add(modulesPage(binder, window, this.path));
         // this.metadata = metadata.json; this.path = pasta da extensão.
         window.add(buildAboutPage({window, info: aboutInfo(this.metadata, this.path)}));
