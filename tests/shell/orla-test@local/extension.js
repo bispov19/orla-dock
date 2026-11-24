@@ -224,11 +224,17 @@ class VirtualPointer {
         }
     }
 
-    async click(x, y) {
+    async click(x, y, button = Clutter.BUTTON_PRIMARY) {
         await this.moveAndSettle(x, y);
         await sleep(150);
-        this._pointer.notify_button(this._now(), Clutter.BUTTON_PRIMARY, Clutter.ButtonState.PRESSED);
-        this._pointer.notify_button(this._now(), Clutter.BUTTON_PRIMARY, Clutter.ButtonState.RELEASED);
+        this._pointer.notify_button(this._now(), button, Clutter.ButtonState.PRESSED);
+        this._pointer.notify_button(this._now(), button, Clutter.ButtonState.RELEASED);
+    }
+
+    async scroll(x, y, direction) {
+        await this.moveAndSettle(x, y);
+        await sleep(100);
+        this._pointer.notify_discrete_scroll(this._now(), direction, Clutter.ScrollSource.WHEEL);
     }
 
     async drag([x0, y0], [x1, y1]) {
@@ -777,6 +783,219 @@ async function testAppGridHook(settings) {
     await sleep(300);
 }
 
+
+// ---------- Widget de música (wavebar-music-pill) ----------
+
+const FAKE_PLAYER = `${GLib.get_user_data_dir()}/gnome-shell/extensions/${UUID}/tests/music/fake-player.js`;
+
+/** Liga um player MPRIS de mentira (tests/music/fake-player.js). */
+async function startFakePlayer(name, ...extra) {
+    const proc = Gio.Subprocess.new(['gjs', '-m', FAKE_PLAYER, '--name', name, ...extra],
+        Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+    await sleep(1200);
+    return proc;
+}
+
+const itemKeys = dock => dock.getItems().map(item => item.key);
+const musicItem = () => manager()._docks[0]?.findItem('music');
+const current = () => manager().music?.current ?? null;
+
+/** Letra sincronizada de mentira no cache (sem depender da internet). */
+async function seedLyrics(track) {
+    const {LyricsClient} = await import(`../${UUID}/lib/music/lyrics.js`);
+    const key = LyricsClient.keyFor(track);
+    const dir = GLib.build_filenamev([GLib.get_user_cache_dir(), 'orla-dock', 'music', 'lyrics']);
+    GLib.mkdir_with_parents(dir, 0o755);
+    const hash = GLib.compute_checksum_for_string(GLib.ChecksumType.SHA256, key, -1);
+    const lines = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20].map((t, i) => ({time: t * 1e6, text: `Linha ${i + 1}`}));
+    GLib.file_set_contents(`${dir}/${hash}.json`, JSON.stringify({kind: 'synced', lines, time: Math.floor(Date.now() / 1000)}));
+}
+
+async function testMusic(settings) {
+    const K = 'wavebar-music-pill-';
+    settings.set_string('bar-style', 'dock');
+    settings.set_string('position', 'bottom');
+    Main.overview.hide();
+    await sleep(1500);
+    const dock = () => manager()._docks[0];
+    const before = itemKeys(dock());
+
+    // 1) Desligado: nada do widget existe.
+    check(!manager().music && !itemKeys(dock()).some(k => k.includes('music')),
+        'música: desligado, a dock fica como era (sem widget, separadores ou serviço)');
+
+    // 2) Ligado sem player: oculto; "mostrar mesmo sem player" mostra.
+    settings.set_boolean(`${K}enabled`, true);
+    await sleep(800);
+    check(Boolean(manager().music) && !musicItem(), 'música: ligado sem player, o widget fica oculto');
+    settings.set_boolean(`${K}show-without-player`, true);
+    await sleep(800);
+    check(Boolean(musicItem()), 'música: "mostrar mesmo sem player" mostra o item discreto');
+    settings.reset(`${K}show-without-player`);
+    await sleep(800);
+
+    // 3) Com um player: aparece entre o botão de apps e o primeiro fixado.
+    const a = await startFakePlayer('orla_fake_a', '--title', 'Canção Teste', '--artist', 'Banda Teste',
+        '--album', 'Disco', '--length', '200');
+    await waitFor(() => Boolean(musicItem()), 4000);
+    await sleep(800);
+    let keys = itemKeys(dock());
+    const at = keys.indexOf('music');
+    check(at > 0 && keys[0] === 'show-apps' && keys[1] === 'sep:music-a' && keys[at + 1] === 'sep:music-b' &&
+        keys[at + 2]?.startsWith('app:'), `música: widget entre o botão de apps e os fixados (${keys.slice(0, 5).join(', ')})`);
+    check(!keys.includes('sep:0'), 'música: sem separador duplicado');
+    await screenshot('30-musica-compacto');
+
+    // Separadores ligam/desligam.
+    settings.set_boolean(`${K}separators`, false);
+    await sleep(700);
+    keys = itemKeys(dock());
+    check(!keys.some(k => k.startsWith('sep:music')), 'música: separadores desligados somem');
+    settings.reset(`${K}separators`);
+    await sleep(700);
+
+    // 4) Compacto = um ícone; expandido = mais largo, com o título.
+    const item = musicItem();
+    const g = dock().geometry;
+    check(Math.abs(item.cellLength(g) - g.cellLength) < 1, 'música: compacto tem o tamanho de um ícone');
+    settings.set_string(`${K}mode`, 'expanded');
+    await sleep(900);
+    check(item.cellLength(g) > g.cellLength * 2, `música: expandido fica mais largo (${Math.round(item.cellLength(g))} px)`);
+    check(item._title.text.includes('Canção Teste') && item._title.text.includes('Banda Teste'),
+        `música: título e artista (${item._title.text})`);
+    await screenshot('31-musica-expandido');
+
+    // 5) Botões de controle.
+    settings.set_boolean(`${K}controls`, true);
+    await sleep(900);
+    check(item._controls.visible && item._prev.reactive && item._next.reactive, 'música: botões aparecem no expandido');
+    await screenshot('32-musica-botoes');
+
+    // 6) Cliques: esquerdo nada; meio tocar/pausar; direito abre/fecha o card.
+    const mouse = new VirtualPointer();
+    const [cx, cy] = centerOf(item._details);
+    const statusBefore = current()?.status;
+    await mouse.click(cx, cy, Clutter.BUTTON_PRIMARY);
+    await sleep(700);
+    check(current()?.status === statusBefore && !manager()._musicCard?.isOpen, 'música: clique esquerdo não faz nada');
+    await mouse.click(cx, cy, Clutter.BUTTON_MIDDLE);
+    await sleep(900);
+    check(current()?.status === 'Paused', `música: clique do meio pausa (${current()?.status})`);
+    await sleep(300);
+    check(item._pill.has_style_class_name('wavebar-music-pill-paused'), 'música: pausado fica apagado');
+    await mouse.click(cx, cy, Clutter.BUTTON_MIDDLE);
+    await sleep(900);
+    check(current()?.status === 'Playing', 'música: clique do meio volta a tocar');
+
+    // Botão "próxima" do widget (não abre o card).
+    let nextClicked = false;
+    const nextId = item._next.connect('clicked', () => {
+        nextClicked = true;
+    });
+    const [nx, ny] = centerOf(item._next);
+    await mouse.moveAndSettle(nx, ny);
+    await sleep(300);
+    const picked = global.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, nx, ny);
+    log('INFO', `sob o ponteiro: ${picked?.constructor?.name} ${picked?.style_class ?? ''} (botão: ${item._next.style_class}, reactive ${item._next.reactive}, mapped ${item._next.mapped})`);
+    await mouse.click(nx, ny);
+    await sleep(300);
+    log('INFO', `botão próxima recebeu o clique: ${nextClicked}`);
+    item._next.disconnect(nextId);
+    await sleep(1000);
+    check(current()?.metadata.title.endsWith(' 2') && !manager()._musicCard?.isOpen,
+        `música: botão próxima funciona sem abrir o card (${current()?.metadata.title})`);
+    await mouse.click(...centerOf(item._prev));
+    await sleep(1000);
+
+    // Rodinha = volume.
+    const volume = current()?.volume;
+    await mouse.scroll(cx, cy, Clutter.ScrollDirection.UP);
+    await sleep(800);
+    check(current()?.volume > volume, `música: rodinha aumenta o volume (${volume} → ${current()?.volume})`);
+
+    await mouse.click(cx, cy, Clutter.BUTTON_SECONDARY);
+    await sleep(800);
+    const card = manager()._musicCard;
+    check(Boolean(card?.isOpen), 'música: clique direito abre o card');
+    await screenshot('33-musica-card');
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(800);
+    check(!card.isOpen, 'música: clique direito de novo fecha o card');
+
+    // 7) Letra em tempo real (cache semeado: sem internet).
+    await seedLyrics({title: 'Canção Teste', artists: ['Banda Teste'], album: 'Disco', length: 200e6});
+    current().setPosition(0);
+    await sleep(300);
+    settings.set_boolean(`${K}lyrics`, true);
+    await sleep(1500);
+    const line1 = item._lyric.text;
+    check(item._lyric.visible && /^Linha \d+$/.test(line1), `música: letra aparece abaixo do título (${line1})`);
+    await sleep(2300);
+    const line2 = item._lyric.text;
+    check(line2 !== line1, `música: a letra avança com a música (${line1} → ${line2})`);
+    await screenshot('34-musica-letra');
+    current().pause();
+    await sleep(800);
+    check(item._lyrics._timer === 0, 'música: pausado, nenhum timer de letra');
+    current().setPosition(15.2e6);
+    await sleep(1200);
+    check(item._lyric.text === 'Linha 8', `música: pular na música ressincroniza a letra (${item._lyric.text})`);
+    current().play();
+    await sleep(600);
+
+    // 8) Dois players: o card alterna entre eles.
+    const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art', '--paused');
+    await sleep(1000);
+    check(manager().music.players.length === 2, 'música: dois players ao mesmo tempo');
+    manager().music.manager.selectPlayer(manager().music.players.find(p => p.metadata.title === 'Outra'));
+    await sleep(800);
+    check(!item._prev.reactive && !item._next.reactive, 'música: sem anterior/próxima no player, botões desabilitados');
+    check(item.has_style_class_name('wavebar-music-pill-idle') === false && item._cover.has_style_class_name('wavebar-music-pill-no-cover'),
+        'música: faixa sem capa mostra a nota musical');
+    b.force_exit();
+    await sleep(1500);
+    check(manager().music.players.length === 1, 'música: player fechado sai da lista');
+
+    // 9) Troca rápida de faixas.
+    for (let i = 0; i < 5; i++)
+        current()?.next();
+    await sleep(1500);
+    check(/Canção Teste \d/.test(item._title.text), `música: troca rápida de faixas termina na certa (${item._title.text})`);
+
+    // 10) Dock lateral.
+    settings.set_string('position', 'left');
+    await sleep(1800);
+    const side = musicItem();
+    check(Boolean(side) && side._pill.orientation === Clutter.Orientation.VERTICAL, 'música: na dock lateral o widget fica em coluna');
+    await screenshot('35-musica-lateral');
+    settings.set_string('position', 'bottom');
+    await sleep(1800);
+
+    // 11) Player fechado com o widget expandido.
+    a.force_exit();
+    await sleep(2000);
+    check(!musicItem(), 'música: sem player, o widget some');
+
+    // 12) Liga/desliga várias vezes: nada sobra.
+    for (let i = 0; i < 5; i++) {
+        settings.set_boolean(`${K}enabled`, false);
+        await sleep(150);
+        settings.set_boolean(`${K}enabled`, true);
+        await sleep(150);
+    }
+    settings.set_boolean(`${K}enabled`, false);
+    await sleep(1200);
+    check(!manager().music && !itemKeys(manager()._docks[0]).some(k => k.includes('music')),
+        'música: ligar e desligar várias vezes não deixa nada para trás');
+    check(JSON.stringify(itemKeys(manager()._docks[0])) === JSON.stringify(before),
+        'música: desligado, a dock volta exatamente como era');
+    for (const k of ['mode', 'controls', 'lyrics', 'enabled'])
+        settings.reset(`${K}${k}`);
+    settings.reset('bar-style');
+    settings.reset('position');
+    await sleep(1200);
+}
+
 // ---------- Vidro ----------
 
 async function testGlass(settings) {
@@ -1043,6 +1262,7 @@ async function run() {
     await testPanelMode(settings);
     await testStartMenu(settings);
     await testAppGridHook(settings);
+    await testMusic(settings);
     await testNotificationBadges();
     await testRecentFiles();
     await testPanelMover(settings, win);

@@ -1041,3 +1041,311 @@
     background-color: rgba(53, 132, 228, 0.95);
     color: #ffffff;
 }
+
+/* ---------- Widget de música (wavebar-music-pill) ----------
+   Visual da Wavebar, dentro da dock. Os tamanhos seguem o tamanho dos
+   ícones (lib/music/wavebarMusicPill.js); aqui ficam cores e cantos.
+   A cor do texto e das barrinhas segue o tema da dock (orla-dark/light). */
+
+.wavebar-music-pill {
+    spacing: 7px;
+    border-radius: 999px;
+    color: #f2f2f2;
+    transition-duration: 250ms;
+}
+
+.orla-light .wavebar-music-pill {
+    color: #1c1c1e;
+}
+
+/* Expandida: o fundo de pílula na cor de destaque, translúcida. */
+.wavebar-music-pill.wavebar-music-pill-wide {
+    background-color: st-transparentize(-st-accent-color, 0.55);
+    padding-right: 6px;
+}
+
+.wavebar-music-pill.wavebar-music-pill-wide.wavebar-music-pill-paused {
+    background-color: rgba(127, 127, 127, 0.28);
+}
+
+.wavebar-music-pill-cover {
+    background-size: cover;
+}
+
+/* Sem capa: a nota musical sobre um degradê na cor de destaque. */
+.wavebar-music-pill-cover.wavebar-music-pill-no-cover {
+    background-gradient-direction: vertical;
+    background-gradient-start: st-transparentize(-st-accent-color, 0.25);
+    background-gradient-end: st-transparentize(-st-accent-color, 0.7);
+}
+
+.wavebar-music-pill-note {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Sem player ("mostrar mesmo sem player"): discreto. */
+.wavebar-music-pill-idle .wavebar-music-pill-cover.wavebar-music-pill-no-cover {
+    background-gradient-start: rgba(127, 127, 127, 0.35);
+    background-gradient-end: rgba(127, 127, 127, 0.18);
+}
+
+/* O selo das barrinhas no canto da capa (modo compacto). */
+.wavebar-music-pill-chip {
+    border-radius: 999px;
+    background-color: rgba(20, 20, 24, 0.82);
+    color: #ffffff;
+}
+
+.wavebar-music-pill-details {
+    spacing: 0;
+}
+
+.wavebar-music-pill-marquee {
+    -st-hfade-offset: 14px;
+}
+
+.wavebar-music-pill-lyric {
+    opacity: 0.68;
+}
+
+.wavebar-music-pill-trail {
+    spacing: 2px;
+}
+
+.wavebar-music-pill-controls {
+    spacing: 1px;
+}
+
+.wavebar-music-pill-ctl {
+    border-radius: 999px;
+    color: inherit;
+    padding: 0;
+}
+
+.wavebar-music-pill-ctl:hover {
+    background-color: rgba(127, 127, 127, 0.3);
+}
+
+.wavebar-music-pill-ctl:active {
+    background-color: rgba(127, 127, 127, 0.45);
+}
+
+.wavebar-music-pill-ctl:insensitive {
+    opacity: 0.35;
+}
+
+/* ---------- Card do widget de música ---------- */
+
+.wavebar-music-pill-card {
+    width: 280px;
+    padding: 14px;
+    spacing: 10px;
+    border-radius: 24px;
+    background-color: rgba(28, 28, 32, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+}
+
+.wavebar-music-pill-card.wavebar-music-pill-light {
+    background-color: rgba(250, 250, 252, 0.98);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #1c1c20;
+}
+
+.wavebar-music-pill-card-top {
+    spacing: 4px;
+}
+
+.wavebar-music-pill-app-button {
+    padding: 4px 8px;
+    border-radius: 999px;
+    color: inherit;
+    font-size: 0.9em;
+}
+
+.wavebar-music-pill-app-button:hover,
+.wavebar-music-pill-app-button:focus {
+    background-color: rgba(127, 127, 127, 0.18);
+}
+
+.wavebar-music-pill-app-box {
+    spacing: 6px;
+}
+
+.wavebar-music-pill-app-icon {
+    icon-size: 16px;
+}
+
+.wavebar-music-pill-count {
+    font-size: 0.8em;
+    font-feature-settings: "tnum";
+    opacity: 0.6;
+}
+
+.wavebar-music-pill-card-cover {
+    width: 252px;
+    height: 252px;
+    border-radius: 14px;
+    background-size: cover;
+}
+
+.wavebar-music-pill-card-cover.wavebar-music-pill-no-cover {
+    background-gradient-direction: vertical;
+    background-gradient-start: st-transparentize(-st-accent-color, 0.35);
+    background-gradient-end: rgba(127, 127, 127, 0.08);
+}
+
+.wavebar-music-pill-card-placeholder {
+    icon-size: 84px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wavebar-music-pill-card-info {
+    spacing: 2px;
+    padding: 2px 4px 0;
+}
+
+.wavebar-music-pill-card-title {
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+.wavebar-music-pill-card-artist {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-card-artist {
+    color: rgba(0, 0, 0, 0.62);
+}
+
+.wavebar-music-pill-card-lyrics {
+    height: 92px;
+    -st-vfade-offset: 24px;
+}
+
+.wavebar-music-pill-card-lyrics-box {
+    spacing: 5px;
+    padding: 30px 4px;
+}
+
+.wavebar-music-pill-card-lyric {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.wavebar-music-pill-card-lyric.wavebar-music-pill-active {
+    color: #ffffff;
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-card-lyric {
+    color: rgba(0, 0, 0, 0.36);
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-card-lyric.wavebar-music-pill-active {
+    color: #1c1c20;
+}
+
+.wavebar-music-pill-card-progress {
+    spacing: 4px;
+}
+
+.wavebar-music-pill-waveform {
+    height: 34px;
+    color: -st-accent-color;
+    -wavebar-music-pill-rest-color: rgba(255, 255, 255, 0.22);
+}
+
+.wavebar-music-pill-waveform:insensitive {
+    color: rgba(127, 127, 127, 0.7);
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-waveform {
+    -wavebar-music-pill-rest-color: rgba(0, 0, 0, 0.16);
+}
+
+.wavebar-music-pill-time {
+    font-size: 0.8em;
+    font-feature-settings: "tnum";
+    opacity: 0.7;
+}
+
+.wavebar-music-pill-card-controls {
+    spacing: 18px;
+}
+
+.wavebar-music-pill-button {
+    border-radius: 999px;
+    padding: 6px;
+    color: inherit;
+}
+
+.wavebar-music-pill-button:hover,
+.wavebar-music-pill-button:focus {
+    background-color: rgba(127, 127, 127, 0.2);
+}
+
+.wavebar-music-pill-button:insensitive {
+    opacity: 0.35;
+}
+
+.wavebar-music-pill-small StIcon {
+    icon-size: 14px;
+}
+
+.wavebar-music-pill-control {
+    padding: 10px;
+}
+
+.wavebar-music-pill-control StIcon {
+    icon-size: 20px;
+}
+
+.wavebar-music-pill-control.wavebar-music-pill-play {
+    padding: 14px;
+    background-color: #ffffff;
+    color: #1c1c20;
+}
+
+.wavebar-music-pill-control.wavebar-music-pill-play:hover,
+.wavebar-music-pill-control.wavebar-music-pill-play:focus {
+    background-color: rgba(255, 255, 255, 0.86);
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-control.wavebar-music-pill-play {
+    background-color: #1c1c20;
+    color: #ffffff;
+}
+
+.wavebar-music-pill-control.wavebar-music-pill-play StIcon {
+    icon-size: 22px;
+}
+
+/* Menu "⋯" do card. */
+.wavebar-music-pill-menu {
+    padding: 6px;
+    border-radius: 12px;
+    background-color: rgba(40, 40, 44, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: #f2f2f2;
+    min-width: 200px;
+}
+
+.wavebar-music-pill-menu.wavebar-music-pill-light {
+    background-color: rgba(250, 250, 252, 0.99);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1c1c1e;
+}
+
+.wavebar-music-pill-menu-item {
+    padding: 7px 12px;
+    border-radius: 7px;
+    color: inherit;
+    font-size: 12.5px;
+}
+
+.wavebar-music-pill-menu-item:hover,
+.wavebar-music-pill-menu-item:focus {
+    background-color: rgba(127, 127, 127, 0.2);
+}

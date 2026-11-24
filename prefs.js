@@ -26,6 +26,7 @@ import {behaviorPage} from './prefs/behaviorPage.js';
 import {blurPage} from './prefs/blurPage.js';
 import {layoutPage} from './prefs/layoutPage.js';
 import {modulesPage} from './prefs/modulesPage.js';
+import {musicPage} from './prefs/musicPage.js';
 import {startMenuPage} from './prefs/startMenuPage.js';
 import {stylesPage} from './prefs/stylesPage.js';
 import {Binder} from './prefs/widgets.js';
@@ -103,6 +104,7 @@ export default class OrlaDockPreferences extends ExtensionPreferences {
         window.add(blurPage(binder, this.path, window));
         window.add(behaviorPage(binder));
         window.add(startMenuPage(binder));
+        window.add(musicPage(binder, window));
         window.add(modulesPage(binder, window, this.path));
         // this.metadata = metadata.json; this.path = pasta da extensão.
         window.add(buildAboutPage({window, info: aboutInfo(this.metadata, this.path)}));

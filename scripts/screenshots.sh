@@ -30,6 +30,8 @@ shell_scenes() {
     mkdir -p "$work/config" "$work/data/gnome-shell/extensions" "$out"
     ln -s "$PROJECT_DIR" "$work/data/gnome-shell/extensions/$UUID"
     ln -s "$PROJECT_DIR/tests/shots/orla-shots@local" "$work/data/gnome-shell/extensions/orla-shots@local"
+    # Outro nome de processo: ver o comentário em scripts/test-shell.sh.
+    ln -s "$(command -v gnome-shell)" "$work/orla-test-shell"
     cat > "$work/session.sh" <<INNER
 #!/usr/bin/env bash
 dconf write /org/gnome/shell/enabled-extensions "['$UUID', 'orla-shots@local']"
@@ -39,7 +41,7 @@ dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'org.
 dconf write /org/gnome/desktop/background/picture-uri "'$WALLPAPER'"
 dconf write /org/gnome/desktop/background/picture-uri-dark "'$WALLPAPER'"
 dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-exec timeout 300 gnome-shell --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
+exec timeout 300 "$work/orla-test-shell" --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
 INNER
     chmod +x "$work/session.sh"
     env -u WAYLAND_DISPLAY -u DISPLAY \

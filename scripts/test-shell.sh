@@ -37,13 +37,18 @@ glib-compile-schemas "$PROJECT_DIR/schemas"
 
 # Roda dentro de um D-Bus próprio (dbus-run-session), então o dconf usado é
 # o da pasta temporária, não o seu.
+# O Shell de teste roda por um atalho com outro nome de processo
+# ("orla-test-shell"): ferramentas que encerram "gnome-shell --headless"
+# soltos (ex.: as de outros projetos) não derrubam estes testes no meio.
+ln -s "$(command -v gnome-shell)" "$WORK/orla-test-shell"
+
 cat > "$WORK/session.sh" <<'INNER'
 #!/usr/bin/env bash
 dconf write /org/gnome/shell/enabled-extensions "['orla-dock@viniciusbispo19', 'orla-test@local']"
 dconf write /org/gnome/shell/disable-user-extensions false
 dconf write /org/gnome/shell/welcome-dialog-last-shown-version "'999'"
 dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop']"
-exec timeout 600 gnome-shell --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
+exec timeout 600 "$ORLA_SHELL" --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
 INNER
 chmod +x "$WORK/session.sh"
 
@@ -52,7 +57,7 @@ env -u WAYLAND_DISPLAY -u DISPLAY \
     XDG_CONFIG_HOME="$WORK/config" XDG_DATA_HOME="$WORK/data" XDG_CACHE_HOME="$WORK/cache" \
     ORLA_TEST_OUT="$WORK/out" ORLA_TEST_QUICK="$QUICK" ORLA_TEST_IMAGE="${ORLA_TEST_IMAGE:-}" \
     SHELL_DEBUG=backtrace-warnings \
-    dbus-run-session -- "$WORK/session.sh" > "$WORK/shell.log" 2>&1
+    ORLA_SHELL="$WORK/orla-test-shell" dbus-run-session -- "$WORK/session.sh" > "$WORK/shell.log" 2>&1
 
 echo
 grep -o 'ORLATEST \(PASS\|FAIL\|INFO\).*' "$WORK/shell.log" | sed 's/^ORLATEST //'

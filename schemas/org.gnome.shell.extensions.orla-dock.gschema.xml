@@ -763,5 +763,76 @@
       <summary>Panel Date Format</summary>
       <description>GLib date format used for the date line under the panel clock.</description>
     </key>
+    <key name="wavebar-music-pill-enabled" type="b">
+      <default>false</default>
+      <summary>Music widget</summary>
+      <description>Show the wavebar-music-pill widget (the song that is playing) on the dock, between the applications button and the pinned apps.</description>
+    </key>
+    <key name="wavebar-music-pill-mode" type="s">
+      <choices>
+        <choice value="compact"/>
+        <choice value="expanded"/>
+      </choices>
+      <default>'compact'</default>
+      <summary>Music widget mode</summary>
+      <description>Compact: the size of an icon (cover and animated bars). Expanded: a wider pill with cover, title and artist.</description>
+    </key>
+    <key name="wavebar-music-pill-separators" type="b">
+      <default>true</default>
+      <summary>Music widget separators</summary>
+      <description>Show a separator on each side of the music widget.</description>
+    </key>
+    <key name="wavebar-music-pill-controls" type="b">
+      <default>false</default>
+      <summary>Music widget controls</summary>
+      <description>Show previous, play/pause and next buttons in the widget.</description>
+    </key>
+    <key name="wavebar-music-pill-lyrics" type="b">
+      <default>false</default>
+      <summary>Real-time lyrics</summary>
+      <description>Show the current line of synced lyrics in the expanded widget. Sends the song title and artist to LRCLIB to find the lyrics.</description>
+    </key>
+    <key name="wavebar-music-pill-expand-on-hover" type="b">
+      <default>true</default>
+      <summary>Expand on hover</summary>
+      <description>In compact mode, expand the widget while the pointer is over it.</description>
+    </key>
+    <key name="wavebar-music-pill-expand-on-track-change" type="b">
+      <default>true</default>
+      <summary>Expand on track change</summary>
+      <description>In compact mode, expand the widget for a few seconds when the song changes.</description>
+    </key>
+    <key name="wavebar-music-pill-track-change-duration" type="i">
+      <range min="2" max="10"/>
+      <default>4</default>
+      <summary>Track change expansion duration</summary>
+      <description>How many seconds the widget stays expanded after the song changes.</description>
+    </key>
+    <key name="wavebar-music-pill-max-width" type="i">
+      <range min="160" max="480"/>
+      <default>280</default>
+      <summary>Expanded width</summary>
+      <description>Maximum width of the expanded widget, in pixels.</description>
+    </key>
+    <key name="wavebar-music-pill-show-cover" type="b">
+      <default>true</default>
+      <summary>Album cover</summary>
+      <description>Show the album cover in the widget.</description>
+    </key>
+    <key name="wavebar-music-pill-scroll-title" type="b">
+      <default>true</default>
+      <summary>Scroll long titles</summary>
+      <description>Scroll titles that do not fit, back and forth.</description>
+    </key>
+    <key name="wavebar-music-pill-show-without-player" type="b">
+      <default>false</default>
+      <summary>Show without a player</summary>
+      <description>Keep a discreet music item on the dock even when no player is open.</description>
+    </key>
+    <key name="wavebar-music-pill-lyrics-cache-stamp" type="i">
+      <default>0</default>
+      <summary>Lyrics cache reset</summary>
+      <description>Internal: changed by the preferences to clear the lyrics cache.</description>
+    </key>
   </schema>
 </schemalist>

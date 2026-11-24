@@ -29,6 +29,11 @@ ln -s "$PROJECT_DIR/tests/perf/orla-perf@local" "$WORK/data/gnome-shell/extensio
 [ -n "$SETTINGS_FILE" ] && cp "$SETTINGS_FILE" "$WORK/settings.ini"
 glib-compile-schemas "$PROJECT_DIR/schemas"
 
+# O Shell de teste roda por um atalho com outro nome de processo
+# ("orla-test-shell"): ferramentas que encerram "gnome-shell --headless"
+# soltos (ex.: as de outros projetos) não derrubam estes testes no meio.
+ln -s "$(command -v gnome-shell)" "$WORK/orla-test-shell"
+
 cat > "$WORK/session.sh" <<'INNER'
 #!/usr/bin/env bash
 dconf write /org/gnome/shell/enabled-extensions "['orla-dock@viniciusbispo19', 'orla-perf@local']"
@@ -36,7 +41,7 @@ dconf write /org/gnome/shell/disable-user-extensions false
 dconf write /org/gnome/shell/welcome-dialog-last-shown-version "'999'"
 dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop']"
 [ -f "$ORLA_PERF_DIR/settings.ini" ] && dconf load /org/gnome/shell/extensions/orla-dock/ < "$ORLA_PERF_DIR/settings.ini"
-exec timeout 600 gnome-shell --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
+exec timeout 600 "$ORLA_SHELL" --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
 INNER
 chmod +x "$WORK/session.sh"
 
@@ -44,7 +49,7 @@ echo "==> Medindo (pasta: $WORK)"
 env -u WAYLAND_DISPLAY -u DISPLAY \
     XDG_CONFIG_HOME="$WORK/config" XDG_DATA_HOME="$WORK/data" XDG_CACHE_HOME="$WORK/cache" \
     ORLA_PERF_OUT="$WORK/out" ORLA_PERF_DIR="$WORK" ORLA_PERF_TAG="${ORLA_PERF_TAG:-atual}" \
-    dbus-run-session -- "$WORK/session.sh" > "$WORK/shell.log" 2>&1
+    ORLA_SHELL="$WORK/orla-test-shell" dbus-run-session -- "$WORK/session.sh" > "$WORK/shell.log" 2>&1
 
 grep -o 'ORLAPERF .*' "$WORK/shell.log" | sed 's/^ORLAPERF //'
 grep -q 'ORLAPERF DONE' "$WORK/shell.log" || { echo "FAIL a medição não chegou ao fim"; exit 1; }

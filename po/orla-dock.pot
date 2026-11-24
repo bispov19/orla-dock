@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orla Dock\n"
 "Report-Msgid-Bugs-To: https://github.com/bispov19/orla-dock/issues\n"
-"POT-Creation-Date: 2026-11-24 12:11-0300\n"
+"POT-Creation-Date: 2026-11-24 12:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,6 +128,60 @@ msgstr ""
 
 #: lib/mounts.js:90
 msgid "Could not unmount the drive"
+msgstr ""
+
+#: lib/music/card.js:128
+msgid "Previous player"
+msgstr ""
+
+#: lib/music/card.js:142
+msgid "Next player"
+msgstr ""
+
+#: lib/music/card.js:144
+msgid "More options"
+msgstr ""
+
+#: lib/music/card.js:206 lib/music/wavebarMusicPill.js:245
+msgid "Previous track"
+msgstr ""
+
+#: lib/music/card.js:208 lib/music/wavebarMusicPill.js:247
+msgid "Play or pause"
+msgstr ""
+
+#: lib/music/card.js:210 lib/music/wavebarMusicPill.js:249
+msgid "Next track"
+msgstr ""
+
+#: lib/music/card.js:353
+msgid "Compact mode"
+msgstr ""
+
+#: lib/music/card.js:353
+msgid "Expanded mode"
+msgstr ""
+
+#: lib/music/card.js:355
+msgid "Disable music widget"
+msgstr ""
+
+#: lib/music/card.js:359 lib/start/parts.js:652 lib/start/parts.js:677
+#: lib/start/search.js:97 lib/start/styles/alphabetical.js:45
+msgid "Settings"
+msgstr ""
+
+#: lib/music/card.js:414
+msgid "Unknown title"
+msgstr ""
+
+#: lib/music/card.js:416
+msgid "Unknown artist"
+msgstr ""
+
+#: lib/music/wavebarMusicPill.js:354 prefs/modulesPage.js:63
+#: prefs/musicPage.js:59
+msgid "Music"
 msgstr ""
 
 #: lib/panel/tray.js:424
@@ -287,11 +341,6 @@ msgstr ""
 #: lib/start/parts.js:645 lib/start/startMenu.js:578
 #: lib/start/styles/classic.js:149
 msgid "Suspend"
-msgstr ""
-
-#: lib/start/parts.js:652 lib/start/parts.js:677 lib/start/search.js:97
-#: lib/start/styles/alphabetical.js:45
-msgid "Settings"
 msgstr ""
 
 #: lib/start/parts.js:670 lib/start/search.js:123
@@ -1145,55 +1194,55 @@ msgstr ""
 msgid "A clean folder with a download arrow"
 msgstr ""
 
-#: prefs.js:42
+#: prefs.js:43
 msgid "An elegant, fluid dock for GNOME Shell, inspired by the macOS Dock."
 msgstr ""
 
-#: prefs.js:48
+#: prefs.js:49
 msgid "Web Developer · Author and maintainer"
 msgstr ""
 
-#: prefs.js:51
+#: prefs.js:52
 msgid "Wave magnification"
 msgstr ""
 
-#: prefs.js:52
+#: prefs.js:53
 msgid "Three styles: macOS, Windows 10 and GNOME"
 msgstr ""
 
-#: prefs.js:53
+#: prefs.js:54
 msgid "Start Menu in five styles"
 msgstr ""
 
-#: prefs.js:54
+#: prefs.js:55
 msgid "Glass blur"
 msgstr ""
 
-#: prefs.js:55
+#: prefs.js:56
 msgid "Fan, grid and list stacks"
 msgstr ""
 
-#: prefs.js:56
+#: prefs.js:57
 msgid "Genie minimize effect"
 msgstr ""
 
-#: prefs.js:57 prefs/wobblyGroup.js:44
+#: prefs.js:58 prefs/wobblyGroup.js:44
 msgid "Wobbly windows"
 msgstr ""
 
-#: prefs.js:58
+#: prefs.js:59
 msgid "Live window previews"
 msgstr ""
 
-#: prefs.js:59
+#: prefs.js:60
 msgid "Notification badges"
 msgstr ""
 
-#: prefs.js:60
+#: prefs.js:61
 msgid "Touches the edge with a maximized window"
 msgstr ""
 
-#: prefs.js:61
+#: prefs.js:62
 msgid "One dock per monitor"
 msgstr ""
 
@@ -1477,10 +1526,6 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: prefs/modulesPage.js:63
-msgid "Music"
-msgstr ""
-
 #: prefs/modulesPage.js:64
 msgid "USB and other drives"
 msgstr ""
@@ -1539,6 +1584,129 @@ msgstr ""
 
 #: prefs/modulesPage.js:125
 msgid "Choose a folder"
+msgstr ""
+
+#. Translators: título de aba; curto, porque as abas dividem a largura.
+#: prefs/musicPage.js:55
+msgctxt "preferences tab"
+msgid "Music"
+msgstr ""
+
+#: prefs/musicPage.js:60
+msgid "The song that is playing, right on the dock: between the applications button and Files"
+msgstr ""
+
+#: prefs/musicPage.js:61
+msgid "Enable wavebar-music-pill"
+msgstr ""
+
+#: prefs/musicPage.js:62
+msgid "Reads the players through MPRIS (Spotify, browsers, local players)"
+msgstr ""
+
+#: prefs/musicPage.js:72
+msgid "Look"
+msgstr ""
+
+#: prefs/musicPage.js:74
+msgid "Display mode"
+msgstr ""
+
+#: prefs/musicPage.js:75
+msgid "Compact is the size of an icon; expanded shows title and artist"
+msgstr ""
+
+#: prefs/musicPage.js:76
+msgid "Compact"
+msgstr ""
+
+#: prefs/musicPage.js:76
+msgid "Expanded"
+msgstr ""
+
+#: prefs/musicPage.js:80
+msgid "Show separators"
+msgstr ""
+
+#: prefs/musicPage.js:81
+msgid "A separator on each side of the widget"
+msgstr ""
+
+#: prefs/musicPage.js:82
+msgid "Show album cover"
+msgstr ""
+
+#: prefs/musicPage.js:83
+msgid "Scroll long titles automatically"
+msgstr ""
+
+#: prefs/musicPage.js:84
+msgid "Maximum width when expanded"
+msgstr ""
+
+#: prefs/musicPage.js:86
+msgid "Show even without a player"
+msgstr ""
+
+#: prefs/musicPage.js:87
+msgid "A discreet music item stays on the dock"
+msgstr ""
+
+#: prefs/musicPage.js:89
+msgid "Behavior"
+msgstr ""
+
+#: prefs/musicPage.js:90
+msgid "Show control buttons in the widget"
+msgstr ""
+
+#: prefs/musicPage.js:91
+msgid "Previous, play/pause and next. In compact mode they appear on hover"
+msgstr ""
+
+#: prefs/musicPage.js:92
+msgid "Expand on hover"
+msgstr ""
+
+#: prefs/musicPage.js:93
+msgid "Expand when the track changes"
+msgstr ""
+
+#: prefs/musicPage.js:94
+msgid "For how long"
+msgstr ""
+
+#: prefs/musicPage.js:99
+msgid "Lyrics"
+msgstr ""
+
+#: prefs/musicPage.js:100
+msgid "Show real-time lyrics"
+msgstr ""
+
+#: prefs/musicPage.js:101
+msgid "Sends the song title and artist to LRCLIB to find the lyrics. Shown in the expanded mode and in the card"
+msgstr ""
+
+#: prefs/musicPage.js:102
+msgid "Clear lyrics cache"
+msgstr ""
+
+#: prefs/musicPage.js:103
+msgid "Lyrics already found (and the ones not found) are kept to avoid asking again"
+msgstr ""
+
+#: prefs/musicPage.js:104
+msgid "Clear"
+msgstr ""
+
+#: prefs/musicPage.js:111
+#, javascript-format
+msgid "Lyrics cache cleared (%d files)"
+msgstr ""
+
+#: prefs/musicPage.js:117
+msgid "If the Wavebar extension is also active, the music indicator will appear in both places."
 msgstr ""
 
 #: prefs/panelOptions.js:52

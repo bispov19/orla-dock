@@ -59,6 +59,7 @@ Uma dock para o GNOME Shell inspirada na Dock do macOS: ampliação dos ícones 
   - **Grade flutuante** — painel no centro com ícones grandes em páginas e os fixados em destaque.
 
   Em todos: busca instantânea (apps, configurações, arquivos, resultados de outros apps, calculadora, comandos com `>` e web), fixados **iguais aos favoritos do GNOME** (arraste para reordenar), menu de contexto (fixar/desafixar, nova janela, ações do app, mostrar no Arquivos), teclado completo (setas, Enter, Esc, digitar para buscar, Tab entre áreas), abre no monitor do ponteiro saindo do botão de apps da dock, segue o tema claro/escuro. Fundo sólido e legível (contraste AA do WCAG sobre qualquer papel de parede), com opacidade ajustável e vidro opcional (desligado por padrão). Posição (junto da dock, canto ou centro), tamanho, animação e um atalho extra são configuráveis.
+- **Widget de música (wavebar-music-pill)** — opcional, desligado por padrão (aba *Música*): a música tocando dentro da dock, entre o botão de aplicativos e o Arquivos, com o visual da extensão Wavebar (sem depender dela). Compacto (a capa com barrinhas animadas) ou expandido (capa, título e artista rolando, e a linha atual da letra sincronizada, opcional, do [LRCLIB](https://lrclib.net)). Botões de controle opcionais; clique direito abre o card (capa, controles, progresso em onda, letra e troca de player); clique do meio toca/pausa; a rodinha muda o volume. Lê os players pelo MPRIS (Spotify, navegadores, players locais), por sinais, sem consultar à toa; desligado, não fica nada rodando.
 - **Menu Iniciar no lugar da App Grid** (opcional, desligado por padrão): Super duas vezes, o botão de apps do dash e Super+A abrem o menu (com a Visão Geral aberta, ela fecha antes). Um Super sozinho continua abrindo a Visão Geral. Desligando a opção ou a extensão, a App Grid do GNOME volta sem resíduo.
 - **Posição escolhida clicando na prévia** de cada lado da tela.
 - **Encostar na borda com janela maximizada** (opcional): a dock perde a margem enquanto houver janela maximizada e volta a flutuar quando não houver.
@@ -187,6 +188,8 @@ dconf dump /org/gnome/shell/extensions/orla-dock/ > /tmp/orla.ini   # opcional: 
 
 Mede, quadro a quadro, a Visão Geral e a troca de áreas de trabalho com a Orla desligada, ligada e ligada sem vidro; abrir e fechar cada estilo do Menu Iniciar; o hover nos ícones; quantas vezes a interceptação da App Grid roda (só no gatilho); e o Super duas vezes (em quantos ms o menu começa e se houve algum quadro vazio). Os números absolutos dependem da máquina; o que vale é a comparação entre as cenas.
 
+O teste do widget de música usa um player MPRIS de mentira (`tests/music/fake-player.js`), então não precisa de Spotify nem de internet (a letra de teste é colocada no cache).
+
 Logs da sessão principal:
 
 ```sh
@@ -220,6 +223,7 @@ journalctl -f -o cat /usr/bin/gjs
 | `lib/mounts.js` | Unidades USB e outras |
 | `lib/panel/` | Modo Painel: relógio, workspaces, bandeja, configurações rápidas, notificações e a barra de cima (`panelMode.js` monta tudo; `panelSlot.js` move itens do painel do GNOME e devolve) |
 | `lib/start/` | Menu Iniciar: a casca comum (`startMenu.js`), onde abrir e de onde crescer (`placement.js`), o vidro opcional (`glass.js`), a interceptação da App Grid (`appGridHook.js`), dados (`data.js`), peças compartilhadas (`parts.js`, `widgets.js`), busca (`search.js`) e a calculadora |
+| `lib/music/` | Widget de música: o item da dock (`wavebarMusicPill.js`), o card (`card.js`), players MPRIS (`mpris.js`), letras do LRCLIB (`lyrics.js`, `lrc.js`), capas (`coverArt.js`), caches (`cache.js`) e o serviço que junta tudo (`musicService.js`) |
 | `lib/start/styles/` | Um arquivo por estilo do Menu Iniciar (`classic.js`, `modern.js`, `categories.js`, `alphabetical.js`, `launchpad.js`) e a base comum (`base.js`) |
 | `lib/glassMath.js` | A receita do Vidro da Orla (o shader e a conta de cor da prévia) |
 | `lib/fileClipboard.js` | Copiar arquivos (arquivo do leque solto numa janela) |
@@ -283,6 +287,8 @@ O que o projeto segue das regras de revisão (e o `check.sh` confere):
 - **Arquivos arrastados de outros programas:** no Wayland, o GNOME Shell recebe o movimento do arraste, mas não o arquivo. Por isso, parar um arquivo sobre um ícone traz o app para frente (como no Mac) para você soltar direto na janela dele. Arquivos arrastados das Stacks da própria Orla abrem direto no app.
 - **Arrastar um arquivo das Stacks para a janela de outro app:** no Wayland só um app pode iniciar um arraste que outro app receba; o Shell não tem como entregar o arquivo arrastado. Por isso, ao soltar sobre uma janela, a Orla copia o arquivo e traz a janela para a frente, e você cola com Ctrl+V. A área de transferência do Shell guarda um formato por vez: em gerenciadores de arquivos vai o formato do Nautilus (testado: cola o arquivo na pasta); nos demais apps vai `text/uri-list`, o formato padrão de lista de arquivos. Se um site não aceitar colar arquivos, use o botão de anexar dele.
 - **Refração e dispersão na prévia:** a prévia das preferências mostra a cor, o reflexo e o relevo exatamente como na dock, mas a refração e a dispersão (que releem o fundo em outro ponto) aparecem só na dock de verdade.
+- **Widget de música na dock lateral:** não há espaço para texto; o "expandido" vira a coluna capa + botões.
+- **Volume pela rodinha:** só nos players que publicam o volume pelo MPRIS (o Spotify e o Firefox, por exemplo, nem sempre publicam).
 - **Vidro ao vivo da dock na Visão Geral:** com o vidro dinâmico ligado, a dock refaz o desfoque a cada quadro da Visão Geral (o que está atrás dela muda o tempo todo). Medido com `scripts/perf.sh`: sem quadros perdidos, mas cerca de 0,8 ms a mais de CPU por quadro; com o vidro desligado (ou no modo estático), o custo empata com a Orla desligada.
 - **Menu Iniciar no lugar da App Grid:** a Orla troca, só na instância, duas funções internas do GNOME 51 (`Main.overview.show` e o `ease` da régua de estados da Visão Geral). Se uma versão futura mudar esses nomes, a opção simplesmente não pega e a App Grid normal continua (aviso no log). O gesto de três dedos para cima duas vezes termina no menu só quando o gesto acaba (a grade aparece um instante durante o gesto).
 - O Gênio usa um detalhe interno do Shell (`Main.wm._minimizing`); se ele mudar numa versão futura, a Orla volta sozinha para a animação nativa.
