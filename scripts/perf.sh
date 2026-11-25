@@ -48,7 +48,7 @@ chmod +x "$WORK/session.sh"
 echo "==> Medindo (pasta: $WORK)"
 env -u WAYLAND_DISPLAY -u DISPLAY \
     XDG_CONFIG_HOME="$WORK/config" XDG_DATA_HOME="$WORK/data" XDG_CACHE_HOME="$WORK/cache" \
-    ORLA_PERF_OUT="$WORK/out" ORLA_PERF_DIR="$WORK" ORLA_PERF_TAG="${ORLA_PERF_TAG:-atual}" \
+    ORLA_PERF_OUT="$WORK/out" ORLA_PERF_DIR="$WORK" ORLA_PERF_TAG="${ORLA_PERF_TAG:-atual}" ORLA_PERF_ONLY="${ORLA_PERF_ONLY:-}" \
     ORLA_SHELL="$WORK/orla-test-shell" dbus-run-session -- "$WORK/session.sh" > "$WORK/shell.log" 2>&1
 
 grep -o 'ORLAPERF .*' "$WORK/shell.log" | sed 's/^ORLAPERF //'

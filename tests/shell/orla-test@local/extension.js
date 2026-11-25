@@ -850,9 +850,9 @@ async function testMusic(settings) {
     await sleep(800);
     let keys = itemKeys(dock());
     const at = keys.indexOf('music');
-    check(at > 0 && keys[0] === 'show-apps' && keys[1] === 'sep:music-a' && keys[at + 1] === 'sep:music-b' &&
-        keys[at + 2]?.startsWith('app:'), `música: widget entre o botão de apps e os fixados (${keys.slice(0, 5).join(', ')})`);
-    check(!keys.includes('sep:0'), 'música: sem separador duplicado');
+    check(at === 0 && keys[1] === 'sep:music-a' && keys[2] === 'show-apps',
+        `música: widget no extremo esquerdo, ao lado do botão de apps, com divisória (${keys.slice(0, 5).join(', ')})`);
+    check(!keys.some((k, i) => k.startsWith('sep:') && keys[i + 1]?.startsWith('sep:')), 'música: sem separador duplicado');
     await screenshot('30-musica-compacto');
 
     // Separadores ligam/desligam.
@@ -1124,7 +1124,7 @@ async function testMusic(settings) {
     settings.set_boolean(`${K}lyrics`, false);
     settings.reset(`${K}position`);
     await sleep(1300);
-    check(itemKeys(dock()).indexOf('music') === 2, 'posição: de volta junto do botão de apps');
+    check(itemKeys(dock()).indexOf('music') === 0, 'posição: de volta ao extremo esquerdo');
 
     // 8) Dois players: o card alterna entre eles.
     const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art',

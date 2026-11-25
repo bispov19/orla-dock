@@ -278,7 +278,94 @@ async function hookCalls(tag) {
     log(JSON.stringify({name: `${tag}: chamadas do gancho em 3 aberturas`, ...counts, quadros: r.frames}));
 }
 
+/**
+ * O card do widget de música: mouse sobre o widget, clique direito, e o
+ * que acontece em cada quadro (card e widget). Mostra saltos de posição,
+ * de tamanho e "pulos" de opacidade.
+ */
+async function musicCardScene(tag) {
+    const settings = orla().stateObj.getSettings();
+    const K = 'wavebar-music-pill-';
+    settings.set_boolean(`${K}enabled`, true);
+    settings.set_boolean(`${K}lyrics`, true);
+    const fake = `${GLib.get_user_data_dir()}/gnome-shell/extensions/${UUID}/tests/music/fake-player.js`;
+    const proc = Gio.Subprocess.new(['gjs', '-m', fake, '--name', 'orla_perf', '--title', 'Música de Teste',
+        '--artist', 'Artista', '--length', '200'], Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+    await sleep(2500);
+    const pill = manager()._docks[0].findItem('music');
+    if (!pill) {
+        log(JSON.stringify({name: `${tag}: card`, erro: 'widget não apareceu'}));
+        proc.force_exit();
+        return;
+    }
+    const pointer = global.stage.context.get_backend().get_default_seat()
+        .create_virtual_device(Clutter.InputDeviceType.POINTER_DEVICE);
+    const goTo = async () => {
+        // Sobre o título (fora dos botões, onde o clique direito abre o card).
+        const target = pill._details.mapped ? pill._details : pill;
+        const [px, py] = target.get_transformed_position();
+        const [tx, ty] = [Math.round(px + target.width / 3), Math.round(py + target.height / 2)];
+        for (let i = 0; i < 30; i++) {
+            pointer.notify_absolute_motion(GLib.get_monotonic_time(), tx, ty);
+            await sleep(30);
+            const [x, y] = global.get_pointer();
+            if (Math.abs(x - tx) <= 1 && Math.abs(y - ty) <= 1)
+                break;
+        }
+    };
+    await goTo();
+    await sleep(900);
+    for (const round of [1, 2]) {
+        const frames = [];
+        const t0 = now();
+        const id = global.stage.connect('after-paint', () => {
+            const card = manager()._musicCard?._card;
+            frames.push([Math.round(now() - t0), card ? card.opacity : -1, card ? Math.round(card.y) : -1,
+                card ? Math.round(card.height) : -1, card ? Math.round(card.translation_y) : 0,
+                Math.round(pill.cellLength(pill.geometry)), Math.round(pill.translation_x)]);
+        });
+        const [cx, cy] = global.get_pointer();
+        const picked = global.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, cx, cy);
+        const mc = manager()._musicCard;
+        log(JSON.stringify({name: `${tag}: antes do clique ${round}`, sob: `${picked?.constructor?.name} ${picked?.style_class ?? ''}`,
+            aberto: mc?.isOpen, fechando: mc?._closingCard, overlay: mc?._overlay.visible, hover: pill.hover}));
+        const t1 = now();
+        pointer.notify_button(GLib.get_monotonic_time(), Clutter.BUTTON_SECONDARY, Clutter.ButtonState.PRESSED);
+        await sleep(30);
+        pointer.notify_button(GLib.get_monotonic_time(), Clutter.BUTTON_SECONDARY, Clutter.ButtonState.RELEASED);
+        await sleep(1800);
+        global.stage.disconnect(id);
+        const visible = frames.filter(f => f[1] > 0);
+        log(JSON.stringify({
+            name: `${tag}: card clique direito (${round}ª)`,
+            primeiroVisivelMs: visible[0]?.[0] ?? null,
+            ys: [...new Set(visible.map(f => f[2]))],
+            alturas: [...new Set(visible.map(f => f[3]))],
+            larguraWidget: [...new Set(frames.map(f => f[5]))],
+            deslocWidget: [...new Set(frames.map(f => f[6]))],
+            quadros: frames.slice(0, 14),
+            espera: Math.round(now() - t1),
+        }));
+        manager()._musicCard?.close();
+        await sleep(800);
+        await goTo();
+        await sleep(900);
+    }
+    proc.force_exit();
+    await sleep(1000);
+    settings.reset(`${K}enabled`);
+    settings.reset(`${K}lyrics`);
+}
+
 async function run() {
+    if (GLib.getenv('ORLA_PERF_ONLY') === 'card') {
+        await sleep(3000);
+        Main.overview.hide();
+        await sleep(500);
+        await musicCardScene(GLib.getenv('ORLA_PERF_TAG') || 'atual');
+        log('DONE');
+        return;
+    }
     await sleep(3000);
     Main.overview.hide();
     await openWindow();

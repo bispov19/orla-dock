@@ -27,7 +27,7 @@ function fillBox(cr, x, y, w, h, r, [cr0, cg, cb], a = 1) {
     cr.fill();
 }
 
-/** Uma dock de mentira com o widget junto do botão de apps ou no fim. */
+/** Uma dock de mentira com o widget no extremo esquerdo ou no fim. */
 function paintPositionPreview(cr, w, h, id, dark, selected) {
     const scale = Math.min(w / 180, h / 90);
     cr.save();
@@ -60,12 +60,11 @@ function paintPositionPreview(cr, w, h, id, dark, selected) {
         }
         x += 40;
     };
-    icon([0.2, 0.22, 0.26]);           // botão de aplicativos
     if (id === 'apps') {
-        sep();
-        pill();
+        pill();                         // extremo esquerdo
         sep();
     }
+    icon([0.2, 0.22, 0.26]);           // botão de aplicativos
     APP_COLORS.forEach(c => icon(c));
     if (id !== 'apps')
         sep();
@@ -81,7 +80,7 @@ function positionCards(binder) {
     const settings = binder.settings;
     const key = `${KEY}position`;
     const choices = [
-        ['apps', _('Next to the apps button'), _('Between the applications button and Files (default)')],
+        ['apps', _('Far left'), _('At the start of the dock, next to the applications button (default)')],
         ['end', _('Right side'), _('At the end of the dock, next to the Trash')],
     ];
     const row = new Gtk.Box({spacing: 12, homogeneous: true});
@@ -163,7 +162,7 @@ export function musicPage(binder, window) {
     });
 
     const main = group(page, _('Music'),
-        _('The song that is playing, right on the dock: between the applications button and Files'));
+        _('The song that is playing, right on the dock'));
     main.add(switchRow(binder, `${KEY}enabled`, _('Enable wavebar-music-pill'),
         _('Reads the players through MPRIS (Spotify, browsers, local players)')));
 

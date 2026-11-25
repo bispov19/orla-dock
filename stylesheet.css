@@ -1237,9 +1237,24 @@
     color: rgba(0, 0, 0, 0.62);
 }
 
-.wavebar-music-pill-card-lyrics {
+/* Altura FIXA: mensagem e letra se sobrepõem (só a opacidade muda). */
+.wavebar-music-pill-card-lyrics-area {
     height: 92px;
+}
+
+.wavebar-music-pill-card-lyrics {
     -st-vfade-offset: 24px;
+}
+
+/* A opacidade é animada pelo código: a cor suave vem daqui. */
+.wavebar-music-pill-card-lyrics-status {
+    font-style: italic;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.wavebar-music-pill-light .wavebar-music-pill-card-lyrics-status {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .wavebar-music-pill-card-lyrics-box {
@@ -1248,6 +1263,7 @@
 }
 
 .wavebar-music-pill-card-lyric {
+    transition-duration: 200ms;   /* a linha atual acende/apaga em crossfade */
     font-weight: 700;
     color: rgba(255, 255, 255, 0.38);
 }

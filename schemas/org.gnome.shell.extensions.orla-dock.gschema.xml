@@ -766,7 +766,7 @@
     <key name="wavebar-music-pill-enabled" type="b">
       <default>false</default>
       <summary>Music widget</summary>
-      <description>Show the wavebar-music-pill widget (the song that is playing) on the dock, between the applications button and the pinned apps.</description>
+      <description>Show the wavebar-music-pill widget (the song that is playing) on the dock.</description>
     </key>
     <key name="wavebar-music-pill-mode" type="s">
       <choices>
@@ -855,7 +855,7 @@
       </choices>
       <default>'apps'</default>
       <summary>Music widget position</summary>
-      <description>Where the music widget sits on the dock: next to the applications button (before the pinned apps), or at the end, next to the Trash.</description>
+      <description>Where the music widget sits on the dock: at the far left (start), next to the applications button, or at the end, next to the Trash.</description>
     </key>
     <key name="wavebar-music-pill-lyrics-cache-stamp" type="i">
       <default>0</default>
