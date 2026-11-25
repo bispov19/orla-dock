@@ -16,77 +16,73 @@ import {drawingArea, roundedRect} from './previews.js';
 import {group, sliderRow, switchRow} from './rows.js';
 
 const KEY = 'wavebar-music-pill-';
+// ---------- Prévias da posição do widget ----------
+
 const ACCENT = [0.18, 0.83, 0.75];
+const APP_COLORS = [[0.36, 0.62, 0.98], [0.98, 0.55, 0.24], [0.3, 0.8, 0.52], [0.86, 0.36, 0.62]];
 
-// ---------- Prévias do lugar do volume ----------
-
-function box(cr, x, y, w, h, r, [cr0, cg, cb], a = 1) {
+function fillBox(cr, x, y, w, h, r, [cr0, cg, cb], a = 1) {
     roundedRect(cr, x, y, w, h, r);
     cr.setSourceRGBA(cr0, cg, cb, a);
     cr.fill();
 }
 
-/** Um "slider" de mentira: trilho, parte cheia e puxador. */
-function slider(cr, x, y, w, ink) {
-    box(cr, x, y - 1.5, w, 3, 1.5, ink, 0.2);
-    box(cr, x, y - 1.5, w * 0.6, 3, 1.5, ACCENT);
-    cr.arc(x + w * 0.6, y, 3.5, 0, 2 * Math.PI);
-    cr.setSourceRGBA(1, 1, 1, 1);
-    cr.fill();
-}
-
-function paintVolumePreview(cr, w, h, id, dark, selected) {
-    const scale = Math.min(w / 150, h / 100);
+/** Uma dock de mentira com o widget junto do botão de apps ou no fim. */
+function paintPositionPreview(cr, w, h, id, dark, selected) {
+    const scale = Math.min(w / 180, h / 90);
     cr.save();
     cr.scale(scale, scale);
     const ink = dark ? [1, 1, 1] : [0.1, 0.1, 0.12];
-    const paper = dark ? [0.13, 0.13, 0.15] : [0.98, 0.98, 0.99];
-    box(cr, 0, 0, 150, 100, 8, dark ? [0.16, 0.17, 0.2] : [0.86, 0.89, 0.94]);
-    // A dock com a pílula de música.
-    box(cr, 22, 82, 106, 13, 5, ink, 0.12);
-    box(cr, 28, 85, 30, 7, 3.5, ACCENT, 0.45);
-    for (let i = 0; i < 4; i++)
-        box(cr, 64 + i * 10, 85, 7, 7, 2, [[0.36, 0.62, 0.98], [0.98, 0.55, 0.24], [0.3, 0.8, 0.52], [0.86, 0.36, 0.62]][i]);
-    if (id === 'card') {
-        // O card aberto, com a linha de volume embaixo dos controles.
-        box(cr, 22, 8, 50, 70, 6, paper);
-        box(cr, 30, 14, 34, 26, 4, ACCENT, 0.5);
-        box(cr, 30, 44, 26, 3, 1.5, ink, 0.6);
-        for (let i = 0; i < 3; i++) {
-            cr.arc(37 + i * 10, 56, i === 1 ? 3.5 : 2.5, 0, 2 * Math.PI);
-            cr.setSourceRGBA(...ink, i === 1 ? 0.9 : 0.5);
-            cr.fill();
-        }
-        slider(cr, 32, 68, 34, ink);
-        if (selected) {
-            roundedRect(cr, 20.5, 6.5, 53, 73, 7);
-            cr.setSourceRGBA(...ACCENT, 1);
-            cr.setLineWidth(1.5);
-            cr.stroke();
-        }
-    } else {
-        // No fim da dock: o alto-falante e a barra aberta.
-        box(cr, 104, 84, 30, 9, 4.5, ink, 0.18);
-        cr.arc(108, 88.5, 2, 0, 2 * Math.PI);
-        cr.setSourceRGBA(...ink, 0.8);
+    fillBox(cr, 0, 0, 180, 90, 8, dark ? [0.16, 0.17, 0.2] : [0.86, 0.89, 0.94]);
+    fillBox(cr, 10, 60, 160, 22, 7, ink, 0.12);
+    let x = 16;
+    const icon = (color, a = 1) => {
+        fillBox(cr, x, 64, 14, 14, 4, color, a);
+        x += 18;
+    };
+    const sep = () => {
+        fillBox(cr, x, 65, 1.5, 12, 0.75, ink, 0.35);
+        x += 6;
+    };
+    const pill = () => {
+        const px = x;
+        fillBox(cr, x, 64, 36, 14, 7, ACCENT, 0.4);
+        cr.arc(x + 7, 71, 5, 0, 2 * Math.PI);
+        cr.setSourceRGBA(...APP_COLORS[3], 1);
         cr.fill();
-        slider(cr, 113, 88.5, 18, ink);
+        fillBox(cr, x + 15, 68, 15, 2.5, 1.2, ink, 0.6);
+        fillBox(cr, x + 15, 72.5, 10, 2, 1, ink, 0.35);
         if (selected) {
-            roundedRect(cr, 101.5, 81.5, 35, 14, 6);
+            roundedRect(cr, px - 2, 62, 40, 18, 9);
             cr.setSourceRGBA(...ACCENT, 1);
             cr.setLineWidth(1.5);
             cr.stroke();
         }
+        x += 40;
+    };
+    icon([0.2, 0.22, 0.26]);           // botão de aplicativos
+    if (id === 'apps') {
+        sep();
+        pill();
+        sep();
+    }
+    APP_COLORS.forEach(c => icon(c));
+    if (id !== 'apps')
+        sep();
+    icon([0.2, 0.7, 0.45]);            // Lixeira
+    if (id !== 'apps') {
+        sep();
+        pill();
     }
     cr.restore();
 }
 
-function volumeCards(binder) {
+function positionCards(binder) {
     const settings = binder.settings;
-    const key = `${KEY}volume-position`;
+    const key = `${KEY}position`;
     const choices = [
-        ['card', _('In the card'), _('Next to the controls (default)')],
-        ['dock', _('Dock corner'), _('Its own control at the end of the dock')],
+        ['apps', _('Next to the apps button'), _('Between the applications button and Files (default)')],
+        ['end', _('Right side'), _('At the end of the dock, next to the Trash')],
     ];
     const row = new Gtk.Box({spacing: 12, homogeneous: true});
     const dark = () => Adw.StyleManager.get_default().dark;
@@ -95,8 +91,8 @@ function volumeCards(binder) {
     for (const [id, title, subtitle] of choices) {
         const content = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, spacing: 4,
             margin_top: 8, margin_bottom: 8, margin_start: 8, margin_end: 8});
-        const art = drawingArea(150, 100, (cr, w, h) =>
-            paintVolumePreview(cr, w, h, id, dark(), settings.get_string(key) === id), {halign: Gtk.Align.CENTER});
+        const art = drawingArea(180, 90, (cr, w, h) =>
+            paintPositionPreview(cr, w, h, id, dark(), settings.get_string(key) === id), {halign: Gtk.Align.CENTER});
         content.append(art);
         content.append(new Gtk.Label({label: title, css_classes: ['heading']}));
         content.append(new Gtk.Label({label: subtitle, css_classes: ['caption', 'dim-label'], wrap: true,
@@ -179,6 +175,9 @@ export function musicPage(binder, window) {
         return g;
     };
 
+    const place = dependent(_('Position on the dock'));
+    place.add(positionCards(binder));
+
     const look = dependent(_('Look'));
     const mode = new Adw.ComboRow({
         title: _('Display mode'),
@@ -216,10 +215,6 @@ export function musicPage(binder, window) {
     binder.showWhen(`${KEY}progress`, st => st.get_boolean(`${KEY}progress`), thickness);
     progress.add(switchRow(binder, `${KEY}dynamic-color`, _('Color from the album cover'),
         _('The outline, the widget and the play button take the main color of the cover. Off: the dock accent color')));
-
-    const volume = dependent(_('Volume'),
-        _('The player volume: from the player itself (MPRIS) or, when it does not offer it, from its audio stream'));
-    volume.add(volumeCards(binder));
 
     const lyrics = dependent(_('Lyrics'));
     lyrics.add(switchRow(binder, `${KEY}lyrics`, _('Show real-time lyrics'),

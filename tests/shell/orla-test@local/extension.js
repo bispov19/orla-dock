@@ -801,14 +801,23 @@ const musicItem = () => manager()._docks[0]?.findItem('music');
 const current = () => manager().music?.current ?? null;
 
 /** Letra sincronizada de mentira no cache (sem depender da internet). */
-async function seedLyrics(track) {
+async function seedLyrics(track, data = null) {
     const {LyricsClient} = await import(`../${UUID}/lib/music/lyrics.js`);
     const key = LyricsClient.keyFor(track);
     const dir = GLib.build_filenamev([GLib.get_user_cache_dir(), 'orla-dock', 'music', 'lyrics']);
     GLib.mkdir_with_parents(dir, 0o755);
     const hash = GLib.compute_checksum_for_string(GLib.ChecksumType.SHA256, key, -1);
+    // 11 linhas, uma a cada 2 s, e uma pausa instrumental (linha vazia) aos 22 s.
     const lines = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20].map((t, i) => ({time: t * 1e6, text: `Linha ${i + 1}`}));
-    GLib.file_set_contents(`${dir}/${hash}.json`, JSON.stringify({kind: 'synced', lines, time: Math.floor(Date.now() / 1000)}));
+    lines.push({time: 22e6, text: ''}, {time: 40e6, text: 'Depois da pausa'});
+    GLib.file_set_contents(`${dir}/${hash}.json`, JSON.stringify(data ?? {kind: 'synced', lines, time: Math.floor(Date.now() / 1000)}));
+}
+
+/** Pula no player "por fora" (como no app do Spotify): sem passar pela Orla. */
+function silentSeek(busName, seconds) {
+    const player = manager().music.players.find(p => p.busName === busName);
+    Gio.DBus.session.call(busName, '/org/mpris/MediaPlayer2', 'org.mpris.MediaPlayer2.Player', 'SetPosition',
+        new GLib.Variant('(ox)', [player.metadata.trackId, seconds * 1e6]), null, Gio.DBusCallFlags.NONE, -1, null, null);
 }
 
 async function testMusic(settings) {
@@ -836,7 +845,7 @@ async function testMusic(settings) {
 
     // 3) Com um player: aparece entre o botão de apps e o primeiro fixado.
     const a = await startFakePlayer('orla_fake_a', '--title', 'Canção Teste', '--artist', 'Banda Teste',
-        '--album', 'Disco', '--length', '200');
+        '--album', 'Disco', '--length', '200', '--silent-seek');
     await waitFor(() => Boolean(musicItem()), 4000);
     await sleep(800);
     let keys = itemKeys(dock());
@@ -961,39 +970,6 @@ async function testMusic(settings) {
     await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
     await sleep(700);
 
-    // 6c) Volume no canto da dock.
-    settings.set_string(`${K}volume-position`, 'dock');
-    await sleep(1200);
-    keys = itemKeys(dock());
-    check(keys.at(-1) === 'music-volume' && keys.at(-2) === 'sep:volume',
-        `volume na dock: último item, com divisória (${keys.slice(-3).join(', ')})`);
-    const dv = dock().findItem('music-volume');
-    const dvBase = dv.cellLength(g);
-    await mouse.moveAndSettle(...centerOf(dv));
-    await sleep(700);
-    check(dv.cellLength(g) > dvBase * 2, 'volume na dock: com o mouse em cima, abre a barra');
-    await screenshot('39-volume-dock');
-    const before2 = current().volume;
-    await mouse.scroll(...centerOf(dv._control.bar), Clutter.ScrollDirection.DOWN);
-    await sleep(700);
-    check(current().volume < before2, `volume na dock: a roda muda o volume (${before2.toFixed(2)} → ${current().volume.toFixed(2)})`);
-    await mouse.moveAndSettle(5, 5);
-    await sleep(1400);
-    check(Math.abs(dv.cellLength(g) - dvBase) < 1, 'volume na dock: sem o mouse, volta ao ícone');
-    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
-    await sleep(700);
-    check(!card._volume.visible, 'volume na dock: some do card');
-    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
-    await sleep(600);
-    settings.set_string('position', 'left');
-    await sleep(1800);
-    const dvSide = manager()._docks[0].findItem('music-volume');
-    check(dvSide?._control.orientation === Clutter.Orientation.VERTICAL, 'volume na dock: na dock lateral fica em pé');
-    settings.set_string('position', 'bottom');
-    await sleep(1800);
-    settings.reset(`${K}volume-position`);
-    await sleep(1200);
-    check(!itemKeys(dock()).includes('music-volume'), 'volume no card de novo: o controle sai da dock');
     // A dock foi recriada (lado mudou): o widget é outro.
     item = musicItem();
     g = dock().geometry;
@@ -1018,6 +994,37 @@ async function testMusic(settings) {
     check(item._lyric.text === 'Linha 8', `música: pular na música ressincroniza a letra (${item._lyric.text})`);
     current().play();
     await sleep(600);
+
+    // Pulo feito "no app" (sem Seeked, como no Spotify): a letra se acerta
+    // sozinha na próxima releitura da posição (até 2,5 s).
+    silentSeek('org.mpris.MediaPlayer2.orla_fake_a', 15.0);
+    await sleep(3300);
+    const afterJump = Number(/Linha (\d+)/.exec(item._lyric.text)?.[1] ?? 0);
+    check(afterJump >= 9 && afterJump <= 11, `letra: pulo sem Seeked (Spotify) é detectado (${item._lyric.text})`);
+    current().setPosition(22.4e6);
+    await sleep(900);
+    check(item._lyric.text === '♪', `letra: pausa instrumental mostra ♪ (${item._lyric.text})`);
+    current().pause();
+    await sleep(900);
+    const frozen = item._lyric.text;
+    await sleep(1500);
+    check(item._lyric.text === frozen && item._lyric.opacity > 200, 'letra: pausado, a linha congela');
+    current().play();
+    await sleep(500);
+    current().next();
+    await sleep(120);
+    check(item._lyricText === null, 'letra: ao trocar de música, a anterior some na hora');
+    await sleep(2500);
+    check(!item._lyric.visible || item._lyric.opacity < 10 || item._lyricText === null,
+        `letra: música sem letra mostra o artista (${item._artist.text})`);
+    current().previous();
+    await sleep(1500);
+
+    // Título com "(with …)" e "feat." é limpo para a busca.
+    const {cleanTitle} = await import(`../${UUID}/lib/music/lrc.js`);
+    check(cleanTitle('Ice Cream (with Meek Mill, YG & Snoop Dogg)') === 'Ice Cream' &&
+        cleanTitle('Free (feat. Bruno Mars) - Radio Edit') === 'Free' && cleanTitle('Song - Remastered 2011') === 'Song',
+    'letra: título limpo para a busca ("(with …)", "feat.", "- Remastered")');
 
     // 7b) Contorno de progresso, cor da capa e anterior/próxima no hover.
     settings.set_boolean(`${K}controls`, false);
@@ -1065,6 +1072,59 @@ async function testMusic(settings) {
     check(!ring.visible && !item._ringTimer.active, 'música: contorno desligado some (sem timer)');
     settings.reset(`${K}progress`);
     await sleep(400);
+
+    // 7c) Título longo: parado, do início, com reticências; rola só com o mouse.
+    const longP = await startFakePlayer('orla_fake_long', '--long', '--artist', 'Artista Longo');
+    await sleep(1500);
+    await mouse.moveAndSettle(5, 5);
+    await sleep(900);
+    check(current()?.busName.endsWith('orla_fake_long') && item._hadj.value === 0 &&
+        !item._titleView.visible && item._titleStatic.clutter_text.ellipsize !== 0 && item._titleStatic.text.startsWith('Uma música'),
+    `título longo: parado, começa do início, com reticências (${item._titleStatic.text.slice(0, 20)}…)`);
+    await screenshot('41-titulo-longo');
+    await mouse.moveAndSettle(...centerOf(item._details));
+    await sleep(3800);
+    log('INFO', `marquee: hover=${item.hover} estado=${item._state} on=${item._marqueeOn} ok=${item._marqueeOk()} ` +
+        `largura=${item._title.get_preferred_width(-1)[1]} vista=${item._titleStatic.width} ` +
+        `adj=${item._hadj.upper}/${item._hadj.page_size} animando=${item._timeline?.is_playing()} scroll=${item._scrollTitle}`);
+    check(item._hadj.value > 5, `título longo: com o mouse em cima, rola (${Math.round(item._hadj.value)} px)`);
+    await mouse.moveAndSettle(5, 5);
+    await sleep(900);
+    check(item._hadj.value < 1 && !item._titleView.visible && item._titleStatic.opacity === 255, 'título longo: ao sair, volta ao início');
+    longP.force_exit();
+    await sleep(1800);
+
+    // 7d) Posição do widget: no fim, ao lado da Lixeira (o MESMO item desliza).
+    settings.set_string(`${K}position`, 'end');
+    await sleep(1300);
+    keys = itemKeys(dock());
+    const endAt = keys.indexOf('music');
+    check(keys[endAt - 1] === 'sep:music-a' && keys[endAt - 2] === 'trash' && dock().findItem('music') === item,
+        `posição: no fim, com divisória entre a Lixeira e o widget (${keys.slice(-3).join(', ')})`);
+    await screenshot('40-musica-fim');
+    await mouse.click(...centerOf(item), Clutter.BUTTON_SECONDARY);
+    await sleep(900);
+    const cardActor = manager()._musicCard._card;
+    const barY = dock().backgroundActor.get_transformed_position()[1];
+    const [cardX, cardY] = cardActor.get_transformed_position();
+    check(cardY + cardActor.height <= barY - 2, `card: inteiro acima da dock (fim ${Math.round(cardY + cardActor.height)} < ${Math.round(barY)})`);
+    const mon = dock().monitor;
+    const itemCx = centerOf(item)[0] - item.translation_x;
+    check(Math.abs(cardX + cardActor.width / 2 - itemCx) < 4 || cardX + cardActor.width >= mon.x + mon.width - 20,
+        'card: alinhado ao widget (sem sair da tela)');
+    // O card cresce (letra aparece): continua inteiro acima da dock.
+    settings.set_boolean(`${K}lyrics`, true);
+    await sleep(2200);
+    const [, cardY2] = cardActor.get_transformed_position();
+    check(cardActor.height > 0 && cardY2 + cardActor.height <= barY - 2,
+        `card: ao crescer, continua inteiro acima da dock (fim ${Math.round(cardY2 + cardActor.height)})`);
+    await screenshot('42-card-fim');
+    await mouse.click(5, 5);
+    await sleep(700);
+    settings.set_boolean(`${K}lyrics`, false);
+    settings.reset(`${K}position`);
+    await sleep(1300);
+    check(itemKeys(dock()).indexOf('music') === 2, 'posição: de volta junto do botão de apps');
 
     // 8) Dois players: o card alterna entre eles.
     const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art',

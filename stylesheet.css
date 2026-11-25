@@ -1289,7 +1289,7 @@
 }
 
 .wavebar-music-pill-card-controls {
-    spacing: 18px;
+    spacing: 10px;
 }
 
 .wavebar-music-pill-button {
@@ -1371,12 +1371,14 @@
 /* ---------- Volume, aleatório e repetir (widget de música) ---------- */
 
 /* Aleatório e repetir: apagados quando desligados, cor de destaque ligados. */
+/* Mesmo tamanho dos botões anterior/próxima (40 px): a linha fica
+   simétrica em volta do tocar/pausar. */
 .wavebar-music-pill-control.wavebar-music-pill-toggle {
-    padding: 8px;
+    padding: 11px;
 }
 
 .wavebar-music-pill-control.wavebar-music-pill-toggle StIcon {
-    icon-size: 17px;
+    icon-size: 18px;
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -1392,9 +1394,10 @@
     spacing: 6px;
 }
 
+/* Área de clique confortável (o traço desenhado é fino). */
 .wavebar-music-pill-volume-bar {
-    min-height: 22px;
-    min-width: 22px;
+    min-height: 28px;
+    min-width: 28px;
 }
 
 .wavebar-music-pill-volume-icon StIcon {
@@ -1411,28 +1414,4 @@
 
 .wavebar-music-pill-card-volume {
     padding: 0 2px;
-}
-
-/* No canto da dock: só o alto-falante; aberto, um fundo de pílula. */
-.wavebar-music-pill-dockvol {
-    border-radius: 999px;
-    color: #f2f2f2;
-    transition-duration: 200ms;
-}
-
-.orla-light .wavebar-music-pill-dockvol {
-    color: #1c1c1e;
-}
-
-.wavebar-music-pill-dockvol.wavebar-music-pill-dockvol-open {
-    background-color: rgba(127, 127, 127, 0.18);
-}
-
-.wavebar-music-pill-dockvol .wavebar-music-pill-volume-icon {
-    padding: 0;
-}
-
-.wavebar-music-pill-dockvol .wavebar-music-pill-volume-percent {
-    min-width: 30px;
-    padding-right: 6px;
 }

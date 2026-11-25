@@ -16,7 +16,7 @@ import GLib from 'gi://GLib';
 import System from 'system';
 
 const opts = {name: 'orla_fake', identity: 'Fake Player', title: 'Fake Song', artist: 'Fake Artist',
-    album: 'Fake Album', length: 200, paused: false, prev: true, next: true, art: true, color: [0.85, 0.2, 0.3], volume: true, loop: true};
+    album: 'Fake Album', length: 200, paused: false, prev: true, next: true, art: true, color: [0.85, 0.2, 0.3], volume: true, loop: true, silentSeek: false};
 const args = System.programArgs;
 for (let i = 0; i < args.length; i++) {
     const next = () => args[++i];
@@ -32,6 +32,7 @@ for (let i = 0; i < args.length; i++) {
     case '--no-next': opts.next = false; break;
     case '--no-art': opts.art = false; break;
     case '--color': opts.color = next().split(',').map(Number); break;
+    case '--silent-seek': opts.silentSeek = true; break;
     case '--no-volume': opts.volume = false; break;
     case '--no-loop': opts.loop = false; break;
     case '--long': opts.title = 'Uma música com um título comprido demais para caber inteiro na pílula da dock'; break;
@@ -197,7 +198,9 @@ const player = {
         if (id !== trackId())
             return;
         setPos(pos);
-        exported.emit_signal('Seeked', new GLib.Variant('(x)', [pos]));
+        // Como o Spotify: pular no próprio app NÃO emite Seeked.
+        if (!opts.silentSeek)
+            exported.emit_signal('Seeked', new GLib.Variant('(x)', [pos]));
         print(`SEEK ${(pos / 1e6).toFixed(1)}`);
     },
 };
