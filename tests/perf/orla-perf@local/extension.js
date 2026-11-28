@@ -23,6 +23,7 @@ import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import Meta from 'gi://Meta';
 import Shell from 'gi://Shell';
+import System from 'system';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
@@ -50,16 +51,17 @@ async function waitFor(predicate, ms = 4000) {
 }
 
 /** Grava os quadros do palco enquanto `action` roda. */
-async function record(name, action) {
+async function record(name, action, busy = null) {
     const stage = global.stage;
     const frames = [];
+    const t0 = now();
     let start = 0;
     const a = stage.connect('before-update', () => {
         start = now();
     });
     const b = stage.connect('after-paint', () => {
         if (start)
-            frames.push([start, now()]);
+            frames.push([start, now(), busy ? busy() : true]);
         start = 0;
     });
     await action();
@@ -70,16 +72,22 @@ async function record(name, action) {
     for (let i = 1; i < frames.length; i++)
         gaps.push(frames[i][1] - frames[i - 1][1]);
     // Intervalos longos ENTRE animações (as pausas do roteiro) não contam.
-    const inAnimation = gaps.filter(g => g < 200);
+    // Com `busy` (ex.: a lupa animando), só conta o intervalo que começa
+    // num quadro em que a animação ainda estava rodando.
+    const inAnimation = gaps.filter((g, i) => g < 200 && frames[i][2]);
+    const late = gaps.map((g, i) => [g, i]).filter(([g, i]) => g > FRAME_MS * 1.5 && g < 200 && frames[i][2])
+        .map(([g, i]) => `${Math.round(frames[i][1] - t0)}ms:+${g.toFixed(0)}`);
     const pct = (arr, p) => arr.length ? arr[Math.min(arr.length - 1, Math.floor(arr.length * p))] : 0;
     const result = {
         name,
         frames: frames.length,
         workMeanMs: +(work.reduce((s, v) => s + v, 0) / Math.max(1, work.length)).toFixed(2),
         workP95Ms: +pct(work, 0.95).toFixed(2),
+        workP99Ms: +pct(work, 0.99).toFixed(2),
         workMaxMs: +(work.at(-1) ?? 0).toFixed(2),
         maxGapMs: +(Math.max(0, ...inAnimation)).toFixed(1),
         dropped: inAnimation.filter(g => g > FRAME_MS * 1.5).length,
+        late: late.join(' '),
     };
     log(JSON.stringify(result));
     return result;
@@ -359,7 +367,284 @@ async function musicCardScene(tag) {
     settings.reset(`${K}lyrics`);
 }
 
+// ---------- Magnificação ----------
+
+/**
+ * Instrumenta a dock (só nesta medição, sem custo na extensão): conta
+ * relayouts, reposicionamentos dos itens, mudanças de tamanho do fundo,
+ * ícones recriados e alocações dos atores da dock.
+ */
+function instrument(dock) {
+    const counts = {relayout: 0, layoutItems: 0, placeBackground: 0, refreshIcon: 0, alocacoesFundo: 0,
+        alocacoesItens: 0, glassRedraw: 0, redesenhosVidro: 0, alocacoesVidro: 0};
+    const wrap = (obj, name, key) => {
+        const orig = obj[name];
+        obj[name] = function (...args) {
+            counts[key]++;
+            return orig.apply(this, args);
+        };
+        return () => {
+            delete obj[name];
+        };
+    };
+    const undo = [
+        wrap(dock, 'relayout', 'relayout'),
+        wrap(dock, '_layoutItems', 'layoutItems'),
+        wrap(dock, 'placeBackground', 'placeBackground'),
+        wrap(dock, 'queueGlassRedraw', 'glassRedraw'),
+        // Pedidos que de fato chegam ao ator do vidro.
+        wrap(dock._background, 'queue_redraw', 'redesenhosVidro'),
+    ];
+    for (const item of dock.getItems())
+        undo.push(wrap(item, 'refreshIcon', 'refreshIcon'));
+
+    // Cronômetro: a chamada mais lenta de cada função do caminho do mouse.
+    const slow = {};
+    const t0 = now();
+    const time = (obj, name, key) => {
+        const orig = obj[name];
+        obj[name] = function (...args) {
+            const s0 = now();
+            try {
+                return orig.apply(this, args);
+            } finally {
+                const ms = now() - s0;
+                if (ms > (slow[key]?.[0] ?? 0))
+                    slow[key] = [+ms.toFixed(2), Math.round(s0 - t0)];
+            }
+        };
+        undo.push(() => delete obj[name]);
+    };
+    time(dock, '_onMotion', 'onMotion');
+    time(dock, '_setHovered', 'setHovered');
+    time(dock, 'isPointerOver', 'isPointerOver');
+    time(dock.autohide, 'sync', 'autohideSync');
+    time(dock._magnifier, '_tick', 'tick');
+    // Travadas FORA do desenho (coleta de lixo, timers...): um relógio de
+    // 2 ms que anota quando chega muito atrasado.
+    const stalls = [];
+    let last = now();
+    const stallId = GLib.timeout_add(GLib.PRIORITY_HIGH, 2, () => {
+        const t = now();
+        if (t - last > 20)
+            stalls.push(`${Math.round(last - t0)}ms:+${Math.round(t - last)}`);
+        last = t;
+        return GLib.SOURCE_CONTINUE;
+    });
+    undo.push(() => GLib.source_remove(stallId));
+    const bgId = dock.backgroundActor.connect('notify::allocation', () => counts.alocacoesFundo++);
+    // O ator que carrega o desfoque: cada alocação nova recria as texturas.
+    const glassId = dock._background.connect('notify::allocation', () => counts.alocacoesVidro++);
+    const itemIds = dock.getItems().map(item => [item, item.connect('notify::allocation', () => counts.alocacoesItens++)]);
+    return {
+        counts,
+        slow,
+        stalls,
+        stop() {
+            undo.forEach(u => u());
+            dock.backgroundActor.disconnect(bgId);
+            dock._background.disconnect(glassId);
+            itemIds.forEach(([item, id]) => item.disconnect(id));
+        },
+    };
+}
+
+/** O mouse varre a dock de ponta a ponta (devagar e depressa), como um mouse de 125 Hz. */
+async function sweep(dock, pointer, away = 0) {
+    const bar = dock.backgroundActor;
+    const [bx, by] = bar.get_transformed_position();
+    const [bw, bh] = bar.get_transformed_size();
+    // away > 0: o mesmo roteiro, mas longe da dock (grupo de controle).
+    const y = by + bh / 2 - away;
+    const left = bx + 10, right = bx + bw - 10;
+    const move = async (x0, x1, ms) => {
+        const steps = Math.max(2, Math.round(ms / 8));
+        for (let i = 0; i <= steps; i++) {
+            pointer.notify_absolute_motion(GLib.get_monotonic_time(), x0 + (x1 - x0) * i / steps, y);
+            await sleep(8);
+        }
+    };
+    pointer.notify_absolute_motion(GLib.get_monotonic_time(), left, by - 120);
+    await sleep(200);
+    await move(left, left, 40);
+    await move(left, right, 2400);      // devagar
+    await move(right, left, 600);       // depressa
+    await move(left, right, 600);
+    await move(right, (left + right) / 2, 300);
+    pointer.notify_absolute_motion(GLib.get_monotonic_time(), (left + right) / 2, by - 200); // sai da dock
+    await sleep(700);
+}
+
+async function magnifyScenes(tag) {
+    const settings = orla().stateObj.getSettings();
+    const pointer = global.stage.context.get_backend().get_default_seat()
+        .create_virtual_device(Clutter.InputDeviceType.POINTER_DEVICE);
+    const apps = Shell.AppSystem.get_default();
+    const few = global.settings.get_strv('favorite-apps');
+    const many = apps.get_installed().filter(i => i.should_show()).map(i => i.get_id())
+        .filter(id => apps.lookup_app(id)).slice(0, 18);
+    let fake = null;
+    const results = [];
+    for (const size of [48, 64, 96]) {
+        for (const glass of [false, true]) {
+            for (const icons of ['poucos', 'muitos']) {
+                for (const music of [false, true]) {
+                    // Combinações: tudo nos 3 tamanhos; música só no tamanho do meio.
+                    if (music && size !== 64)
+                        continue;
+                    settings.set_int('icon-size', size);
+                    settings.set_boolean('blur-enabled', glass);
+                    global.settings.set_strv('favorite-apps', icons === 'muitos' ? many : few);
+                    settings.set_boolean('wavebar-music-pill-enabled', music);
+                    if (music && !fake) {
+                        const path = `${GLib.get_user_data_dir()}/gnome-shell/extensions/${UUID}/tests/music/fake-player.js`;
+                        fake = Gio.Subprocess.new(['gjs', '-m', path, '--name', 'orla_perf_mag', '--title', 'Música',
+                            '--artist', 'Artista', '--length', '200'], Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE);
+                    }
+                    await sleep(2200);
+                    const dock = manager()._docks[0];
+                    const probe = instrument(dock);
+                    const name = `${tag}: ícone ${size}, ${glass ? 'vidro' : 'sem vidro'}, ${icons}${music ? ', música' : ''}`;
+                    // Só conta como "perdido" o intervalo com a lupa animando
+                    // (a pausa depois que ela assenta não é engasgo).
+                    const r = await record(name, () => sweep(dock, pointer),
+                        () => Boolean(dock._magnifier._timeline?.is_playing()));
+                    probe.stop();
+                    const secs = 4.5;
+                    log(JSON.stringify({name: `${name} — lentas`, ...probe.slow, travadas: probe.stalls.join(' ')}));
+                    log(JSON.stringify({name: `${name} — contagens`, ...probe.counts,
+                        relayoutPorSeg: +(probe.counts.relayout / secs).toFixed(1),
+                        fundoPorSeg: +(probe.counts.placeBackground / secs).toFixed(1)}));
+                    results.push(r);
+                }
+            }
+        }
+    }
+    // Controle: o mesmo movimento de mouse LONGE da dock. As travadas que
+    // aparecerem aqui são do ambiente (Shell de teste, coleta de lixo do
+    // próprio GNOME), não da ampliação.
+    {
+        const dock = manager()._docks[0];
+        const probe = instrument(dock);
+        await record(`${tag}: controle — mesmo roteiro longe da dock`, () => sweep(dock, pointer, 400));
+        probe.stop();
+        log(JSON.stringify({name: `${tag}: controle — lentas`, ...probe.slow, travadas: probe.stalls.join(' ')}));
+    }
+    // Repouso: nada deve rodar.
+    await sleep(1500);
+    await record(`${tag}: repouso (3 s sem mexer)`, () => sleep(3000));
+    fake?.force_exit();
+    global.settings.set_strv('favorite-apps', few);
+    for (const k of ['icon-size', 'blur-enabled', 'wavebar-music-pill-enabled'])
+        settings.reset(k);
+}
+
+/**
+ * Uso contínuo: a mesma configuração (a pior: ícone 96, vidro, muitos
+ * ícones) varrida várias vezes seguidas, sem recriar nada entre uma e
+ * outra — como alguém usando a dock de verdade.
+ */
+async function magnifySteady(tag) {
+    const settings = orla().stateObj.getSettings();
+    const pointer = global.stage.context.get_backend().get_default_seat()
+        .create_virtual_device(Clutter.InputDeviceType.POINTER_DEVICE);
+    const apps = Shell.AppSystem.get_default();
+    const few = global.settings.get_strv('favorite-apps');
+    const many = apps.get_installed().filter(i => i.should_show()).map(i => i.get_id())
+        .filter(id => apps.lookup_app(id)).slice(0, 18);
+    // Variantes (ORLA_PERF_STEADY, separadas por vírgula): bare = sem a
+    // instrumentação; noglass = sem vidro; away = longe da dock (controle).
+    const variant = (GLib.getenv('ORLA_PERF_STEADY') || '').split(',');
+    settings.set_int('icon-size', 96);
+    settings.set_boolean('blur-enabled', !variant.includes('noglass'));
+    global.settings.set_strv('favorite-apps', many);
+    await sleep(3000);
+    const dock = manager()._docks[0];
+    const rss = () => Math.round(Number(new TextDecoder().decode(
+        GLib.file_get_contents('/proc/self/statm')[1]).split(' ')[1]) * 4 / 1024);
+    const gc = () => {
+        const t = now();
+        System.gc();
+        return +(now() - t).toFixed(1);
+    };
+    // shot = fotografa a textura do vidro AO VIVO (a captura de tela comum
+    // pinta em outro framebuffer e não provaria as coordenadas da tela).
+    if (variant.includes('shot')) {
+        for (const d of manager()._docks) {
+            const [x, y] = d.backgroundActor.get_transformed_position();
+            const [w, h] = d.backgroundActor.get_transformed_size();
+            pointer.notify_absolute_motion(GLib.get_monotonic_time(), x + w / 2, y + h / 2);
+            await sleep(100);
+            pointer.notify_absolute_motion(GLib.get_monotonic_time(), x + w / 2 + 2, y + h / 2);
+            await sleep(1200);
+            const surf = d._blurEffect._surfaces;
+            for (const key of ['source', 'glass']) {
+                const tex = surf[key].framebuffer.get_texture();
+                const [pw, ph] = d._blurEffect._lastSize;
+                const out = Gio.File.new_for_path(`${GLib.getenv('ORLA_PERF_OUT')}/vivo-${d.monitorIndex}-${key}.png`)
+                    .replace(null, false, Gio.FileCreateFlags.NONE, null);
+                await new Promise(resolve => Shell.Screenshot.composite_to_stream(tex, 0, 0, pw, ph, 1, null, 0, 0, 1, out,
+                    (_o, res) => {
+                        try {
+                            Shell.Screenshot.composite_to_stream_finish(res);
+                        } catch (e) {
+                            log(`ERRO ${e.message}`);
+                        }
+                        resolve();
+                    }));
+                out.close(null);
+            }
+            const [bx, by] = d._background.get_transformed_position();
+            const view = global.stage.peek_stage_views()[0];
+            log(JSON.stringify({name: `${tag}: vivo`, monitor: d.monitorIndex, fundo: [bx, by, ...d._background.get_size()],
+                mask: d._blurEffect._mask, px: d._blurEffect._lastSize, views: global.stage.peek_stage_views().length, escala: view.get_scale()}));
+            const shot = Gio.File.new_for_path(`${GLib.getenv('ORLA_PERF_OUT')}/vivo-${d.monitorIndex}-tela.png`)
+                .replace(null, false, Gio.FileCreateFlags.NONE, null);
+            await new Promise(resolve => new Shell.Screenshot().screenshot(false, shot, () => resolve()));
+            shot.close(null);
+        }
+        return;
+    }
+    gc();
+    for (let i = 1; i <= Number(GLib.getenv('ORLA_PERF_ROUNDS') || 5); i++) {
+        const probe = variant.includes('bare') ? null : instrument(dock);
+        const samples = [];
+        const sampler = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 500, () => {
+            samples.push(rss());
+            log(JSON.stringify({name: `${tag}: rss ${i}`, mb: samples.at(-1)}));
+            return GLib.SOURCE_CONTINUE;
+        });
+        await record(`${tag}: contínuo ${i}`, () => sweep(dock, pointer, variant.includes('away') ? 400 : 0),
+            () => Boolean(dock._magnifier._timeline?.is_playing()));
+        GLib.source_remove(sampler);
+        probe?.stop();
+        const before = rss();
+        const first = gc();
+        await sleep(300);
+        log(JSON.stringify({name: `${tag}: memória ${i}`, rssAntes: before, gcMs: first, rssDepois: rss(), gcDeNovoMs: gc()}));
+    }
+    global.settings.set_strv('favorite-apps', few);
+    for (const k of ['icon-size', 'blur-enabled'])
+        settings.reset(k);
+}
+
 async function run() {
+    if (GLib.getenv('ORLA_PERF_ONLY') === 'steady') {
+        await sleep(3000);
+        Main.overview.hide();
+        await sleep(500);
+        await magnifySteady(GLib.getenv('ORLA_PERF_TAG') || 'agora');
+        log('DONE');
+        return;
+    }
+    if (GLib.getenv('ORLA_PERF_ONLY') === 'magnify') {
+        await sleep(3000);
+        Main.overview.hide();
+        await sleep(500);
+        await magnifyScenes(GLib.getenv('ORLA_PERF_TAG') || 'atual');
+        log('DONE');
+        return;
+    }
     if (GLib.getenv('ORLA_PERF_ONLY') === 'card') {
         await sleep(3000);
         Main.overview.hide();

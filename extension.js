@@ -27,6 +27,7 @@
 
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
+import {releaseBlurShaders} from './lib/blur.js';
 import {DockManager} from './lib/dockManager.js';
 import {PanelMover} from './lib/panelMover.js';
 import {WobblyWindows} from './lib/wobbly.js';
@@ -64,5 +65,6 @@ export default class OrlaDockExtension extends Extension {
         this._wobbly = null;
         this._manager?.destroy();
         this._manager = null;
+        releaseBlurShaders();
     }
 }

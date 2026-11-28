@@ -16,6 +16,11 @@
 #   dconf dump /org/gnome/shell/extensions/orla-dock/ > /tmp/orla.ini
 #   ./scripts/perf.sh /tmp/orla.ini
 #
+# Só a ampliação:        ORLA_PERF_ONLY=magnify ./scripts/perf.sh
+# Uso contínuo (memória): ORLA_PERF_ONLY=steady ORLA_PERF_STEADY=bare ./scripts/perf.sh
+# Com limite de memória (um vazamento de vídeo não trava a sua sessão):
+#   systemd-run --user --scope -p MemoryMax=4G -p MemorySwapMax=0 ./scripts/perf.sh
+#
 # Os números são da CPU do Shell e do ritmo dos quadros nesta máquina; o
 # que vale é a COMPARAÇÃO entre as cenas (sem Orla × com Orla).
 
@@ -44,7 +49,7 @@ dconf write /org/gnome/shell/disable-user-extensions false
 dconf write /org/gnome/shell/welcome-dialog-last-shown-version "'999'"
 dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop']"
 [ -f "$ORLA_PERF_DIR/settings.ini" ] && dconf load /org/gnome/shell/extensions/orla-dock/ < "$ORLA_PERF_DIR/settings.ini"
-exec timeout 600 "$ORLA_SHELL" --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
+exec timeout 600 "$ORLA_SHELL" --headless ${ORLA_PERF_MONITORS:---virtual-monitor 1920x1080} --wayland --no-x11 --force-animations
 INNER
 chmod +x "$WORK/session.sh"
 
