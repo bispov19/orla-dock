@@ -16,6 +16,7 @@
 // $ORLA_TEST_OUT.
 
 import Clutter from 'gi://Clutter';
+import GdkPixbuf from 'gi://GdkPixbuf';
 import GLib from 'gi://GLib';
 import Gio from 'gi://Gio';
 import St from 'gi://St';
@@ -853,7 +854,7 @@ async function testMusic(settings) {
     let keys = itemKeys(dock());
     const at = keys.indexOf('music');
     check(at === 0 && keys[1] === 'sep:music-a' && keys[2] === 'show-apps',
-        `música: widget no extremo esquerdo, ao lado do botão de apps, com divisória (${keys.slice(0, 5).join(', ')})`);
+        `música: widget no lado esquerdo, ao lado do botão de apps, com divisória (${keys.slice(0, 5).join(', ')})`);
     check(!keys.some((k, i) => k.startsWith('sep:') && keys[i + 1]?.startsWith('sep:')), 'música: sem separador duplicado');
     await screenshot('30-musica-compacto');
 
@@ -1126,7 +1127,7 @@ async function testMusic(settings) {
     settings.set_boolean(`${K}lyrics`, false);
     settings.reset(`${K}position`);
     await sleep(1300);
-    check(itemKeys(dock()).indexOf('music') === 0, 'posição: de volta ao extremo esquerdo');
+    check(itemKeys(dock()).indexOf('music') === 0, 'posição: de volta ao lado esquerdo');
 
     // 8) Dois players: o card alterna entre eles.
     const b = await startFakePlayer('orla_fake_b', '--title', 'Outra', '--artist', 'Outro', '--no-prev', '--no-next', '--no-art',
@@ -1441,7 +1442,320 @@ async function testDisableEnable() {
     check(orla()?.state === 1 && orlaActors() >= 1, 'reativar funciona');
 }
 
+// ---------- O vidro acompanha a dock ----------
+
+const displayConfig = (method, args) => new Promise((resolve, reject) => {
+    Gio.DBus.session.call('org.gnome.Mutter.DisplayConfig', '/org/gnome/Mutter/DisplayConfig',
+        'org.gnome.Mutter.DisplayConfig', method, args, null, Gio.DBusCallFlags.NONE, -1, null, (bus, res) => {
+            try {
+                resolve(bus.call_finish(res));
+            } catch (e) {
+                reject(e);
+            }
+        });
+});
+
+/** Troca a escala do monitor de teste; devolve a escala que valeu. */
+async function setMonitorScale(wanted) {
+    const [serial, monitors] = (await displayConfig('GetCurrentState', null)).recursiveUnpack();
+    const [[connector], modes] = monitors[0];
+    const mode = modes.find(m => m[6]['is-current']) ?? modes[0];
+    const scale = mode[5].reduce((a, b) => Math.abs(b - wanted) < Math.abs(a - wanted) ? b : a);
+    await displayConfig('ApplyMonitorsConfig', new GLib.Variant('(uua(iiduba(ssa{sv}))a{sv})',
+        [serial, 1, [[0, 0, scale, 0, true, [[connector, mode[0], {}]]]], {}]));
+    await sleep(2500);
+    return scale;
+}
+
+const tri = v => 255 - Math.abs(Math.round(v) % 510 - 255);
+
+/** Um fundo conhecido: R = rampa em X, G = rampa em Y, B = xadrez de 2 px. */
+function patternActor() {
+    const {width, height} = global.stage;
+    const data = new Uint8Array(width * height * 3);
+    for (let y = 0, i = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            data[i++] = tri(x);
+            data[i++] = tri(y * 2);
+            data[i++] = (x >> 1) + (y >> 1) & 1 ? 255 : 0;
+        }
+    }
+    const path = `${OUT}/padrao-${width}.png`;
+    GdkPixbuf.Pixbuf.new_from_bytes(new GLib.Bytes(data), GdkPixbuf.Colorspace.RGB, false, 8, width, height, width * 3)
+        .savev(path, 'png', [], []);
+    const actor = new St.Widget({width, height, style: `background-image: url("${path}"); background-size: 100% 100%;`});
+    global.window_group.add_child(actor);
+    return actor;
+}
+
+/**
+ * Compara o vidro com o fundo conhecido, ponto a ponto, nas duas faixas sem
+ * ícones (as bordas da dock). `pixel(x, y)` devolve [r, g, b] em
+ * coordenadas do palco. Devolve a lista de problemas.
+ */
+function compareGlass(dock, pixel) {
+    const bar = dock.backgroundActor;
+    const [bx, by] = bar.get_transformed_position();
+    const [bw, bh] = bar.get_transformed_size();
+    const vertical = dock.axis.vertical;
+    const length = vertical ? bh : bw;
+    const inset = dock.settings.get_int('corner-radius') + 4;
+    let sharp = 0, shifted = 0, total = 0, where = null;
+    for (const side of [4, (vertical ? bw : bh) - 4]) {
+        for (let m = inset; m < length - inset; m += 5) {
+            const x = vertical ? bx + side : bx + m;
+            const y = vertical ? by + m : by + side;
+            if (x < 12 || y < 12 || x > global.stage.width - 12 || y > global.stage.height - 12)
+                continue;
+            const [r, g, b] = pixel(x, y);
+            total++;
+            const blurred = b > 75 && b < 180;
+            // Perto das pontas da rampa o desfoque arredonda o pico.
+            const near = (v, got) => tri(v) < 45 || tri(v) > 210 || Math.abs(tri(v) - got) < 22;
+            // Na direção da espessura o desfoque repete a borda: só o eixo longo conta.
+            const inPlace = vertical ? near(y * 2, g) : near(x, r);
+            if (!blurred)
+                sharp++;
+            else if (!inPlace)
+                shifted++;
+            else
+                continue;
+            where ??= `${Math.round(m / length * 100)}% (${r},${g},${b})`;
+        }
+    }
+    const problems = [];
+    if (!total)
+        problems.push('nada para comparar');
+    // Um ponto ou outro pode cair num indicador ou separador.
+    if (sharp > total * 0.04)
+        problems.push(`sem vidro em ${Math.round(sharp / total * 100)}% (${where})`);
+    if (shifted > total * 0.04)
+        problems.push(`fora do lugar em ${Math.round(shifted / total * 100)}% (${where})`);
+    return problems;
+}
+
+/** A geometria: o fundo cobre todos os itens e o vidro cobre o fundo. */
+function glassGeometry(dock) {
+    const problems = [];
+    const g = dock.geometry;
+    const bar = dock.backgroundActor;
+    const rect = a => [...a.get_transformed_position(), ...a.get_transformed_size()];
+    const [x, y, w, h] = rect(bar);
+    const inside = (a, b) => a[0] >= b[0] - 1.5 && a[1] >= b[1] - 1.5 &&
+        a[0] + a[2] <= b[0] + b[2] + 1.5 && a[1] + a[3] <= b[1] + b[3] + 1.5;
+    for (const item of dock.getItems()) {
+        if (item.growth === 1 && !inside(rect(item), [x, y, w, h]))
+            problems.push(`item ${item.key} fora do fundo`);
+    }
+    if (!inside([x, y, w, h], rect(dock._background)))
+        problems.push(`fundo [${[x, y, w, h].map(Math.round)}] fora do vidro [${rect(dock._background).map(Math.round)}]`);
+    const thick = dock.axis.vertical ? w : h;
+    if (Math.abs(thick - g.thickness) > 1)
+        problems.push(`espessura ${thick} ≠ ${g.thickness}`);
+    return problems;
+}
+
+async function capturePixels() {
+    const path = `${OUT}/vidro-captura.png`;
+    await screenshot('vidro-captura');
+    const pix = GdkPixbuf.Pixbuf.new_from_file(path);
+    const data = pix.get_pixels(), stride = pix.get_rowstride(), n = pix.get_n_channels();
+    const scale = pix.get_width() / global.stage.width;
+    return (x, y) => {
+        const o = Math.floor(y * scale) * stride + Math.floor(x * scale) * n;
+        return [data[o], data[o + 1], data[o + 2]];
+    };
+}
+
+/** A textura que o vidro usou no último quadro DE VERDADE da tela. */
+async function livePixels(dock) {
+    const effect = dock._blurEffect;
+    const [pw, ph, scale] = effect._lastSize;
+    const path = `${OUT}/vidro-vivo.png`;
+    // A captura de tela também pinta o efeito: força um quadro real antes.
+    dock._background.queue_redraw();
+    await sleep(120);
+    const stream = Gio.File.new_for_path(path).replace(null, false, Gio.FileCreateFlags.NONE, null);
+    await new Promise(resolve => Shell.Screenshot.composite_to_stream(
+        effect._surfaces.glass.framebuffer.get_texture(), 0, 0, pw, ph, 1, null, 0, 0, 1, stream, (_o, res) => {
+            Shell.Screenshot.composite_to_stream_finish(res);
+            resolve();
+        }));
+    stream.close(null);
+    const pix = GdkPixbuf.Pixbuf.new_from_file(path);
+    const data = pix.get_pixels(), stride = pix.get_rowstride(), n = pix.get_n_channels();
+    const [ox, oy] = dock._background.get_transformed_position();
+    return (x, y) => {
+        const o = Math.floor((y - oy) * scale) * stride + Math.floor((x - ox) * scale) * n;
+        return [data[o] ?? 0, data[o + 1] ?? 0, data[o + 2] ?? 0];
+    };
+}
+
+async function testGlassFit(settings, {scales = [1, 1.25, 1.3333, 2], sizes = [32, 96, 49]} = {}) {
+    Main.overview.hide();
+    // O ponteiro virtual nasce em (0,0), em cima do canto ativo.
+    const iface = new Gio.Settings({schema_id: 'org.gnome.desktop.interface'});
+    iface.set_boolean('enable-hot-corners', false);
+    const favorites = global.settings.get_strv('favorite-apps');
+    const apps = Shell.AppSystem.get_default().get_installed().filter(i => i.should_show()).map(i => i.get_id())
+        .filter(id => Shell.AppSystem.get_default().lookup_app(id));
+    const pointer = global.stage.context.get_backend().get_default_seat()
+        .create_virtual_device(Clutter.InputDeviceType.POINTER_DEVICE);
+    // Só o desfoque, sem o material: assim a cor esperada é conhecida.
+    const touched = ['blur-enabled', 'icon-size', 'position', 'magnification', 'bar-style'];
+    const set = (key, value) => {
+        touched.push(key);
+        if (typeof value === 'boolean')
+            settings.set_boolean(key, value);
+        else if (settings.get_value(key).get_type_string() === 'i')
+            settings.set_int(key, value);
+        else
+            settings.set_double(key, value);
+    };
+    set('blur-enabled', true);
+    for (const key of ['blur-adaptive', 'blur-refraction', 'blur-dispersion', 'blur-sheen', 'blur-grain',
+        'blur-border-glow', 'blur-tint-opacity', 'blur-brightness', 'background-opacity', 'border-opacity'])
+        set(key, 0);
+    set('blur-vibrancy', 1);
+    set('blur-intensity', 8);
+
+    let pattern = null;
+    const raise = () => global.window_group.set_child_above_sibling(pattern, null);
+    const verify = async what => {
+        raise();
+        const dock = manager()._docks[0];
+        const problems = [...glassGeometry(dock),
+            ...compareGlass(dock, await capturePixels()).map(p => `captura: ${p}`),
+            ...compareGlass(dock, await livePixels(dock)).map(p => `ao vivo: ${p}`)];
+        check(problems.length === 0, `vidro no tamanho da dock: ${what}${problems.length ? ` — ${problems.join('; ')}` : ''}`);
+    };
+
+    if (GLib.getenv('ORLA_TEST_SCALES'))
+        scales = GLib.getenv('ORLA_TEST_SCALES').split(',').map(Number);
+    for (const wanted of scales) {
+        const scale = (await setMonitorScale(wanted)).toFixed(2);
+        pattern = patternActor();
+        for (const position of ['bottom', 'left', 'right', 'top']) {
+            settings.set_string('position', position);
+            await sleep(1200);
+            for (const size of sizes) {
+                // Mudança de tamanho com a dock ativa, crescendo e diminuindo.
+                settings.set_int('icon-size', size);
+                await sleep(500);
+                await verify(`escala ${scale}, ${position}, ícone ${size}`);
+            }
+        }
+        settings.set_string('position', 'bottom');
+        settings.set_int('icon-size', 49);
+        await sleep(1200);
+        // Mais e menos itens.
+        global.settings.set_strv('favorite-apps', apps.slice(0, 14));
+        await sleep(1500);
+        await verify(`escala ${scale}, 14 ícones`);
+        settings.set_int('icon-size', 96);
+        await sleep(600);
+        await verify(`escala ${scale}, 14 ícones, tamanho máximo que cabe`);
+        // Ampliação, no meio e nas pontas, e na volta.
+        const bar = manager()._docks[0].backgroundActor;
+        for (const at of [0.1, 0.5, 0.9]) {
+            const [x, y] = bar.get_transformed_position();
+            const [w, h] = bar.get_transformed_size();
+            pointer.notify_absolute_motion(GLib.get_monotonic_time(), x + w * at, y + h / 2);
+            await sleep(60);
+            pointer.notify_absolute_motion(GLib.get_monotonic_time(), x + w * at + 2, y + h / 2);
+            await sleep(900);
+            const dock = manager()._docks[0];
+            raise();
+            const problems = compareGlass(dock, await livePixels(dock));
+            check(problems.length === 0, `vidro no tamanho da dock: escala ${scale}, ampliada em ${at}` +
+                `${problems.length ? ` — ${problems.join('; ')}` : ''}`);
+        }
+        pointer.notify_absolute_motion(GLib.get_monotonic_time(), 5, 400);
+        await sleep(900);
+        global.settings.set_strv('favorite-apps', favorites);
+        await sleep(1500);
+        await verify(`escala ${scale}, de volta a poucos ícones`);
+        // Muda a espessura sem mudar o comprimento.
+        for (const key of ['dock-margin', 'dock-padding']) {
+            if (!settings.settings_schema.has_key(key))
+                continue;
+            settings.set_int(key, settings.get_int(key) + 9);
+            await sleep(600);
+            await verify(`escala ${scale}, ${key} maior`);
+            settings.reset(key);
+            await sleep(300);
+        }
+        // Muda só a distância da borda, ou só a espessura, com o MESMO
+        // comprimento: o vidro tem que acompanhar também.
+        for (const position of ['top', 'left']) {
+            settings.set_string('position', position);
+            await sleep(1200);
+            settings.set_int('dock-margin', settings.get_int('dock-margin') + 14);
+            await sleep(700);
+            await verify(`escala ${scale}, ${position}, só a margem`);
+            settings.reset('dock-margin');
+            await sleep(500);
+        }
+        settings.set_string('position', 'bottom');
+        await sleep(1200);
+        for (const on of [true, false]) {
+            settings.set_boolean('icon-reflection', on);
+            await sleep(700);
+            await verify(`escala ${scale}, reflexo ${on ? 'ligado' : 'desligado'}`);
+        }
+        // Widget de música ligado e desligado.
+        for (const on of [true, false]) {
+            settings.set_boolean('wavebar-music-pill-enabled', on);
+            await sleep(900);
+            await verify(`escala ${scale}, música ${on ? 'ligada' : 'desligada'}`);
+        }
+        // Os outros estilos e o vidro estático: a geometria tem que bater
+        // (a cor esperada não é conhecida nesses casos).
+        const geometryOnly = async what => {
+            await sleep(1500);
+            const problems = glassGeometry(manager()._docks[0]);
+            check(problems.length === 0, `vidro no tamanho da dock: escala ${scale}, ${what}` +
+                `${problems.length ? ` — ${problems.join('; ')}` : ''}`);
+        };
+        for (const style of ['taskbar', 'gnome', 'dock']) {
+            settings.set_string('bar-style', style);
+            await geometryOnly(`estilo ${style}`);
+        }
+        settings.set_string('blur-mode', 'static');
+        for (const size of [80, 40]) {
+            settings.set_int('icon-size', size);
+            await geometryOnly(`vidro estático, ícone ${size}`);
+        }
+        settings.reset('blur-mode');
+        settings.set_int('icon-size', 49);
+        await sleep(900);
+        await verify(`escala ${scale}, de volta ao dinâmico`);
+        pattern.destroy();
+    }
+    // O material completo, para conferir a olho em escala fracionária.
+    await setMonitorScale(1.3333);
+    for (const key of touched.filter(k => k.startsWith('blur-') || k.endsWith('-opacity')))
+        settings.reset(key);
+    settings.set_boolean('blur-enabled', true);
+    global.settings.set_strv('favorite-apps', apps.slice(0, 14));
+    await sleep(2000);
+    await screenshot('20-vidro-escala-fracionaria');
+    global.settings.set_strv('favorite-apps', favorites);
+    settings.reset('wavebar-music-pill-enabled');
+    iface.reset('enable-hot-corners');
+    await setMonitorScale(1);
+    for (const key of touched)
+        settings.reset(key);
+    await sleep(800);
+}
+
 async function run() {
+    if (GLib.getenv('ORLA_TEST_ONLY') === 'glassfit') {
+        await sleep(3000);
+        await testGlassFit(orla().stateObj.getSettings());
+        log('DONE');
+        return;
+    }
     await sleep(3000);
     await testStartup();
     const settings = orla().stateObj.getSettings();
@@ -1464,6 +1778,7 @@ async function run() {
     await testPanelMover(settings, win);
     await testLockScreen(settings);
     await testGlass(settings);
+    await testGlassFit(settings, {scales: [1.3333], sizes: [32, 64]});
     if (!QUICK)
         await testAllSettings(settings);
     await testDisableEnable();

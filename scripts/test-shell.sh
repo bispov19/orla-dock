@@ -51,7 +51,7 @@ dconf write /org/gnome/shell/enabled-extensions "['orla-dock@viniciusbispo19', '
 dconf write /org/gnome/shell/disable-user-extensions false
 dconf write /org/gnome/shell/welcome-dialog-last-shown-version "'999'"
 dconf write /org/gnome/shell/favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop']"
-exec timeout 600 "$ORLA_SHELL" --headless --virtual-monitor 1920x1080 --wayland --no-x11 --force-animations
+exec timeout 600 "$ORLA_SHELL" --headless --virtual-monitor ${ORLA_TEST_MONITOR:-1920x1080} --wayland --no-x11 --force-animations
 INNER
 chmod +x "$WORK/session.sh"
 

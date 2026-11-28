@@ -855,7 +855,7 @@
       </choices>
       <default>'apps'</default>
       <summary>Music widget position</summary>
-      <description>Where the music widget sits on the dock: at the far left (start), next to the applications button, or at the end, next to the Trash.</description>
+      <description>Where the music widget sits on the dock: on the left side (start), next to the applications button, or at the end, next to the Trash.</description>
     </key>
     <key name="wavebar-music-pill-lyrics-cache-stamp" type="i">
       <default>0</default>

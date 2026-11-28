@@ -29,7 +29,7 @@ function fillBox(cr, x, y, w, h, r, [cr0, cg, cb], a = 1) {
     cr.fill();
 }
 
-/** Uma dock de mentira com o widget no extremo esquerdo ou no fim. */
+/** Uma dock de mentira com o widget no lado esquerdo ou no fim. */
 function paintPositionPreview(cr, w, h, id, dark, selected) {
     const scale = Math.min(w / 180, h / 90);
     cr.save();
@@ -63,7 +63,7 @@ function paintPositionPreview(cr, w, h, id, dark, selected) {
         x += 40;
     };
     if (id === 'apps') {
-        pill();                         // extremo esquerdo
+        pill();                         // lado esquerdo
         sep();
     }
     icon([0.2, 0.22, 0.26]);           // botão de aplicativos
@@ -82,7 +82,7 @@ function positionCards(binder) {
     const settings = binder.settings;
     const key = `${KEY}position`;
     const choices = [
-        ['apps', _('Far left'), _('At the start of the dock, next to the applications button (default)')],
+        ['apps', _('Left side'), _('At the start of the dock, next to the applications button (default)')],
         ['end', _('Right side'), _('At the end of the dock, next to the Trash')],
     ];
     const row = new Gtk.Box({spacing: 12, homogeneous: true});

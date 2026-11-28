@@ -1631,7 +1631,7 @@ msgid "Choose a folder"
 msgstr ""
 
 #: prefs/musicPage.js:83
-msgid "Far left"
+msgid "Left side"
 msgstr ""
 
 #: prefs/musicPage.js:83
