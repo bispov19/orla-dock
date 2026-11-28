@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: GPL-3.0-or-later
+# Orla Dock
+# Copyright (c) 2026 Vinícius de Souza Bispo
+# Licensed under the MIT License - see LICENSE file
+# SPDX-License-Identifier: MIT
 #
 # test-prefs.sh — abre a janela de preferências, passa por todas as abas
 # nos temas claro e escuro e salva uma captura de cada.

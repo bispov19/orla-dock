@@ -293,6 +293,18 @@ O que o projeto segue das regras de revisão (e o `check.sh` confere):
 - **Menu Iniciar no lugar da App Grid:** a Orla troca, só na instância, duas funções internas do GNOME 51 (`Main.overview.show` e o `ease` da régua de estados da Visão Geral). Se uma versão futura mudar esses nomes, a opção simplesmente não pega e a App Grid normal continua (aviso no log). O gesto de três dedos para cima duas vezes termina no menu só quando o gesto acaba (a grade aparece um instante durante o gesto).
 - O Gênio usa um detalhe interno do Shell (`Main.wm._minimizing`); se ele mudar numa versão futura, a Orla volta sozinha para a animação nativa.
 
-## Licença
+## Créditos / Credits
 
-[GPL-3.0-or-later](LICENSE)
+**Orla Dock** foi criada e é mantida por **Vinícius de Souza Bispo** — [github.com/bispov19](https://github.com/bispov19).
+Repositório original: [github.com/bispov19/orla-dock](https://github.com/bispov19/orla-dock).
+
+**Atribuição obrigatória:** qualquer cópia, fork ou versão modificada da Orla Dock deve manter o aviso de copyright (`Copyright (c) 2026 Vinícius de Souza Bispo`) e o texto da licença MIT ([LICENSE](LICENSE)), e citar o autor original.
+
+**Orla Dock** was created and is maintained by **Vinícius de Souza Bispo** — [github.com/bispov19](https://github.com/bispov19).
+Original repository: [github.com/bispov19/orla-dock](https://github.com/bispov19/orla-dock).
+
+**Attribution required:** any copy, fork or modified version of Orla Dock must keep the copyright notice (`Copyright (c) 2026 Vinícius de Souza Bispo`) and the MIT license text ([LICENSE](LICENSE)), and credit the original author.
+
+## Licença / License
+
+[MIT](LICENSE) — Copyright (c) 2026 Vinícius de Souza Bispo

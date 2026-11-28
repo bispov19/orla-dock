@@ -1,5 +1,7 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Vinicius Bispo
+// Orla Dock
+// Copyright (c) 2026 Vinícius de Souza Bispo
+// Licensed under the MIT License - see LICENSE file
+// SPDX-License-Identifier: MIT
 //
 // tests/shots/orla-shots@local/extension.js — monta cada cena da Orla Dock
 // num GNOME Shell de teste e tira a captura já recortada. Usada pelo

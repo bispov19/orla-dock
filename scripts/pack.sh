@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: GPL-3.0-or-later
+# Orla Dock
+# Copyright (c) 2026 Vinícius de Souza Bispo
+# Licensed under the MIT License - see LICENSE file
+# SPDX-License-Identifier: MIT
 #
 # pack.sh — gera o pacote .zip da extensão (o formato que se envia ao
 # extensions.gnome.org ou que se instala com "gnome-extensions install").

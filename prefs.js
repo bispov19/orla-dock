@@ -1,5 +1,7 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Vinicius Bispo
+// Orla Dock
+// Copyright (c) 2026 Vinícius de Souza Bispo
+// Licensed under the MIT License - see LICENSE file
+// SPDX-License-Identifier: MIT
 //
 // prefs.js — janela de preferências da Orla Dock.
 //
@@ -42,11 +44,11 @@ function aboutInfo(metadata, extensionPath) {
         name: 'Orla Dock',
         description: _('An elegant, fluid dock for GNOME Shell, inspired by the macOS Dock.'),
         version: metadata['version-name'] ?? String(metadata.version ?? '?'),
-        // A mesma licença dos cabeçalhos SPDX dos arquivos (e do LICENSE).
-        license: 'GPL-3.0-or-later',
+        // A mesma licença dos cabeçalhos dos arquivos (e do LICENSE).
+        license: 'MIT',
         repoUrl: metadata.url ?? 'https://github.com/bispov19/orla-dock',
         logoPath: GLib.build_filenamev([extensionPath, 'icons', 'orla-dock-mark.svg']),
-        author: {name: 'Vini', role: _('Web Developer · Author and maintainer')},
+        author: {name: 'Vinícius de Souza Bispo', role: _('Web Developer · Author and maintainer')},
         // Só recursos que existem de verdade (ver README).
         features: [
             _('Wave magnification'),

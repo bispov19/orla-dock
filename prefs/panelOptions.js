@@ -1,5 +1,7 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 Vinicius Bispo
+// Orla Dock
+// Copyright (c) 2026 Vinícius de Souza Bispo
+// Licensed under the MIT License - see LICENSE file
+// SPDX-License-Identifier: MIT
 //
 // prefs/panelOptions.js — opções da barra de tarefas na aba Estilos: modo
 // Painel, relógio e bandeja. Só aparecem com um estilo de

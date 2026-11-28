@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: GPL-3.0-or-later
+# Orla Dock
+# Copyright (c) 2026 Vinícius de Souza Bispo
+# Licensed under the MIT License - see LICENSE file
+# SPDX-License-Identifier: MIT
 #
 # check.sh — confere as regras de revisão do extensions.gnome.org (EGO)
 # que dá para verificar automaticamente. Rode antes de enviar uma versão:
