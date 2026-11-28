@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Orla Dock
 # Copyright (c) 2026 Vinícius de Souza Bispo
-# Licensed under the MIT License - see LICENSE file
-# SPDX-License-Identifier: MIT
+# Licensed under the MIT License with Attribution Requirement - see LICENSE file
+# SPDX-License-Identifier: LicenseRef-MIT-Attribution
 #
 # perf.sh — mede a fluidez (Visão Geral, áreas de trabalho, Menu Iniciar)
 # num GNOME Shell de teste sem janela, com e sem a Orla Dock. Veja

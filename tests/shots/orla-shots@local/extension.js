@@ -1,7 +1,7 @@
 // Orla Dock
 // Copyright (c) 2026 Vinícius de Souza Bispo
-// Licensed under the MIT License - see LICENSE file
-// SPDX-License-Identifier: MIT
+// Licensed under the MIT License with Attribution Requirement - see LICENSE file
+// SPDX-License-Identifier: LicenseRef-MIT-Attribution
 //
 // tests/shots/orla-shots@local/extension.js — monta cada cena da Orla Dock
 // num GNOME Shell de teste e tira a captura já recortada. Usada pelo

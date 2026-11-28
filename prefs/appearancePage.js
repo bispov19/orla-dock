@@ -1,7 +1,7 @@
 // Orla Dock
 // Copyright (c) 2026 Vinícius de Souza Bispo
-// Licensed under the MIT License - see LICENSE file
-// SPDX-License-Identifier: MIT
+// Licensed under the MIT License with Attribution Requirement - see LICENSE file
+// SPDX-License-Identifier: LicenseRef-MIT-Attribution
 //
 // prefs/appearancePage.js — aba "Aparência": cores, forma, indicadores,
 // contadores e separadores. (O vidro/desfoque tem a sua própria aba.)

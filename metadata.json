@@ -8,7 +8,7 @@
   "url": "https://github.com/bispov19/orla-dock",
   "author": "Vinícius de Souza Bispo",
   "author-url": "https://github.com/bispov19",
-  "license": "MIT",
+  "license": "LicenseRef-MIT-Attribution",
   "settings-schema": "org.gnome.shell.extensions.orla-dock",
   "session-modes": [
     "user",

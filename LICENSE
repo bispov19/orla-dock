@@ -1,4 +1,4 @@
-MIT License
+MIT License with Attribution Requirement
 
 Copyright (c) 2026 Vinícius de Souza Bispo
 
@@ -9,8 +9,30 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software, including the copyright
+   headers of the source files.
+
+2. Attribution. Any copy, fork, modified version or other work that contains
+   the Software or a substantial portion of it, when distributed or made
+   available to others, in source or compiled form, must keep the following
+   credit, readable by its recipients:
+
+       Based on Orla Dock by Vinícius de Souza Bispo
+       https://github.com/bispov19/orla-dock
+
+   The credit must appear in the README or equivalent documentation of the
+   work and, if the work has an "About" or credits screen, on that screen too.
+   An unmodified copy that already shows the original author and repository
+   satisfies this condition.
+
+3. Modified versions must state that they were modified, and must not be
+   presented as the original Orla Dock or remove or replace the original
+   author's credit. This does not prevent others from adding their own credit
+   for their own changes.
+
+These permissions are conditional: they do not extend to anyone who does not
+comply with the conditions above.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,

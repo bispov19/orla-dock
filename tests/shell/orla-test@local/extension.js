@@ -1,7 +1,7 @@
 // Orla Dock
 // Copyright (c) 2026 Vinícius de Souza Bispo
-// Licensed under the MIT License - see LICENSE file
-// SPDX-License-Identifier: MIT
+// Licensed under the MIT License with Attribution Requirement - see LICENSE file
+// SPDX-License-Identifier: LicenseRef-MIT-Attribution
 //
 // tests/shell/orla-test@local/extension.js — testes da Orla Dock que rodam
 // DENTRO de um GNOME Shell de teste (sem janela), iniciado pelo

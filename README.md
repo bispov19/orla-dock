@@ -298,13 +298,27 @@ O que o projeto segue das regras de revisão (e o `check.sh` confere):
 **Orla Dock** foi criada e é mantida por **Vinícius de Souza Bispo** — [github.com/bispov19](https://github.com/bispov19).
 Repositório original: [github.com/bispov19/orla-dock](https://github.com/bispov19/orla-dock).
 
-**Atribuição obrigatória:** qualquer cópia, fork ou versão modificada da Orla Dock deve manter o aviso de copyright (`Copyright (c) 2026 Vinícius de Souza Bispo`) e o texto da licença MIT ([LICENSE](LICENSE)), e citar o autor original.
+**Atribuição obrigatória:** é uma condição da [licença](LICENSE), não um pedido. Quem distribuir uma cópia, um fork, uma versão modificada ou outro projeto com partes substanciais da Orla Dock deve:
+
+1. manter o aviso `Copyright (c) 2026 Vinícius de Souza Bispo`, os cabeçalhos dos arquivos e o texto da licença;
+2. mostrar no README (e na tela "Sobre" ou de créditos, se houver):
+   > Based on Orla Dock by Vinícius de Souza Bispo — https://github.com/bispov19/orla-dock
+3. avisar que foi modificada, se for o caso, e não se apresentar como a Orla Dock original.
+
+Sem cumprir essas condições, não há permissão de uso do código.
 
 **Orla Dock** was created and is maintained by **Vinícius de Souza Bispo** — [github.com/bispov19](https://github.com/bispov19).
 Original repository: [github.com/bispov19/orla-dock](https://github.com/bispov19/orla-dock).
 
-**Attribution required:** any copy, fork or modified version of Orla Dock must keep the copyright notice (`Copyright (c) 2026 Vinícius de Souza Bispo`) and the MIT license text ([LICENSE](LICENSE)), and credit the original author.
+**Attribution required:** this is a condition of the [license](LICENSE), not a request. Anyone distributing a copy, a fork, a modified version or another project containing substantial portions of Orla Dock must:
+
+1. keep the `Copyright (c) 2026 Vinícius de Souza Bispo` notice, the file headers and the license text;
+2. show in the README (and on the "About" or credits screen, if any):
+   > Based on Orla Dock by Vinícius de Souza Bispo — https://github.com/bispov19/orla-dock
+3. state that it was modified, if so, and not be presented as the original Orla Dock.
+
+Without meeting these conditions, there is no permission to use the code.
 
 ## Licença / License
 
-[MIT](LICENSE) — Copyright (c) 2026 Vinícius de Souza Bispo
+[MIT com atribuição obrigatória / MIT with Attribution Requirement](LICENSE) — Copyright (c) 2026 Vinícius de Souza Bispo
